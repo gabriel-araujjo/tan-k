@@ -20,7 +20,12 @@ public class TanK implements Runnable{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        QuanserClient quanserClient;
+      (new Thread(new TanK())).start();
+    }
+
+  @Override
+  public void run() {
+    QuanserClient quanserClient;
       while(true){
         try {
           quanserClient = new QuanserClient("127.0.0.1", 20081);
@@ -33,28 +38,5 @@ public class TanK implements Runnable{
           Logger.getLogger(TanK.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
-    }
-
-  @Override
-  public void run() {
-    QuanserClient quanserClient = null;
-      try {
-        quanserClient = new QuanserClient("127.0.0.1", 20081);
-      } catch (QuanserClientException ex) {
-        Logger.getLogger(TanK.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    while(true){
-      try {
-        double _read = 0.0;
-        if(null!=quanserClient) quanserClient.read(0);
-        System.out.println("Leitura Canal 0: " + _read);
-        Thread.sleep(300);
-        System.out.println("Gravando 1.2 volts no canal 4...");
-        if(null!=quanserClient) quanserClient.write(4, 1.2);
-        Thread.sleep(300);
-      } catch (QuanserClientException | InterruptedException ex) {
-        Logger.getLogger(TanK.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
   }
 }
