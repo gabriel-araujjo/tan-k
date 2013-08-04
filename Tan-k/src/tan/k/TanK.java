@@ -31,7 +31,7 @@ public class TanK implements Runnable{
           quanserClient = new QuanserClient("127.0.0.1", 20081);
           double _read = quanserClient.read(0);
           System.out.println("Leitura Canal 0: " + _read*6.25);
-          System.out.println("Gravando 0.8 volts no canal 4...");
+          System.out.println("Gravando 0.8 volts no canal 0...");
           quanserClient.write(0, 0.8);
           Thread.sleep(1000);
         } catch (QuanserClientException | InterruptedException ex) {
