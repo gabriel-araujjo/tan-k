@@ -35,7 +35,6 @@ public class TanK implements Runnable{
           System.out.println("Gravando 0.8 volts no canal 0...");
           quanserClient.write(0, 0.8);
           Thread.sleep(1000);
-          Thread.sleep(3);
         } catch (QuanserClientException | InterruptedException ex) {
           Logger.getLogger(TanK.class.getName()).log(Level.SEVERE, null, ex);
         }
