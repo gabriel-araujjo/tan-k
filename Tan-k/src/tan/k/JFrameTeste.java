@@ -50,6 +50,10 @@ public class JFrameTeste extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public GraphicPanel getGraphicPanel1() {
+        return graphicPanel1;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -66,7 +70,4 @@ public class JFrameTeste extends javax.swing.JFrame {
     private tan.k.GraphicPanel graphicPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void setGraphicPanel1(GraphicPanel graphicPanel1) {
-        this.graphicPanel1 = graphicPanel1;
-    }
 }

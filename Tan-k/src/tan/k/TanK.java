@@ -26,12 +26,9 @@ public class TanK implements Runnable{
     QuanserClient quanserClient;
    
     float volts = 0;
-    GraphicPanel gp = new GraphicPanel();
     JFrameTeste janela = new JFrameTeste();  
-    janela.setGraphicPanel1(gp);
-    gp.setVisible(true);
     janela.setVisible(true);
-    
+    GraphicPanel gp = janela.getGraphicPanel1();
 
       while(true){
         try {
