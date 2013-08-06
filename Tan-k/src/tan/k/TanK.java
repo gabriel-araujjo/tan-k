@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tan.k;
 
 import java.util.logging.Level;
@@ -9,14 +5,11 @@ import java.util.logging.Logger;
 
 import br.ufrn.dca.controle.QuanserClient;
 import br.ufrn.dca.controle.QuanserClientException;
-import javax.swing.SwingUtilities;
-
-import org.jfree.data.time.FixedMillisecond;
 
 
 /**
  *
- * @author sergio
+ * @author sergio,ricardo,guilherme,gabriel
  */
 public class TanK implements Runnable{
 
