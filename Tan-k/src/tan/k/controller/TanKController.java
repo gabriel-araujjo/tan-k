@@ -4,27 +4,20 @@
  */
 package tan.k.controller;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import br.ufrn.dca.controle.QuanserClient;
-import br.ufrn.dca.controle.QuanserClientException;
-
 /**
  *
  * @author sergio
  */
-public class TanKController implements Runnable {
-  
-  public TanKController(){
-    
+public class TanKController {
+
+  public TanKController() {
+    /* TODO: Controller do Tank com todas as funcoes
+     * Guilherme irá fazer isso
+     */
   }
   
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    (new Thread(new TanKController())).start();
+  /* public static void main(String[] args) {
+    (new Thread(new TanK())).start();
   }
 
   @Override
@@ -39,8 +32,8 @@ public class TanKController implements Runnable {
         quanserClient.write(0, 0.8);
         Thread.sleep(1000);
       } catch (QuanserClientException | InterruptedException ex) {
-        Logger.getLogger(TanKController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(TanK.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
-  }
+  }*/
 }
