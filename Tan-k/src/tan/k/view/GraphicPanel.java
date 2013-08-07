@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tan.k;
+package tan.k.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
