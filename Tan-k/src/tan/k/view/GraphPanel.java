@@ -1,4 +1,4 @@
-package tan.k;
+package tan.k.view;
 
 import java.awt.BorderLayout;
 import java.util.Calendar;
@@ -16,7 +16,6 @@ import org.jfree.ui.RectangleEdge;
  *
  * @author ricardo
  */
-
 public class GraphPanel extends javax.swing.JPanel {
 
     String title = "title";
@@ -31,7 +30,7 @@ public class GraphPanel extends javax.swing.JPanel {
     private FixedMillisecond iniTime;
 //    TimeSeriesCollection collection = new TimeSeriesCollection();
     XYSeriesCollection collection = new XYSeriesCollection();
-    JFreeChart chart = ChartFactory.createXYLineChart("title", "xAxisLabel", "yAxisLabel", collection, PlotOrientation.VERTICAL, true, true, true);
+    JFreeChart chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, collection, PlotOrientation.VERTICAL, true, true, true);
     ChartPanel chartPanel = new ChartPanel(chart);
     LegendTitle legend = chart.getLegend();
 
@@ -44,16 +43,16 @@ public class GraphPanel extends javax.swing.JPanel {
         this.revalidate();
     }
 
-    public void addValue(String serie, float x, float y) {
+    public void addValue(String serie, double x, double y) {
         switch (serie) {
             case "S1":
-                s1.add(x, y);
+                s1.addOrUpdate(x, y);
                 break;
             case "S2":
-                s2.add(x, y);
+                s2.addOrUpdate(x, y);
                 break;
             case "S3":
-                s3.add(x, y);
+                s3.addOrUpdate(x, y);
                 break;
             default:
                 break;
@@ -62,8 +61,8 @@ public class GraphPanel extends javax.swing.JPanel {
 
     public void addValue(String serie, float value) {
         FixedMillisecond currentTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
-        long time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em ms
-//        System.out.println(time);
+        double time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
+        time = time/1000; // tempo em segundo
         addValue(serie, time, value);
     }
 
@@ -102,20 +101,52 @@ public class GraphPanel extends javax.swing.JPanel {
         }
     }
 
-    public void timeStart() {
+    public void startTime() {
         iniTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
     }
 
     public void setTitle(String title) {
         this.title = title;
+        remove(chartPanel);
+        chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, collection, PlotOrientation.VERTICAL, true, true, true);
+        chartPanel = new ChartPanel(chart);
+        legend = chart.getLegend();
+        //GraphPanel()
+        setLayout(new BorderLayout());
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        legend.setPosition(RectangleEdge.RIGHT);
+        add(chartPanel);
+        this.setVisible(true);
+        this.revalidate();
     }
 
     public void setxAxisLabel(String xAxisLabel) {
         this.xAxisLabel = xAxisLabel;
+        remove(chartPanel);
+        chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, collection, PlotOrientation.VERTICAL, true, true, true);
+        chartPanel = new ChartPanel(chart);
+        legend = chart.getLegend();
+        //GraphPanel()
+        setLayout(new BorderLayout());
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        legend.setPosition(RectangleEdge.RIGHT);
+        add(chartPanel);
+        this.setVisible(true);
+        this.revalidate();
     }
 
     public void setyAxisLabel(String yAxisLabel) {
         this.yAxisLabel = yAxisLabel;
+        remove(chartPanel);
+        chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, collection, PlotOrientation.VERTICAL, true, true, true);
+        chartPanel = new ChartPanel(chart);
+        legend = chart.getLegend();
+        //GraphPanel()
+        setLayout(new BorderLayout());
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+        legend.setPosition(RectangleEdge.RIGHT);
+        add(chartPanel);
+        this.setVisible(true);
+        this.revalidate();
     }
-
 }
