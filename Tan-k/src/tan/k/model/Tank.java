@@ -124,7 +124,8 @@ public class Tank implements Runnable {
   /**
    * @param ip the ip to set
    */
-  public synchronized void setIp(String ip) {
+  public synchronized void setIp(String ip) throws QuanserClientException {
     this.ip = ip;
+    this.quanserClient = new QuanserClient(this.ip, port);
   }
 }
