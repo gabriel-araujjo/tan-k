@@ -125,15 +125,18 @@ public class MainFrame extends javax.swing.JFrame {
         ipPortField = new javax.swing.JFormattedTextField();
         graphPanel1 = new tan.k.view.GraphPanel();
         graphPanel2 = new tan.k.view.GraphPanel();
+        jToggleButtonConfiguration = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tank");
-        setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 595));
+        setPreferredSize(new java.awt.Dimension(1000, 595));
 
+        sidebar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sidebar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sidebar.setMinimumSize(new java.awt.Dimension(260, 100));
         sidebar.setBackground(java.awt.SystemColor.control);
 
@@ -950,7 +953,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(ipPortBoxLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ipPortWrapper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
@@ -984,6 +987,22 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        graphPanel1.setyAxisLabel("Height(cm)");
+        graphPanel1.setxAxisLabel("Time(s)");
+
+        graphPanel2.setyAxisLabel("Voltz(V)");
+        graphPanel2.setxAxisLabel("Time(s)");
+
+        jToggleButtonConfiguration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/Settings_Icon_32.png"))); // NOI18N
+        jToggleButtonConfiguration.setMaximumSize(new java.awt.Dimension(32, 32));
+        jToggleButtonConfiguration.setMinimumSize(new java.awt.Dimension(32, 32));
+        jToggleButtonConfiguration.setPreferredSize(new java.awt.Dimension(32, 43));
+        jToggleButtonConfiguration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonConfigurationActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -997,121 +1016,135 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                            .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(graphPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_input1ActionPerformed
+    private void ipPortFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipPortFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipPortFieldActionPerformed
 
-  private void input3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input3ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_input3ActionPerformed
+    private void ipPortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortMouseClicked
+        ipPortBox.setVisible(!ipPortBox.isVisible());
+    }//GEN-LAST:event_ipPortMouseClicked
 
-  private void input5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input5ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_input5ActionPerformed
+    private void setPointFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPointFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_setPointFieldActionPerformed
 
-  private void input7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input7ActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_input7ActionPerformed
+    private void stepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stepActionPerformed
 
-  private void readTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readTogglerMouseClicked
-    readBox.setVisible(!readBox.isVisible());
-  }//GEN-LAST:event_readTogglerMouseClicked
+    private void stepStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_stepStateChanged
+        javax.swing.JToggleButton self = (javax.swing.JToggleButton) evt.getSource();
+        if(self.isSelected()){
+            if(frequency.isVisible()){
+                frequency.setVisible(false);
+                period.setVisible(false);
+            }
+        }else{
+            if(!frequency.isVisible()){
+                frequency.setVisible(true);
+                period.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_stepStateChanged
 
-  private void stepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stepActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_stepActionPerformed
+    private void writeTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_writeTogglerMouseClicked
+        writeBox.setVisible(!writeBox.isVisible());
+    }//GEN-LAST:event_writeTogglerMouseClicked
 
-  private void stepStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_stepStateChanged
-    javax.swing.JToggleButton self = (javax.swing.JToggleButton) evt.getSource();
-    if(self.isSelected()){
-      if(frequency.isVisible()){
-        frequency.setVisible(false);
-        period.setVisible(false);
-      }
-    }else{
-      if(!frequency.isVisible()){
-        frequency.setVisible(true);
-        period.setVisible(true);
-      }
-    }
-  }//GEN-LAST:event_stepStateChanged
+    private void input7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input7ActionPerformed
 
-  private void setPointFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPointFieldActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_setPointFieldActionPerformed
+    private void updatePVChooser(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_updatePVChooser
+        List<JCheckBox> selectedInputs = getSelectedInputs();
 
-  private void updatePVChooser(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_updatePVChooser
-    List<JCheckBox> selectedInputs = getSelectedInputs();
-       
-    if(selectedInputs.size()>0){
-      
-      Vector<String>opts = new Vector<>();
-      for(JCheckBox input: selectedInputs){
-        opts.add(input.getText());
-      }
-      processVariableField.setModel(new javax.swing.DefaultComboBoxModel(opts));
-      if(!processVariableField.isEnabled()) processVariableField.setEnabled(true);
-    }else{
-      processVariableField.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
-      if(processVariableField.isEnabled()) processVariableField.setEnabled(false);
-    }
-  }//GEN-LAST:event_updatePVChooser
+        if(selectedInputs.size()>0){
 
-  private void ipPortFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipPortFieldActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_ipPortFieldActionPerformed
+            Vector<String>opts = new Vector<>();
+            for(JCheckBox input: selectedInputs){
+                opts.add(input.getText());
+            }
+            processVariableField.setModel(new javax.swing.DefaultComboBoxModel(opts));
+            if(!processVariableField.isEnabled()) processVariableField.setEnabled(true);
+        }else{
+            processVariableField.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
+            if(processVariableField.isEnabled()) processVariableField.setEnabled(false);
+        }
+    }//GEN-LAST:event_updatePVChooser
 
-  private void ipPortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortMouseClicked
-    ipPortBox.setVisible(!ipPortBox.isVisible());
-  }//GEN-LAST:event_ipPortMouseClicked
+    private void input5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input5ActionPerformed
 
-  private void writeTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_writeTogglerMouseClicked
-    writeBox.setVisible(!writeBox.isVisible());
-  }//GEN-LAST:event_writeTogglerMouseClicked
+    private void input3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input3ActionPerformed
 
-  private void closedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_closedLoopItemStateChanged
-    JRadioButton self = (JRadioButton) evt.getSource();
-    if(self.isSelected()){
-      openedLoopSettings.setVisible(false);
-      closedLoopSettings.setVisible(true);
-      writeBox.setPreferredSize(new Dimension(357, 140));
-      pack();
-    }
-  }//GEN-LAST:event_closedLoopItemStateChanged
+    private void input1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input1ActionPerformed
 
-  private void openedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_openedLoopItemStateChanged
-    JRadioButton self = (JRadioButton) evt.getSource();
-    if(self.isSelected()){
-      openedLoopSettings.setVisible(true);
-      closedLoopSettings.setVisible(false);
-      writeBox.setPreferredSize(new Dimension(357, 215));
-      pack();
-    }
-  }//GEN-LAST:event_openedLoopItemStateChanged
-  
+    private void readTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readTogglerMouseClicked
+        readBox.setVisible(!readBox.isVisible());
+    }//GEN-LAST:event_readTogglerMouseClicked
+
+    private void closedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_closedLoopItemStateChanged
+        JRadioButton self = (JRadioButton) evt.getSource();
+        if(self.isSelected()){
+            openedLoopSettings.setVisible(false);
+            closedLoopSettings.setVisible(true);
+            writeBox.setPreferredSize(new Dimension(357, 140));
+            pack();
+        }
+    }//GEN-LAST:event_closedLoopItemStateChanged
+
+    private void openedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_openedLoopItemStateChanged
+        JRadioButton self = (JRadioButton) evt.getSource();
+        if(self.isSelected()){
+            openedLoopSettings.setVisible(true);
+            closedLoopSettings.setVisible(false);
+            writeBox.setPreferredSize(new Dimension(357, 215));
+            pack();
+        }
+    }//GEN-LAST:event_openedLoopItemStateChanged
+
+    private boolean flagevisable = false; 
+    private void jToggleButtonConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonConfigurationActionPerformed
+            sidebar.setVisible(flagevisable);
+        if(flagevisable == true) flagevisable=false;
+        else flagevisable=true;
+    }//GEN-LAST:event_jToggleButtonConfigurationActionPerformed
+     
  
   /**
    * 
@@ -1183,6 +1216,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JToggleButton jToggleButtonConfiguration;
     private javax.swing.JPanel loopChooser;
     private javax.swing.ButtonGroup loopTypeChooser;
     private javax.swing.JRadioButton openedLoop;

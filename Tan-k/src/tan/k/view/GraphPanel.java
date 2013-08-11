@@ -21,8 +21,8 @@ public class GraphPanel extends javax.swing.JPanel {
     String title = null;
     String xAxisLabel = null;
     String yAxisLabel = null;
-    private final String s1Name = "Height Tank 1";
-    private final String s2Name = "Height Tank 2";
+    private final String s1Name = "Tank 1";
+    private final String s2Name = "Tank 2";
     private final String s3Name = "Sinal";
 //    private final String s4Name = null;
     private XYSeries s1 = new XYSeries(s1Name);
