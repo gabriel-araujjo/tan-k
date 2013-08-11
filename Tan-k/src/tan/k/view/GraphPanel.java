@@ -18,12 +18,17 @@ import org.jfree.ui.RectangleEdge;
  */
 public class GraphPanel extends javax.swing.JPanel {
 
-    String title = "title";
-    String xAxisLabel = "xAxisLabel";
-    String yAxisLabel = "yAxisLabel";
-    private XYSeries s1 = new XYSeries("S1");
-    private XYSeries s2 = new XYSeries("S2");
-    private XYSeries s3; //= new XYSeries("S3");
+    String title = null;
+    String xAxisLabel = null;
+    String yAxisLabel = null;
+    private final String s1Name = "Height Tank 1";
+    private final String s2Name = "Height Tank 2";
+    private final String s3Name = "Sinal";
+//    private final String s4Name = null;
+    private XYSeries s1 = new XYSeries(s1Name);
+    private XYSeries s2 = new XYSeries(s2Name);
+    private XYSeries s3 = new XYSeries(s3Name);
+//    private XYSeries s4 = new XYSeries(s4Name);
 //    TimeSeries s1 = new TimeSeries("s1");
 //    TimeSeries s2 = new TimeSeries("s2");
 //    TimeSeries s3 = new TimeSeries("s3");
@@ -45,15 +50,18 @@ public class GraphPanel extends javax.swing.JPanel {
 
     public void addValue(String serie, double x, double y) {
         switch (serie) {
-            case "S1":
+            case s1Name:
                 s1.addOrUpdate(x, y);
                 break;
-            case "S2":
+            case s2Name:
                 s2.addOrUpdate(x, y);
                 break;
-            case "S3":
+            case s3Name:
                 s3.addOrUpdate(x, y);
                 break;
+//            case s4Name:
+//                s4.addOrUpdate(x, y);
+//                break;
             default:
                 break;
         }
@@ -62,24 +70,28 @@ public class GraphPanel extends javax.swing.JPanel {
     public void addValue(String serie, float value) {
         FixedMillisecond currentTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
         double time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
-        time = time/1000; // tempo em segundo
+        time = time / 1000; // tempo em segundo
         addValue(serie, time, value);
     }
 
     public void addSerie(String serie) {
         switch (serie) {
-            case "S1":
-                s1 = new XYSeries("S1");
+            case s1Name:
+                s1 = new XYSeries(s1Name);
                 collection.addSeries(s1);
                 break;
-            case "S2":
-                s2 = new XYSeries("S2");
+            case s2Name:
+                s2 = new XYSeries(s2Name);
                 collection.addSeries(s2);
                 break;
-            case "S3":
-                s3 = new XYSeries("S3");
+            case s3Name:
+                s3 = new XYSeries(s3Name);
                 collection.addSeries(s3);
                 break;
+//            case s4Name:
+//                s4 = new XYSeries(s4Name);
+//                collection.addSeries(s4);
+//                break;
             default:
                 break;
         }
@@ -87,15 +99,18 @@ public class GraphPanel extends javax.swing.JPanel {
 
     public void removeSerie(String serie) {
         switch (serie) {
-            case "S1":
+            case s1Name:
                 collection.removeSeries(s1);
                 break;
-            case "S2":
+            case s2Name:
                 collection.removeSeries(s2);
                 break;
-            case "S3":
+            case s3Name:
                 collection.removeSeries(s3);
                 break;
+//            case s4Name:
+//                collection.removeSeries(s4);
+//                break;
             default:
                 break;
         }
