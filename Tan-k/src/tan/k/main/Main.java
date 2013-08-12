@@ -124,5 +124,7 @@ public class Main {
                 view.setVisible(true);
             }
         });
+        
+        (new Thread(controller)).start();
     }
 }
