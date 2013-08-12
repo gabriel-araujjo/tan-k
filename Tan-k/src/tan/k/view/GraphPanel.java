@@ -24,11 +24,11 @@ public class GraphPanel extends javax.swing.JPanel {
     private final String s1Name = "Tanque 1";
     private final String s2Name = "Tanque 2";
     private final String s3Name = "Sinal";
-//    private final String s4Name = null;
+    private final String s4Name = "Sinal para configuracao";
     private XYSeries s1 = new XYSeries(s1Name);
     private XYSeries s2 = new XYSeries(s2Name);
     private XYSeries s3 = new XYSeries(s3Name);
-//    private XYSeries s4 = new XYSeries(s4Name);
+    private XYSeries s4 = new XYSeries(s4Name);
 //    TimeSeries s1 = new TimeSeries("s1");
 //    TimeSeries s2 = new TimeSeries("s2");
 //    TimeSeries s3 = new TimeSeries("s3");
@@ -60,9 +60,9 @@ public class GraphPanel extends javax.swing.JPanel {
             case s3Name:
                 s3.addOrUpdate(x, y);
                 break;
-//            case s4Name:
-//                s4.addOrUpdate(x, y);
-//                break;
+            case s4Name:
+                s4.addOrUpdate(x, y);
+                break;
             default:
                 break;
         }
@@ -89,10 +89,10 @@ public class GraphPanel extends javax.swing.JPanel {
                 s3 = new XYSeries(s3Name);
                 collection.addSeries(s3);
                 break;
-//            case s4Name:
-//                s4 = new XYSeries(s4Name);
-//                collection.addSeries(s4);
-//                break;
+            case s4Name:
+                s4 = new XYSeries(s4Name);
+                collection.addSeries(s4);
+                break;
             default:
                 break;
         }
@@ -109,9 +109,9 @@ public class GraphPanel extends javax.swing.JPanel {
             case s3Name:
                 collection.removeSeries(s3);
                 break;
-//            case s4Name:
-//                collection.removeSeries(s4);
-//                break;
+            case s4Name:
+                collection.removeSeries(s4);
+                break;
             default:
                 break;
         }
@@ -165,4 +165,10 @@ public class GraphPanel extends javax.swing.JPanel {
         this.setVisible(true);
         this.revalidate();
     }
+
+    public LegendTitle getLegend() {
+        return legend;
+    }
+    
+    
 }

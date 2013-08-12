@@ -35,6 +35,8 @@ public class Main {
             e.printStackTrace();
         }
         view = new MainFrame();
+        view.getGraphPanel3().getLegend().setVisible(false);
+        view.getGraphPanel3().addSerie("Sinal para configuracao");
         // view.getGraphPanel1().addSerie("Tanque 1");
         //view.getGraphPanel2().addSerie("Sinal");
         //tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
