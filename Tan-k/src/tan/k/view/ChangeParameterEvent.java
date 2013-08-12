@@ -8,7 +8,7 @@ package tan.k.view;
  *
  * @author gabriel
  */
-public interface ChangeParameterEvent extends Runnable{
+public interface ChangeParameterEvent {
   
   public void onChangeParameter(Object value);
   

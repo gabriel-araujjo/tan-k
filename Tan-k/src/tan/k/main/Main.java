@@ -4,12 +4,17 @@
  */
 package tan.k.main;
 
-import javax.naming.ldap.Control;
+import br.ufrn.dca.controle.QuanserClientException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
-import org.jfree.ui.about.Contributor;
 import tan.k.controller.TanKController;
+import tan.k.controller.TanKController.Loop;
+import tan.k.controller.TanKController.TankNumber;
+import tan.k.controller.TanKController.Wave;
+import tan.k.model.Tank;
 import tan.k.view.ChangeParameterEvent;
 import tan.k.view.MainFrame;
 
@@ -19,28 +24,105 @@ import tan.k.view.MainFrame;
  */
 public class Main {
   
+  private static Tank tank;
+  private static MainFrame view;
+  private static TanKController controller;
+  
+  
   public static void main(String[] args) {
-    /*
-     * Set Look And Feel
-     */
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (Exception e) {
+      e.printStackTrace();
     }
-    /* Create and display the form */
+    view = new MainFrame();
+    tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
+    controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
+    
+    view.onSetPointChange(new ChangeParameterEvent() {
+      @Override
+      public void onChangeParameter(Object value) {
+        System.out.println("setPoint : " + Double.toString((double) value));
+        controller.setSetPoint((double) value);
+      }
+    });
+    
+    view.onLoopChange(new ChangeParameterEvent() {
 
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setLoop((Loop) value);
+      }
+    });
+    
+    view.onWaveChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setWaveType((Wave) value);
+      }
+    });
+    
+    view.onPeriodChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setPeriod((double) value);
+      }
+    });
+    
+    view.onAmplitudeChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setAmplitude((double) value);
+      }
+    });
+    
+    view.onProcessVariableChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setPv((TankNumber) value);
+      }
+    });
+    
+    view.onIpChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        try {
+          tank.setIp((String) value);
+        } catch (QuanserClientException ex) {
+          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+    });
+    
+    view.onPortChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        try {
+          tank.setPort((int) value);
+        } catch (QuanserClientException ex) {
+          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+    });
+    
+    /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        MainFrame mainFrame = new MainFrame();
-        //TanKController controller = new TanKController(null, TanKController.Loop.OPENED, TanKController.Wave.STEP, period, amplitude, setPoint, TanKController.TankNumber.TANK_1);
-        
-        
+      public void run() {        
+        /*
+          * Set Look And Feel
+          */
         
         if (AyatanaDesktop.isSupported()) {
-          ApplicationMenu.tryInstall(mainFrame);
+          ApplicationMenu.tryInstall(view);
         }
 
-        mainFrame.setVisible(true);
+        view.setVisible(true);
       }
     });
   }

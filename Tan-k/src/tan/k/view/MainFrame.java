@@ -648,9 +648,9 @@ public class MainFrame extends javax.swing.JFrame {
     amplitudeLayout.setVerticalGroup(
       amplitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(amplitudeLayout.createSequentialGroup()
-        .addGroup(amplitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(amplitudeLabel)
-          .addComponent(amplitudeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(amplitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(amplitudeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(amplitudeLabel))
         .addGap(0, 0, Short.MAX_VALUE))
     );
 
@@ -702,8 +702,9 @@ public class MainFrame extends javax.swing.JFrame {
     );
     frequencyLayout.setVerticalGroup(
       frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(frequencyLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-      .addComponent(frequencyField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addComponent(frequencyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(frequencyLabel))
     );
 
     javax.swing.GroupLayout waveParamsLayout = new javax.swing.GroupLayout(waveParams);
@@ -918,7 +919,7 @@ public class MainFrame extends javax.swing.JFrame {
         .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(1, 1, 1)
         .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+        .addGap(7, 7, 7)
         .addComponent(apply)
         .addContainerGap())
     );
@@ -1017,9 +1018,9 @@ public class MainFrame extends javax.swing.JFrame {
         .addComponent(readBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
         .addComponent(write, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGap(0, 0, 0)
         .addComponent(writeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGap(0, 0, 0)
         .addComponent(ipPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
         .addComponent(ipPortBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1082,7 +1083,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(30, 30, 30))
           .addGroup(layout.createSequentialGroup()
             .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addContainerGap(24, Short.MAX_VALUE))))
     );
 
     pack();
@@ -1202,10 +1203,10 @@ public class MainFrame extends javax.swing.JFrame {
   }//GEN-LAST:event_periodFieldKeyTyped
 
   private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
-    if(Double.parseDouble(setPointField.getText()) != currentSetPoint && setPointChange != null){
+    if(Double.parseDouble(setPointField.getText()) != getCurrentSetPoint() && setPointChange != null){
       currentSetPoint = Double.parseDouble(setPointField.getText());
     
-      (new Thread(setPointChange)).start();
+      setPointChange.onChangeParameter(getCurrentSetPoint());
     }
   }//GEN-LAST:event_applyMouseClicked
 
@@ -1364,5 +1365,61 @@ public class MainFrame extends javax.swing.JFrame {
    */
   public void onPortChange(ChangeParameterEvent portChange) {
     this.portChange = portChange;
+  }
+
+  /**
+   * @return the currentAmplitide
+   */
+  public double getCurrentAmplitide() {
+    return currentAmplitide;
+  }
+
+  /**
+   * @return the currentPeriod
+   */
+  public double getCurrentPeriod() {
+    return currentPeriod;
+  }
+
+  /**
+   * @return the currentWave
+   */
+  public Wave getCurrentWave() {
+    return currentWave;
+  }
+
+  /**
+   * @return the currentSetPoint
+   */
+  public double getCurrentSetPoint() {
+    return currentSetPoint;
+  }
+
+  /**
+   * @return the currentPV
+   */
+  public TankNumber getCurrentPV() {
+    return currentPV;
+  }
+
+  /**
+   * @return the currentLoop
+   */
+  public Loop getCurrentLoop() {
+    return currentLoop;
+  }
+
+  /**
+   * @return the currentIp
+   */
+  public String getCurrentIp() {
+    return currentIp;
+  }
+
+  /**
+   * @return the currentPort
+   */
+  public int getCurrentPort() {
+    return currentPort;
   }
 }
