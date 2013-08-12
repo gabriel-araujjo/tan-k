@@ -24,7 +24,7 @@ import org.java.ayatana.AyatanaDesktop;
 
 /**
  *
- * @author gabriel
+ * @author gabriel,ricardo
  */
 public class MainFrame extends javax.swing.JFrame {
 
