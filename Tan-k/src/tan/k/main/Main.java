@@ -4,7 +4,6 @@
  */
 package tan.k.main;
 
-import br.ufrn.dca.controle.QuanserClient;
 import br.ufrn.dca.controle.QuanserClientException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,10 +35,10 @@ public class Main {
             e.printStackTrace();
         }
         view = new MainFrame();
-        view.getGraphPanel1().addSerie("Tanque 1");
-        view.getGraphPanel2().addSerie("Sinal");
-        tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
-        controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
+        // view.getGraphPanel1().addSerie("Tanque 1");
+        //view.getGraphPanel2().addSerie("Sinal");
+        //tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
+        // controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
 
 //    view.getGraphPanel1().startTime();
 //    view.getGraphPanel2().startTime();
