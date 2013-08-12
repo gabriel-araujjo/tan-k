@@ -65,7 +65,7 @@
                           <Component id="graphPanel1" pref="488" max="32767" attributes="0"/>
                           <Component id="graphPanel2" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jToggleButtonConfiguration" min="-2" pref="30" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="sidebar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -180,7 +180,7 @@
                           <Component id="openedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="closedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -313,7 +313,7 @@
                                   <Component id="input0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -365,7 +365,7 @@
                                   <Component id="input2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -417,7 +417,7 @@
                                   <Component id="input4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -469,7 +469,7 @@
                                   <Component id="input6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -630,7 +630,7 @@
                                   <Component id="output0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -682,7 +682,7 @@
                                   <Component id="output2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -734,7 +734,7 @@
                                   <Component id="output4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -786,7 +786,7 @@
                                   <Component id="output6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1046,7 +1046,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="amplitudeLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace pref="29" max="32767" attributes="0"/>
                                       <Component id="amplitudeField" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
@@ -1429,6 +1429,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="ipPortField">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="127.0.0.1:20081"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ipPortFieldActionPerformed"/>
                   </Events>
@@ -1449,12 +1452,12 @@
     </Container>
     <Component class="tan.k.view.GraphPanel" name="graphPanel1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel1.setyAxisLabel(&quot;Height(cm)&quot;);&#xa;graphPanel1.setxAxisLabel(&quot;Time(s)&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel1.setyAxisLabel(&quot;Altura(cm)&quot;);&#xa;graphPanel1.setxAxisLabel(&quot;Tempo(s)&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="tan.k.view.GraphPanel" name="graphPanel2">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel2.setyAxisLabel(&quot;Voltz(V)&quot;);&#xa;graphPanel2.setxAxisLabel(&quot;Time(s)&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel2.setyAxisLabel(&quot;Volts(V)&quot;);&#xa;graphPanel2.setxAxisLabel(&quot;Tempo(s)&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonConfiguration">

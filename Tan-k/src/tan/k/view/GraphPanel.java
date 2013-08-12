@@ -21,8 +21,8 @@ public class GraphPanel extends javax.swing.JPanel {
     String title = null;
     String xAxisLabel = null;
     String yAxisLabel = null;
-    private final String s1Name = "Tank 1";
-    private final String s2Name = "Tank 2";
+    private final String s1Name = "Tanque 1";
+    private final String s2Name = "Tanque 2";
     private final String s3Name = "Sinal";
 //    private final String s4Name = null;
     private XYSeries s1 = new XYSeries(s1Name);
@@ -38,11 +38,12 @@ public class GraphPanel extends javax.swing.JPanel {
     JFreeChart chart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, collection, PlotOrientation.VERTICAL, true, true, true);
     ChartPanel chartPanel = new ChartPanel(chart);
     LegendTitle legend = chart.getLegend();
+    RectangleEdge legendposition = RectangleEdge.TOP;
 
     public GraphPanel() {
         setLayout(new BorderLayout());
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        legend.setPosition(RectangleEdge.RIGHT);
+        legend.setPosition(legendposition);
         add(chartPanel);
         this.setVisible(true);
         this.revalidate();
@@ -129,7 +130,7 @@ public class GraphPanel extends javax.swing.JPanel {
         //GraphPanel()
         setLayout(new BorderLayout());
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        legend.setPosition(RectangleEdge.RIGHT);
+        legend.setPosition(legendposition);
         add(chartPanel);
         this.setVisible(true);
         this.revalidate();
@@ -144,7 +145,7 @@ public class GraphPanel extends javax.swing.JPanel {
         //GraphPanel()
         setLayout(new BorderLayout());
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        legend.setPosition(RectangleEdge.RIGHT);
+        legend.setPosition(legendposition);
         add(chartPanel);
         this.setVisible(true);
         this.revalidate();
@@ -159,7 +160,7 @@ public class GraphPanel extends javax.swing.JPanel {
         //GraphPanel()
         setLayout(new BorderLayout());
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        legend.setPosition(RectangleEdge.RIGHT);
+        legend.setPosition(legendposition);
         add(chartPanel);
         this.setVisible(true);
         this.revalidate();
