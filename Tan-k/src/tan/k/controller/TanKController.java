@@ -28,6 +28,8 @@ public class TanKController implements Runnable{
   
   private Tank tank;
   
+  private double time;
+  
   private Wave wave;
   private double period;
   private double amplitude;
@@ -39,10 +41,12 @@ public class TanKController implements Runnable{
   
   private double calculatedVoltage;
   
-  public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, TankNumber pv) {
+  public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, TankNumber pv, double time) {
     this.tank = tank;
     this.loop = loop;
     
+    this.time = time;
+            
     this.wave = wave;
     this.period = period;
     this.amplitude = amplitude;
@@ -61,19 +65,19 @@ public class TanKController implements Runnable{
           case OPENED:
             switch(wave){
               case SINUSOID:
-                calculatedVoltage = calcSin();
+                calculatedVoltage = calcSin(time, period, amplitude);
                 break;
               case SAWTOOTH:
-                calculatedVoltage = calcSaw();
+                calculatedVoltage = calcSaw(time, period, amplitude);
                 break;
               case SQUARE:
-                calculatedVoltage = calcSqu();
+                calculatedVoltage = calcSqu(time, period, amplitude);
                 break;
               case STEP:
-                calculatedVoltage = calcStep();
+                calculatedVoltage = calcStep(time, period, amplitude);
                 break;
               default:
-                calculatedVoltage = calcRand();
+                calculatedVoltage = calcRand(time, period, amplitude);
                 break;
             }
             break;
@@ -89,28 +93,33 @@ public class TanKController implements Runnable{
     }
   }
   
-  private double calcSin(){
-    //implement this
+  private double calcSin(double t, double p, double a){
+    amplitude = a*Math.sin((t/p));
     return this.amplitude;
   }
   
-  private double calcSaw(){
-    //implement this
+  private double calcSaw(double t, double p, double a){
+    double r = t%p;
+    amplitude = (a/p)*r;
     return this.amplitude;
   }
   
-  private double calcSqu(){
-    //implement this
+  private double calcSqu(double t, double p, double a){
+    double r = t%p;
+    if (r >= p) amplitude = 0;
+    else amplitude =a;
     return this.amplitude;
   }
   
-  private double calcStep(){
-    //implement this
+  private double calcStep(double t, double p, double a){
+    amplitude = a;
     return this.amplitude;
   }
   
-  private double calcRand(){
-    //implement this
+  private double calcRand(double t, double p, double a){
+    double r = t%(Math.random()*p);
+    if (r >= p) amplitude = Math.random()*a;
+    else amplitude =a;
     return this.amplitude;
   }
   

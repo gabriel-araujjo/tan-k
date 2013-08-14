@@ -18,6 +18,8 @@ import org.jfree.ui.RectangleEdge;
  */
 public class GraphPanel extends javax.swing.JPanel {
 
+    double time;
+    
     String title = null;
     String xAxisLabel = null;
     String yAxisLabel = null;
@@ -70,7 +72,7 @@ public class GraphPanel extends javax.swing.JPanel {
 
     public void addValue(String serie, float value) {
         FixedMillisecond currentTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
-        double time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
+        time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
         time = time / 1000; // tempo em segundo
         addValue(serie, time, value);
     }
