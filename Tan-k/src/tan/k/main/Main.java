@@ -39,7 +39,7 @@ public class Main {
         view = new MainFrame();
         tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
         controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
-
+        controllerThread = new Thread(controller);
 //    view.getGraphPanel1().startTime();
 //    view.getGraphPanel2().startTime();
 
@@ -118,10 +118,7 @@ public class Main {
         view.onApplyClicked(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {
-                if(controllerThread!=null)
-                    controllerThread.interrupt();
-                controllerThread = new Thread(controller);
-                controllerThread.start();
+                //controller.resetTime();
             }
         });
         
@@ -143,14 +140,14 @@ public class Main {
         controller.onReadLevelTank1(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {
-                view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+                view.addPointToGraph("Tanque 1", ((double[]) value)[0], ((double[]) value)[1]);
             }
         });
         
         controller.onReadLevelTank2(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {
-                view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+                view.addPointToGraph("Tanque 2", ((double[]) value)[0], ((double[]) value)[1]);
             }
         });
         
@@ -160,7 +157,7 @@ public class Main {
                 /*
                  * Set Look And Feel
                  */
-                
+              
                 if (AyatanaDesktop.isSupported()) {
                     ApplicationMenu.tryInstall(view);
                 }

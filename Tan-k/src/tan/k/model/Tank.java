@@ -52,7 +52,7 @@ public class Tank {
       this.quanserClient = new QuanserClient(ip, port);
     } catch (QuanserClientException ex) {
         System.out.println("Conexao com o tank mal sucedida");
-      Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+      //Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
@@ -81,7 +81,7 @@ public class Tank {
    */
   public synchronized double getLevel1() {
     try{
-      return level1 = quanserClient.read(getLevel1Channel());
+      return level1 = quanserClient.read(getLevel1Channel())*6.25;
     }catch(QuanserClientException e){
       return level1;
     }
@@ -92,7 +92,7 @@ public class Tank {
    */
   public synchronized double getLevel2() {
     try{
-      return level2 = quanserClient.read(getLevel2Channel());
+      return level2 = quanserClient.read(getLevel2Channel())*6.25;
     }catch(QuanserClientException e){
       return level2;
     }
