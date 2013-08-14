@@ -8,8 +8,6 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="waveTypeChooser">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="pORfChooser">
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -140,7 +138,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="write" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="writeBox" pref="481" max="32767" attributes="0"/>
+                  <Component id="writeBox" pref="485" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -549,7 +547,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="openedLoopSettings" pref="0" max="32767" attributes="0"/>
+                  <Component id="openedLoopSettings" pref="357" max="32767" attributes="0"/>
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
@@ -578,7 +576,7 @@
                       <Component id="openedLoopSettings" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="closedLoopSettings" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Component id="apply" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -901,8 +899,11 @@
                           <Image iconType="3" name="/tan/k/resource/sinus.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="sinusItemStateChanged"/>
+                      </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sinus.setToolTipText(&quot;Senoidal&quot;);&#xa;sinus.setSelected(true);"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sinus.setToolTipText(&quot;Senoidal&quot;);&#xa;sinus.setSelected(true);&#xa;if(currentWave.equals(Wave.SINUSOID))&#xa;    currentWaveButton = sinus;"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="sawtooth">
@@ -914,6 +915,9 @@
                           <Image iconType="3" name="/tan/k/resource/sawtooth.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="sawtoothItemStateChanged"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sawtooth.setToolTipText(&quot;Dente de serra&quot;);"/>
                       </AuxValues>
@@ -927,6 +931,9 @@
                           <Image iconType="3" name="/tan/k/resource/square.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="squareItemStateChanged"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="square.setToolTipText(&quot;Quadrada&quot;);"/>
                       </AuxValues>
@@ -942,6 +949,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="stepStateChanged"/>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="stepItemStateChanged"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stepActionPerformed"/>
                       </Events>
                       <AuxValues>
@@ -957,6 +965,9 @@
                           <Image iconType="3" name="/tan/k/resource/random.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="randomItemStateChanged"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="random.setToolTipText(&quot;Aleat&#xf3;ria&quot;);"/>
                       </AuxValues>
@@ -1317,7 +1328,7 @@
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="processVariableField.setEnabled(false);"/>
+                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ComboItem[] items = {new ComboItem(TankNumber.TANK_1, &quot;Tanque 1&quot;), new ComboItem(TankNumber.TANK_2, &quot;Tanque 2&quot;)};&#xa;processVariableField.setModel(new javax.swing.DefaultComboBoxModel(items));"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -1444,6 +1455,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Conectar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="connectMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
