@@ -33,7 +33,6 @@ public class MainFrame extends javax.swing.JFrame {
     private String currentIp;
     private int currentPort;
     private int currentWriteChannel;
-    
     //Events
     private ChangeParameterEvent setPointChange;
     private ChangeParameterEvent processVariableChange;
@@ -144,6 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
         processVariableLabel = new javax.swing.JLabel();
         processVariableField = new javax.swing.JComboBox();
         apply = new javax.swing.JButton();
+        jButtonPreview = new javax.swing.JButton();
         ipPort = new javax.swing.JPanel();
         ipPortToggler = new javax.swing.JLabel();
         ipPortBox = new javax.swing.JPanel();
@@ -925,6 +925,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonPreview.setText("Pré-Visualizar");
+        jButtonPreview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPreviewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout writeBoxLayout = new javax.swing.GroupLayout(writeBox);
         writeBox.setLayout(writeBoxLayout);
         writeBoxLayout.setHorizontalGroup(
@@ -937,11 +944,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 49, Short.MAX_VALUE))
             .addGroup(writeBoxLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(apply)
+                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(writeBoxLayout.createSequentialGroup()
+                        .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
+                        .addComponent(jButtonPreview)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(apply)))
                 .addContainerGap())
         );
         writeBoxLayout.setVerticalGroup(
@@ -955,7 +965,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(apply)
+                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(apply)
+                    .addComponent(jButtonPreview))
                 .addContainerGap())
         );
 
@@ -1211,7 +1223,7 @@ public class MainFrame extends javax.swing.JFrame {
             writeBox.setPreferredSize(new Dimension(357, 140));
             pack();
 
-            if(currentLoop != Loop.CLOSED && null != loopChange){
+            if (currentLoop != Loop.CLOSED && null != loopChange) {
                 loopChange.onChangeParameter(currentLoop = Loop.CLOSED);
             }
         }
@@ -1224,8 +1236,8 @@ public class MainFrame extends javax.swing.JFrame {
             closedLoopSettings.setVisible(false);
             writeBox.setPreferredSize(new Dimension(357, 215));
             pack();
-            
-            if(currentLoop != Loop.OPENED && null != loopChange){
+
+            if (currentLoop != Loop.OPENED && null != loopChange) {
                 loopChange.onChangeParameter(currentLoop = Loop.OPENED);
             }
         }
@@ -1261,97 +1273,129 @@ public class MainFrame extends javax.swing.JFrame {
   }//GEN-LAST:event_periodFieldKeyTyped
 
   private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
-      if(!"".equals(setPointField.getText())){
-        double selectedSetPoint = Double.parseDouble(setPointField.getText());
-        if ( selectedSetPoint != currentSetPoint && null != setPointChange) {
-            setPointChange.onChangeParameter(currentSetPoint = selectedSetPoint);
-        }
+      if (!"".equals(setPointField.getText())) {
+          double selectedSetPoint = Double.parseDouble(setPointField.getText());
+          if (selectedSetPoint != currentSetPoint && null != setPointChange) {
+              setPointChange.onChangeParameter(currentSetPoint = selectedSetPoint);
+          }
       }
-      
-      TankNumber selectedPV = ((ComboItem)processVariableField.getSelectedItem()).getValue();
-      if ( selectedPV != currentPV && null != processVariableChange){ 
+
+      TankNumber selectedPV = ((ComboItem) processVariableField.getSelectedItem()).getValue();
+      if (selectedPV != currentPV && null != processVariableChange) {
           processVariableChange.onChangeParameter(currentPV = selectedPV);
       }
-      
-      if(!"".equals(amplitudeField.getText())){
-        double selectedAmplitude = Double.parseDouble(amplitudeField.getText());
-        if ( selectedAmplitude != currentAmplitide && null != amplitudeChange) {
-            amplitudeChange.onChangeParameter(currentAmplitide = selectedAmplitude);
-        }
+
+      if (!"".equals(amplitudeField.getText())) {
+          double selectedAmplitude = Double.parseDouble(amplitudeField.getText());
+          if (selectedAmplitude != currentAmplitide && null != amplitudeChange) {
+              amplitudeChange.onChangeParameter(currentAmplitide = selectedAmplitude);
+          }
       }
-      if(!"".equals(periodField.getText())){
-        double selectedPeriod = Double.parseDouble(periodField.getText());
-        if ( selectedPeriod != currentPeriod && null != periodChange) {
-            periodChange.onChangeParameter(currentPeriod = selectedPeriod);
-        }
+      if (!"".equals(periodField.getText())) {
+          double selectedPeriod = Double.parseDouble(periodField.getText());
+          if (selectedPeriod != currentPeriod && null != periodChange) {
+              periodChange.onChangeParameter(currentPeriod = selectedPeriod);
+          }
       }
-      
+
       JToggleButton[] waves = {sinus, sawtooth, square, step, random};
-      for(JToggleButton wave : waves){
-          if(wave.isSelected() && !wave.equals(currentWaveButton)){
+      for (JToggleButton wave : waves) {
+          if (wave.isSelected() && !wave.equals(currentWaveButton)) {
               waveChange.onChangeParameter(currentWave);
               currentWaveButton = wave;
           }
       }
-      
+
   }//GEN-LAST:event_applyMouseClicked
 
     private void randomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_randomItemStateChanged
-        if(((JToggleButton) evt.getSource()).isSelected()){
+        if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.RANDOM;
         }
     }//GEN-LAST:event_randomItemStateChanged
 
     private void connectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connectMouseClicked
         String[] ipPortArray = ipPortField.getText().split(":");
-        if(ipPortArray.length > 1){
+        if (ipPortArray.length > 1) {
             String ip = ipPortArray[0];
             int port = Integer.parseInt(ipPortArray[1]);
-            
-            if(!currentIp.equals(ip) && null != ipChange){
+
+            if (!currentIp.equals(ip) && null != ipChange) {
                 ipChange.onChangeParameter(currentIp = ip);
             }
-            if(port!=currentPort && null != portChange){
+            if (port != currentPort && null != portChange) {
                 portChange.onChangeParameter(currentPort = port);
             }
         }
-        
+
     }//GEN-LAST:event_connectMouseClicked
 
     private void stepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stepItemStateChanged
-        if(((JToggleButton) evt.getSource()).isSelected()){
+        if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.STEP;
         }
     }//GEN-LAST:event_stepItemStateChanged
 
     private void squareItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_squareItemStateChanged
-        if(((JToggleButton) evt.getSource()).isSelected()){
+        if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SQUARE;
         }
     }//GEN-LAST:event_squareItemStateChanged
 
     private void sawtoothItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sawtoothItemStateChanged
-        if(((JToggleButton) evt.getSource()).isSelected()){
+        if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SAWTOOTH;
         }
     }//GEN-LAST:event_sawtoothItemStateChanged
 
     private void sinusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sinusItemStateChanged
-         if(((JToggleButton) evt.getSource()).isSelected()){
+        if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SINUSOID;
         }
     }//GEN-LAST:event_sinusItemStateChanged
-  
+
+    private void jButtonPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewActionPerformed
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(currentWave);
+                switch (currentWave) {
+                    case SINUSOID:
+                        double x = 0;
+                        double p = Double.parseDouble(periodField.getText());
+                        double a = Double.parseDouble(amplitudeField.getText());
+                        graphPanel3.removeSerie("Sinal para configuracao");
+                        graphPanel3.addSerie("Sinal para configuracao");
+                        while (x <= 1.05*p) {
+                            double y = a * Math.sin((x / p * 2 * Math.PI));
+                            graphPanel3.addValue("Sinal para configuracao", x, y);
+                            x = x + p / 20;
+                        }
+
+                        break;
+                    case SAWTOOTH:
+                        break;
+                    case SQUARE:
+                        break;
+                    case STEP:
+                        break;
+                    case RANDOM:
+                        break;
+                }
+            }
+        })).start();
+    }//GEN-LAST:event_jButtonPreviewActionPerformed
+
     private void writeChannelChange(java.awt.event.ItemEvent evt) {
         JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
         int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
-        if(selectedValue!=currentWriteChannel){
-            if(null!=writeChange){
+        if (selectedValue != currentWriteChannel) {
+            if (null != writeChange) {
                 writeChange.onChangeParameter(currentWriteChannel = selectedValue);
             }
         }
     }
-  
+
     /**
      *
      * @return All reading channels selected by User
@@ -1400,6 +1444,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ipPortLabel;
     private javax.swing.JLabel ipPortToggler;
     private javax.swing.JPanel ipPortWrapper;
+    private javax.swing.JButton jButtonPreview;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1582,8 +1627,9 @@ public class MainFrame extends javax.swing.JFrame {
     public void onWriteChange(ChangeParameterEvent writeChange) {
         this.writeChange = writeChange;
     }
-    
+
     private class ComboItem {
+
         private TankNumber value;
         private String label;
 
