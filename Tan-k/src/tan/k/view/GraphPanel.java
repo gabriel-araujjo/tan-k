@@ -31,7 +31,7 @@ public class GraphPanel extends javax.swing.JPanel {
     seriesNames = new ArrayList<>();
     //create chart Panel to add Chart and add it to Panel
     chartPanel = new ChartPanel(_defaultChart());
-    getLegend().setPosition(RectangleEdge.TOP);
+    _getChart().getLegend().setPosition(RectangleEdge.TOP);
     chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
     add(chartPanel);
   }
@@ -43,8 +43,8 @@ public class GraphPanel extends javax.swing.JPanel {
   private JFreeChart _getChart() {
     return chartPanel.getChart();
   }
-  
-  private XYSeries _getSerie(String serie){
+
+  private XYSeries _getSerie(String serie) {
     return collection.getSeries(seriesNames.indexOf(serie));
   }
 
@@ -54,23 +54,24 @@ public class GraphPanel extends javax.swing.JPanel {
   }
 
   public void addSerieIfInexistent(String serie) {
-    if (!seriesExists(serie))
+    if (!seriesExists(serie)) {
       addSerie(serie);
+    }
   }
 
   public void removeSerie(String serie) {
-    if(seriesExists(serie)){
+    if (seriesExists(serie)) {
       seriesNames.remove(serie);
       collection.removeSeries(seriesNames.indexOf(serie));
     }
   }
-  
-  public void removeAllSeries(){
+
+  public void removeAllSeries() {
     seriesNames.removeAll(seriesNames);
     collection.removeAllSeries();
   }
-  
-  public boolean seriesExists(String serie){
+
+  public boolean seriesExists(String serie) {
     return seriesNames.indexOf(serie) >= 0;
   }
 
@@ -91,9 +92,12 @@ public class GraphPanel extends javax.swing.JPanel {
   public void setyAxisLabel(String yAxisLabel) {
     ((XYPlot) _getChart().getPlot()).getRangeAxis().setLabel(yAxisLabel);
   }
-  
-  public LegendTitle getLegend() {
-    return _getChart().getLegend();
+
+  public void disableLegend() {
+    _getChart().getLegend().setVisible(false);
   }
 
+  public void enableLegend() {
+    _getChart().getLegend().setVisible(false);
+  }
 }

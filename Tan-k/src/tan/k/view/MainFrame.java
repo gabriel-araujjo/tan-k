@@ -59,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
     this.currentWriteChannel = 0;
     initComponents();
 
-    graphPanel3.getLegend().setVisible(false);
+    graphPanel3.disableLegend();
     graphPanel3.addSerie("Sinal para configuracao");
   }
 
