@@ -90,7 +90,7 @@ public class Tank {
     double lastV = this.voltage;
     this.voltage = v > 3 ? 3 : v > 1.7 && getLevel1() > 27 ? 1.7 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v;
     try{
-      quanserClient.write(voltageChannel, getVoltage());
+      quanserClient.write(getVoltageChannel(), getVoltage());
     }catch(QuanserClientException e){
       this.voltage = lastV;
     }
@@ -101,7 +101,7 @@ public class Tank {
    */
   public synchronized double getLevel1() {
     try{
-      return level1 = quanserClient.read(level1Channel);
+      return level1 = quanserClient.read(getLevel1Channel());
     }catch(QuanserClientException e){
       return level1;
     }
@@ -112,7 +112,7 @@ public class Tank {
    */
   public synchronized double getLevel2() {
     try{
-      return level2 = quanserClient.read(level2Channel);
+      return level2 = quanserClient.read(getLevel2Channel());
     }catch(QuanserClientException e){
       return level2;
     }
@@ -147,4 +147,46 @@ public class Tank {
     this.port = port;
     this.quanserClient = new QuanserClient(this.getIp(), getPort());
   }
+
+    /**
+     * @return the voltageChannel
+     */
+    public Integer getVoltageChannel() {
+        return voltageChannel;
+    }
+
+    /**
+     * @param voltageChannel the voltageChannel to set
+     */
+    public void setVoltageChannel(Integer voltageChannel) {
+        this.voltageChannel = voltageChannel;
+    }
+
+    /**
+     * @return the level1Channel
+     */
+    public Integer getLevel1Channel() {
+        return level1Channel;
+    }
+
+    /**
+     * @param level1Channel the level1Channel to set
+     */
+    public void setLevel1Channel(Integer level1Channel) {
+        this.level1Channel = level1Channel;
+    }
+
+    /**
+     * @return the level2Channel
+     */
+    public Integer getLevel2Channel() {
+        return level2Channel;
+    }
+
+    /**
+     * @param level2Channel the level2Channel to set
+     */
+    public void setLevel2Channel(Integer level2Channel) {
+        this.level2Channel = level2Channel;
+    }
 }
