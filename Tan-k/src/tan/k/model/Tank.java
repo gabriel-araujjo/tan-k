@@ -51,30 +51,10 @@ public class Tank {
     try {
       this.quanserClient = new QuanserClient(ip, port);
     } catch (QuanserClientException ex) {
+        System.out.println("Conexao com o tank mal sucedida");
       Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-
-  /**
-   * @recursive Check levels of tank 1 and 2 If it is on simulator, delay 100
-   * milliseconds between checks.
-   */
-  /*private void checkLevels() {
-    try {
-      setLevel1(quanserClient.read(level1Channel));
-      setLevel2(quanserClient.read(level2Channel));
-      quanserClient.write(voltageChannel, getVoltage());
-      Thread.sleep(100);
-      checkLevels();
-    } catch (QuanserClientException | InterruptedException ex) {
-      Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
-    }
-  }
-
-  @Override
-  public void run() {
-    checkLevels();
-  }*/
 
   /**
    * @return the voltage

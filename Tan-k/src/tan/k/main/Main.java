@@ -27,6 +27,8 @@ public class Main {
     private static Tank tank;
     private static MainFrame view;
     private static TanKController controller;
+    private static Thread controllerThread;
+    
     
     public static void main(String[] args) {
         try {
@@ -35,12 +37,8 @@ public class Main {
             e.printStackTrace();
         }
         view = new MainFrame();
-        view.getGraphPanel3().getLegend().setVisible(false);
-        view.getGraphPanel3().addSerie("Sinal para configuracao");
-        // view.getGraphPanel1().addSerie("Tanque 1");
-        //view.getGraphPanel2().addSerie("Sinal");
-        //tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
-        //controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
+        tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
+        controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
 
 //    view.getGraphPanel1().startTime();
 //    view.getGraphPanel2().startTime();
@@ -49,7 +47,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("setPoint : " + Double.toString((double) value));
-                //controller.setSetPoint((double) value);
+                controller.setSetPoint((double) value);
             }
         });
         
@@ -57,6 +55,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("loop = "+((Loop) value).name());
+                controller.setLoop((Loop) value);
             }
         });
         
@@ -64,7 +63,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("wave = "+((Wave) value).name());
-                //controller.setWaveType((Wave) value);
+                controller.setWaveType((Wave) value);
             }
         });
         
@@ -72,7 +71,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("period = "+((double) value));
-                //controller.setPeriod((double) value);
+                controller.setPeriod((double) value);
             }
         });
         
@@ -80,7 +79,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("amplitude = "+((double) value));
-                //controller.setAmplitude((double) value);
+                controller.setAmplitude((double) value);
             }
         });
         
@@ -88,7 +87,7 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("PV = "+((TankNumber) value).name());
-                //controller.setPv((TankNumber) value);
+                controller.setPv((TankNumber) value);
             }
         });
         
@@ -96,11 +95,11 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("ip = "+((String) value));
-//                try {
-//                    tank.setIp((String) value);
-//                } catch (QuanserClientException ex) {
-//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    tank.setIp((String) value);
+                } catch (QuanserClientException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -108,11 +107,21 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
                 System.out.println("port = "+((int) value));
-//                try {
-//                    tank.setPort((int) value);
-//                } catch (QuanserClientException ex) {
-//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    tank.setPort((int) value);
+                } catch (QuanserClientException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        view.onApplyClicked(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+                if(controllerThread!=null)
+                    controllerThread.interrupt();
+                controllerThread = new Thread(controller);
+                controllerThread.start();
             }
         });
         
@@ -123,7 +132,28 @@ public class Main {
 //                tank.setVoltageChannel((int) value);
             }
         });
-
+        
+        controller.onWriteVoltage(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+                view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+            }
+        });
+        
+        controller.onReadLevelTank1(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+                view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+            }
+        });
+        
+        controller.onReadLevelTank2(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+                view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+            }
+        });
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

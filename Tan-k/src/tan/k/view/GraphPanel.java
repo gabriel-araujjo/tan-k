@@ -19,7 +19,6 @@ import org.jfree.ui.RectangleEdge;
 public class GraphPanel extends javax.swing.JPanel {
 
     double time;
-    
     String title = null;
     String xAxisLabel = null;
     String yAxisLabel = null;
@@ -70,12 +69,12 @@ public class GraphPanel extends javax.swing.JPanel {
         }
     }
 
-    public void addValue(String serie, float value) {
-        FixedMillisecond currentTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
-        time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
-        time = time / 1000; // tempo em segundo
-        addValue(serie, time, value);
-    }
+//    public void addValue(String serie, float value) {
+//        FixedMillisecond currentTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
+//        time = currentTime.getFirstMillisecond() - iniTime.getFirstMillisecond(); //tempo em milisegundo
+//        time = time / 1000; // tempo em segundo
+//        addValue(serie, time, value);
+//    }
 
     public void addSerie(String serie) {
         switch (serie) {
@@ -119,9 +118,13 @@ public class GraphPanel extends javax.swing.JPanel {
         }
     }
 
-    public void startTime() {
-        iniTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
+    public void removeSeries() {
+        collection.removeAllSeries();
     }
+
+//    public void startTime() {
+//        iniTime = new FixedMillisecond(Calendar.getInstance().getTimeInMillis());
+//    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -171,6 +174,4 @@ public class GraphPanel extends javax.swing.JPanel {
     public LegendTitle getLegend() {
         return legend;
     }
-    
-    
 }

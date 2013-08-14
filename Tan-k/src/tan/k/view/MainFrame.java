@@ -7,7 +7,6 @@ package tan.k.view;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
@@ -43,6 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
     private ChangeParameterEvent ipChange;
     private ChangeParameterEvent portChange;
     private ChangeParameterEvent writeChange;
+    private ChangeParameterEvent applyClicked;
 
     /**
      * Creates new form MainFrame
@@ -58,6 +58,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.currentPort = 20081;
         this.currentWriteChannel = 0;
         initComponents();
+        
+        graphPanel3.getLegend().setVisible(false);
+        graphPanel3.addSerie("Sinal para configuracao");
     }
 
     /*public String[] getSelectedInputs(){
@@ -1273,6 +1276,15 @@ public class MainFrame extends javax.swing.JFrame {
   }//GEN-LAST:event_periodFieldKeyTyped
 
   private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
+      if(graphPanel1.collection.getSeries().isEmpty()){
+          graphPanel1.addSerie("Tanque 1");
+          graphPanel1.addSerie("Tanque 2");
+      }
+      
+      if(graphPanel2.collection.getSeries().isEmpty()){
+          graphPanel2.addSerie("Sinal");
+      }
+      
       if (!"".equals(setPointField.getText())) {
           double selectedSetPoint = Double.parseDouble(setPointField.getText());
           if (selectedSetPoint != currentSetPoint && null != setPointChange) {
@@ -1306,6 +1318,10 @@ public class MainFrame extends javax.swing.JFrame {
           }
       }
 
+      if (null != applyClicked) {
+          applyClicked.onChangeParameter(null);
+      }
+      
   }//GEN-LAST:event_applyMouseClicked
 
     private void randomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_randomItemStateChanged
@@ -1366,7 +1382,7 @@ public class MainFrame extends javax.swing.JFrame {
                         double a = Double.parseDouble(amplitudeField.getText());
                         graphPanel3.removeSerie("Sinal para configuracao");
                         graphPanel3.addSerie("Sinal para configuracao");
-                        while (x <= 1.05*p) {
+                        while (x <= 1.05 * p) {
                             double y = a * Math.sin((x / p * 2 * Math.PI));
                             graphPanel3.addValue("Sinal para configuracao", x, y);
                             x = x + p / 20;
@@ -1609,23 +1625,30 @@ public class MainFrame extends javax.swing.JFrame {
         return currentPort;
     }
 
-    public GraphPanel getGraphPanel1() {
-        return graphPanel1;
-    }
-
-    public GraphPanel getGraphPanel2() {
-        return graphPanel2;
-    }
-
-    public GraphPanel getGraphPanel3() {
-        return graphPanel3;
-    }
-
     /**
      * @param writeChange the writeChange to set
      */
     public void onWriteChange(ChangeParameterEvent writeChange) {
         this.writeChange = writeChange;
+    }
+
+    public void onApplyClicked(ChangeParameterEvent applyClicked) {
+        this.applyClicked = applyClicked;
+    }
+
+    public void addPointToGraph(String sinal, double t, double d) {
+        System.out.println("t = "+t+" d = "+d);
+        switch (sinal) {
+            case "Tanque 1":
+                graphPanel1.addValue("Tanque 1", t, d);
+                break;
+            case "Tanque 2":
+                graphPanel1.addValue("Tanque 2", t, d);
+                break;
+            case "Sinal":
+                graphPanel2.addValue("Sinal", t, d);
+                break;
+        }
     }
 
     private class ComboItem {
