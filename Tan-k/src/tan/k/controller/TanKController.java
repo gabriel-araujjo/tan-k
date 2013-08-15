@@ -112,13 +112,14 @@ public class TanKController implements Runnable {
                 calculatedVoltage = 0;
                 break;
             }
-            currentLevel1 = tank.getLevel1();
-            currentLevel2 = tank.getLevel2();
             break;
           default:
             calculatedVoltage = 0;
             break;
         }
+        currentLevel1 = tank.getLevel1();
+        currentLevel2 = tank.getLevel2();
+        
         tank.setVoltage(calculatedVoltage);
         
         currentVoltage = tank.getVoltage();
@@ -167,7 +168,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcClosedLoop() {
-    return setPoint - (pv == TankNumber.TANK_1 ? currentLevel1 : currentLevel2) ;
+    return setPoint - (pv == TankNumber.TANK_1 ? currentLevel1 : pv == TankNumber.TANK_2 ? currentLevel2 : 0) ;
   }
 
   public void onWriteVoltage(ChangeParameterEvent changeParameterEvent) {
