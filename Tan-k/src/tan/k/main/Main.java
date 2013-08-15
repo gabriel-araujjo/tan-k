@@ -85,8 +85,10 @@ public class Main {
         view.onProcessVariableChange(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {
+              if(null!=value){
                 System.out.println("PV = "+((TankNumber) value).name());
                 controller.setPv((TankNumber) value);
+              }
             }
         });
         
