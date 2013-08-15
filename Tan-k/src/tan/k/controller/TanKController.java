@@ -119,21 +119,21 @@ public class TanKController implements Runnable {
         }
         currentLevel1 = tank.getLevel1();
         currentLevel2 = tank.getLevel2();
-        
-        tank.setVoltage(calculatedVoltage);
-        
-        currentVoltage = tank.getVoltage();
-        toSignal[0] = Math.floor(((double) lastTime - ABSOLUTE_TIME ) / 100.0) /10.0;
-        
-        toSignal[1] = currentVoltage;
-        writeVoltage.onChangeParameter(toSignal);
-        
-        toSignal[1] = currentLevel1;
-        onReadLevel1.onChangeParameter(toSignal);
-        
-        toSignal[1] = currentLevel2;
-        onReadLevel2.onChangeParameter(toSignal);
-                        
+        if(lastTime>=initTime){
+            tank.setVoltage(calculatedVoltage);
+
+            currentVoltage = tank.getVoltage();
+            toSignal[0] = Math.floor(((double) lastTime - initTime ) / 100.0) /10.0;
+
+            toSignal[1] = currentVoltage;
+            writeVoltage.onChangeParameter(toSignal);
+
+            toSignal[1] = currentLevel1;
+            onReadLevel1.onChangeParameter(toSignal);
+
+            toSignal[1] = currentLevel2;
+            onReadLevel2.onChangeParameter(toSignal);
+        }
       }
     }
   }

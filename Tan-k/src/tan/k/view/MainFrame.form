@@ -144,7 +144,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="write" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="writeBox" pref="568" max="32767" attributes="0"/>
+                  <Component id="writeBox" pref="572" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -532,7 +532,7 @@
                       <Component id="openedLoopSettings" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="closedLoopSettings" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="apply" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonPreview" alignment="3" min="-2" max="-2" attributes="0"/>

@@ -70,7 +70,13 @@ public class GraphPanel extends javax.swing.JPanel {
   public void clean(String serie){
     collection.getSeries(seriesNames.indexOf(serie)).clear();
   }
-
+  
+  public void clearAll(){
+      for(int i = 0; i<seriesNames.size(); i++){
+          collection.getSeries(i).clear();
+      }
+  }
+  
   public void removeAllSeries() {
     seriesNames.removeAll(seriesNames);
     collection.removeAllSeries();
