@@ -58,7 +58,8 @@ public class MainFrame extends javax.swing.JFrame {
     this.currentSetPoint = 0;
     this.currentPV = TankNumber.TANK_1;
     this.currentLoop = Loop.OPENED;
-    this.currentIp = "127.0.0.1";
+    //this.currentIp = "127.0.0.1";
+    this.currentIp = "10.13.99.69";
     this.currentPort = 20081;
     this.currentWriteChannel = 0;
     initComponents();
@@ -803,7 +804,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     pvItems =  new javax.swing.DefaultComboBoxModel<>();
     processVariableField.setModel(pvItems);
-    pvItemsString = new ArrayList<String>();
+    pvItemsString = new ArrayList<>();
     processVariableField.setEnabled(false);
     processVariableField.setPreferredSize(new java.awt.Dimension(75, 28));
 
@@ -1011,7 +1012,7 @@ public class MainFrame extends javax.swing.JFrame {
     ipPortLabel.setText("IP:Porta");
 
     ipPortField.setText(this.currentIp+":"+this.currentPort);
-    ipPortField.setText("127.0.0.1:20081");
+    ipPortField.setText("10.13.99.69:20081");
     ipPortField.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         ipPortFieldActionPerformed(evt);
@@ -1151,9 +1152,9 @@ public class MainFrame extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
+            .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
           .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(statusConnectedLabel)

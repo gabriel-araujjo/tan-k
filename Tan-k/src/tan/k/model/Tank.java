@@ -25,7 +25,8 @@ public class Tank {
 
   public Tank() {
     /* Initialize tank with default ip and port */
-    this("127.0.0.1", 20081);
+    //this("127.0.0.1", 20081);
+    this("10.13.99.69",20081);
   }
 
   public Tank(String ip, Integer port) {

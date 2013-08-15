@@ -84,9 +84,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="graphPanel1" pref="364" max="32767" attributes="0"/>
+                      <Component id="graphPanel1" pref="367" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="graphPanel2" pref="365" max="32767" attributes="0"/>
+                      <Component id="graphPanel2" pref="368" max="32767" attributes="0"/>
                   </Group>
                   <Component id="sidebar" max="32767" attributes="0"/>
               </Group>
@@ -1287,7 +1287,7 @@
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="pvItems =  new javax.swing.DefaultComboBoxModel&lt;&gt;();&#xa;processVariableField.setModel(pvItems);&#xa;pvItemsString = new ArrayList&lt;String&gt;();&#xa;processVariableField.setEnabled(false);"/>
+                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="pvItems =  new javax.swing.DefaultComboBoxModel&lt;&gt;();&#xa;processVariableField.setModel(pvItems);&#xa;pvItemsString = new ArrayList&lt;&gt;();&#xa;processVariableField.setEnabled(false);"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -1476,7 +1476,7 @@
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="ipPortField">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="127.0.0.1:20081"/>
+                    <Property name="text" type="java.lang.String" value="10.13.99.69:20081"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ipPortFieldActionPerformed"/>
