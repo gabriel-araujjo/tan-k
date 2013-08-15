@@ -123,6 +123,13 @@ public class Main {
             }
         });
         
+        view.onStopClicked(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+                controller.pauseController();
+            }
+        });
+        
         view.onConnectedClicked(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {

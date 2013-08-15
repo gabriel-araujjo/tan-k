@@ -47,6 +47,7 @@ public class MainFrame extends javax.swing.JFrame {
   private ChangeParameterEvent connectClicked;
   private DefaultComboBoxModel<ComboItem> pvItems;
   private List<String> pvItemsString;
+    private ChangeParameterEvent stopClicked;
 
   /**
    * Creates new form MainFrame
@@ -153,6 +154,7 @@ public class MainFrame extends javax.swing.JFrame {
         loopChooser = new javax.swing.JPanel();
         openedLoop = new javax.swing.JRadioButton();
         closedLoop = new javax.swing.JRadioButton();
+        jButtonStop = new javax.swing.JButton();
         ipPort = new javax.swing.JPanel();
         ipPortToggler = new javax.swing.JLabel();
         ipPortBox = new javax.swing.JPanel();
@@ -942,6 +944,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(9, 9, 9))
         );
 
+        jButtonStop.setText("Interromper");
+        jButtonStop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonStopMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout writeBoxLayout = new javax.swing.GroupLayout(writeBox);
         writeBox.setLayout(writeBoxLayout);
         writeBoxLayout.setHorizontalGroup(
@@ -955,14 +964,16 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(writeBoxLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                     .addGroup(writeBoxLayout.createSequentialGroup()
-                        .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
-                        .addComponent(jButtonPreview)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(apply))
-                    .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
+                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(writeBoxLayout.createSequentialGroup()
+                                .addComponent(jButtonPreview)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButtonStop))
+                            .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(apply)))
                 .addContainerGap())
             .addComponent(jSeparator2)
         );
@@ -984,7 +995,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(apply)
-                    .addComponent(jButtonPreview))
+                    .addComponent(jButtonPreview)
+                    .addComponent(jButtonStop))
                 .addContainerGap())
         );
 
@@ -1394,6 +1406,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_closedLoopActionPerformed
 
+    private void jButtonStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStopMouseClicked
+        stopClicked.onChangeParameter(null);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonStopMouseClicked
+
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -1453,6 +1470,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ipPortToggler;
     private javax.swing.JPanel ipPortWrapper;
     private javax.swing.JButton jButtonPreview;
+    private javax.swing.JButton jButtonStop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1661,6 +1679,10 @@ public class MainFrame extends javax.swing.JFrame {
       statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
     }
   }
+
+    public void onStopClicked(ChangeParameterEvent changeParameterEvent) {
+        this.stopClicked = changeParameterEvent;
+    }
 
   private class ComboItem {
 

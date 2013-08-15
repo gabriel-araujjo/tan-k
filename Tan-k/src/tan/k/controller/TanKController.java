@@ -280,6 +280,7 @@ public class TanKController implements Runnable {
   }
   
   public synchronized void pauseController(){
+    this.tank.setVoltage(0);
     this.startRun = false;
   }
   
