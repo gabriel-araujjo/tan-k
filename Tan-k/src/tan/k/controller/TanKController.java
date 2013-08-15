@@ -4,8 +4,6 @@
  */
 package tan.k.controller;
 
-import java.util.Random;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import tan.k.model.Tank;
 import tan.k.view.ChangeParameterEvent;
 
@@ -146,7 +144,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcSin(double t, double p, double a) {
-    return a*Math.sin(t / p * 2 * Math.PI) +a;
+    return a/2 *Math.sin(t / p * 2 * Math.PI) + a/2;
   }
 
   private double calcSaw(double t, double p, double a) {

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import tan.k.controller.TanKController.Loop;
@@ -1419,7 +1418,7 @@ public class MainFrame extends javax.swing.JFrame {
         switch (currentWave) {
             case SINUSOID:
                 while (x <= 1.05 * p) {
-                    y = a * Math.sin((x / p * 2 * Math.PI)) + a;
+                    y = a/2 * Math.sin((x / p * 2 * Math.PI)) + a/2;
                     graphPanel3.addValue("Sinal para configuracao", x, y);
                     x = x + p / 40;
                 }

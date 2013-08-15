@@ -173,7 +173,10 @@ public class Tank {
   public void setLevel2Channel(Integer level2Channel) {
     this.level2Channel = level2Channel;
   }
-
+  
+  /** 
+   * @return true if connection was successful
+   */
   public boolean isConnected() {
     return null != quanserClient;
   }
