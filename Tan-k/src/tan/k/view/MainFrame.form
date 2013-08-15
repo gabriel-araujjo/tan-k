@@ -54,7 +54,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="sidebar" min="-2" max="-2" attributes="0"/>
@@ -64,8 +64,11 @@
                           <Component id="graphPanel2" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jToggleButtonConfiguration" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jToggleButtonConfiguration" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="statusConnectedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -81,13 +84,15 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="graphPanel1" pref="370" max="32767" attributes="0"/>
+                      <Component id="graphPanel1" pref="364" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="graphPanel2" pref="371" max="32767" attributes="0"/>
+                      <Component id="graphPanel2" pref="365" max="32767" attributes="0"/>
                   </Group>
                   <Component id="sidebar" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="statusConnectedLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,7 +144,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="write" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="writeBox" pref="570" max="32767" attributes="0"/>
+                  <Component id="writeBox" pref="556" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -246,7 +251,7 @@
                                   <Component id="input0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -298,7 +303,7 @@
                                   <Component id="input2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -350,7 +355,7 @@
                                   <Component id="input4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -402,7 +407,7 @@
                                   <Component id="input6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -527,7 +532,7 @@
                       <Component id="openedLoopSettings" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="closedLoopSettings" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="apply" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonPreview" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -582,7 +587,7 @@
                                   <Component id="output0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -634,7 +639,7 @@
                                   <Component id="output2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -686,7 +691,7 @@
                                   <Component id="output4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -738,7 +743,7 @@
                                   <Component id="output6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1011,7 +1016,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="amplitudeLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace pref="29" max="32767" attributes="0"/>
                                       <Component id="amplitudeField" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
@@ -1337,7 +1342,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="openedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="closedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1522,6 +1527,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonConfigurationActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="statusConnectedLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/tan/k/resource/ball_red.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N&#xe3;o Conectado"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

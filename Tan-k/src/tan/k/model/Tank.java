@@ -47,6 +47,7 @@ public class Tank {
   }
 
   public synchronized void connect() throws QuanserClientException {
+      System.out.println("connecting to port = "+port+" ip= "+ip );
     this.quanserClient = new QuanserClient(ip, port);
   }
 
@@ -114,7 +115,6 @@ public class Tank {
    */
   public synchronized void setIp(String ip) throws QuanserClientException {
     this.ip = ip;
-    this.quanserClient = new QuanserClient(this.getIp(), getPort());
   }
 
   /**
@@ -129,7 +129,6 @@ public class Tank {
    */
   public synchronized void setPort(Integer port) throws QuanserClientException {
     this.port = port;
-    this.quanserClient = new QuanserClient(this.getIp(), getPort());
   }
 
   /**
