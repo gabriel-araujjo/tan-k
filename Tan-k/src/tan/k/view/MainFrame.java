@@ -794,6 +794,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         waveParams1.setMinimumSize(new java.awt.Dimension(169, 96));
 
+        setPoint.setPreferredSize(new java.awt.Dimension(199, 33));
+
         setPointLabel.setText("SP");
 
         setPointField.addActionListener(new java.awt.event.ActionListener() {
@@ -811,7 +813,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(setPointLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(setPointLabel)
-                .addGap(90, 90, 90)
+                .addGap(30, 30, 30)
                 .addComponent(setPointField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jLabelVoltage1))
@@ -825,6 +827,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(setPointField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelVoltage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        processVariable.setPreferredSize(new java.awt.Dimension(199, 28));
 
         processVariableLabel.setText("PV");
 
@@ -841,7 +845,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(processVariableLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(processVariableLabel)
-                .addGap(90, 90, 90)
+                .addGap(30, 30, 30)
                 .addComponent(processVariableField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -861,8 +865,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(waveParams1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(processVariable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setPoint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(processVariable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                    .addComponent(setPoint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         waveParams1Layout.setVerticalGroup(
@@ -1188,9 +1192,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                        .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                        .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusConnectedLabel)
