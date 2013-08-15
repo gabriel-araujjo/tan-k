@@ -17,6 +17,7 @@ import tan.k.controller.TanKController.Wave;
 import tan.k.model.Tank;
 import tan.k.view.ChangeParameterEvent;
 import tan.k.view.MainFrame;
+import tan.k.view.MainFrame.ConnectionStatus;
 
 /**
  *
@@ -40,8 +41,6 @@ public class Main {
         tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
         controller = new TanKController(tank, view.getCurrentLoop(), view.getCurrentWave(), view.getCurrentPeriod(), view.getCurrentAmplitide(), view.getCurrentSetPoint(), view.getCurrentPV());
         controllerThread = new Thread(controller);
-//    view.getGraphPanel1().startTime();
-//    view.getGraphPanel2().startTime();
 
         view.onSetPointChange(new ChangeParameterEvent() {
             @Override
@@ -118,9 +117,23 @@ public class Main {
         view.onApplyClicked(new ChangeParameterEvent() {
             @Override
             public void onChangeParameter(Object value) {
-                //controller.resetTime();
+                controller.startController();
             }
         });
+        
+        view.onConnectedClicked(new ChangeParameterEvent() {
+            @Override
+            public void onChangeParameter(Object value) {
+              try {
+                tank.connect();
+                view.setConnectionStatus(ConnectionStatus.CONNECTED);
+              } catch (QuanserClientException ex) {
+                view.setConnectionStatus(ConnectionStatus.DISCONNECTED);
+                ex.printStackTrace();
+              }
+            }
+        });
+        
         
         view.onWriteChange(new ChangeParameterEvent() {
             @Override

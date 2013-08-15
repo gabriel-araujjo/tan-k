@@ -6,8 +6,6 @@ package tan.k.model;
 
 import br.ufrn.dca.controle.QuanserClient;
 import br.ufrn.dca.controle.QuanserClientException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -44,16 +42,12 @@ public class Tank {
     /* Set communication parameters */
     this.ip = ip;
     this.port = port;
-    
-    this.voltage = this.level1 = this.level2 = 0;
 
-    /* Establish communication with the plant */
-    try {
-      this.quanserClient = new QuanserClient(ip, port);
-    } catch (QuanserClientException ex) {
-        System.out.println("Conexao com o tank mal sucedida");
-      //Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    this.voltage = this.level1 = this.level2 = 0;
+  }
+
+  public synchronized void connect() throws QuanserClientException {
+    this.quanserClient = new QuanserClient(ip, port);
   }
 
   /**
@@ -69,10 +63,12 @@ public class Tank {
   public synchronized void setVoltage(double v) {
     double lastV = this.voltage;
     this.voltage = v > 3 ? 3 : v > 1.7 && getLevel1() > 27 ? 1.7 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v;
-    try{
-      quanserClient.write(getVoltageChannel(), getVoltage());
-    }catch(QuanserClientException e){
-      this.voltage = lastV;
+    if (isConnected()) {
+      try {
+        quanserClient.write(getVoltageChannel(), getVoltage());
+      } catch (QuanserClientException e) {
+        this.voltage = lastV;
+      }
     }
   }
 
@@ -80,21 +76,29 @@ public class Tank {
    * @return the level1
    */
   public synchronized double getLevel1() {
-    try{
-      return level1 = quanserClient.read(getLevel1Channel())*6.25;
-    }catch(QuanserClientException e){
+    try {
+      return level1 = quanserClient.read(getLevel1Channel()) * 6.25;
+    } catch (QuanserClientException e) {
       return level1;
+    } catch (Exception e){
+      return 0;
     }
+  }
+
+  private synchronized double _getLevel1() {
+    return level1;
   }
 
   /**
    * @return the level2
    */
   public synchronized double getLevel2() {
-    try{
-      return level2 = quanserClient.read(getLevel2Channel())*6.25;
-    }catch(QuanserClientException e){
+    try {
+      return level2 = quanserClient.read(getLevel2Channel()) * 6.25;
+    } catch (QuanserClientException e) {
       return level2;
+    } catch(Exception e){
+      return 0;
     }
   }
 
@@ -128,45 +132,49 @@ public class Tank {
     this.quanserClient = new QuanserClient(this.getIp(), getPort());
   }
 
-    /**
-     * @return the voltageChannel
-     */
-    public Integer getVoltageChannel() {
-        return voltageChannel;
-    }
+  /**
+   * @return the voltageChannel
+   */
+  public Integer getVoltageChannel() {
+    return voltageChannel;
+  }
 
-    /**
-     * @param voltageChannel the voltageChannel to set
-     */
-    public void setVoltageChannel(Integer voltageChannel) {
-        this.voltageChannel = voltageChannel;
-    }
+  /**
+   * @param voltageChannel the voltageChannel to set
+   */
+  public void setVoltageChannel(Integer voltageChannel) {
+    this.voltageChannel = voltageChannel;
+  }
 
-    /**
-     * @return the level1Channel
-     */
-    public Integer getLevel1Channel() {
-        return level1Channel;
-    }
+  /**
+   * @return the level1Channel
+   */
+  public Integer getLevel1Channel() {
+    return level1Channel;
+  }
 
-    /**
-     * @param level1Channel the level1Channel to set
-     */
-    public void setLevel1Channel(Integer level1Channel) {
-        this.level1Channel = level1Channel;
-    }
+  /**
+   * @param level1Channel the level1Channel to set
+   */
+  public void setLevel1Channel(Integer level1Channel) {
+    this.level1Channel = level1Channel;
+  }
 
-    /**
-     * @return the level2Channel
-     */
-    public Integer getLevel2Channel() {
-        return level2Channel;
-    }
+  /**
+   * @return the level2Channel
+   */
+  public Integer getLevel2Channel() {
+    return level2Channel;
+  }
 
-    /**
-     * @param level2Channel the level2Channel to set
-     */
-    public void setLevel2Channel(Integer level2Channel) {
-        this.level2Channel = level2Channel;
-    }
+  /**
+   * @param level2Channel the level2Channel to set
+   */
+  public void setLevel2Channel(Integer level2Channel) {
+    this.level2Channel = level2Channel;
+  }
+
+  public boolean isConnected() {
+    return null != quanserClient;
+  }
 }

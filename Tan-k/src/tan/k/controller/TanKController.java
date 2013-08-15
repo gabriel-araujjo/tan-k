@@ -58,6 +58,7 @@ public class TanKController implements Runnable {
   private double currentVoltage;
   private double currentLevel1;
   private double currentLevel2;
+  private boolean startRun;
   
   public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, TankNumber pv) {
     this.tank = tank;
@@ -72,6 +73,7 @@ public class TanKController implements Runnable {
     this.pv = pv;
 
     this.calculatedVoltage = 0;
+    this.startRun = false;
   }
 
   @Override
@@ -79,12 +81,12 @@ public class TanKController implements Runnable {
     lastTime = 0;
     double[] toSignal = new double[2];
     while (true) {
-      if (lastTime + 100 <= System.currentTimeMillis()) {
+      if (lastTime + 100 <= System.currentTimeMillis() && _getStartRun()) {
         lastTime = System.currentTimeMillis();
         curTime = Math.floor(((double) System.currentTimeMillis() - getInitTime() ) / 100.0) /10.0;
         
-        currentLevel1 = tank.getLevel1();
-        currentLevel2 = tank.getLevel2();
+        System.out.println("loop_"+loop.name()+" wave_"+wave);
+        
         switch (loop) {
           case CLOSED:
             calculatedVoltage = calcClosedLoop();
@@ -110,12 +112,15 @@ public class TanKController implements Runnable {
                 calculatedVoltage = 0;
                 break;
             }
+            currentLevel1 = tank.getLevel1();
+            currentLevel2 = tank.getLevel2();
             break;
           default:
             calculatedVoltage = 0;
             break;
         }
         tank.setVoltage(calculatedVoltage);
+        
         currentVoltage = tank.getVoltage();
         toSignal[0] = Math.floor(((double) lastTime - ABSOLUTE_TIME ) / 100.0) /10.0;
         
@@ -133,7 +138,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcSin(double t, double p, double a) {
-    return a * Math.sin((t / p * 2 * Math.PI));
+    return a*Math.sin(t / p * 2 * Math.PI) +a;
   }
 
   private double calcSaw(double t, double p, double a) {
@@ -267,4 +272,18 @@ public class TanKController implements Runnable {
   public void setPv(TankNumber pv) {
     this.pv = pv;
   }
+  
+  public synchronized void startController(){
+    this.initTime = System.currentTimeMillis();
+    this.startRun = true;
+  }
+  
+  public synchronized void pauseController(){
+    this.startRun = false;
+  }
+  
+  private synchronized boolean _getStartRun(){
+    return this.startRun;
+  }
+  
 }
