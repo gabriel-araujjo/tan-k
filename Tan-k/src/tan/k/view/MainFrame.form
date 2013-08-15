@@ -81,9 +81,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="graphPanel1" pref="367" max="32767" attributes="0"/>
+                      <Component id="graphPanel1" pref="370" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="graphPanel2" pref="368" max="32767" attributes="0"/>
+                      <Component id="graphPanel2" pref="371" max="32767" attributes="0"/>
                   </Group>
                   <Component id="sidebar" max="32767" attributes="0"/>
               </Group>
