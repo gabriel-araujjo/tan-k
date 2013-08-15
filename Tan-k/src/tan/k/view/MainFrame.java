@@ -7,6 +7,7 @@ package tan.k.view;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
@@ -44,6 +45,8 @@ public class MainFrame extends javax.swing.JFrame {
   private ChangeParameterEvent writeChange;
   private ChangeParameterEvent applyClicked;
   private ChangeParameterEvent connectClicked;
+  private DefaultComboBoxModel<ComboItem> pvItems;
+  private List<String> pvItemsString;
 
   /**
    * Creates new form MainFrame
@@ -798,16 +801,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     processVariableLabel.setText("PV");
 
-    ComboItem[] items = {
-      new ComboItem(TankNumber.TANK_1, "A0"),
-      new ComboItem(TankNumber.TANK_2, "A1"),
-      new ComboItem(null, "A2"),
-      new ComboItem(null, "A3"),
-      new ComboItem(null, "A4"),
-      new ComboItem(null, "A5"),
-      new ComboItem(null, "A6"),
-      new ComboItem(null, "A7")};
-    processVariableField.setModel(new javax.swing.DefaultComboBoxModel(items));
+    pvItems =  new javax.swing.DefaultComboBoxModel<>();
+    processVariableField.setModel(pvItems);
+    pvItemsString = new ArrayList<String>();
+    processVariableField.setEnabled(false);
     processVariableField.setPreferredSize(new java.awt.Dimension(75, 28));
 
     javax.swing.GroupLayout processVariableLayout = new javax.swing.GroupLayout(processVariable);
@@ -1099,8 +1096,8 @@ public class MainFrame extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    graphPanel1.setyAxisLabel("Alturx(cm)");
-    graphPanel1.setxAxisLabel("Tempx(s)");
+    graphPanel1.setyAxisLabel("Altura(cm)");
+    graphPanel1.setxAxisLabel("Tempo(s)");
 
     graphPanel2.setyAxisLabel("Volts(V)");
     graphPanel2.setxAxisLabel("Tempo(s)");
@@ -1183,28 +1180,17 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_writeTogglerMouseClicked
 
     private void updatePVSelector(java.awt.event.ItemEvent evt){//GEN-FIRST:event_updatePVSelector
-      List<JCheckBox> selectedInputs = getSelectedInputs();
-
-//        if (selectedInputs.size() > 0) {
-//            List<String> opts = new ArrayList<>();
-//            for (JCheckBox input : selectedInputs) {
-//                opts.add(input.getText());
-//            }
-//
-//            String selected = (String) processVariableField.getSelectedItem();
-//            Integer index = opts.indexOf(selected);
-//
-//            processVariableField.setModel(new javax.swing.DefaultComboBoxModel(opts.toArray(new String[opts.size()])));
-//            processVariableField.setSelectedIndex(index > -1 ? index : 0);
-//            if (!processVariableField.isEnabled()) {
-//                processVariableField.setEnabled(true);
-//            }
-//        } else {
-//            processVariableField.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
-//            if (processVariableField.isEnabled()) {
-//                processVariableField.setEnabled(false);
-//            }
-//        }
+      JCheckBox clickedCBox = (JCheckBox)evt.getSource();
+      String text = clickedCBox.getText();
+      TankNumber t = text.equals("A0")? TankNumber.TANK_1 : text.equals("A1") ? TankNumber.TANK_2 : null;
+      if(clickedCBox.isSelected()){  
+        pvItems.addElement(new ComboItem(t, text));
+        pvItemsString.add(text);
+      }else{
+        pvItems.removeElementAt(pvItemsString.indexOf(text));
+        pvItemsString.remove(text);
+      }
+      processVariableField.setEnabled(pvItems.getSize()>0);
     }//GEN-LAST:event_updatePVSelector
 
     private void readTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readTogglerMouseClicked
@@ -1269,10 +1255,12 @@ public class MainFrame extends javax.swing.JFrame {
         setPointChange.onChangeParameter(currentSetPoint = selectedSetPoint);
       }
     }
-
-    TankNumber selectedPV = ((ComboItem) processVariableField.getSelectedItem()).getValue();
-    if (selectedPV != currentPV && null != processVariableChange) {
-      processVariableChange.onChangeParameter(currentPV = selectedPV);
+    if((ComboItem) processVariableField.getSelectedItem() != null){
+      System.out.println("SP diferente de null");
+      TankNumber selectedPV = ((ComboItem) processVariableField.getSelectedItem()).getValue();
+      if (selectedPV != currentPV && null != processVariableChange) {
+        processVariableChange.onChangeParameter(currentPV = selectedPV);
+      }
     }
 
     if (!"".equals(amplitudeField.getText())) {
@@ -1325,6 +1313,9 @@ public class MainFrame extends javax.swing.JFrame {
           portChange.onChangeParameter(currentPort = port);
         }
       }
+      apply.setEnabled(false);
+      statusConnectedLabel.setText("Não Conectado");
+      statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
       connectClicked.onChangeParameter(null);
     }//GEN-LAST:event_connectMouseClicked
 
@@ -1353,23 +1344,41 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sinusItemStateChanged
 
     private void jButtonPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewActionPerformed
-
+      double x = 0;
+      double p = Double.parseDouble(periodField.getText());
+      double a = Double.parseDouble(amplitudeField.getText());
+      double y = 0;
+      graphPanel3.clean("Sinal para configuracao");
       switch (currentWave) {
         case SINUSOID:
-          double x = 0;
-          double p = Double.parseDouble(periodField.getText());
-          double a = Double.parseDouble(amplitudeField.getText());
           while (x <= 1.05 * p) {
-            double y = a * Math.sin((x / p * 2 * Math.PI));
+            y = a * Math.sin((x / p * 2 * Math.PI)) +a;
             graphPanel3.addValue("Sinal para configuracao", x, y);
-            x = x + p / 20;
+            x = x + p / 40;
           }
           break;
         case SAWTOOTH:
+          while (x <= 2 * p) {
+            double r = x % p;
+            y = (a / p) * r;
+            graphPanel3.addValue("Sinal para configuracao", x, y);
+            x = x + p / 1000;
+          }
           break;
         case SQUARE:
+          while (x <= 2 * p) {
+            double r = x % p;
+            y = r>=p/2?0:a;
+            graphPanel3.addValue("Sinal para configuracao", x, y);
+            x = x + p/1000;
+          }
           break;
         case STEP:
+          while (x <= 2 * p) {
+            y = a;
+            graphPanel3.addValue("Sinal para configuracao", x, y);
+            x = x + p / 1000;
+          }
           break;
         case RANDOM:
           break;

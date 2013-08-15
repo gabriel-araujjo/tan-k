@@ -1287,7 +1287,7 @@
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ComboItem[] items = {&#xa;  new ComboItem(TankNumber.TANK_1, &quot;A0&quot;),&#xa;  new ComboItem(TankNumber.TANK_2, &quot;A1&quot;),&#xa;  new ComboItem(null, &quot;A2&quot;),&#xa;  new ComboItem(null, &quot;A3&quot;),&#xa;  new ComboItem(null, &quot;A4&quot;),&#xa;  new ComboItem(null, &quot;A5&quot;),&#xa;  new ComboItem(null, &quot;A6&quot;),&#xa;  new ComboItem(null, &quot;A7&quot;)};&#xa;processVariableField.setModel(new javax.swing.DefaultComboBoxModel(items));"/>
+                                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="pvItems =  new javax.swing.DefaultComboBoxModel&lt;&gt;();&#xa;processVariableField.setModel(pvItems);&#xa;pvItemsString = new ArrayList&lt;String&gt;();&#xa;processVariableField.setEnabled(false);"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -1501,7 +1501,7 @@
     </Container>
     <Component class="tan.k.view.GraphPanel" name="graphPanel1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel1.setyAxisLabel(&quot;Alturx(cm)&quot;);&#xa;graphPanel1.setxAxisLabel(&quot;Tempx(s)&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="graphPanel1.setyAxisLabel(&quot;Altura(cm)&quot;);&#xa;graphPanel1.setxAxisLabel(&quot;Tempo(s)&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="tan.k.view.GraphPanel" name="graphPanel2">

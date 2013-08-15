@@ -32,6 +32,7 @@ public class GraphPanel extends javax.swing.JPanel {
     //create chart Panel to add Chart and add it to Panel
     chartPanel = new ChartPanel(_defaultChart());
     _getChart().getLegend().setPosition(RectangleEdge.TOP);
+    _getChart().setAntiAlias(true);
     chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
     add(chartPanel);
   }
@@ -61,9 +62,13 @@ public class GraphPanel extends javax.swing.JPanel {
 
   public void removeSerie(String serie) {
     if (seriesExists(serie)) {
-      seriesNames.remove(serie);
       collection.removeSeries(seriesNames.indexOf(serie));
+      seriesNames.remove(serie);
     }
+  }
+  
+  public void clean(String serie){
+    collection.getSeries(seriesNames.indexOf(serie)).clear();
   }
 
   public void removeAllSeries() {
@@ -100,4 +105,5 @@ public class GraphPanel extends javax.swing.JPanel {
   public void enableLegend() {
     _getChart().getLegend().setVisible(false);
   }
+  
 }

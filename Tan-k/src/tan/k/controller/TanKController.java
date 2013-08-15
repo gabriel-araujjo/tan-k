@@ -148,7 +148,7 @@ public class TanKController implements Runnable {
 
   private double calcSqu(double t, double p, double a) {
     double r = t % p;
-    if (r >= p) {
+    if (r >= p/2) {
       return 0;
     }
     return a;
