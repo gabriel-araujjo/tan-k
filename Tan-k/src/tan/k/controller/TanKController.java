@@ -4,6 +4,8 @@
  */
 package tan.k.controller;
 
+import java.util.Random;
+import org.omg.CORBA.PRIVATE_MEMBER;
 import tan.k.model.Tank;
 import tan.k.view.ChangeParameterEvent;
 
@@ -59,6 +61,8 @@ public class TanKController implements Runnable {
   private double currentLevel1;
   private double currentLevel2;
   private boolean startRun;
+  private Long randomTime;
+  private double randomAmplitude;
   
   public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, TankNumber pv) {
     this.tank = tank;
@@ -74,6 +78,9 @@ public class TanKController implements Runnable {
 
     this.calculatedVoltage = 0;
     this.startRun = false;
+    
+    this.randomAmplitude = 0;
+    this.randomTime = 0L;
   }
 
   @Override
@@ -160,11 +167,12 @@ public class TanKController implements Runnable {
   }
 
   private double calcRand(double t, double p, double a) {
-    double r = t % (Math.random() * p);
-    if (r >= p) {
-      return Math.random() * a;
+    if(System.currentTimeMillis() > randomTime){
+      randomTime = System.currentTimeMillis() + (long) ((Math.random()* 0.8 + 0.2)*p*1000);
+      return randomAmplitude = (Math.random()*.8 +.2)*a;
+    }else{
+      return randomAmplitude;
     }
-    return a;
   }
 
   private double calcClosedLoop() {
