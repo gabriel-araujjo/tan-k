@@ -131,16 +131,16 @@ public class MainFrame extends javax.swing.JFrame {
         amplitude = new javax.swing.JPanel();
         amplitudeLabel = new javax.swing.JLabel();
         amplitudeField = new javax.swing.JFormattedTextField();
+        jLabelVoltage = new javax.swing.JLabel();
         period = new javax.swing.JPanel();
         periodLabel = new javax.swing.JLabel();
         periodField = new javax.swing.JFormattedTextField();
+        jLabelSeconds = new javax.swing.JLabel();
         frequency = new javax.swing.JPanel();
         frequencyLabel = new javax.swing.JLabel();
         frequencyField = new javax.swing.JFormattedTextField();
-        graphPanel3 = new tan.k.view.GraphPanel();
-        jLabelVoltage = new javax.swing.JLabel();
-        jLabelSeconds = new javax.swing.JLabel();
         jLabelHertz = new javax.swing.JLabel();
+        graphPanel3 = new tan.k.view.GraphPanel();
         outputPreview = new java.awt.Canvas();
         closedLoopSettings = new javax.swing.JPanel();
         controlSettings = new javax.swing.JPanel();
@@ -642,6 +642,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelVoltage.setText("V");
+
         javax.swing.GroupLayout amplitudeLayout = new javax.swing.GroupLayout(amplitude);
         amplitude.setLayout(amplitudeLayout);
         amplitudeLayout.setHorizontalGroup(
@@ -649,8 +651,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(amplitudeLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(amplitudeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(amplitudeField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabelVoltage)
                 .addGap(0, 0, 0))
         );
         amplitudeLayout.setVerticalGroup(
@@ -658,7 +662,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(amplitudeLayout.createSequentialGroup()
                 .addGroup(amplitudeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amplitudeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amplitudeLabel))
+                    .addComponent(amplitudeLabel)
+                    .addComponent(jLabelVoltage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -678,6 +683,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelSeconds.setText("s");
+
         javax.swing.GroupLayout periodLayout = new javax.swing.GroupLayout(period);
         period.setLayout(periodLayout);
         periodLayout.setHorizontalGroup(
@@ -685,15 +692,18 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(periodLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(periodLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(periodField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabelSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         periodLayout.setVerticalGroup(
             periodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(periodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(periodLabel)
-                .addComponent(periodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(periodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelSeconds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         frequencyLabel.setText("Frequência");
@@ -710,28 +720,27 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelHertz.setText("Hz");
+
         javax.swing.GroupLayout frequencyLayout = new javax.swing.GroupLayout(frequency);
         frequency.setLayout(frequencyLayout);
         frequencyLayout.setHorizontalGroup(
             frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frequencyLayout.createSequentialGroup()
-                .addComponent(frequencyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(frequencyLabel)
+                .addGap(15, 15, 15)
                 .addComponent(frequencyField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(6, 6, 6)
+                .addComponent(jLabelHertz)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         frequencyLayout.setVerticalGroup(
             frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(frequencyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(frequencyLabel))
+                .addComponent(frequencyLabel)
+                .addComponent(jLabelHertz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabelVoltage.setText("V");
-
-        jLabelSeconds.setText("s");
-
-        jLabelHertz.setText("Hz");
 
         javax.swing.GroupLayout waveParamsLayout = new javax.swing.GroupLayout(waveParams);
         waveParams.setLayout(waveParamsLayout);
@@ -739,33 +748,23 @@ public class MainFrame extends javax.swing.JFrame {
             waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(waveParamsLayout.createSequentialGroup()
                 .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(period, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(graphPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(waveParamsLayout.createSequentialGroup()
-                        .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(frequency, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(period, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(amplitude, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
-                        .addGap(6, 6, 6)
-                        .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelHertz)
-                            .addComponent(jLabelSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelVoltage))))
+                    .addComponent(amplitude, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waveParamsLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         waveParamsLayout.setVerticalGroup(
             waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(waveParamsLayout.createSequentialGroup()
-                .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(amplitude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelVoltage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(amplitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(period, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSeconds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(period, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(waveParamsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(frequency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelHertz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(graphPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1155,7 +1154,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(write, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -1363,6 +1362,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void randomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_randomItemStateChanged
         if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.RANDOM;
+            frequency.setVisible(true);
+            period.setVisible(true);
         }
     }//GEN-LAST:event_randomItemStateChanged
 
@@ -1388,42 +1389,52 @@ public class MainFrame extends javax.swing.JFrame {
     private void stepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stepItemStateChanged
         if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.STEP;
+            frequency.setVisible(false);
+            period.setVisible(false);        
         }
     }//GEN-LAST:event_stepItemStateChanged
 
     private void squareItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_squareItemStateChanged
         if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SQUARE;
+            frequency.setVisible(true);
+            period.setVisible(true);
         }
     }//GEN-LAST:event_squareItemStateChanged
 
     private void sawtoothItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sawtoothItemStateChanged
         if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SAWTOOTH;
+            frequency.setVisible(true);
+            period.setVisible(true);
         }
     }//GEN-LAST:event_sawtoothItemStateChanged
 
     private void sinusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sinusItemStateChanged
         if (((JToggleButton) evt.getSource()).isSelected()) {
             currentWave = Wave.SINUSOID;
+            frequency.setVisible(true);
+            period.setVisible(true);
         }
     }//GEN-LAST:event_sinusItemStateChanged
 
     private void jButtonPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewActionPerformed
         double x = 0;
-        double p = Double.parseDouble(periodField.getText());
+        double p;
         double a = Double.parseDouble(amplitudeField.getText());
         double y = 0;
         graphPanel3.clean("Sinal para configuracao");
         switch (currentWave) {
             case SINUSOID:
+                p = Double.parseDouble(periodField.getText());
                 while (x <= 1.05 * p) {
-                    y = a/2 * Math.sin((x / p * 2 * Math.PI)) + a/2;
+                    y = a / 2 * Math.sin((x / p * 2 * Math.PI)) + a / 2;
                     graphPanel3.addValue("Sinal para configuracao", x, y);
                     x = x + p / 40;
                 }
                 break;
             case SAWTOOTH:
+                p = Double.parseDouble(periodField.getText());
                 while (x <= 2 * p) {
                     double r = x % p;
                     y = (a / p) * r;
@@ -1432,6 +1443,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 break;
             case SQUARE:
+                p = Double.parseDouble(periodField.getText());
                 while (x <= 2 * p) {
                     double r = x % p;
                     y = r >= p / 2 ? 0 : a;
@@ -1440,6 +1452,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                 break;
             case STEP:
+                p = 5;
                 while (x <= 2 * p) {
                     y = a;
                     graphPanel3.addValue("Sinal para configuracao", x, y);

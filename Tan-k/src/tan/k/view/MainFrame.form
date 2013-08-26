@@ -141,7 +141,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="write" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="writeBox" pref="545" max="32767" attributes="0"/>
+                  <Component id="writeBox" pref="549" max="32767" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -248,7 +248,7 @@
                                   <Component id="input0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -300,7 +300,7 @@
                                   <Component id="input2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -352,7 +352,7 @@
                                   <Component id="input4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -404,7 +404,7 @@
                                   <Component id="input6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -498,7 +498,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="loopChooser" alignment="1" pref="333" max="32767" attributes="0"/>
+                          <Component id="loopChooser" alignment="1" pref="334" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
@@ -588,7 +588,7 @@
                                   <Component id="output0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -640,7 +640,7 @@
                                   <Component id="output2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -692,7 +692,7 @@
                                   <Component id="output4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -744,7 +744,7 @@
                                   <Component id="output6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -974,42 +974,27 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="graphPanel3" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="frequency" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="period" alignment="0" min="-2" pref="174" max="-2" attributes="0"/>
-                                              <Component id="amplitude" alignment="0" pref="174" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabelHertz" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabelSeconds" min="-2" pref="18" max="-2" attributes="0"/>
-                                              <Component id="jLabelVoltage" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="period" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
+                                      <Component id="graphPanel3" min="-2" pref="312" max="-2" attributes="0"/>
+                                      <Component id="amplitude" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="21" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="frequency" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="amplitude" max="32767" attributes="0"/>
-                                      <Component id="jLabelVoltage" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="amplitude" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="period" max="32767" attributes="0"/>
-                                      <Component id="jLabelSeconds" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="period" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="frequency" max="32767" attributes="0"/>
-                                      <Component id="jLabelHertz" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="frequency" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="graphPanel3" min="-2" pref="123" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -1031,8 +1016,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="amplitudeLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Component id="amplitudeField" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabelVoltage" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1043,6 +1030,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="amplitudeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="amplitudeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelVoltage" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -1062,6 +1050,11 @@
                                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="amplitudeFieldKeyPressed"/>
                               </Events>
                             </Component>
+                            <Component class="javax.swing.JLabel" name="jLabelVoltage">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="V"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="period">
@@ -1077,8 +1070,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="periodLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Component id="periodField" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabelSeconds" min="-2" pref="18" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1088,6 +1083,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="periodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="periodField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelSeconds" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1105,6 +1101,11 @@
                                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="periodFieldKeyTyped"/>
                               </Events>
                             </Component>
+                            <Component class="javax.swing.JLabel" name="jLabelSeconds">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="s"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="frequency">
@@ -1113,10 +1114,12 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="frequencyLabel" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                                      <Component id="frequencyLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Component id="frequencyField" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jLabelHertz" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1125,6 +1128,7 @@
                                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                       <Component id="frequencyField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="frequencyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelHertz" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1142,24 +1146,14 @@
                                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="frequencyFieldKeyPressed"/>
                               </Events>
                             </Component>
+                            <Component class="javax.swing.JLabel" name="jLabelHertz">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Hz"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Component class="tan.k.view.GraphPanel" name="graphPanel3">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabelVoltage">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="V"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabelSeconds">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="s"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabelHertz">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Hz"/>
-                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1399,7 +1393,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <EmptySpace pref="17" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="openedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="closedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
