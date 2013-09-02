@@ -93,7 +93,7 @@ public class TanKController implements Runnable {
    * @param openLoopSettings 
    */
   public TanKController(Tank tank, OpenLoopSettings openLoopSettings){
-    this(tank, Loop.OPENED, new CloseLoopSettings(0, TankNumber.TANK_1, null, 1), openLoopSettings);
+    this(tank, Loop.OPENED, new CloseLoopSettings(0, Object.TANK_1, null, 1), openLoopSettings);
   }
   
   /**
@@ -133,7 +133,7 @@ public class TanKController implements Runnable {
    * @param pv 
    */
   @Deprecated
-  public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, TankNumber pv){
+  public TanKController(Tank tank, Loop loop, Wave wave, double period, double amplitude, double setPoint, Object pv){
       this(tank, loop, new CloseLoopSettings(setPoint, pv, ControllerType.P, 1), new OpenLoopSettings(Wave.STEP, 1));
   }
   
@@ -259,7 +259,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcError() {
-    return getSetPoint() - (getPv() == TankNumber.TANK_1 ? currentLevel1 : getPv() == TankNumber.TANK_2 ? currentLevel2 : 0);
+    return getSetPoint() - (getPv() == Object.TANK_1 ? currentLevel1 : getPv() == Object.TANK_2 ? currentLevel2 : 0);
   }
 
   public void onWriteVoltage(ChangeParameterEvent changeParameterEvent) {
@@ -368,14 +368,14 @@ public class TanKController implements Runnable {
   /**
    * @return the pv
    */
-  public TankNumber getPv() {
+  public Object getPv() {
     return closeLoopSettings.pv;
   }
 
   /**
    * @param pv the pv to set
    */
-  public void setPv(TankNumber pv) {
+  public void setPv(Object pv) {
     this.closeLoopSettings.pv = pv;
   }
   
@@ -505,7 +505,7 @@ public class TanKController implements Runnable {
     }
 
     private double calc_D() {
-        return getKd()*(getPv()==TankNumber.TANK_1?(currentLevel1-lastLevel1):(currentLevel2-lastLevel2))/samplePeriod;
+        return getKd()*(getPv()==Object.TANK_1?(currentLevel1-lastLevel1):(currentLevel2-lastLevel2))/samplePeriod;
     }
   
   public enum Wave {
@@ -522,7 +522,7 @@ public class TanKController implements Runnable {
       P, PI, PD, PID, PI_D
   }
   
-  public enum TankNumber {
+  public enum Object {
 
     TANK_1, TANK_2
   }
@@ -556,12 +556,12 @@ public class TanKController implements Runnable {
     public double P;
     public double I;
     public double D;
-    public TankNumber pv;
+    public Object pv;
     public double setPoint;
     public CloseLoopSettings(double setPoint, String pv, String controllerType, double... weights){
-        this(setPoint, TankNumber.valueOf(pv), ControllerType.valueOf(controllerType), weights);
+        this(setPoint, Object.valueOf(pv), ControllerType.valueOf(controllerType), weights);
     }
-    public CloseLoopSettings(double setPoint, TankNumber pv, ControllerType controllerType, double... weights) {
+    public CloseLoopSettings(double setPoint, Object pv, ControllerType controllerType, double... weights) {
         this.pv = pv;
         this.setPoint = setPoint;
         type = controllerType;

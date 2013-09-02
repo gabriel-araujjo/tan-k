@@ -1227,9 +1227,9 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextField4" pref="72" max="32767" attributes="0"/>
+                                      <Component id="jTextField4" max="32767" attributes="0"/>
                                       <Component id="jTextField2" max="32767" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jComboBox1" alignment="0" pref="72" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1362,14 +1362,19 @@
                         <Component class="javax.swing.JComboBox" name="jComboBox1">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="5">
+                                <StringItem index="0" value="P"/>
+                                <StringItem index="1" value="PI"/>
+                                <StringItem index="2" value="PD"/>
+                                <StringItem index="3" value="PID"/>
+                                <StringItem index="4" value="PI-D"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox1ItemStateChanged"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel2">
                           <Properties>

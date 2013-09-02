@@ -11,8 +11,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+import tan.k.controller.TanKController;
 import tan.k.controller.TanKController.Loop;
-import tan.k.controller.TanKController.TankNumber;
+import tan.k.controller.TanKController.Object;
 import tan.k.controller.TanKController.Wave;
 
 /**
@@ -27,8 +28,10 @@ public class MainFrame extends javax.swing.JFrame {
     private Wave currentWave;
     private JToggleButton currentWaveButton;
     private double currentSetPoint;
-    private TankNumber currentPV;
+    private Object currentPV;
     private Loop currentLoop;
+    private TanKController.ControllerType currentControllerType;
+    private double currentKp, currentKi, currentKd;
     private String currentIp;
     private int currentPort;
     private int currentWriteChannel;
@@ -56,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.currentPeriod = 1;
         this.currentWave = Wave.STEP;
         this.currentSetPoint = 0;
-        this.currentPV = TankNumber.TANK_1;
+        this.currentPV = Object.TANK_1;
         this.currentLoop = Loop.OPENED;
         //this.currentIp = "127.0.0.1";
         this.currentIp = "10.13.99.69";
@@ -874,7 +877,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Tipo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "P", "PI", "PD", "PID", "PI-D" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Kp");
 
@@ -911,9 +924,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                    .addComponent(jTextField4)
                     .addComponent(jTextField2)
-                    .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE))
+                    .addComponent(jComboBox1, 0, 72, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1298,7 +1311,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void updatePVSelector(java.awt.event.ItemEvent evt){//GEN-FIRST:event_updatePVSelector
         JCheckBox clickedCBox = (JCheckBox) evt.getSource();
         String text = clickedCBox.getText();
-        TankNumber t = text.equals("A0") ? TankNumber.TANK_1 : text.equals("A1") ? TankNumber.TANK_2 : null;
+        Object t = text.equals("A0") ? Object.TANK_1 : text.equals("A1") ? Object.TANK_2 : null;
         if (clickedCBox.isSelected()) {
             pvItems.addElement(new ComboItem(t, text));
             pvItemsString.add(text);
@@ -1375,9 +1388,8 @@ public class MainFrame extends javax.swing.JFrame {
       }
       if ((ComboItem) processVariableField.getSelectedItem() != null) {
           System.out.println("SP diferente de null");
-          TankNumber selectedPV = ((ComboItem) processVariableField.getSelectedItem()).getValue();
+          Object selectedPV = (Object) ((ComboItem) processVariableField.getSelectedItem()).getValue();
           if (selectedPV != currentPV && null != processVariableChange) {
-
               processVariableChange.onChangeParameter(currentPV = selectedPV);
           }
       }
@@ -1558,6 +1570,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void writeChannelChange(java.awt.event.ItemEvent evt) {
         JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
@@ -1776,7 +1796,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @return the currentPV
      */
-    public TankNumber getCurrentPV() {
+    public Object getCurrentPV() {
         return currentPV;
     }
 
@@ -1850,15 +1870,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private class ComboItem {
 
-        private TankNumber value;
+        private Object value;
         private String label;
 
-        public ComboItem(TankNumber value, String label) {
+        public ComboItem(Object value, String label) {
             this.value = value;
             this.label = label;
         }
 
-        public TankNumber getValue() {
+        public Object getValue() {
             return this.value;
         }
 

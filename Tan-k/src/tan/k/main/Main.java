@@ -12,7 +12,7 @@ import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
 import tan.k.controller.TanKController;
 import tan.k.controller.TanKController.Loop;
-import tan.k.controller.TanKController.TankNumber;
+import tan.k.controller.TanKController.Object;
 import tan.k.controller.TanKController.Wave;
 import tan.k.model.Tank;
 import tan.k.view.ChangeParameterEvent;
@@ -86,8 +86,8 @@ public class Main {
             @Override
             public void onChangeParameter(Object value) {
               if(null!=value){
-                System.out.println("PV = "+((TankNumber) value).name());
-                controller.setPv((TankNumber) value);
+                System.out.println("PV = "+((Object) value).name());
+                controller.setPv((Object) value);
               }
             }
         });
