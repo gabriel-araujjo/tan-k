@@ -137,7 +137,7 @@ public class TanKController implements Runnable {
         double e = calcError(), i = calcI(e), p = calcP(e), d = calcD(e), _d = calc_D();
         setLastError(e);
         setLastI(i);
-
+        System.out.println("controllerType = "+getControllerType().name());
         switch (loop) {
           case CLOSED:
             switch (getControllerType()) {
@@ -460,12 +460,13 @@ public class TanKController implements Runnable {
   /**
    * @param lastError the lastError to set
    */
-  public void setLastError(double lastDError) {
-    this.lastError = lastDError;
+  public void setLastError(double e) {
+    this.lastError = e;
   }
 
   public synchronized void startController() {
     this.initTime = System.currentTimeMillis();
+    System.out.println("PV = "+closeLoopSettings.pv.name());
     this.startRun = true;
   }
 

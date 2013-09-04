@@ -75,8 +75,8 @@ public class MainFrame extends javax.swing.JFrame {
     this.currentSetPoint = 0;
     this.currentPV = TankTag.TANK_1;
     this.currentLoop = Loop.OPENED;
-    //this.currentIp = "127.0.0.1";
-    this.currentIp = "10.13.99.69";
+    this.currentIp = "127.0.0.1";
+    //this.currentIp = "10.13.99.69";
     this.currentPort = 20081;
     this.currentWriteChannel = 0;
     initComponents();
@@ -571,10 +571,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     sinus.setToolTipText("Senoidal");
     sinus.setSelected(true);
-    if(!currentWave.equals(Wave.SINUSOID)){
-      currentWaveButton = sinus;
-      currentWave = Wave.SINUSOID;
-    }
+    currentWave = Wave.SINUSOID;
     waveTypeChooser.add(sinus);
     sinus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/sinus.png"))); // NOI18N
     sinus.addItemListener(new java.awt.event.ItemListener() {
@@ -687,6 +684,17 @@ public class MainFrame extends javax.swing.JFrame {
     periodLabel.setText("Período");
 
     ((AbstractDocument)periodField.getDocument()).setDocumentFilter(new DoubleFilter());
+    periodField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        periodFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        periodFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        periodFieldKeyPressed(evt);
+      }
+    });
 
     jLabelSeconds.setText("s");
 
@@ -714,6 +722,17 @@ public class MainFrame extends javax.swing.JFrame {
     frequencyLabel.setText("Frequência");
 
     ((AbstractDocument)frequencyField.getDocument()).setDocumentFilter(new DoubleFilter());
+    frequencyField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        frequencyFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        frequencyFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        frequencyFieldKeyPressed(evt);
+      }
+    });
 
     jLabelHertz.setText("Hz");
 
@@ -723,9 +742,9 @@ public class MainFrame extends javax.swing.JFrame {
       frequencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(frequencyLayout.createSequentialGroup()
         .addComponent(frequencyLabel)
-        .addGap(15, 15, 15)
+        .addGap(18, 18, 18)
         .addComponent(frequencyField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(6, 6, 6)
+        .addGap(9, 9, 9)
         .addComponent(jLabelHertz)
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -853,7 +872,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     controllerTypeLabel.setText("Tipo");
 
-    controllerTypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "P", "PI", "PD", "PID", "PI-D" }));
+    DefaultComboBoxModel<ComboItem> model = new DefaultComboBoxModel<>();
+    model.addElement(new ComboItem(ControllerType.P, "P"));
+    model.addElement(new ComboItem(ControllerType.PI, "PI"));
+    model.addElement(new ComboItem(ControllerType.PD, "PD"));
+    model.addElement(new ComboItem(ControllerType.PID, "PID"));
+    model.addElement(new ComboItem(ControllerType.PI_D, "PI-D"));
+
+    controllerTypeCombo.setModel(model);
+
+    controllerTypeCombo.setSelectedIndex(0);
     controllerTypeCombo.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         controllerTypeComboItemStateChanged(evt);
@@ -865,20 +893,72 @@ public class MainFrame extends javax.swing.JFrame {
     ((AbstractDocument)kpField.getDocument()).setDocumentFilter(new DoubleFilter());
 
     tauiLabel.setText("Tau I");
+    tauiLabel.setVisible(false);
 
     ((AbstractDocument)tauiField.getDocument()).setDocumentFilter(new DoubleFilter());
+    tauiField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        tauiFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        tauiFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        tauiFieldKeyPressed(evt);
+      }
+    });
+    tauiField.setVisible(false);
 
     kiLabel.setText("Ki");
+    kiLabel.setVisible(false);
 
     ((AbstractDocument)kiField.getDocument()).setDocumentFilter(new DoubleFilter());
+    kiField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        kiFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        kiFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        kiFieldKeyPressed(evt);
+      }
+    });
+    kiField.setVisible(false);
 
     taudLabel.setText("Tau d");
+    taudLabel.setVisible(false);
 
     ((AbstractDocument)taudField.getDocument()).setDocumentFilter(new DoubleFilter());
+    taudField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        taudFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        taudFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        taudFieldKeyPressed(evt);
+      }
+    });
+    taudField.setVisible(false);
 
     kdLabel.setText("Kd");
+    kdLabel.setVisible(false);
 
     ((AbstractDocument)kdField.getDocument()).setDocumentFilter(new DoubleFilter());
+    kdField.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        kdFieldKeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        kdFieldKeyPressed(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        kdFieldKeyPressed(evt);
+      }
+    });
+    kdField.setVisible(false);
 
     javax.swing.GroupLayout waveParams1Layout = new javax.swing.GroupLayout(waveParams1);
     waveParams1.setLayout(waveParams1Layout);
@@ -1109,7 +1189,6 @@ public class MainFrame extends javax.swing.JFrame {
     ipPortLabel.setText("IP:Porta");
 
     ipPortField.setText(this.currentIp+":"+this.currentPort);
-    ipPortField.setText("10.13.99.69:20081");
     ipPortField.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         ipPortFieldActionPerformed(evt);
@@ -1249,9 +1328,9 @@ public class MainFrame extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+            .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
           .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(statusConnectedLabel)
@@ -1333,22 +1412,22 @@ public class MainFrame extends javax.swing.JFrame {
       }
     }
 
-    if (!"".equals(kpLabel.getText())) {
-      double selectedKp = Double.parseDouble(kpLabel.getText());
+    if (!"".equals(kpField.getText())) {
+      double selectedKp = Double.parseDouble(kpField.getText());
       if (selectedKp != currentKp) {
         call(kpChange, currentKp = selectedKp);
       }
     }
 
-    if (!"".equals(kiLabel.getText())) {
-      double selectedKi = Double.parseDouble(kiLabel.getText());
+    if (!"".equals(kiField.getText())) {
+      double selectedKi = Double.parseDouble(kiField.getText());
       if (selectedKi != currentKi) {
         call(kiChange, currentKi = selectedKi);
       }
     }
 
-    if (!"".equals(kdLabel.getText())) {
-      double selectedKd = Double.parseDouble(kdLabel.getText());
+    if (!"".equals(kdField.getText())) {
+      double selectedKd = Double.parseDouble(kdField.getText());
       if (selectedKd != currentKd) {
         call(kdChange, currentKd = selectedKd);
       }
@@ -1382,10 +1461,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     JToggleButton[] waves = {sinus, sawtooth, square, step, random};
+    int i = 0;
     for (JToggleButton wave : waves) {
       if (wave.isSelected() && !wave.equals(currentWaveButton)) {
         call(waveChange, currentWave);
         currentWaveButton = wave;
+      }else{
+        System.out.println("isSelected = "+wave.isSelected());
+        System.out.println("wave ="+i++);
       }
     }
 
@@ -1515,23 +1598,142 @@ public class MainFrame extends javax.swing.JFrame {
       switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
         case PI:
           kiField.setVisible(true);
+          kiLabel.setVisible(true);
+          
+          tauiField.setVisible(true);
+          tauiLabel.setVisible(true);
+          
           kdField.setVisible(false);
+          kdLabel.setVisible(false);
+          
+          taudField.setVisible(false);
+          taudLabel.setVisible(false);
+          
           break;
         case PID:
         case PI_D:
           kiField.setVisible(true);
+          kiLabel.setVisible(true);
+          
+          tauiField.setVisible(true);
+          tauiLabel.setVisible(true);
+          
           kdField.setVisible(true);
+          kdLabel.setVisible(true);
+          
+          taudField.setVisible(true);
+          taudLabel.setVisible(true);
+          
           break;
         case PD:
           kiField.setVisible(false);
+          kiLabel.setVisible(false);
+          
+          tauiField.setVisible(false);
+          tauiLabel.setVisible(false);
+          
           kdField.setVisible(true);
+          kdLabel.setVisible(true);
+          
+          taudField.setVisible(true);
+          taudLabel.setVisible(true);
+          
           break;
         default:
           kiField.setVisible(false);
+          kiLabel.setVisible(false);
+          
+          tauiField.setVisible(false);
+          tauiLabel.setVisible(false);
+          
           kdField.setVisible(false);
+          kdLabel.setVisible(false);
+          
+          taudField.setVisible(false);
+          taudLabel.setVisible(false);
           break;
       }
     }//GEN-LAST:event_controllerTypeComboItemStateChanged
+
+  private void periodFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_periodFieldKeyPressed
+    try{
+    if(!"".equals(periodField.getText()) && periodField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+      double f = 1/Double.parseDouble(periodField.getText());
+      frequencyField.setText(String.format("%6.1e", f));
+    }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_periodFieldKeyPressed
+
+  private void frequencyFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_frequencyFieldKeyPressed
+    try{
+    if(!"".equals(frequencyField.getText()) && frequencyField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+      double f = 1/Double.parseDouble(frequencyField.getText());
+      periodField.setText(String.format("%6.1e", f));
+    }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_frequencyFieldKeyPressed
+
+  private void kiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiFieldKeyPressed
+    try{
+    if(!"".equals(kiField.getText()) && kiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+      double taui = 0;
+      if(!kpField.getText().equals("")){
+        taui = Double.parseDouble(kpField.getText())/Double.parseDouble(kiField.getText());
+      }
+      tauiField.setText(String.format("%6.1e", taui));
+    }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_kiFieldKeyPressed
+
+  private void tauiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiFieldKeyPressed
+    try{
+    if(!"".equals(tauiField.getText()) && tauiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+      double ki = 0;
+      if(!kpField.getText().equals("")){
+        ki = Double.parseDouble(kpField.getText())/Double.parseDouble(tauiField.getText());
+      }
+      kiField.setText(String.format("%6.1e", ki));
+    }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_tauiFieldKeyPressed
+
+  private void kdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdFieldKeyPressed
+    try{
+      if(!"".equals(kdField.getText()) && kdField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        double taud = Double.MAX_VALUE;
+        if(!kpField.getText().equals("") && Double.parseDouble(kpField.getText()) != 0){
+          taud = Double.parseDouble(kdField.getText())/Double.parseDouble(kpField.getText());
+        }else if(Double.parseDouble(kdField.getText())<0){
+          taud = Double.MIN_VALUE;
+        }
+        taudField.setText(String.format("%6.1e", taud));
+      }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_kdFieldKeyPressed
+
+  private void taudFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudFieldKeyPressed
+    try{
+    if(!"".equals(taudField.getText()) && taudField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+      double kd = 0;
+      if(!kpField.getText().equals("")){
+        kd = Double.parseDouble(kpField.getText())*Double.parseDouble(taudField.getText());
+      }
+      kdField.setText(String.format("%6.1e", kd));
+    }
+    }catch(Exception e){
+      
+    }
+  }//GEN-LAST:event_taudFieldKeyPressed
 
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
@@ -1972,7 +2174,7 @@ public class MainFrame extends javax.swing.JFrame {
      * This method checks if a String contains only numbers
      */
     public boolean containsOnlyNumbers(String text) {
-      return text.matches("^[0-9]*(\\.[0-9]*)?$");
+      return text.matches("^[\\+\\-]?[0-9]*(\\.[0-9]*)?([eE][\\+\\-]?[\\d]*)?$");
     }
   }
 }

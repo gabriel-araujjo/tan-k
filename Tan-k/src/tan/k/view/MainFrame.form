@@ -81,9 +81,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="graphPanel1" pref="404" max="32767" attributes="0"/>
+                      <Component id="graphPanel1" pref="410" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="graphPanel2" pref="405" max="32767" attributes="0"/>
+                      <Component id="graphPanel2" pref="411" max="32767" attributes="0"/>
                   </Group>
                   <Component id="sidebar" max="32767" attributes="0"/>
               </Group>
@@ -867,7 +867,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="sinusItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sinus.setToolTipText(&quot;Senoidal&quot;);&#xa;sinus.setSelected(true);&#xa;if(!currentWave.equals(Wave.SINUSOID)){&#xa;    currentWaveButton = sinus;&#xa;    currentWave = Wave.SINUSOID;&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sinus.setToolTipText(&quot;Senoidal&quot;);&#xa;sinus.setSelected(true);&#xa;currentWave = Wave.SINUSOID;"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="sawtooth">
@@ -1091,6 +1091,11 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JFormattedTextField" name="periodField">
+                              <Events>
+                                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="periodFieldKeyPressed"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="periodFieldKeyPressed"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="periodFieldKeyPressed"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)periodField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
                               </AuxValues>
@@ -1109,9 +1114,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="frequencyLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="frequencyField" min="-2" pref="75" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                       <Component id="jLabelHertz" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
@@ -1134,6 +1139,11 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JFormattedTextField" name="frequencyField">
+                              <Events>
+                                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="frequencyFieldKeyPressed"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="frequencyFieldKeyPressed"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="frequencyFieldKeyPressed"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)frequencyField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
                               </AuxValues>
@@ -1354,20 +1364,12 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="controllerTypeCombo">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="P"/>
-                                <StringItem index="1" value="PI"/>
-                                <StringItem index="2" value="PD"/>
-                                <StringItem index="3" value="PID"/>
-                                <StringItem index="4" value="PI-D"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
                           <Events>
                             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="controllerTypeComboItemStateChanged"/>
                           </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DefaultComboBoxModel&lt;ComboItem&gt; model = new DefaultComboBoxModel&lt;&gt;();&#xa;model.addElement(new ComboItem(ControllerType.P, &quot;P&quot;));&#xa;model.addElement(new ComboItem(ControllerType.PI, &quot;PI&quot;));&#xa;model.addElement(new ComboItem(ControllerType.PD, &quot;PD&quot;));&#xa;model.addElement(new ComboItem(ControllerType.PID, &quot;PID&quot;));&#xa;model.addElement(new ComboItem(ControllerType.PI_D, &quot;PI-D&quot;));&#xa;&#xa;controllerTypeCombo.setModel(model);&#xa;&#xa;controllerTypeCombo.setSelectedIndex(0);"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="kpLabel">
                           <Properties>
@@ -1383,40 +1385,76 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Tau I"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tauiLabel.setVisible(false);"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tauiField">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tauiFieldKeyPressed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tauiFieldKeyPressed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tauiFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)tauiField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
+                            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="tauiField.setVisible(false);"/>
                           </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="kiLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ki"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="kiLabel.setVisible(false);"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="kiField">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kiFieldKeyPressed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kiFieldKeyPressed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kiFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)kiField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
+                            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="kiField.setVisible(false);"/>
                           </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="taudLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Tau d"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="taudLabel.setVisible(false);"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="taudField">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taudFieldKeyPressed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taudFieldKeyPressed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taudFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)taudField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
+                            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="taudField.setVisible(false);"/>
                           </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="kdLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Kd"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="kdLabel.setVisible(false);"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="kdField">
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kdFieldKeyPressed"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kdFieldKeyPressed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kdFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="((AbstractDocument)kdField.getDocument()).setDocumentFilter(new DoubleFilter());"/>
+                            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="kdField.setVisible(false);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -1610,9 +1648,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="ipPortField">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="10.13.99.69:20081"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ipPortFieldActionPerformed"/>
                   </Events>
