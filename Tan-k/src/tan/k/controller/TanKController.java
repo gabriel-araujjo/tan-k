@@ -68,6 +68,7 @@ public class TanKController implements Runnable {
   private ChangeParameterEvent dChange;
   private ChangeParameterEvent iChange;
   private ChangeParameterEvent errorChange;
+  private int addPointFlag;
 
   /**
    *
@@ -109,6 +110,8 @@ public class TanKController implements Runnable {
     this.initTime = System.currentTimeMillis();
     this.randomAmplitude = 0;
     this.randomTime = 0L;
+    
+    this.addPointFlag = 0;
   }
 
   /**
@@ -140,7 +143,7 @@ public class TanKController implements Runnable {
         setLastTime(System.currentTimeMillis());
         
         lastLevel1 = currentLevel1;
-        lastLevel2 = currentLevel2;
+        lastLevel2 = currentLevel2; 
 
         currentLevel1 = tank.getLevel1();
         currentLevel2 = tank.getLevel2();
@@ -210,6 +213,8 @@ public class TanKController implements Runnable {
         if (getLastTime() >= initTime) {
           tank.setVoltage(getCalculatedVoltage());
           currentVoltage = tank.getVoltage();
+          
+          if(addPointFlag == 0){
           if((currentVoltage!=getCalculatedVoltage()) != activedLock ){
             call(lockChange, activedLock = (currentVoltage!=getCalculatedVoltage()));
           }
@@ -236,6 +241,10 @@ public class TanKController implements Runnable {
           
           toSignal[1] = currentVoltage;
           call(writeVoltage, toSignal);
+          }else{
+              if(addPointFlag != 4) addPointFlag++;
+              else addPointFlag=0;
+          }
         }
       }
     }

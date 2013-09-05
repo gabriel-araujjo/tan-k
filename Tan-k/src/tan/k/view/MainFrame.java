@@ -71,14 +71,15 @@ public class MainFrame extends javax.swing.JFrame {
    * Creates new form MainFrame
    */
   public MainFrame() {
+
     this.currentAmplitide = 0;
     this.currentPeriod = 1;
     this.currentWave = Wave.STEP;
     this.currentSetPoint = 0;
     this.currentPV = TankTag.TANK_1;
     this.currentLoop = Loop.OPENED;
-    this.currentIp = "127.0.0.1";
-    //this.currentIp = "10.13.99.69";
+    //this.currentIp = "127.0.0.1";
+    this.currentIp = "10.13.99.69";
     this.currentPort = 20081;
     this.currentWriteChannel = 0;
     this.enabledCurves = new ArrayList<>();
@@ -106,6 +107,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     graphPanel3.disableLegend();
     graphPanel3.addSerie("Sinal para configuracao");
+    
+    this.graphTitle.setVisible(false);
+    this.graphToggler.setVisible(false);
+    this.graphBox.setVisible(false);
   }
 
   /**
@@ -137,8 +142,27 @@ public class MainFrame extends javax.swing.JFrame {
         inputColumn3 = new javax.swing.JPanel();
         input6 = new javax.swing.JCheckBox();
         input7 = new javax.swing.JCheckBox();
-        write = new javax.swing.JPanel();
+        writeTitle = new javax.swing.JPanel();
         writeToggler = new javax.swing.JLabel();
+        graphTitle = new javax.swing.JPanel();
+        graphToggler = new javax.swing.JLabel();
+        graphBox = new javax.swing.JPanel();
+        inputTable1 = new javax.swing.JPanel();
+        inputColumn4 = new javax.swing.JPanel();
+        input8 = new javax.swing.JCheckBox();
+        input9 = new javax.swing.JCheckBox();
+        inputColumn5 = new javax.swing.JPanel();
+        input10 = new javax.swing.JCheckBox();
+        input11 = new javax.swing.JCheckBox();
+        inputColumn6 = new javax.swing.JPanel();
+        input12 = new javax.swing.JCheckBox();
+        input13 = new javax.swing.JCheckBox();
+        inputColumn7 = new javax.swing.JPanel();
+        input14 = new javax.swing.JCheckBox();
+        input15 = new javax.swing.JCheckBox();
+        inputColumn11 = new javax.swing.JPanel();
+        input22 = new javax.swing.JCheckBox();
+        input23 = new javax.swing.JCheckBox();
         writeBox = new javax.swing.JPanel();
         outputTable = new javax.swing.JPanel();
         outputColumn0 = new javax.swing.JPanel();
@@ -206,7 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
         openedLoop = new javax.swing.JRadioButton();
         closedLoop = new javax.swing.JRadioButton();
         jButtonStop = new javax.swing.JButton();
-        ipPort = new javax.swing.JPanel();
+        ipPortTitle = new javax.swing.JPanel();
         ipPortToggler = new javax.swing.JLabel();
         ipPortBox = new javax.swing.JPanel();
         ipPortWrapper = new javax.swing.JPanel();
@@ -218,6 +242,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToggleButtonConfiguration = new javax.swing.JToggleButton();
         statusConnectedLabel = new javax.swing.JLabel();
         statusLockLabel = new javax.swing.JLabel();
+        jToggleButtonGraph = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -431,10 +456,10 @@ public class MainFrame extends javax.swing.JFrame {
             readBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, readBoxLayout.createSequentialGroup()
                 .addComponent(inputTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(6, 6, 6))
         );
 
-        write.setBackground(new java.awt.Color(158, 158, 158));
+        writeTitle.setBackground(new java.awt.Color(158, 158, 158));
 
         writeToggler.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
         writeToggler.setText("Escrita");
@@ -444,15 +469,270 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout writeLayout = new javax.swing.GroupLayout(write);
-        write.setLayout(writeLayout);
-        writeLayout.setHorizontalGroup(
-            writeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout writeTitleLayout = new javax.swing.GroupLayout(writeTitle);
+        writeTitle.setLayout(writeTitleLayout);
+        writeTitleLayout.setHorizontalGroup(
+            writeTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(writeToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        writeLayout.setVerticalGroup(
-            writeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        writeTitleLayout.setVerticalGroup(
+            writeTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(writeToggler)
+        );
+
+        graphTitle.setBackground(new java.awt.Color(158, 158, 158));
+
+        graphToggler.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        graphToggler.setText("Gráficos");
+        graphToggler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                graphTogglerMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout graphTitleLayout = new javax.swing.GroupLayout(graphTitle);
+        graphTitle.setLayout(graphTitleLayout);
+        graphTitleLayout.setHorizontalGroup(
+            graphTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(graphToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        graphTitleLayout.setVerticalGroup(
+            graphTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(graphToggler)
+        );
+
+        inputColumn4.setMinimumSize(new java.awt.Dimension(65, 100));
+        inputColumn4.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        input8.setText("U");
+        input8.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input8updatePVSelector(evt);
+            }
+        });
+        input8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input8ActionPerformed(evt);
+            }
+        });
+
+        input9.setText("Ubar");
+        input9.setText("\u016A");
+        input9.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input9updatePVSelector(evt);
+            }
+        });
+        input9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputColumn4Layout = new javax.swing.GroupLayout(inputColumn4);
+        inputColumn4.setLayout(inputColumn4Layout);
+        inputColumn4Layout.setHorizontalGroup(
+            inputColumn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn4Layout.createSequentialGroup()
+                .addGroup(inputColumn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input8)
+                    .addComponent(input9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inputColumn4Layout.setVerticalGroup(
+            inputColumn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn4Layout.createSequentialGroup()
+                .addComponent(input8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(input9)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        inputColumn5.setMinimumSize(new java.awt.Dimension(65, 100));
+        inputColumn5.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        input10.setText("Erro");
+        input10.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input10updatePVSelector(evt);
+            }
+        });
+
+        input11.setText("SP");
+        input11.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input11updatePVSelector(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputColumn5Layout = new javax.swing.GroupLayout(inputColumn5);
+        inputColumn5.setLayout(inputColumn5Layout);
+        inputColumn5Layout.setHorizontalGroup(
+            inputColumn5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn5Layout.createSequentialGroup()
+                .addGroup(inputColumn5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input10)
+                    .addComponent(input11))
+                .addGap(0, 0, 0))
+        );
+        inputColumn5Layout.setVerticalGroup(
+            inputColumn5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn5Layout.createSequentialGroup()
+                .addComponent(input10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(input11)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        inputColumn6.setMinimumSize(new java.awt.Dimension(65, 100));
+        inputColumn6.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        input12.setText("Calculado");
+        input12.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input12updatePVSelector(evt);
+            }
+        });
+
+        input13.setText("Real");
+        input13.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input13updatePVSelector(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputColumn6Layout = new javax.swing.GroupLayout(inputColumn6);
+        inputColumn6.setLayout(inputColumn6Layout);
+        inputColumn6Layout.setHorizontalGroup(
+            inputColumn6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn6Layout.createSequentialGroup()
+                .addGroup(inputColumn6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input12)
+                    .addComponent(input13))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        inputColumn6Layout.setVerticalGroup(
+            inputColumn6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn6Layout.createSequentialGroup()
+                .addComponent(input12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(input13)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        inputColumn7.setMinimumSize(new java.awt.Dimension(65, 100));
+        inputColumn7.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        input14.setText("P");
+        input14.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input14updatePVSelector(evt);
+            }
+        });
+
+        input15.setText("I");
+        input15.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input15updatePVSelector(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputColumn7Layout = new javax.swing.GroupLayout(inputColumn7);
+        inputColumn7.setLayout(inputColumn7Layout);
+        inputColumn7Layout.setHorizontalGroup(
+            inputColumn7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn7Layout.createSequentialGroup()
+                .addGroup(inputColumn7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input14)
+                    .addComponent(input15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inputColumn7Layout.setVerticalGroup(
+            inputColumn7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn7Layout.createSequentialGroup()
+                .addComponent(input14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(input15)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        inputColumn11.setMinimumSize(new java.awt.Dimension(65, 100));
+        inputColumn11.setPreferredSize(new java.awt.Dimension(65, 50));
+
+        input22.setText("D");
+        input22.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input22updatePVSelector(evt);
+            }
+        });
+
+        input23.setText("-D");
+        input23.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                input23updatePVSelector(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputColumn11Layout = new javax.swing.GroupLayout(inputColumn11);
+        inputColumn11.setLayout(inputColumn11Layout);
+        inputColumn11Layout.setHorizontalGroup(
+            inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn11Layout.createSequentialGroup()
+                .addGroup(inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(input22)
+                    .addComponent(input23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inputColumn11Layout.setVerticalGroup(
+            inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputColumn11Layout.createSequentialGroup()
+                .addComponent(input22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(input23)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout inputTable1Layout = new javax.swing.GroupLayout(inputTable1);
+        inputTable1.setLayout(inputTable1Layout);
+        inputTable1Layout.setHorizontalGroup(
+            inputTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputTable1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(inputColumn4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputColumn5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(inputColumn6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(inputColumn7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(inputColumn11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        inputTable1Layout.setVerticalGroup(
+            inputTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputTable1Layout.createSequentialGroup()
+                .addGroup(inputTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputColumn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputColumn5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputColumn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputColumn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputColumn11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout graphBoxLayout = new javax.swing.GroupLayout(graphBox);
+        graphBox.setLayout(graphBoxLayout);
+        graphBoxLayout.setHorizontalGroup(
+            graphBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(inputTable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        graphBoxLayout.setVerticalGroup(
+            graphBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(graphBoxLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(inputTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         writeBox.setPreferredSize(new Dimension(100,100));
@@ -917,6 +1197,7 @@ public class MainFrame extends javax.swing.JFrame {
         ((AbstractDocument)kpField.getDocument()).setDocumentFilter(new DoubleFilter());
 
         tauiLabel.setText("Tau I");
+        tauiLabel.setText("\u03c4");
         tauiLabel.setVisible(false);
 
         ((AbstractDocument)tauiField.getDocument()).setDocumentFilter(new DoubleFilter());
@@ -1117,7 +1398,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loopChooserLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(openedLoop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(closedLoop)
                 .addGap(25, 25, 25))
         );
@@ -1142,7 +1423,7 @@ public class MainFrame extends javax.swing.JFrame {
         writeBox.setLayout(writeBoxLayout);
         writeBoxLayout.setHorizontalGroup(
             writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 357, Short.MAX_VALUE)
+            .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -1150,26 +1431,22 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(writeBoxLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                    .addGroup(writeBoxLayout.createSequentialGroup()
-                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, writeBoxLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jButtonPreview)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonStop)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apply)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, writeBoxLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jButtonPreview)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonStop)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(apply)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator2)
+            .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
         );
         writeBoxLayout.setVerticalGroup(
             writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(writeBoxLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(loopChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1186,27 +1463,27 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(apply)
                     .addComponent(jButtonPreview)
                     .addComponent(jButtonStop))
-                .addContainerGap())
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
-        ipPort.setBackground(new java.awt.Color(158, 158, 158));
-        ipPort.addMouseListener(new java.awt.event.MouseAdapter() {
+        ipPortTitle.setBackground(new java.awt.Color(158, 158, 158));
+        ipPortTitle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ipPortMouseClicked(evt);
+                ipPortTitleMouseClicked(evt);
             }
         });
 
         ipPortToggler.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
         ipPortToggler.setText("IP / Porta");
 
-        javax.swing.GroupLayout ipPortLayout = new javax.swing.GroupLayout(ipPort);
-        ipPort.setLayout(ipPortLayout);
-        ipPortLayout.setHorizontalGroup(
-            ipPortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ipPortTitleLayout = new javax.swing.GroupLayout(ipPortTitle);
+        ipPortTitle.setLayout(ipPortTitleLayout);
+        ipPortTitleLayout.setHorizontalGroup(
+            ipPortTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ipPortToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        ipPortLayout.setVerticalGroup(
-            ipPortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ipPortTitleLayout.setVerticalGroup(
+            ipPortTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ipPortToggler)
         );
 
@@ -1256,7 +1533,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(ipPortBoxLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(ipPortWrapper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         ipPortBoxLayout.setVerticalGroup(
             ipPortBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1272,18 +1549,20 @@ public class MainFrame extends javax.swing.JFrame {
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(readTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(readBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(write, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidebarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(writeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(ipPort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(writeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ipPortTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ipPortBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(graphTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(graphBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(ipPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ipPortTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(ipPortBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -1291,9 +1570,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(readBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(write, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(writeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(graphTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(graphBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
@@ -1319,6 +1602,16 @@ public class MainFrame extends javax.swing.JFrame {
         statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_green.png"))); // NOI18N
         statusLockLabel.setText("Trava desativada");
 
+        jToggleButtonGraph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/Settings_Icon_32.png"))); // NOI18N
+        jToggleButtonGraph.setMaximumSize(new java.awt.Dimension(32, 32));
+        jToggleButtonGraph.setMinimumSize(new java.awt.Dimension(32, 32));
+        jToggleButtonGraph.setPreferredSize(new java.awt.Dimension(32, 43));
+        jToggleButtonGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonGraphActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -1338,10 +1631,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)
+                            .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                             .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButtonGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(statusConnectedLabel)
@@ -1353,13 +1648,15 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                        .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
+                        .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1375,9 +1672,9 @@ public class MainFrame extends javax.swing.JFrame {
       // TODO add your handling code here:
     }//GEN-LAST:event_ipPortFieldActionPerformed
 
-    private void ipPortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortMouseClicked
+    private void ipPortTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortTitleMouseClicked
       ipPortBox.setVisible(!ipPortBox.isVisible());
-    }//GEN-LAST:event_ipPortMouseClicked
+    }//GEN-LAST:event_ipPortTitleMouseClicked
 
     private void writeTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_writeTogglerMouseClicked
       writeBox.setVisible(!writeBox.isVisible());
@@ -1833,6 +2130,75 @@ public class MainFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_taudFieldKeyPressed
 
+    boolean buttonGraph = false;
+    private void jToggleButtonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonGraphActionPerformed
+
+            readTitle.setVisible(buttonGraph);
+            readBox.setVisible(buttonGraph);
+            writeTitle.setVisible(buttonGraph);
+            writeBox.setVisible(buttonGraph);
+            ipPortBox.setVisible(buttonGraph);
+            ipPortTitle.setVisible(buttonGraph);
+            graphBox.setVisible(!buttonGraph);
+            graphTitle.setVisible(!buttonGraph);
+            graphToggler.setVisible(!buttonGraph);
+            buttonGraph = !buttonGraph;
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButtonGraphActionPerformed
+
+    private void graphTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphTogglerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_graphTogglerMouseClicked
+
+    private void input8updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input8updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input8updatePVSelector
+
+    private void input9updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input9updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input9updatePVSelector
+
+    private void input10updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input10updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input10updatePVSelector
+
+    private void input11updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input11updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input11updatePVSelector
+
+    private void input12updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input12updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input12updatePVSelector
+
+    private void input13updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input13updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input13updatePVSelector
+
+    private void input14updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input14updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input14updatePVSelector
+
+    private void input15updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input15updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input15updatePVSelector
+
+    private void input8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input8ActionPerformed
+
+    private void input22updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input22updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input22updatePVSelector
+
+    private void input23updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_input23updatePVSelector
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input23updatePVSelector
+
+    private void input9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input9ActionPerformed
+
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -1869,26 +2235,54 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel frequency;
     private javax.swing.JFormattedTextField frequencyField;
     private javax.swing.JLabel frequencyLabel;
+    private javax.swing.JPanel graphBox;
     private tan.k.view.GraphPanel graphPanel1;
     private tan.k.view.GraphPanel graphPanel2;
     private tan.k.view.GraphPanel graphPanel3;
+    private javax.swing.JPanel graphTitle;
+    private javax.swing.JLabel graphToggler;
     private javax.swing.JCheckBox input0;
     private javax.swing.JCheckBox input1;
+    private javax.swing.JCheckBox input10;
+    private javax.swing.JCheckBox input11;
+    private javax.swing.JCheckBox input12;
+    private javax.swing.JCheckBox input13;
+    private javax.swing.JCheckBox input14;
+    private javax.swing.JCheckBox input15;
+    private javax.swing.JCheckBox input16;
+    private javax.swing.JCheckBox input17;
+    private javax.swing.JCheckBox input18;
+    private javax.swing.JCheckBox input19;
     private javax.swing.JCheckBox input2;
+    private javax.swing.JCheckBox input20;
+    private javax.swing.JCheckBox input21;
+    private javax.swing.JCheckBox input22;
+    private javax.swing.JCheckBox input23;
     private javax.swing.JCheckBox input3;
     private javax.swing.JCheckBox input4;
     private javax.swing.JCheckBox input5;
     private javax.swing.JCheckBox input6;
     private javax.swing.JCheckBox input7;
+    private javax.swing.JCheckBox input8;
+    private javax.swing.JCheckBox input9;
     private javax.swing.JPanel inputColumn0;
     private javax.swing.JPanel inputColumn1;
+    private javax.swing.JPanel inputColumn10;
+    private javax.swing.JPanel inputColumn11;
     private javax.swing.JPanel inputColumn2;
     private javax.swing.JPanel inputColumn3;
+    private javax.swing.JPanel inputColumn4;
+    private javax.swing.JPanel inputColumn5;
+    private javax.swing.JPanel inputColumn6;
+    private javax.swing.JPanel inputColumn7;
+    private javax.swing.JPanel inputColumn8;
+    private javax.swing.JPanel inputColumn9;
     private javax.swing.JPanel inputTable;
-    private javax.swing.JPanel ipPort;
+    private javax.swing.JPanel inputTable1;
     private javax.swing.JPanel ipPortBox;
     private javax.swing.JFormattedTextField ipPortField;
     private javax.swing.JLabel ipPortLabel;
+    private javax.swing.JPanel ipPortTitle;
     private javax.swing.JLabel ipPortToggler;
     private javax.swing.JPanel ipPortWrapper;
     private javax.swing.JButton jButtonPreview;
@@ -1904,6 +2298,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToggleButton jToggleButtonConfiguration;
+    private javax.swing.JToggleButton jToggleButtonGraph;
     private javax.swing.JTextField kdField;
     private javax.swing.JLabel kdLabel;
     private javax.swing.JTextField kiField;
@@ -1956,9 +2351,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel waveParams1;
     private javax.swing.JPanel waveType;
     private javax.swing.ButtonGroup waveTypeChooser;
-    private javax.swing.JPanel write;
     private javax.swing.JPanel writeBox;
     private javax.swing.ButtonGroup writeChannelChooser;
+    private javax.swing.JPanel writeTitle;
     private javax.swing.JLabel writeToggler;
     // End of variables declaration//GEN-END:variables
 
