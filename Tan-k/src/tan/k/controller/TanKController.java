@@ -209,10 +209,10 @@ public class TanKController implements Runnable {
                 
 
         if (getLastTime() >= initTime) {
+          tank.setVoltage(getCalculatedVoltage());
+          currentVoltage = tank.getVoltage();
           if(putPointsFlag==0){
             putPointsFlag++;
-            tank.setVoltage(getCalculatedVoltage());
-            currentVoltage = tank.getVoltage();
             if((currentVoltage!=getCalculatedVoltage()) != activedLock ){
               call(lockChange, activedLock = (currentVoltage!=getCalculatedVoltage()));
             }
