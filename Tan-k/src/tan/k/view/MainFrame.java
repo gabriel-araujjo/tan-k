@@ -6,6 +6,7 @@ package tan.k.view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -59,6 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
   private ChangeParameterEvent connectClicked;
   private DefaultComboBoxModel<ComboItem> pvItems;
   private List<String> pvItemsString;
+  private List<String> enabledCurves;
   private ChangeParameterEvent stopClicked;
   private ChangeParameterEvent controllerTypeChange;
   private ChangeParameterEvent kpChange;
@@ -79,6 +81,28 @@ public class MainFrame extends javax.swing.JFrame {
     //this.currentIp = "10.13.99.69";
     this.currentPort = 20081;
     this.currentWriteChannel = 0;
+    this.enabledCurves = new ArrayList<>();
+    enabledCurves.addAll(Arrays.asList(new String[]{
+      TANK1_LEVEL_CURVE, 
+      TANK2_LEVEL_CURVE, 
+      ERROR_CURVE,
+      SETPOINT_CURVE,
+      SENDED_SIGNAL_CURVE,
+      CALCULATED_SIGNAL_CURVE,
+      PROPORCIONAL_PART_CURVE
+    }));
+//    
+//    public static String TANK1_LEVEL_CURVE = "Nível do tanque 1";
+//  public static String TANK2_LEVEL_CURVE = "Nível do tanque 2";
+//  public static String ERROR_CURVE = "Erro";
+//  public static String SETPOINT_CURVE = "Set Point";
+//  
+//  public static String SENDED_SIGNAL_CURVE = "Sinal Enviado";
+//  public static String CALCULATED_SIGNAL_CURVE = "Sinal calculado";
+//  
+//  public static String PROPORCIONAL_PART_CURVE = "Componente proporcional";
+//  public static String INTEGRAL_PART_CURVE = "Componente integral";
+//  public static String DERIVATIVE_PART_CURVE = "Componente derivativa";
     initComponents();
 
     graphPanel3.disableLegend();
@@ -194,6 +218,7 @@ public class MainFrame extends javax.swing.JFrame {
     graphPanel2 = new tan.k.view.GraphPanel();
     jToggleButtonConfiguration = new javax.swing.JToggleButton();
     statusConnectedLabel = new javax.swing.JLabel();
+    statusLockLabel = new javax.swing.JLabel();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenu2 = new javax.swing.JMenu();
@@ -1292,6 +1317,9 @@ public class MainFrame extends javax.swing.JFrame {
     statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png"))); // NOI18N
     statusConnectedLabel.setText("Não Conectado");
 
+    statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_green.png"))); // NOI18N
+    statusLockLabel.setText("Trava desativada");
+
     jMenu1.setText("File");
     jMenuBar1.add(jMenu1);
 
@@ -1314,10 +1342,12 @@ public class MainFrame extends javax.swing.JFrame {
               .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)
               .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
           .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(statusConnectedLabel))
-            .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(statusConnectedLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(statusLockLabel)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -1333,7 +1363,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
           .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(statusConnectedLabel)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(statusConnectedLabel)
+          .addComponent(statusLockLabel))
         .addGap(6, 6, 6))
     );
 
@@ -1397,10 +1429,6 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonConfigurationActionPerformed
 
   private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
-
-    graphPanel1.addSerieIfInexistent("Tanque 1");
-    graphPanel1.addSerieIfInexistent("Tanque 2");
-    graphPanel2.addSerieIfInexistent("Sinal");
 
     graphPanel1.clearAll();
     graphPanel2.clearAll();
@@ -1466,9 +1494,6 @@ public class MainFrame extends javax.swing.JFrame {
       if (wave.isSelected() && !wave.equals(currentWaveButton)) {
         call(waveChange, currentWave);
         currentWaveButton = wave;
-      }else{
-        System.out.println("isSelected = "+wave.isSelected());
-        System.out.println("wave ="+i++);
       }
     }
 
@@ -1609,6 +1634,12 @@ public class MainFrame extends javax.swing.JFrame {
           taudField.setVisible(false);
           taudLabel.setVisible(false);
           
+          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
           break;
         case PID:
         case PI_D:
@@ -1624,6 +1655,13 @@ public class MainFrame extends javax.swing.JFrame {
           taudField.setVisible(true);
           taudLabel.setVisible(true);
           
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
+          
           break;
         case PD:
           kiField.setVisible(false);
@@ -1637,6 +1675,13 @@ public class MainFrame extends javax.swing.JFrame {
           
           taudField.setVisible(true);
           taudLabel.setVisible(true);
+          
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.remove(INTEGRAL_PART_CURVE);
           
           break;
         default:
@@ -1848,6 +1893,7 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JToggleButton sinus;
   private javax.swing.JToggleButton square;
   private javax.swing.JLabel statusConnectedLabel;
+  private javax.swing.JLabel statusLockLabel;
   private javax.swing.JToggleButton step;
   private javax.swing.JTextField taudField;
   private javax.swing.JLabel taudLabel;
@@ -1999,15 +2045,16 @@ public class MainFrame extends javax.swing.JFrame {
 
   public void addPointToGraph(String sinal, double t, double d) {
     //System.out.println(t + " " + d + ";");
+    if(!enabledCurves.contains(sinal)) return;
     switch (sinal) {
-      case "Tanque 1":
-        graphPanel1.addValue("Tanque 1", t, d);
+      case TANK1_LEVEL_CURVE:
+      case TANK2_LEVEL_CURVE:
+      case SETPOINT_CURVE:
+      case ERROR_CURVE:
+        graphPanel1.addValue(sinal, t, d);
         break;
-      case "Tanque 2":
-        graphPanel1.addValue("Tanque 2", t, d);
-        break;
-      case "Sinal":
-        graphPanel2.addValue("Sinal", t, d);
+      default:
+        graphPanel2.addValue(sinal, t, d);
         break;
     }
   }
@@ -2115,6 +2162,11 @@ public class MainFrame extends javax.swing.JFrame {
     call(callback, null);
   }
 
+  public void setLockStatus(boolean b) {
+    statusLockLabel.setText(b?"Trava ativa":"Trava desativada");
+    statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_"+(b?"red":"green")+".png")));
+  }
+
   //Classes and enums
   private class ComboItem {
 
@@ -2144,6 +2196,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     CONNECTED, DISCONNECTED, CONNECTING
   }
+  
+  public static final String TANK1_LEVEL_CURVE = "Nível do tanque 1";
+  public static final String TANK2_LEVEL_CURVE = "Nível do tanque 2";
+  public static final String ERROR_CURVE = "Erro";
+  public static final String SETPOINT_CURVE = "Set Point";
+  
+  public static final String SENDED_SIGNAL_CURVE = "Sinal Enviado";
+  public static final String CALCULATED_SIGNAL_CURVE = "Sinal calculado";
+  
+  public static final String PROPORCIONAL_PART_CURVE = "Componente proporcional";
+  public static final String INTEGRAL_PART_CURVE = "Componente integral";
+  public static final String DERIVATIVE_PART_CURVE = "Componente derivativa";
 
   public static class DoubleFilter extends DocumentFilter {
     

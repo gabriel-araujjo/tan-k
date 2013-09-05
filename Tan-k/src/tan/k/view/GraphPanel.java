@@ -91,9 +91,8 @@ public class GraphPanel extends javax.swing.JPanel {
     }
 
     public void addValue(String serie, double x, double y) {
-        if (seriesExists(serie)) {
-            _getSerie(serie).addOrUpdate(x, y);
-        }
+        if (!seriesExists(serie)) addSerie(serie);
+        _getSerie(serie).addOrUpdate(x, y);
     }
 
     public void setTitle(String title) {

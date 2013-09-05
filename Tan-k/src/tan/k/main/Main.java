@@ -184,31 +184,72 @@ public class Main {
       @Override
       public void onChangeParameter(Object value) {
         System.out.println("writeChannel = " + ((int) value));
-//                tank.setVoltageChannel((int) value);
+        tank.setVoltageChannel((int) value);
       }
     });
 
     controller.onWriteVoltage(new ChangeParameterEvent() {
       @Override
       public void onChangeParameter(Object value) {
-        view.addPointToGraph("Sinal", ((double[]) value)[0], ((double[]) value)[1]);
+        view.addPointToGraph(MainFrame.SENDED_SIGNAL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+        view.addPointToGraph(MainFrame.CALCULATED_SIGNAL_CURVE, ((double []) value)[0], controller.getCalculatedVoltage());
+        view.addPointToGraph(MainFrame.SETPOINT_CURVE, ((double []) value)[0], controller.getSetPoint());
       }
     });
 
     controller.onReadLevelTank1(new ChangeParameterEvent() {
       @Override
       public void onChangeParameter(Object value) {
-        view.addPointToGraph("Tanque 1", ((double[]) value)[0], ((double[]) value)[1]);
+        view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
       }
     });
 
     controller.onReadLevelTank2(new ChangeParameterEvent() {
       @Override
       public void onChangeParameter(Object value) {
-        view.addPointToGraph("Tanque 2", ((double[]) value)[0], ((double[]) value)[1]);
+        view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
       }
     });
+    
+    controller.onCalcP(new ChangeParameterEvent() {
 
+      @Override
+      public void onChangeParameter(Object value) {
+        view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+      }
+    });
+    
+    controller.onCalcI(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+      }
+    });
+    
+    controller.onCalcD(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+      }
+    });
+    
+    controller.onCalcError(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        view.addPointToGraph(MainFrame.ERROR_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+      }
+    });
+    
+    controller.onLockStatusChange(new ChangeParameterEvent() {
+      @Override
+      public void onChangeParameter(Object value) {
+        view.setLockStatus((boolean) value);
+      }
+    });
+    
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
