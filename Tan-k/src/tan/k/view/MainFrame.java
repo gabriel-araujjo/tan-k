@@ -88,8 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
       ERROR_CURVE,
       SETPOINT_CURVE,
       SENDED_SIGNAL_CURVE,
-      CALCULATED_SIGNAL_CURVE,
-      PROPORCIONAL_PART_CURVE
+      CALCULATED_SIGNAL_CURVE
     }));
 //    
 //    public static String TANK1_LEVEL_CURVE = "Nível do tanque 1";
@@ -1409,6 +1408,55 @@ public class MainFrame extends javax.swing.JFrame {
         closedLoopSettings.setVisible(true);
         writeBox.setPreferredSize(new Dimension(357, 140));
         jButtonPreview.setVisible(false);
+        
+        switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
+        case PI:
+          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
+          break;
+        case PID:
+        case PI_D:
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
+          break;
+        case PD:
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.remove(INTEGRAL_PART_CURVE);
+          break;
+        default:
+          kiField.setVisible(false);
+          kiLabel.setVisible(false);
+          
+          tauiField.setVisible(false);
+          tauiLabel.setVisible(false);
+          
+          kdField.setVisible(false);
+          kdLabel.setVisible(false);
+          
+          taudField.setVisible(false);
+          taudLabel.setVisible(false);
+          
+          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.remove(INTEGRAL_PART_CURVE);
+          break;
+      }
+        
         pack();
       }
     }//GEN-LAST:event_closedLoopItemStateChanged
@@ -1420,6 +1468,11 @@ public class MainFrame extends javax.swing.JFrame {
         closedLoopSettings.setVisible(false);
         writeBox.setPreferredSize(new Dimension(357, 215));
         jButtonPreview.setVisible(true);
+        
+        if(enabledCurves.contains(PROPORCIONAL_PART_CURVE)) enabledCurves.remove(PROPORCIONAL_PART_CURVE);
+        if(enabledCurves.contains(DERIVATIVE_PART_CURVE)) enabledCurves.remove(DERIVATIVE_PART_CURVE);
+        if(enabledCurves.contains(INTEGRAL_PART_CURVE)) enabledCurves.remove(INTEGRAL_PART_CURVE);
+        
         pack();
       }
     }//GEN-LAST:event_openedLoopItemStateChanged
