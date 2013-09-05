@@ -174,7 +174,6 @@ public class Main {
           view.setConnectionStatus(ConnectionStatus.CONNECTED);
         } catch (QuanserClientException ex) {
           view.setConnectionStatus(ConnectionStatus.DISCONNECTED);
-          ex.printStackTrace();
         }
       }
     });

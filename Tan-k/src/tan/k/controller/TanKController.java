@@ -217,10 +217,10 @@ public class TanKController implements Runnable {
           toSignal[0] = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
 
           toSignal[1] = currentLevel1;
-          onReadLevel1.onChangeParameter(toSignal);
+          call(onReadLevel1, toSignal);
 
           toSignal[1] = currentLevel2;
-          onReadLevel2.onChangeParameter(toSignal);
+          call(onReadLevel2, toSignal);
           
           toSignal[1] = e;
           call(errorChange, toSignal);
@@ -235,7 +235,7 @@ public class TanKController implements Runnable {
           call(dChange, toSignal);
           
           toSignal[1] = currentVoltage;
-          writeVoltage.onChangeParameter(toSignal);
+          call(writeVoltage, toSignal);
         }
       }
     }
@@ -589,8 +589,13 @@ public class TanKController implements Runnable {
     TANK_1, TANK_2
   }
   
-  private void call(ChangeParameterEvent callback, Object param){
-    callback.onChangeParameter(param);
+  private void call(final ChangeParameterEvent callback, final Object param){
+    (new Thread(new Runnable() {
+      @Override
+      public void run() {
+        callback.onChangeParameter(param);
+      }
+    })).start();
   }
 
   public static class OpenLoopSettings {
