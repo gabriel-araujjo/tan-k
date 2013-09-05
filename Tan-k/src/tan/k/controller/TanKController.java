@@ -68,7 +68,7 @@ public class TanKController implements Runnable {
   private ChangeParameterEvent dChange;
   private ChangeParameterEvent iChange;
   private ChangeParameterEvent errorChange;
-  private int addPointFlag;
+  private int putPointsFlag;
 
   /**
    *
@@ -111,7 +111,7 @@ public class TanKController implements Runnable {
     this.randomAmplitude = 0;
     this.randomTime = 0L;
     
-    this.addPointFlag = 0;
+    this.putPointsFlag = 0;
   }
 
   /**
@@ -143,13 +143,11 @@ public class TanKController implements Runnable {
         setLastTime(System.currentTimeMillis());
         
         lastLevel1 = currentLevel1;
-        lastLevel2 = currentLevel2; 
+        lastLevel2 = currentLevel2;
 
         currentLevel1 = tank.getLevel1();
         currentLevel2 = tank.getLevel2();
         
-        //System.out.println("loop_"+loop.name()+" wave_"+getWaveType());
-
         e = calcError();
         i = calcI(e);
         p = calcP(e);
@@ -211,39 +209,40 @@ public class TanKController implements Runnable {
                 
 
         if (getLastTime() >= initTime) {
-          tank.setVoltage(getCalculatedVoltage());
-          currentVoltage = tank.getVoltage();
-          
-          if(addPointFlag == 0){
-          if((currentVoltage!=getCalculatedVoltage()) != activedLock ){
-            call(lockChange, activedLock = (currentVoltage!=getCalculatedVoltage()));
-          }
-          
-          toSignal[0] = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
+          if(putPointsFlag==0){
+            putPointsFlag++;
+            tank.setVoltage(getCalculatedVoltage());
+            currentVoltage = tank.getVoltage();
+            if((currentVoltage!=getCalculatedVoltage()) != activedLock ){
+              call(lockChange, activedLock = (currentVoltage!=getCalculatedVoltage()));
+            }
 
-          toSignal[1] = currentLevel1;
-          call(onReadLevel1, toSignal);
+            toSignal[0] = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
 
-          toSignal[1] = currentLevel2;
-          call(onReadLevel2, toSignal);
-          
-          toSignal[1] = e;
-          call(errorChange, toSignal);
-          
-          toSignal[1] = p;
-          call(pChange, toSignal);
-          
-          toSignal[1] = i;
-          call(iChange, toSignal);
-          
-          toSignal[1] = d;
-          call(dChange, toSignal);
-          
-          toSignal[1] = currentVoltage;
-          call(writeVoltage, toSignal);
+            toSignal[1] = currentLevel1;
+            call(onReadLevel1, toSignal);
+            System.out.println("currentLevel1 = "+currentLevel1);
+
+            toSignal[1] = currentLevel2;
+            call(onReadLevel2, toSignal);
+
+            toSignal[1] = e;
+            call(errorChange, toSignal);
+
+            toSignal[1] = p;
+            call(pChange, toSignal);
+
+            toSignal[1] = i;
+            call(iChange, toSignal);
+
+            toSignal[1] = d;
+            call(dChange, toSignal);
+
+            toSignal[1] = currentVoltage;
+            call(writeVoltage, toSignal);
           }else{
-              if(addPointFlag != 4) addPointFlag++;
-              else addPointFlag=0;
+            if(putPointsFlag != 4) putPointsFlag++;
+            else putPointsFlag = 0;
           }
         }
       }
@@ -599,12 +598,7 @@ public class TanKController implements Runnable {
   }
   
   private void call(final ChangeParameterEvent callback, final Object param){
-    (new Thread(new Runnable() {
-      @Override
-      public void run() {
-        callback.onChangeParameter(param);
-      }
-    })).start();
+    callback.onChangeParameter(param);
   }
 
   public static class OpenLoopSettings {

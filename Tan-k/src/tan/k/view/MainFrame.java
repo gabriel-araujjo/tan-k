@@ -92,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
       CALCULATED_SIGNAL_CURVE
     }));
 //    
-//    public static String TANK1_LEVEL_CURVE = "Nível do tanque 1";
+//  public static String TANK1_LEVEL_CURVE = "Nível do tanque 1";
 //  public static String TANK2_LEVEL_CURVE = "Nível do tanque 2";
 //  public static String ERROR_CURVE = "Erro";
 //  public static String SETPOINT_CURVE = "Set Point";
