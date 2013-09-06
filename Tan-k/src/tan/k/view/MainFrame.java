@@ -253,7 +253,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         sidebar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         sidebar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        sidebar.setMinimumSize(new java.awt.Dimension(260, 100));
+        sidebar.setMaximumSize(new java.awt.Dimension(363, 500));
+        sidebar.setMinimumSize(new java.awt.Dimension(363, 500));
+        sidebar.setPreferredSize(new java.awt.Dimension(363, 500));
         sidebar.setBackground(java.awt.SystemColor.control);
 
         readTitle.setBackground(new java.awt.Color(158, 158, 158));
@@ -1652,7 +1654,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, 1147, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
