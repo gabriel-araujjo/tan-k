@@ -64,7 +64,7 @@ public class Tank {
    */
   public synchronized void setVoltage(double v) {
     double lastV = this.voltage;
-    this.voltage = v > 3 ? 3 : v > 1.7 && getLevel1() > 27 ? 1.7 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v;
+    this.voltage = v > 1.7 && getLevel1() > 27 ? 1.7 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v > 3 ? 3 : v;
     if (isConnected()) {
       try {
         quanserClient.write(getVoltageChannel(), getVoltage());

@@ -707,7 +707,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(inputColumn7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(inputColumn11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         inputTable1Layout.setVerticalGroup(
             inputTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,7 +718,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(inputColumn6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputColumn7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputColumn11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
 
         javax.swing.GroupLayout graphBoxLayout = new javax.swing.GroupLayout(graphBox);
@@ -729,10 +729,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         graphBoxLayout.setVerticalGroup(
             graphBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(graphBoxLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(inputTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+            .addComponent(inputTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         writeBox.setPreferredSize(new Dimension(100,100));
@@ -1423,7 +1420,7 @@ public class MainFrame extends javax.swing.JFrame {
         writeBox.setLayout(writeBoxLayout);
         writeBoxLayout.setHorizontalGroup(
             writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 363, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -1463,7 +1460,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(apply)
                     .addComponent(jButtonPreview)
                     .addComponent(jButtonStop))
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         ipPortTitle.setBackground(new java.awt.Color(158, 158, 158));
@@ -1552,11 +1549,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(writeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ipPortTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ipPortBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(graphTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(graphBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+            .addComponent(graphTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(graphBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1572,7 +1567,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(writeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(graphTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -1586,7 +1581,7 @@ public class MainFrame extends javax.swing.JFrame {
         graphPanel2.setyAxisLabel("Volts(V)");
         graphPanel2.setxAxisLabel("Tempo(s)");
 
-        jToggleButtonConfiguration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/Settings_Icon_32.png"))); // NOI18N
+        jToggleButtonConfiguration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/settings.png"))); // NOI18N
         jToggleButtonConfiguration.setMaximumSize(new java.awt.Dimension(32, 32));
         jToggleButtonConfiguration.setMinimumSize(new java.awt.Dimension(32, 32));
         jToggleButtonConfiguration.setPreferredSize(new java.awt.Dimension(32, 43));
@@ -1599,10 +1594,10 @@ public class MainFrame extends javax.swing.JFrame {
         statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png"))); // NOI18N
         statusConnectedLabel.setText("Não Conectado");
 
-        statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_green.png"))); // NOI18N
-        statusLockLabel.setText("Trava desativada");
+        statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_blue.png"))); // NOI18N
+        statusLockLabel.setText("Trava");
 
-        jToggleButtonGraph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/Settings_Icon_32.png"))); // NOI18N
+        jToggleButtonGraph.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/enabled_curves.png"))); // NOI18N
         jToggleButtonGraph.setMaximumSize(new java.awt.Dimension(32, 32));
         jToggleButtonGraph.setMinimumSize(new java.awt.Dimension(32, 32));
         jToggleButtonGraph.setPreferredSize(new java.awt.Dimension(32, 43));
@@ -2249,13 +2244,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox input13;
     private javax.swing.JCheckBox input14;
     private javax.swing.JCheckBox input15;
-    private javax.swing.JCheckBox input16;
-    private javax.swing.JCheckBox input17;
-    private javax.swing.JCheckBox input18;
-    private javax.swing.JCheckBox input19;
     private javax.swing.JCheckBox input2;
-    private javax.swing.JCheckBox input20;
-    private javax.swing.JCheckBox input21;
     private javax.swing.JCheckBox input22;
     private javax.swing.JCheckBox input23;
     private javax.swing.JCheckBox input3;
@@ -2267,7 +2256,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox input9;
     private javax.swing.JPanel inputColumn0;
     private javax.swing.JPanel inputColumn1;
-    private javax.swing.JPanel inputColumn10;
     private javax.swing.JPanel inputColumn11;
     private javax.swing.JPanel inputColumn2;
     private javax.swing.JPanel inputColumn3;
@@ -2275,8 +2263,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel inputColumn5;
     private javax.swing.JPanel inputColumn6;
     private javax.swing.JPanel inputColumn7;
-    private javax.swing.JPanel inputColumn8;
-    private javax.swing.JPanel inputColumn9;
     private javax.swing.JPanel inputTable;
     private javax.swing.JPanel inputTable1;
     private javax.swing.JPanel ipPortBox;
@@ -2612,7 +2598,7 @@ public class MainFrame extends javax.swing.JFrame {
 
   public void setLockStatus(boolean b) {
     statusLockLabel.setText(b?"Trava ativa":"Trava desativada");
-    statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_"+(b?"red":"green")+".png")));
+    statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_"+(b?"red":"blue")+".png")));
   }
 
   //Classes and enums
