@@ -51,29 +51,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="statusConnectedLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="statusLockLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="sidebar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="graphPanel1" pref="877" max="32767" attributes="0"/>
-                          <Component id="graphPanel2" pref="0" max="32767" attributes="0"/>
+                          <Component id="graphPanel1" max="32767" attributes="0"/>
+                          <Component id="graphPanel2" pref="877" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jToggleButtonConfiguration" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jToggleButtonGraph" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="statusConnectedLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="statusLockLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +84,7 @@
                   <Component id="jToggleButtonConfiguration" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jToggleButtonGraph" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="graphPanel1" max="32767" attributes="0"/>
@@ -94,7 +93,7 @@
                   </Group>
                   <Component id="sidebar" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="statusConnectedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="statusLockLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,9 +130,9 @@
               <Component id="writeTitle" alignment="0" max="32767" attributes="0"/>
               <Component id="ipPortTitle" alignment="0" max="32767" attributes="0"/>
               <Component id="ipPortBox" alignment="0" max="32767" attributes="0"/>
-              <Component id="writeBox" alignment="1" pref="363" max="32767" attributes="0"/>
-              <Component id="graphTitle" alignment="0" max="32767" attributes="0"/>
+              <Component id="writeBox" alignment="1" pref="359" max="32767" attributes="0"/>
               <Component id="graphBox" alignment="0" max="32767" attributes="0"/>
+              <Component id="graphTitle" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -150,7 +149,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="writeTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="writeBox" pref="890" max="32767" attributes="0"/>
+                  <Component id="writeBox" pref="894" max="32767" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="graphTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
@@ -261,7 +260,7 @@
                                   <Component id="input0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -313,7 +312,7 @@
                                   <Component id="input2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -365,7 +364,7 @@
                                   <Component id="input4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -417,7 +416,7 @@
                                   <Component id="input6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -543,8 +542,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="inputColumn4" min="-2" pref="59" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="inputColumn4" min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="inputColumn5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="inputColumn6" min="-2" pref="94" max="-2" attributes="0"/>
@@ -552,7 +551,7 @@
                           <Component id="inputColumn7" min="-2" pref="43" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="inputColumn11" min="-2" pref="43" max="-2" attributes="0"/>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -566,7 +565,7 @@
                               <Component id="inputColumn7" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="inputColumn11" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -617,15 +616,12 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="input9">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Ubar"/>
+                        <Property name="text" type="java.lang.String" value="&#x16a;"/>
                       </Properties>
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="input9updatePVSelector"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="input9ActionPerformed"/>
                       </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="input9.setText(&quot;\u016A&quot;);"/>
-                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -699,7 +695,7 @@
                                   <Component id="input12" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="input13" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -821,7 +817,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JCheckBox" name="input22">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="D"/>
+                        <Property name="text" type="java.lang.String" value=" D"/>
                       </Properties>
                       <Events>
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="input22updatePVSelector"/>
@@ -854,7 +850,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="openedLoopSettings" pref="363" max="32767" attributes="0"/>
+                  <Component id="openedLoopSettings" pref="0" max="32767" attributes="0"/>
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -877,7 +873,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="loopChooser" alignment="1" pref="363" max="32767" attributes="0"/>
+                  <Component id="loopChooser" alignment="1" pref="359" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -950,7 +946,7 @@
                                   <Component id="output0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1002,7 +998,7 @@
                                   <Component id="output2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1054,7 +1050,7 @@
                                   <Component id="output4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output5" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1106,7 +1102,7 @@
                                   <Component id="output6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="output7" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1582,12 +1578,14 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jSeparator3" max="32767" attributes="0"/>
-                              <Component id="setPoint" alignment="0" pref="274" max="32767" attributes="0"/>
+                              <Component id="setPoint" alignment="0" pref="273" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tauiLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="taudLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="controllerTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="tauiLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="taudLabel" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1595,11 +1593,11 @@
                                       <Component id="tauiField" max="32767" attributes="0"/>
                                       <Component id="controllerTypeCombo" alignment="0" pref="72" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="kdLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="kpLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="kiLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="kpLabel" min="-2" pref="21" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -1657,11 +1655,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       <Component id="setPointLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="setPointField" min="-2" pref="70" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       <Component id="jLabelVoltage1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="processVariableLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="processVariableField" min="-2" pref="81" max="-2" attributes="0"/>
@@ -1733,7 +1731,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="kpLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Kp"/>
+                            <Property name="text" type="java.lang.String" value="K&#x209a;"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="kpField">
@@ -1743,10 +1741,10 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="tauiLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="&#x3c4; I"/>
+                            <Property name="text" type="java.lang.String" value="&#x3c4;&#x1d62;"/>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tauiLabel.setText(&quot;\u03c4&quot;);&#xa;tauiLabel.setVisible(false);"/>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tauiLabel.setVisible(false);"/>
                           </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tauiField">
@@ -1762,7 +1760,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="kiLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Ki"/>
+                            <Property name="text" type="java.lang.String" value="K&#x1d62;"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="kiLabel.setVisible(false);"/>
@@ -1781,7 +1779,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="taudLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="&#x3c4; d"/>
+                            <Property name="text" type="java.lang.String" value="&#x3c4;d"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="taudLabel.setVisible(false);"/>
@@ -1800,7 +1798,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="kdLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Kd"/>
+                            <Property name="text" type="java.lang.String" value="Kd "/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="kdLabel.setVisible(false);"/>
@@ -1858,7 +1856,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="openedLoop" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="closedLoop" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
@@ -1867,7 +1865,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="openedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="closedLoop" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1957,7 +1955,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="ipPortWrapper" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2044,6 +2042,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/tan/k/resource/settings.png"/>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
         </Property>
@@ -2079,6 +2078,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/tan/k/resource/enabled_curves.png"/>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
         </Property>
