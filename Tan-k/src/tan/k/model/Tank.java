@@ -4,8 +4,16 @@
  */
 package tan.k.model;
 
-import br.ufrn.dca.controle.QuanserClient;
-import br.ufrn.dca.controle.QuanserClientException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +27,12 @@ public class Tank {
   private Integer voltageChannel;
   private Integer level1Channel;
   private Integer level2Channel;
-  private QuanserClient quanserClient;
+  private PrintWriter out;
+  private BufferedReader in;
+  private long nextLevel1Time;
+  private long nextLevel2Time;
+  private String readLine;
+  private boolean connected;
   private String ip;
   private Integer port;
 
@@ -43,13 +56,21 @@ public class Tank {
     /* Set communication parameters */
     this.ip = ip;
     this.port = port;
-
+    
+    this.nextLevel1Time = this.nextLevel2Time = 0;
+    
     this.voltage = this.level1 = this.level2 = 0;
   }
 
-  public synchronized void connect() throws QuanserClientException {
-      System.out.println("connecting to port = "+port+" ip= "+ip );
-    this.quanserClient = new QuanserClient(ip, port);
+  public synchronized void connect() {
+    try {
+      Socket socket = new Socket(ip, port);
+      in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      out = new PrintWriter(socket.getOutputStream(), true);
+      connected = true;
+    } catch (Exception ex) {
+      
+    }
   }
 
   /**
@@ -64,12 +85,14 @@ public class Tank {
    */
   public synchronized void setVoltage(double v) {
     double lastV = this.voltage;
-    this.voltage = v > 1.7 && getLevel1() > 27 ? 1.7 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v > 3 ? 3 : v;
+    this.voltage = v > 1.4 && getLevel1() > 27 ? 1.4 : v < 0 && getLevel1() < 3 ? 0 : v < -3 ? -3 : v > 3 ? 3 : v;
     if (isConnected()) {
       try {
-        quanserClient.write(getVoltageChannel(), getVoltage());
-      } catch (QuanserClientException e) {
-        this.voltage = lastV;
+        out.println("WRITE "+this.voltageChannel+" "+this.voltage);
+        readLine = in.readLine();
+        this.voltage = readLine.matches("ACK")?this.voltage:lastV;
+      } catch (IOException ex) {
+        //Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
   }
@@ -78,16 +101,16 @@ public class Tank {
    * @return the level1
    */
   public synchronized double getLevel1() {
-    try {
-      return level1 = quanserClient.read(getLevel1Channel()) * 6.25;
-    } catch (QuanserClientException e) {
-      return level1;
-    } catch (Exception e){
-      return 0;
+    if(System.currentTimeMillis() > nextLevel1Time){
+      try {
+        out.println("READ "+this.level1Channel);
+        readLine = in.readLine();
+        level1 = Double.parseDouble(readLine) * 6.25;
+        nextLevel1Time = System.currentTimeMillis() + 80;
+      } catch (IOException | NumberFormatException ex) {
+        Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
-  }
-
-  private synchronized double _getLevel1() {
     return level1;
   }
 
@@ -95,13 +118,17 @@ public class Tank {
    * @return the level2
    */
   public synchronized double getLevel2() {
-    try {
-      return level2 = quanserClient.read(getLevel2Channel()) * 6.25;
-    } catch (QuanserClientException e) {
-      return level2;
-    } catch(Exception e){
-      return 0;
+    if(System.currentTimeMillis() > nextLevel2Time){
+      try {
+        out.println("READ " + this.level2Channel);
+        readLine = in.readLine();
+        level2 = Double.parseDouble(readLine) * 6.25;
+        nextLevel2Time = System.currentTimeMillis() + 80;
+      } catch (IOException | NumberFormatException ex) {
+        Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
+    return level2;
   }
 
   /**
@@ -114,7 +141,7 @@ public class Tank {
   /**
    * @param ip the ip to set
    */
-  public synchronized void setIp(String ip) throws QuanserClientException {
+  public synchronized void setIp(String ip) {
     this.ip = ip;
   }
 
@@ -128,7 +155,7 @@ public class Tank {
   /**
    * @param port the port to set
    */
-  public synchronized void setPort(Integer port) throws QuanserClientException {
+  public synchronized void setPort(Integer port) {
     this.port = port;
   }
 
@@ -178,6 +205,6 @@ public class Tank {
    * @return true if connection was successful
    */
   public boolean isConnected() {
-    return null != quanserClient;
+    return connected;
   }
 }

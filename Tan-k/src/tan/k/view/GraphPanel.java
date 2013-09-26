@@ -6,10 +6,11 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.data.time.Millisecond;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.RectangleEdge;
 
 
@@ -19,7 +20,7 @@ import org.jfree.ui.RectangleEdge;
  */
 public class GraphPanel extends javax.swing.JPanel {
 
-    private XYSeriesCollection collection;
+    private TimeSeriesCollection collection;
     private List<String> seriesNames;
     private ChartPanel chartPanel;
 
@@ -27,35 +28,47 @@ public class GraphPanel extends javax.swing.JPanel {
 
         setLayout(new BorderLayout());
         //Create collection of Series
-        collection = new XYSeriesCollection();
+        collection = new TimeSeriesCollection();
         seriesNames = new ArrayList<>();
         //create chart Panel to add Chart and add it to Panel
-        chartPanel = new ChartPanel(_defaultChart());
-        _getChart().getLegend().setPosition(RectangleEdge.TOP);
-        _getChart().setAntiAlias(true);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        
-        chartPanel.getChart().getXYPlot().setDomainCrosshairVisible(true);
-        chartPanel.getChart().getXYPlot().setRangeCrosshairVisible(true);
-        
-        add(chartPanel);
+        setPanelBoundaries(-5, 5);
     }
+    
+    public final void setPanelBoundaries(double y_min, double y_max){
+      chartPanel = new ChartPanel(_defaultChart(y_max, y_min));
+      _getChart().getLegend().setPosition(RectangleEdge.TOP);
+      _getChart().setAntiAlias(true);
+      chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
 
-    private JFreeChart _defaultChart() {
-        return ChartFactory.createXYLineChart("", "", "", collection, PlotOrientation.VERTICAL, true, true, true);
+      chartPanel.getChart().getXYPlot().setDomainCrosshairVisible(true);
+      chartPanel.getChart().getXYPlot().setRangeCrosshairVisible(true);
+
+      add(chartPanel);
     }
-
+    
+    private JFreeChart _defaultChart(double y_max, double y_min) {
+      final JFreeChart result = ChartFactory.createTimeSeriesChart("", "", "", collection, true, true, false);
+      final XYPlot plot = result.getXYPlot();
+      ValueAxis axis = plot.getDomainAxis();
+      axis.setAutoRange(true);
+      axis.setFixedAutoRange(60000.0);
+      axis.setVisible(false);
+      axis = plot.getRangeAxis();
+      axis.setRange(y_min, y_max); 
+      return result;
+    }
+    
     private JFreeChart _getChart() {
         return chartPanel.getChart();
     }
 
-    private XYSeries _getSerie(String serie) {
+    private TimeSeries _getSerie(String serie) {
         return collection.getSeries(seriesNames.indexOf(serie));
     }
 
     public void addSerie(String serie) {
         seriesNames.add(serie);
-        collection.addSeries(new XYSeries(serie));
+        collection.addSeries(new TimeSeries(serie));
     }
 
     public void addSerieIfInexistent(String serie) {
@@ -90,9 +103,11 @@ public class GraphPanel extends javax.swing.JPanel {
         return seriesNames.indexOf(serie) >= 0;
     }
 
-    public void addValue(String serie, double x, double y) {
+    public void addValue(String serie, Millisecond t, double y) {
         if (!seriesExists(serie)) addSerie(serie);
-        _getSerie(serie).addOrUpdate(x, y);
+        try{
+          _getSerie(serie).add(t, y);//addOrUpdate(x, y);
+        }catch(Exception e){}
     }
 
     public void setTitle(String title) {

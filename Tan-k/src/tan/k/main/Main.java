@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
+import org.jfree.data.time.Millisecond;
 import tan.k.controller.TanKController;
 import tan.k.controller.TanKController.ControllerType;
 import tan.k.controller.TanKController.Loop;
@@ -30,6 +31,7 @@ public class Main {
   private static MainFrame view;
   private static TanKController controller;
   private static Thread controllerThread;
+  private static Thread plotThread;
 
   public static void main(String[] args) {
     try {
@@ -132,11 +134,7 @@ public class Main {
       @Override
       public void onChangeParameter(Object value) {
         System.out.println("ip = " + ((String) value));
-        try {
-          tank.setIp((String) value);
-        } catch (QuanserClientException ex) {
-          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        tank.setIp((String) value);
       }
     });
 
@@ -144,11 +142,7 @@ public class Main {
       @Override
       public void onChangeParameter(Object value) {
         System.out.println("port = " + ((int) value));
-        try {
-          tank.setPort((int) value);
-        } catch (QuanserClientException ex) {
-          Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        tank.setPort((int) value);
       }
     });
 
@@ -169,12 +163,10 @@ public class Main {
     view.onConnectedClicked(new ChangeParameterEvent() {
       @Override
       public void onChangeParameter(Object value) {
-        try {
-          tank.connect();
-          view.setConnectionStatus(ConnectionStatus.CONNECTED);
-        } catch (QuanserClientException ex) {
-          view.setConnectionStatus(ConnectionStatus.DISCONNECTED);
-        }
+        view.setConnectionStatus(ConnectionStatus.CONNECTING);
+        tank.connect();
+        if(tank.isConnected() && !plotThread.isAlive()) plotThread.start();
+        view.setConnectionStatus(tank.isConnected()?ConnectionStatus.CONNECTED: ConnectionStatus.DISCONNECTED);
       }
     });
 
@@ -187,60 +179,60 @@ public class Main {
       }
     });
 
-    controller.onWriteVoltage(new ChangeParameterEvent() {
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.SENDED_SIGNAL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-        view.addPointToGraph(MainFrame.CALCULATED_SIGNAL_CURVE, ((double []) value)[0], controller.getCalculatedVoltage());
-        view.addPointToGraph(MainFrame.SETPOINT_CURVE, ((double []) value)[0], controller.getSetPoint());
-      }
-    });
+//    controller.onWriteVoltage(new ChangeParameterEvent() {
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.SENDED_SIGNAL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//        view.addPointToGraph(MainFrame.CALCULATED_SIGNAL_CURVE, ((double []) value)[0], controller.getCalculatedVoltage());
+//        view.addPointToGraph(MainFrame.SETPOINT_CURVE, ((double []) value)[0], controller.getSetPoint());
+//      }
+//    });
 
-    controller.onReadLevelTank1(new ChangeParameterEvent() {
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onReadLevelTank1(new ChangeParameterEvent() {
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
 
-    controller.onReadLevelTank2(new ChangeParameterEvent() {
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onReadLevelTank2(new ChangeParameterEvent() {
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
     
-    controller.onCalcP(new ChangeParameterEvent() {
-
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onCalcP(new ChangeParameterEvent() {
+//
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
     
-    controller.onCalcI(new ChangeParameterEvent() {
-
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onCalcI(new ChangeParameterEvent() {
+//
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
     
-    controller.onCalcD(new ChangeParameterEvent() {
-
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onCalcD(new ChangeParameterEvent() {
+//
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
     
-    controller.onCalcError(new ChangeParameterEvent() {
-
-      @Override
-      public void onChangeParameter(Object value) {
-        view.addPointToGraph(MainFrame.ERROR_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
-      }
-    });
+//    controller.onCalcError(new ChangeParameterEvent() {
+//
+//      @Override
+//      public void onChangeParameter(Object value) {
+//        view.addPointToGraph(MainFrame.ERROR_CURVE, ((double[]) value)[0], ((double[]) value)[1]);
+//      }
+//    });
     
     controller.onLockStatusChange(new ChangeParameterEvent() {
       @Override
@@ -265,5 +257,29 @@ public class Main {
     });
 
     (new Thread(controller)).start();
+    plotThread = new Thread(new Runnable() {
+      long nextTime;
+      @Override
+      public void run() {
+        nextTime = 0L;
+        Millisecond m;
+        while(true){
+          if(System.currentTimeMillis() > nextTime){
+            nextTime = System.currentTimeMillis() + 100;
+            m = new Millisecond();
+            if(view.isNivel1()) view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, m, tank.getLevel1());
+            if(view.isNivel2()) view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, m, tank.getLevel2());
+            if(view.isErro()) view.addPointToGraph(MainFrame.ERROR_CURVE, m, controller.getE());
+            if(view.isSetpoint()) view.addPointToGraph(MainFrame.SETPOINT_CURVE, m, controller.getSetPoint());
+            
+            if(view.isU_bar()) view.addPointToGraph(MainFrame.SENDED_SIGNAL_CURVE, m, controller.getCurrentVoltage());
+            if(view.isU()) view.addPointToGraph(MainFrame.CALCULATED_SIGNAL_CURVE, m, controller.getCalculatedVoltage());
+            if(view.isP()) view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, m, controller.getP());
+            if(view.isI()) view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, m, controller.getI());
+            if(view.isD()) view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, m, controller.getD());
+          }
+        }
+      }
+    });
   }
 }

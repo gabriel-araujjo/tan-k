@@ -69,6 +69,11 @@ public class TanKController implements Runnable {
   private ChangeParameterEvent iChange;
   private ChangeParameterEvent errorChange;
   private int putPointsFlag;
+  private double p;
+  private double i;
+  private double d;
+  private double _d;
+  private double e;
 
   /**
    *
@@ -135,25 +140,24 @@ public class TanKController implements Runnable {
   public void run() {
     setLastTime(0);
     double[] toSignal = new double[2];
-    double e, i, p, d, _d;
     while (true) {
       if (getLastTime() + 100 <= System.currentTimeMillis() && _getStartRun()) {
         samplePeriod = Math.floor(((double) System.currentTimeMillis() - getLastTime()) / 100.0) / 10.0;
         curTime += samplePeriod;
         setLastTime(System.currentTimeMillis());
         
-        lastLevel1 = currentLevel1;
-        lastLevel2 = currentLevel2;
+        lastLevel1 = getCurrentLevel1();
+        lastLevel2 = getCurrentLevel2();
 
         currentLevel1 = tank.getLevel1();
         currentLevel2 = tank.getLevel2();
         
-        e = calcError();
-        i = calcI(e);
-        p = calcP(e);
-        d = calcD(e);
+        setE(calcError());
+        i = calcI(getE());
+        p = calcP(getE());
+        d = calcD(getE());
         _d = calc_D();
-        setLastError(e);
+        setLastError(getE());
         setLastI(i);
         switch (loop) {
           case CLOSED:
@@ -174,7 +178,7 @@ public class TanKController implements Runnable {
                 calculatedVoltage = p + d;
                 break;
               default:
-                calculatedVoltage = e;
+                calculatedVoltage = getE();
                 break;
             }
             break;
@@ -193,8 +197,6 @@ public class TanKController implements Runnable {
                 calculatedVoltage = calcStep(curTime, getPeriod(), getAmplitude());
                 break;
               case SINUSOID:
-                System.out.println("Entrou no seno");
-                System.out.println("curtime = " + curTime);
                 calculatedVoltage = calcSin(curTime, getPeriod(), getAmplitude());
                 break;
               default:
@@ -213,15 +215,14 @@ public class TanKController implements Runnable {
           currentVoltage = tank.getVoltage();
           if(putPointsFlag==0){
             putPointsFlag++;
-            if((currentVoltage!=getCalculatedVoltage()) != activedLock ){
-              call(lockChange, activedLock = (currentVoltage!=getCalculatedVoltage()));
+            if((getCurrentVoltage()!=getCalculatedVoltage()) != activedLock ){
+              call(lockChange, activedLock = (getCurrentVoltage()!=getCalculatedVoltage()));
             }
-
+            /*
             toSignal[0] = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
 
             toSignal[1] = currentLevel1;
             call(onReadLevel1, toSignal);
-            System.out.println("currentLevel1 = "+currentLevel1);
 
             toSignal[1] = currentLevel2;
             call(onReadLevel2, toSignal);
@@ -240,6 +241,7 @@ public class TanKController implements Runnable {
 
             toSignal[1] = currentVoltage;
             call(writeVoltage, toSignal);
+            */
           }else{
             if(putPointsFlag != 4) putPointsFlag++;
             else putPointsFlag = 0;
@@ -280,7 +282,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcError() {
-    return closeLoopSettings.setPoint - (closeLoopSettings.pv == TankTag.TANK_2 ? currentLevel2 :  currentLevel1);
+    return closeLoopSettings.setPoint - (closeLoopSettings.pv == TankTag.TANK_2 ? getCurrentLevel2() :  getCurrentLevel1());
   }
 
   public void onWriteVoltage(ChangeParameterEvent changeParameterEvent) {
@@ -502,8 +504,6 @@ public class TanKController implements Runnable {
 
   public synchronized void startController() {
     this.initTime = System.currentTimeMillis();
-    System.out.println("PV = "+closeLoopSettings.pv.name());
-    System.out.println("Loop = "+loop);
     currentLevel1 = tank.getLevel1();
     currentLevel2 = tank.getLevel2();
     setLastTime(System.currentTimeMillis());
@@ -521,19 +521,19 @@ public class TanKController implements Runnable {
   }
 
   private double calcP(double e) {
-    return closeLoopSettings.P * e;
+    return this.p = closeLoopSettings.P * e;
   }
 
   private double calcI(double e) {
-    return lastI + closeLoopSettings.I * samplePeriod * e;
+    return this.i = lastI + closeLoopSettings.I * samplePeriod * e;
   }
 
   private double calcD(double e) {
-    return closeLoopSettings.D * (e - lastError) / samplePeriod;
+    return this.d = closeLoopSettings.D * (e - lastError) / samplePeriod;
   }
 
   private double calc_D() {
-    return getKd() * (getPv() == TankTag.TANK_1 ? (currentLevel1 - lastLevel1) : (currentLevel2 - lastLevel2)) / samplePeriod;
+    return this._d = getKd() * (getPv() == TankTag.TANK_1 ? (getCurrentLevel1() - lastLevel1) : (getCurrentLevel2() - lastLevel2)) / samplePeriod;
   }
 
   public void onLockStatusChange(ChangeParameterEvent changeParameterEvent) {
@@ -575,6 +575,69 @@ public class TanKController implements Runnable {
    */
   private synchronized void setLastTime(long lastTime) {
     this.lastTime = lastTime;
+  }
+
+  /**
+   * @return the currentVoltage
+   */
+  public synchronized double getCurrentVoltage() {
+    return currentVoltage;
+  }
+
+  /**
+   * @return the currentLevel1
+   */
+  public synchronized double getCurrentLevel1() {
+    return currentLevel1;
+  }
+
+  /**
+   * @return the currentLevel2
+   */
+  public synchronized double getCurrentLevel2() {
+    return currentLevel2;
+  }
+
+  /**
+   * @return the p
+   */
+  public double getP() {
+    return p;
+  }
+
+  /**
+   * @return the i
+   */
+  public double getI() {
+    return i;
+  }
+
+  /**
+   * @return the d
+   */
+  public double getD() {
+    return d;
+  }
+  
+  /**
+   * @return the _d
+   */
+  public double get_D() {
+    return _d;
+  }
+
+  /**
+   * @return the e
+   */
+  public double getE() {
+    return e;
+  }
+
+  /**
+   * @param e the e to set
+   */
+  public void setE(double e) {
+    this.e = e;
   }
 
   public enum Wave {
