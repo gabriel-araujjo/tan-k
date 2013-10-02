@@ -277,6 +277,14 @@ public class Main {
             if(view.isP()) view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, m, controller.getP());
             if(view.isI()) view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, m, controller.getI());
             if(view.isD()) view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, m, controller.getD());
+            
+            if(controller.isMpCalculated()){
+              view.setMP(controller.getMp());
+              view.setPeakTime(controller.getPeakTime());
+            } 
+            if(controller.isSteady5percentCalculated()){
+              view.setSettlingTime(controller.getSettlingTime());
+            }
           }
         }
       }

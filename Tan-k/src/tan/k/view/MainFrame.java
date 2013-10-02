@@ -230,6 +230,12 @@ public class MainFrame extends javax.swing.JFrame {
     openedLoop = new javax.swing.JRadioButton();
     closedLoop = new javax.swing.JRadioButton();
     jButtonStop = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    settlingTimeField = new javax.swing.JLabel();
+    jLabel3 = new javax.swing.JLabel();
+    PeakTimeField = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    mpField = new javax.swing.JLabel();
     ipPortTitle = new javax.swing.JPanel();
     ipPortToggler = new javax.swing.JLabel();
     ipPortBox = new javax.swing.JPanel();
@@ -505,6 +511,7 @@ public class MainFrame extends javax.swing.JFrame {
     inputColumn4.setPreferredSize(new java.awt.Dimension(65, 50));
 
     uCheckbox.setText("U");
+    uCheckbox.setSelected(true);
     uCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         uCheckboxItemStateChanged(evt);
@@ -512,6 +519,7 @@ public class MainFrame extends javax.swing.JFrame {
     });
 
     u_barCheckbox.setText("Ū");
+    u_barCheckbox.setSelected(true);
     u_barCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         u_barCheckboxItemStateChanged(evt);
@@ -541,6 +549,7 @@ public class MainFrame extends javax.swing.JFrame {
     inputColumn5.setPreferredSize(new java.awt.Dimension(65, 50));
 
     errorCheckbox.setText("Erro");
+    errorCheckbox.setEnabled(false);
     errorCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         errorCheckboxItemStateChanged(evt);
@@ -548,6 +557,7 @@ public class MainFrame extends javax.swing.JFrame {
     });
 
     SPCheckbox.setText("SP");
+    SPCheckbox.setEnabled(false);
     SPCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         SPCheckboxItemStateChanged(evt);
@@ -577,6 +587,7 @@ public class MainFrame extends javax.swing.JFrame {
     inputColumn6.setPreferredSize(new java.awt.Dimension(65, 50));
 
     level1Checkbox.setText("Nível 1");
+    level1Checkbox.setSelected(true);
     level1Checkbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         level1CheckboxItemStateChanged(evt);
@@ -584,6 +595,7 @@ public class MainFrame extends javax.swing.JFrame {
     });
 
     level2Checkbox.setText("Nível 2");
+    level2Checkbox.setSelected(true);
     level2Checkbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         level2CheckboxItemStateChanged(evt);
@@ -613,6 +625,7 @@ public class MainFrame extends javax.swing.JFrame {
     inputColumn7.setPreferredSize(new java.awt.Dimension(65, 50));
 
     PCheckbox.setText("P");
+    PCheckbox.setEnabled(false);
     PCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         PCheckboxItemStateChanged(evt);
@@ -620,6 +633,7 @@ public class MainFrame extends javax.swing.JFrame {
     });
 
     ICheckbox.setText("I");
+    ICheckbox.setEnabled(false);
     ICheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         ICheckboxItemStateChanged(evt);
@@ -649,6 +663,7 @@ public class MainFrame extends javax.swing.JFrame {
     inputColumn11.setPreferredSize(new java.awt.Dimension(65, 50));
 
     DCheckbox.setText(" D");
+    DCheckbox.setEnabled(false);
     DCheckbox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         DCheckboxItemStateChanged(evt);
@@ -1396,6 +1411,18 @@ public class MainFrame extends javax.swing.JFrame {
       }
     });
 
+    jLabel1.setText("Tempo de acomodação");
+
+    settlingTimeField.setText("...");
+
+    jLabel3.setText("Tempo de pico");
+
+    PeakTimeField.setText("...");
+
+    jLabel5.setText("Sobressinal máximo");
+
+    mpField.setText("...");
+
     javax.swing.GroupLayout writeBoxLayout = new javax.swing.GroupLayout(writeBox);
     writeBox.setLayout(writeBoxLayout);
     writeBoxLayout.setHorizontalGroup(
@@ -1412,11 +1439,26 @@ public class MainFrame extends javax.swing.JFrame {
           .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, writeBoxLayout.createSequentialGroup()
             .addGap(13, 13, 13)
-            .addComponent(jButtonPreview)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButtonStop)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(apply)))
+            .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(writeBoxLayout.createSequentialGroup()
+                .addComponent(jButtonPreview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonStop)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(apply))
+              .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, writeBoxLayout.createSequentialGroup()
+                  .addComponent(jLabel5)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(mpField))
+                .addGroup(writeBoxLayout.createSequentialGroup()
+                  .addComponent(jLabel3)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(PeakTimeField))
+                .addGroup(writeBoxLayout.createSequentialGroup()
+                  .addComponent(jLabel1)
+                  .addGap(32, 32, 32)
+                  .addComponent(settlingTimeField))))))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addComponent(jSeparator2)
       .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
@@ -1440,7 +1482,19 @@ public class MainFrame extends javax.swing.JFrame {
           .addComponent(apply)
           .addComponent(jButtonPreview)
           .addComponent(jButtonStop))
-        .addContainerGap(252, Short.MAX_VALUE))
+        .addGap(28, 28, 28)
+        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel1)
+          .addComponent(settlingTimeField))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel3)
+          .addComponent(PeakTimeField))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel5)
+          .addComponent(mpField))
+        .addContainerGap(158, Short.MAX_VALUE))
     );
 
     ipPortTitle.setBackground(new java.awt.Color(158, 158, 158));
@@ -1555,7 +1609,7 @@ public class MainFrame extends javax.swing.JFrame {
         .addGap(0, 0, 0))
     );
 
-    graphPanel1.setPanelBoundaries(0, 23);
+    graphPanel1.setPanelBoundaries(-35, 35);
     graphPanel1.setyAxisLabel("Altura(cm)");
     graphPanel1.setxAxisLabel("Tempo(s)");
 
@@ -1684,54 +1738,27 @@ public class MainFrame extends javax.swing.JFrame {
         writeBox.setPreferredSize(new Dimension(357, 140));
         jButtonPreview.setVisible(false);
         
-        switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
-        case PI:
-          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
-          break;
-        case PID:
-        case PI_D:
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
-          break;
-        case PD:
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.remove(INTEGRAL_PART_CURVE);
-          break;
-        default:
-          kiField.setVisible(false);
-          kiLabel.setVisible(false);
-          
-          tauiField.setVisible(false);
-          tauiLabel.setVisible(false);
-          
-          kdField.setVisible(false);
-          kdLabel.setVisible(false);
-          
-          taudField.setVisible(false);
-          taudLabel.setVisible(false);
-          
-          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.remove(INTEGRAL_PART_CURVE);
-          break;
-      }
         
+        kiField.setVisible(false);
+        kiLabel.setVisible(false);
+
+        tauiField.setVisible(false);
+        tauiLabel.setVisible(false);
+
+        kdField.setVisible(false);
+        kdLabel.setVisible(false);
+
+        taudField.setVisible(false);
+        taudLabel.setVisible(false);
+        
+        PCheckbox.setEnabled(true);
+        ICheckbox.setEnabled(true);
+        DCheckbox.setEnabled(true);
+        
+        errorCheckbox.setSelected(true);
+        SPCheckbox.setSelected(true);
+        errorCheckbox.setEnabled(true);
+        SPCheckbox.setEnabled(true);
         pack();
       }
     }//GEN-LAST:event_closedLoopItemStateChanged
@@ -1744,10 +1771,17 @@ public class MainFrame extends javax.swing.JFrame {
         writeBox.setPreferredSize(new Dimension(357, 215));
         jButtonPreview.setVisible(true);
         
-        if(enabledCurves.contains(PROPORCIONAL_PART_CURVE)) enabledCurves.remove(PROPORCIONAL_PART_CURVE);
-        if(enabledCurves.contains(DERIVATIVE_PART_CURVE)) enabledCurves.remove(DERIVATIVE_PART_CURVE);
-        if(enabledCurves.contains(INTEGRAL_PART_CURVE)) enabledCurves.remove(INTEGRAL_PART_CURVE);
+        PCheckbox.setSelected(false);
+        ICheckbox.setSelected(false);
+        DCheckbox.setSelected(false);
+        errorCheckbox.setSelected(false);
+        SPCheckbox.setSelected(false);
         
+        PCheckbox.setEnabled(false);
+        ICheckbox.setEnabled(false);
+        DCheckbox.setEnabled(false);
+        errorCheckbox.setEnabled(false);
+        SPCheckbox.setEnabled(false);
         pack();
       }
     }//GEN-LAST:event_openedLoopItemStateChanged
@@ -1757,7 +1791,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonConfigurationActionPerformed
 
   private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
-
+    
+    mpField.setText("...");
+    PeakTimeField.setText("...");
+    settlingTimeField.setText("...");
+   
     graphPanel1.clearAll();
     graphPanel2.clearAll();
 
@@ -1792,6 +1830,33 @@ public class MainFrame extends javax.swing.JFrame {
     if ((ComboItem) controllerTypeCombo.getSelectedItem() != null) {
       ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue();
       if (!selectedControllerType.equals(currentControllerType)) {
+        switch(selectedControllerType){
+          case P:
+            PCheckbox.setSelected(true);
+            ICheckbox.setSelected(false);
+            DCheckbox.setSelected(false);
+            break;
+          case PI:
+            PCheckbox.setSelected(true);
+            ICheckbox.setSelected(true);
+            DCheckbox.setSelected(false);
+            break;
+          case PD:
+            PCheckbox.setSelected(true);
+            ICheckbox.setSelected(false);
+            DCheckbox.setSelected(true);
+            break;
+          case PID:
+            PCheckbox.setSelected(true);
+            ICheckbox.setSelected(true);
+            DCheckbox.setSelected(true);
+            break;
+          case PI_D:
+            PCheckbox.setSelected(true);
+            ICheckbox.setSelected(true);
+            DCheckbox.setSelected(true);
+        }
+        
         call(controllerTypeChange, currentControllerType = selectedControllerType);
       }
     }
@@ -2200,6 +2265,7 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JCheckBox DCheckbox;
   private javax.swing.JCheckBox ICheckbox;
   private javax.swing.JCheckBox PCheckbox;
+  private javax.swing.JLabel PeakTimeField;
   private javax.swing.JCheckBox SPCheckbox;
   private javax.swing.JPanel amplitude;
   private javax.swing.JFormattedTextField amplitudeField;
@@ -2248,6 +2314,9 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel ipPortWrapper;
   private javax.swing.JButton jButtonPreview;
   private javax.swing.JButton jButtonStop;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabelHertz;
   private javax.swing.JLabel jLabelSeconds;
   private javax.swing.JLabel jLabelVoltage;
@@ -2270,6 +2339,7 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JCheckBox level2Checkbox;
   private javax.swing.JPanel loopChooser;
   private javax.swing.ButtonGroup loopTypeChooser;
+  private javax.swing.JLabel mpField;
   private javax.swing.JRadioButton openedLoop;
   private javax.swing.JPanel openedLoopSettings;
   private javax.swing.JRadioButton output0;
@@ -2300,6 +2370,7 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel setPoint;
   private javax.swing.JFormattedTextField setPointField;
   private javax.swing.JLabel setPointLabel;
+  private javax.swing.JLabel settlingTimeField;
   private javax.swing.JPanel sidebar;
   private javax.swing.JToggleButton sinus;
   private javax.swing.JToggleButton square;
@@ -2640,6 +2711,18 @@ public class MainFrame extends javax.swing.JFrame {
    */
   public boolean isI() {
     return ICheckbox.isSelected();
+  }
+
+  public void setPeakTime(double peakTime) {
+    PeakTimeField.setText(Double.toString(peakTime));
+  }
+
+  public void setMP(double mp) {
+    mpField.setText(Double.toString(mp));
+  }
+
+  public void setSettlingTime(double settlingTime) {
+    settlingTimeField.setText(Double.toString(settlingTime));
   }
 
   //Classes and enums

@@ -74,6 +74,14 @@ public class TanKController implements Runnable {
   private double d;
   private double _d;
   private double e;
+  private double stepHeight;
+  private double mp;
+  private boolean mpCalculated;
+  private double peakTime;
+  private boolean steady5percentCalculated;
+  private double settlingTime;
+  private boolean rising;
+  private double curOvershoot;
 
   /**
    *
@@ -117,6 +125,8 @@ public class TanKController implements Runnable {
     this.randomTime = 0L;
     
     this.putPointsFlag = 0;
+    this.mp = -1;
+    this.curOvershoot = -1;
   }
 
   /**
@@ -140,6 +150,7 @@ public class TanKController implements Runnable {
   public void run() {
     setLastTime(0);
     double[] toSignal = new double[2];
+    double lastOvershoot, relativeCurTime;
     while (true) {
       if (getLastTime() + 100 <= System.currentTimeMillis() && _getStartRun()) {
         samplePeriod = Math.floor(((double) System.currentTimeMillis() - getLastTime()) / 100.0) / 10.0;
@@ -161,6 +172,32 @@ public class TanKController implements Runnable {
         setLastI(i);
         switch (loop) {
           case CLOSED:
+            if(!isMpCalculated() || !isSteady5percentCalculated()){
+              relativeCurTime = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
+              lastOvershoot = curOvershoot;
+              curOvershoot = calcOvershoot();
+              System.out.println("curOvershoot="+ curOvershoot);
+              System.out.println("lastOvershoot= "+lastOvershoot);
+              System.out.println("mp="+mp);
+              System.out.println("rising="+rising);
+              if(!isMpCalculated()){
+                if(mp > 1.1*curOvershoot && Math.abs(mp) > Math.abs(1.1*curOvershoot)){
+                  mpCalculated = true;
+                }else if(curOvershoot > mp){
+                  mp = curOvershoot;
+                  peakTime = relativeCurTime;
+                }
+              }
+              if(!isSteady5percentCalculated()){
+                if(Math.abs(curOvershoot) <= 0.05){
+                  settlingTime = relativeCurTime;
+                  if(rising ^ curOvershoot < lastOvershoot){
+                      steady5percentCalculated = true;
+                  }
+                }
+                rising = curOvershoot < lastOvershoot;
+              }
+            }
             switch (getControllerType()) {
               case P:
                 calculatedVoltage = p;
@@ -503,7 +540,17 @@ public class TanKController implements Runnable {
   }
 
   public synchronized void startController() {
+    this.startRun = false;
+    Long vaEm = System.currentTimeMillis() + 100L;
+    while(System.currentTimeMillis() < vaEm);
     this.initTime = System.currentTimeMillis();
+    this.stepHeight = getSetPoint() - (getPv().equals(TankTag.TANK_1)?tank.getLevel1():tank.getLevel2());
+    this.steady5percentCalculated = false;
+    this.mpCalculated = false;
+    this.mp = -1;
+    this.curOvershoot = -1;
+    this.rising = true;
+    
     currentLevel1 = tank.getLevel1();
     currentLevel2 = tank.getLevel2();
     setLastTime(System.currentTimeMillis());
@@ -512,8 +559,10 @@ public class TanKController implements Runnable {
   }
 
   public synchronized void pauseController() {
-    this.tank.setVoltage(0);
     this.startRun = false;
+    this.calculatedVoltage = 0;
+    this.currentVoltage = 0;
+    this.tank.setVoltage(0);
   }
 
   private synchronized boolean _getStartRun() {
@@ -638,6 +687,46 @@ public class TanKController implements Runnable {
    */
   public void setE(double e) {
     this.e = e;
+  }
+
+  private double calcOvershoot() {
+    if(stepHeight==0) return 0;
+    return ((closeLoopSettings.pv == TankTag.TANK_1? tank.getLevel1():tank.getLevel2())-closeLoopSettings.setPoint)/stepHeight;
+  }
+
+  /**
+   * @return the mpCalculated
+   */
+  public boolean isMpCalculated() {
+    return mpCalculated;
+  }
+
+  /**
+   * @return the peakTime
+   */
+  public double getPeakTime() {
+    return peakTime;
+  }
+
+  /**
+   * @return the steady5percentCalculated
+   */
+  public boolean isSteady5percentCalculated() {
+    return steady5percentCalculated;
+  }
+
+  /**
+   * @return the settlingTime
+   */
+  public double getSettlingTime() {
+    return settlingTime;
+  }
+
+  /**
+   * @return the mp
+   */
+  public double getMp() {
+    return mp;
   }
 
   public enum Wave {
