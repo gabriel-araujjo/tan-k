@@ -40,7 +40,7 @@ public class Main {
       e.printStackTrace();
     }
     view = new MainFrame();
-    tank = new Tank(view.getCurrentIp(), view.getCurrentPort());
+    tank = new Tank(view.getCurrentIp(), view.getCurrentPort(), 0, 0, 1);
     controller = new TanKController(
             tank,
             view.getCurrentLoop(),
