@@ -73,6 +73,10 @@ public class TanKController implements Runnable {
   private double i;
   private double d;
   private double _d;
+  private double p1;
+  private double i1;
+  private double d1;
+  private double _d1;
   private double e;
   private double stepHeight;
   private double mp;
@@ -82,6 +86,12 @@ public class TanKController implements Runnable {
   private double settlingTime;
   private boolean rising;
   private double curOvershoot;
+  private boolean cascade;
+  private double error1;
+  private double lastError1;
+  private CloseLoopSettings closeLoopSettings1;
+  private double lastI1;
+  private double firstLoopOutput;
 
   /**
    *
@@ -112,6 +122,7 @@ public class TanKController implements Runnable {
     this.tank = tank;
     this.loop = loop;
     this.closeLoopSettings = closeLoopSettings;
+    this.closeLoopSettings1 = new CloseLoopSettings(10, TankTag.TANK_2, ControllerType.P, 1);
 
     this.openLoopSettings = openLoopSettings;
 
@@ -127,6 +138,8 @@ public class TanKController implements Runnable {
     this.putPointsFlag = 0;
     this.mp = -1;
     this.curOvershoot = -1;
+    
+    this.cascade = false;
   }
 
   /**
@@ -170,6 +183,7 @@ public class TanKController implements Runnable {
         _d = calc_D();
         setLastError(getE());
         setLastI(i);
+        
         switch (loop) {
           case CLOSED:
             if(!isMpCalculated() || !isSteady5percentCalculated()){
@@ -200,24 +214,59 @@ public class TanKController implements Runnable {
             }
             switch (getControllerType()) {
               case P:
-                calculatedVoltage = p;
+                firstLoopOutput = p;
                 break;
               case PI:
-                calculatedVoltage = p + i;
+                firstLoopOutput = p + i;
                 break;
               case PID:
-                calculatedVoltage = p + i + d;
+                firstLoopOutput = p + i + d;
                 break;
               case PI_D:
-                calculatedVoltage = p + i + _d;
+                firstLoopOutput = p + i + _d;
                 break;
               case PD:
-                calculatedVoltage = p + d;
+                firstLoopOutput = p + d;
                 break;
               default:
-                calculatedVoltage = getE();
+                firstLoopOutput = getE();
                 break;
             }
+            if(cascade){
+              setE1(calcError1());
+              i1 = calcI1(getE1());
+              p1 = calcP1(getE1());
+              d1 = calcD1(getE1());
+              _d1 = calc_D1();
+              setLastError1(getE1());
+              setLastI1(i1);
+              
+              switch(getControllerType1()){
+                case P:
+                calculatedVoltage = p1;
+                break;
+              case PI:
+                calculatedVoltage = p1 + i1;
+                break;
+              case PID:
+                calculatedVoltage = p1 + i1 + d1;
+                break;
+              case PI_D:
+                calculatedVoltage = p1 + i1 + _d1;
+                break;
+              case PD:
+                calculatedVoltage = p1 + d1;
+                break;
+              default:
+                calculatedVoltage = getE1();
+                break;
+                  
+              }
+              
+            }else{
+              calculatedVoltage = firstLoopOutput;
+            }
+            
             break;
           case OPENED:
             switch (getWaveType()) {
@@ -319,7 +368,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcError() {
-    return closeLoopSettings.setPoint - (closeLoopSettings.pv == TankTag.TANK_2 ? getCurrentLevel2() :  getCurrentLevel1());
+    return closeLoopSettings.setPoint - (this.cascade || closeLoopSettings.pv == TankTag.TANK_2 ? getCurrentLevel2() :  getCurrentLevel1());
   }
 
   public void onWriteVoltage(ChangeParameterEvent changeParameterEvent) {
@@ -582,7 +631,7 @@ public class TanKController implements Runnable {
   }
 
   private double calc_D() {
-    return this._d = getKd() * (getPv() == TankTag.TANK_1 ? (getCurrentLevel1() - lastLevel1) : (getCurrentLevel2() - lastLevel2)) / samplePeriod;
+    return this._d = getKd() * (getPv() == TankTag.TANK_1 || cascade ?  (getCurrentLevel1() - lastLevel1) : (getCurrentLevel2() - lastLevel2)) / samplePeriod;
   }
 
   public void onLockStatusChange(ChangeParameterEvent changeParameterEvent) {
@@ -727,6 +776,70 @@ public class TanKController implements Runnable {
    */
   public double getMp() {
     return mp;
+  }
+
+  private double calcError1() {
+    return this.error1 = firstLoopOutput - getCurrentLevel1();
+  }
+
+  private void setE1(double error1) {
+    this.error1 = error1;
+  }
+
+  private double getE1() {
+    return error1;
+  }
+
+  private void setLastError1(double e1) {
+    this.lastError1 = e1;
+  }
+
+  private double calcI1(double e1) {
+    return this.i1 = lastI1 + closeLoopSettings1.I * samplePeriod * error1;
+  }
+
+  private double calcP1(double e1) {
+    return this.p1 = closeLoopSettings1.P * error1;
+  }
+
+  private double calcD1(double e1) {
+    return this.d1 = closeLoopSettings1.D * (error1 - lastError1) / samplePeriod;
+  }
+
+  private double calc_D1() {
+    return this._d1 = getKd1() * (getCurrentLevel2() - lastLevel2) / samplePeriod;
+  }
+
+  private void setLastI1(double i1) {
+    this.lastI1 = i1;
+  }
+
+  private ControllerType getControllerType1() {
+    return this.closeLoopSettings1.type;
+  }
+
+  private double getKd1() {
+    return closeLoopSettings1.D;
+  }
+
+  public void setControllerType1(ControllerType controllerType) {
+    this.closeLoopSettings1.type = controllerType;
+  }
+
+  public void setKd1(double d) {
+    this.closeLoopSettings1.D = d;
+  }
+
+  public void setKi1(double i) {
+    this.closeLoopSettings1.I = i;
+  }
+
+  public void setKp1(double p) {
+    this.closeLoopSettings1.P = p;
+  }
+
+  public void setCascade(boolean cascade) {
+    this.cascade = cascade;
   }
 
   public enum Wave {

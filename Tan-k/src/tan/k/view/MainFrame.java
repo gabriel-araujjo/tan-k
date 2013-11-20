@@ -41,8 +41,10 @@ public class MainFrame extends javax.swing.JFrame {
   private double currentSetPoint;
   private TankTag currentPV;
   private ControllerType currentControllerType;
+  private ControllerType currentControllerType1;
   private double currentKp, currentKi, currentKd;
   private Loop currentLoop;
+  private boolean cascade;
   //   tank settings
   private String currentIp;
   private int currentPort;
@@ -67,6 +69,14 @@ public class MainFrame extends javax.swing.JFrame {
   private ChangeParameterEvent kpChange;
   private ChangeParameterEvent kiChange;
   private ChangeParameterEvent kdChange;
+  private double currentKp1;
+  private ChangeParameterEvent kp1Change;
+  private double currentKi1;
+  private ChangeParameterEvent ki1Change;
+  private double currentKd1;
+  private ChangeParameterEvent kd1Change;
+  private ChangeParameterEvent cascadeChange;
+  private ChangeParameterEvent controllerTypeChange1;
 
   /**
    * Creates new form MainFrame
@@ -112,6 +122,8 @@ public class MainFrame extends javax.swing.JFrame {
     this.graphTitle.setVisible(false);
     this.graphToggler.setVisible(false);
     this.graphBox.setVisible(false);
+    
+    cascade = false;
   }
 
   /**
@@ -126,6 +138,7 @@ public class MainFrame extends javax.swing.JFrame {
     writeChannelChooser = new javax.swing.ButtonGroup();
     loopTypeChooser = new javax.swing.ButtonGroup();
     waveTypeChooser = new javax.swing.ButtonGroup();
+    buttonGroup1 = new javax.swing.ButtonGroup();
     sidebar = new javax.swing.JPanel();
     readTitle = new javax.swing.JPanel();
     readToggler = new javax.swing.JLabel();
@@ -224,17 +237,32 @@ public class MainFrame extends javax.swing.JFrame {
     taudField = new javax.swing.JTextField();
     kdLabel = new javax.swing.JLabel();
     kdField = new javax.swing.JTextField();
+    parameters2loop = new javax.swing.JPanel();
+    taudField1 = new javax.swing.JTextField();
+    controllerTypeCombo1 = new javax.swing.JComboBox();
+    kpField1 = new javax.swing.JTextField();
+    taudLabel1 = new javax.swing.JLabel();
+    tauiField1 = new javax.swing.JTextField();
+    kdField1 = new javax.swing.JTextField();
+    kiLabel1 = new javax.swing.JLabel();
+    kiField1 = new javax.swing.JTextField();
+    tauiLabel1 = new javax.swing.JLabel();
+    controllerTypeLabel1 = new javax.swing.JLabel();
+    kpLabel1 = new javax.swing.JLabel();
+    kdLabel1 = new javax.swing.JLabel();
+    simpleButton = new javax.swing.JRadioButton();
+    cascadeButton = new javax.swing.JRadioButton();
     apply = new javax.swing.JButton();
     jButtonPreview = new javax.swing.JButton();
     loopChooser = new javax.swing.JPanel();
     openedLoop = new javax.swing.JRadioButton();
     closedLoop = new javax.swing.JRadioButton();
     jButtonStop = new javax.swing.JButton();
-    jLabel1 = new javax.swing.JLabel();
+    settingTimeLabel = new javax.swing.JLabel();
     settlingTimeField = new javax.swing.JLabel();
-    jLabel3 = new javax.swing.JLabel();
+    PeakTimeLavel = new javax.swing.JLabel();
     PeakTimeField = new javax.swing.JLabel();
-    jLabel5 = new javax.swing.JLabel();
+    mpLabel = new javax.swing.JLabel();
     mpField = new javax.swing.JLabel();
     ipPortTitle = new javax.swing.JPanel();
     ipPortToggler = new javax.swing.JLabel();
@@ -1256,33 +1284,179 @@ public class MainFrame extends javax.swing.JFrame {
     });
     kdField.setVisible(false);
 
+    parameters2loop.setVisible(false);
+
+    ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
+    taudField1.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        taudField1KeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        taudField1KeyPressed1(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        taudField1KeyPressed2(evt);
+      }
+    });
+    taudField1.setVisible(false);
+
+    DefaultComboBoxModel<ComboItem> model1 = new DefaultComboBoxModel<>();
+    model1.addElement(new ComboItem(ControllerType.P, "P"));
+    model1.addElement(new ComboItem(ControllerType.PI, "PI"));
+    model1.addElement(new ComboItem(ControllerType.PD, "PD"));
+    model1.addElement(new ComboItem(ControllerType.PID, "PID"));
+    model1.addElement(new ComboItem(ControllerType.PI_D, "PI-D"));
+
+    controllerTypeCombo1.setModel(model1);
+
+    controllerTypeCombo1.setSelectedIndex(0);
+    controllerTypeCombo1.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        controllerTypeCombo1ItemStateChanged(evt);
+      }
+    });
+
+    ((AbstractDocument)kpField1.getDocument()).setDocumentFilter(new DoubleFilter());
+
+    taudLabel1.setText("τd2");
+    taudLabel1.setVisible(false);
+
+    ((AbstractDocument)tauiField1.getDocument()).setDocumentFilter(new DoubleFilter());
+    tauiField1.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        tauiField1KeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        tauiField1KeyPressed1(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        tauiField1KeyPressed2(evt);
+      }
+    });
+    tauiField1.setVisible(false);
+
+    ((AbstractDocument)kdField1.getDocument()).setDocumentFilter(new DoubleFilter());
+    kdField1.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        kdField1KeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        kdField1KeyPressed1(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        kdField1KeyPressed2(evt);
+      }
+    });
+    kdField1.setVisible(false);
+
+    kiLabel1.setText("Kᵢ2");
+    kiLabel1.setVisible(false);
+
+    ((AbstractDocument)kiField1.getDocument()).setDocumentFilter(new DoubleFilter());
+    kiField1.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyTyped(java.awt.event.KeyEvent evt) {
+        kiField1KeyPressed(evt);
+      }
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        kiField1KeyPressed1(evt);
+      }
+      public void keyReleased(java.awt.event.KeyEvent evt) {
+        kiField1KeyPressed2(evt);
+      }
+    });
+    kiField1.setVisible(false);
+
+    tauiLabel1.setText("τᵢ2");
+    tauiLabel1.setVisible(false);
+
+    controllerTypeLabel1.setText("Tipo");
+
+    kpLabel1.setText("Kₚ2");
+
+    kdLabel1.setText("Kd2 ");
+    kdLabel1.setVisible(false);
+
+    javax.swing.GroupLayout parameters2loopLayout = new javax.swing.GroupLayout(parameters2loop);
+    parameters2loop.setLayout(parameters2loopLayout);
+    parameters2loopLayout.setHorizontalGroup(
+      parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, parameters2loopLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(controllerTypeLabel1)
+          .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(tauiLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(taudLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addComponent(taudField1)
+          .addComponent(tauiField1)
+          .addComponent(controllerTypeCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(43, 43, 43)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(kdLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(kiLabel1)
+          .addComponent(kpLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(kpField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(kiField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(kdField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+    );
+    parameters2loopLayout.setVerticalGroup(
+      parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(parameters2loopLayout.createSequentialGroup()
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(controllerTypeLabel1)
+          .addComponent(controllerTypeCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(kpLabel1)
+          .addComponent(kpField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(tauiLabel1)
+          .addComponent(tauiField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(kiLabel1)
+          .addComponent(kiField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(parameters2loopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(taudLabel1)
+          .addComponent(taudField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(kdLabel1)
+          .addComponent(kdField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(0, 12, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout waveParams1Layout = new javax.swing.GroupLayout(waveParams1);
     waveParams1.setLayout(waveParams1Layout);
     waveParams1Layout.setHorizontalGroup(
       waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(jSeparator3)
-      .addComponent(setPoint, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+      .addComponent(setPoint, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
       .addGroup(waveParams1Layout.createSequentialGroup()
-        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(controllerTypeLabel)
-          .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-            .addComponent(tauiLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(taudLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(taudField)
-          .addComponent(tauiField)
-          .addComponent(controllerTypeCombo, 0, 72, Short.MAX_VALUE))
-        .addGap(43, 43, 43)
-        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(kdLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(kiLabel)
-          .addComponent(kpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(kpField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(kiField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(kdField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+          .addComponent(parameters2loop, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(waveParams1Layout.createSequentialGroup()
+            .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(controllerTypeLabel)
+              .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(tauiLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(taudLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(taudField)
+              .addComponent(tauiField)
+              .addComponent(controllerTypeCombo, 0, 72, Short.MAX_VALUE))
+            .addGap(43, 43, 43)
+            .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(kdLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(kiLabel)
+              .addComponent(kpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(kpField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(kiField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(kdField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addGap(16, 16, 16))
     );
     waveParams1Layout.setVerticalGroup(
       waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1309,8 +1483,22 @@ public class MainFrame extends javax.swing.JFrame {
           .addComponent(taudField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(kdLabel)
           .addComponent(kdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(33, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(parameters2loop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
     );
+
+    buttonGroup1.add(simpleButton);
+    simpleButton.setText("Controle simples");
+    simpleButton.setSelected(true);
+
+    buttonGroup1.add(cascadeButton);
+    cascadeButton.setText("Controle cascata");
+    cascadeButton.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        cascadeButtonItemStateChanged(evt);
+      }
+    });
 
     javax.swing.GroupLayout controlSettingsLayout = new javax.swing.GroupLayout(controlSettings);
     controlSettings.setLayout(controlSettingsLayout);
@@ -1318,14 +1506,24 @@ public class MainFrame extends javax.swing.JFrame {
       controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(controlSettingsLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(controlSettingsLayout.createSequentialGroup()
+            .addComponent(simpleButton)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cascadeButton)))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     controlSettingsLayout.setVerticalGroup(
       controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlSettingsLayout.createSequentialGroup()
         .addGap(0, 12, Short.MAX_VALUE)
-        .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(simpleButton)
+          .addComponent(cascadeButton))
+        .addGap(18, 18, 18)
+        .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap())
     );
 
     javax.swing.GroupLayout closedLoopSettingsLayout = new javax.swing.GroupLayout(closedLoopSettings);
@@ -1338,9 +1536,9 @@ public class MainFrame extends javax.swing.JFrame {
     );
     closedLoopSettingsLayout.setVerticalGroup(
       closedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(closedLoopSettingsLayout.createSequentialGroup()
-        .addGap(0, 0, 0)
-        .addComponent(controlSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, closedLoopSettingsLayout.createSequentialGroup()
+        .addComponent(controlSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
     );
 
     apply.setText("Aplicar");
@@ -1411,17 +1609,23 @@ public class MainFrame extends javax.swing.JFrame {
       }
     });
 
-    jLabel1.setText("Tempo de acomodação");
+    settingTimeLabel.setText("Tempo de acomodação");
+    settingTimeLabel.setVisible(false);
 
     settlingTimeField.setText("...");
+    settlingTimeField.setVisible(false);
 
-    jLabel3.setText("Tempo de pico");
+    PeakTimeLavel.setText("Tempo de pico");
+    PeakTimeLavel.setVisible(false);
 
     PeakTimeField.setText("...");
+    PeakTimeField.setVisible(false);
 
-    jLabel5.setText("Sobressinal máximo");
+    mpLabel.setText("Sobressinal máximo");
+    mpLabel.setVisible(false);
 
     mpField.setText("...");
+    mpField.setVisible(false);
 
     javax.swing.GroupLayout writeBoxLayout = new javax.swing.GroupLayout(writeBox);
     writeBox.setLayout(writeBoxLayout);
@@ -1448,20 +1652,20 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(apply))
               .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, writeBoxLayout.createSequentialGroup()
-                  .addComponent(jLabel5)
+                  .addComponent(mpLabel)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(mpField))
                 .addGroup(writeBoxLayout.createSequentialGroup()
-                  .addComponent(jLabel3)
+                  .addComponent(PeakTimeLavel)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(PeakTimeField))
                 .addGroup(writeBoxLayout.createSequentialGroup()
-                  .addComponent(jLabel1)
+                  .addComponent(settingTimeLabel)
                   .addGap(32, 32, 32)
                   .addComponent(settlingTimeField))))))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addComponent(jSeparator2)
-      .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+      .addComponent(loopChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
     );
     writeBoxLayout.setVerticalGroup(
       writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1477,24 +1681,24 @@ public class MainFrame extends javax.swing.JFrame {
         .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(apply)
           .addComponent(jButtonPreview)
           .addComponent(jButtonStop))
-        .addGap(28, 28, 28)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel1)
+          .addComponent(settingTimeLabel)
           .addComponent(settlingTimeField))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel3)
+          .addComponent(PeakTimeLavel)
           .addComponent(PeakTimeField))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel5)
+          .addComponent(mpLabel)
           .addComponent(mpField))
-        .addContainerGap(158, Short.MAX_VALUE))
+        .addContainerGap(53, Short.MAX_VALUE))
     );
 
     ipPortTitle.setBackground(new java.awt.Color(158, 158, 158));
@@ -1583,7 +1787,7 @@ public class MainFrame extends javax.swing.JFrame {
       .addComponent(writeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(ipPortTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(ipPortBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+      .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
       .addComponent(graphBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(graphTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
@@ -1601,7 +1805,7 @@ public class MainFrame extends javax.swing.JFrame {
         .addGap(0, 0, 0)
         .addComponent(writeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
-        .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        .addComponent(writeBox, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
         .addGap(0, 0, 0)
         .addComponent(graphTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
@@ -1669,7 +1873,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(graphPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)))
+              .addComponent(graphPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)))
           .addGroup(layout.createSequentialGroup()
             .addComponent(jToggleButtonConfiguration, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1759,6 +1963,15 @@ public class MainFrame extends javax.swing.JFrame {
         SPCheckbox.setSelected(true);
         errorCheckbox.setEnabled(true);
         SPCheckbox.setEnabled(true);
+                
+        settingTimeLabel.setVisible(true);
+        settlingTimeField.setVisible(true);
+        
+        PeakTimeField.setVisible(true);
+        PeakTimeLavel.setVisible(true);
+        
+        mpField.setVisible(true);
+        mpLabel.setVisible(true);
         pack();
       }
     }//GEN-LAST:event_closedLoopItemStateChanged
@@ -1782,6 +1995,16 @@ public class MainFrame extends javax.swing.JFrame {
         DCheckbox.setEnabled(false);
         errorCheckbox.setEnabled(false);
         SPCheckbox.setEnabled(false);
+        
+        settingTimeLabel.setVisible(false);
+        settlingTimeField.setVisible(false);
+        
+        PeakTimeField.setVisible(false);
+        PeakTimeLavel.setVisible(false);
+        
+        mpField.setVisible(false);
+        mpLabel.setVisible(false);
+        
         pack();
       }
     }//GEN-LAST:event_openedLoopItemStateChanged
@@ -1826,7 +2049,32 @@ public class MainFrame extends javax.swing.JFrame {
         call(kdChange, currentKd = selectedKd);
       }
     }
+    
+    if (!"".equals(kpField1.getText())) {
+      double selectedKp1 = Double.parseDouble(kpField1.getText());
+      if (selectedKp1 != currentKp1) {
+        call(kp1Change, currentKp1 = selectedKp1);
+      }
+    }
 
+    if (!"".equals(kiField1.getText())) {
+      double selectedKi1 = Double.parseDouble(kiField1.getText());
+      if (selectedKi1 != currentKi1) {
+        call(ki1Change, currentKi1 = selectedKi1);
+      }
+    }
+
+    if (!"".equals(kdField1.getText())) {
+      double selectedKd1 = Double.parseDouble(kdField1.getText());
+      if (selectedKd1 != currentKd1) {
+        call(kd1Change, currentKd1 = selectedKd1);
+      }
+    }
+    
+    if(cascade != cascadeButton.isSelected()){
+      call(cascadeChange, cascade = cascadeButton.isSelected());
+    }
+    
     if ((ComboItem) controllerTypeCombo.getSelectedItem() != null) {
       ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue();
       if (!selectedControllerType.equals(currentControllerType)) {
@@ -1860,7 +2108,14 @@ public class MainFrame extends javax.swing.JFrame {
         call(controllerTypeChange, currentControllerType = selectedControllerType);
       }
     }
-
+    
+    if ((ComboItem) controllerTypeCombo1.getSelectedItem() != null) {
+      ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo1.getSelectedItem()).getValue();
+      if (!selectedControllerType.equals(currentControllerType1)) {
+        call(controllerTypeChange1, currentControllerType1 = selectedControllerType);
+      }
+    }
+    
     if ((ComboItem) processVariableField.getSelectedItem() != null) {
       TankTag selectedPV = (TankTag) ((ComboItem) processVariableField.getSelectedItem()).getValue();
       if (selectedPV != currentPV) {
@@ -2239,6 +2494,151 @@ public class MainFrame extends javax.swing.JFrame {
       graphPanel2.removeSerie(DERIVATIVE_PART_CURVE);
   }//GEN-LAST:event_DCheckboxItemStateChanged
 
+  private void cascadeButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cascadeButtonItemStateChanged
+    if(cascadeButton.isSelected()){
+      processVariableLabel.setVisible(false);
+      processVariableField.setVisible(false);
+      
+      parameters2loop.setVisible(true);
+      
+    }else{
+      processVariableLabel.setVisible(true);
+      processVariableField.setVisible(true);
+      
+      parameters2loop.setVisible(false);
+      
+    }
+  }//GEN-LAST:event_cascadeButtonItemStateChanged
+
+  private void controllerTypeCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeCombo1ItemStateChanged
+    switch((ControllerType)((ComboItem)controllerTypeCombo1.getSelectedItem()).getValue()){
+        case PI:
+          kiField1.setVisible(true);
+          kiLabel1.setVisible(true);
+          
+          tauiField1.setVisible(true);
+          tauiLabel1.setVisible(true);
+          
+          kdField1.setVisible(false);
+          kdLabel1.setVisible(false);
+          
+          taudField1.setVisible(false);
+          taudLabel1.setVisible(false);
+          
+          if(enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE_1);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.add(INTEGRAL_PART_CURVE_1);
+          break;
+        case PID:
+        case PI_D:
+          kiField1.setVisible(true);
+          kiLabel1.setVisible(true);
+          
+          tauiField1.setVisible(true);
+          tauiLabel1.setVisible(true);
+          
+          kdField1.setVisible(true);
+          kdLabel1.setVisible(true);
+          
+          taudField1.setVisible(true);
+          taudLabel1.setVisible(true);
+          
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+          if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.add(INTEGRAL_PART_CURVE_1);
+          
+          break;
+        case PD:
+          kiField1.setVisible(false);
+          kiLabel1.setVisible(false);
+          
+          tauiField1.setVisible(false);
+          tauiLabel1.setVisible(false);
+          
+          kdField1.setVisible(true);
+          kdLabel1.setVisible(true);
+          
+          taudField1.setVisible(true);
+          taudLabel1.setVisible(true);
+          
+          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+          if(enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.remove(INTEGRAL_PART_CURVE_1);
+          
+          break;
+        default:
+          kiField1.setVisible(false);
+          kiLabel1.setVisible(false);
+          
+          tauiField1.setVisible(false);
+          tauiLabel1.setVisible(false);
+          
+          kdField1.setVisible(false);
+          kdLabel1.setVisible(false);
+          
+          taudField1.setVisible(false);
+          taudLabel1.setVisible(false);
+          break;
+      }
+  }//GEN-LAST:event_controllerTypeCombo1ItemStateChanged
+
+  private void tauiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tauiField1KeyPressed
+
+  private void tauiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed1
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tauiField1KeyPressed1
+
+  private void tauiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed2
+    // TODO add your handling code here:
+  }//GEN-LAST:event_tauiField1KeyPressed2
+
+  private void kiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kiField1KeyPressed
+
+  private void kiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed1
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kiField1KeyPressed1
+
+  private void kiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed2
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kiField1KeyPressed2
+
+  private void taudField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_taudField1KeyPressed
+
+  private void taudField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed1
+    // TODO add your handling code here:
+  }//GEN-LAST:event_taudField1KeyPressed1
+
+  private void taudField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed2
+    // TODO add your handling code here:
+  }//GEN-LAST:event_taudField1KeyPressed2
+
+  private void kdField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kdField1KeyPressed
+
+  private void kdField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed1
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kdField1KeyPressed1
+
+  private void kdField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed2
+    // TODO add your handling code here:
+  }//GEN-LAST:event_kdField1KeyPressed2
+
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -2266,17 +2666,22 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JCheckBox ICheckbox;
   private javax.swing.JCheckBox PCheckbox;
   private javax.swing.JLabel PeakTimeField;
+  private javax.swing.JLabel PeakTimeLavel;
   private javax.swing.JCheckBox SPCheckbox;
   private javax.swing.JPanel amplitude;
   private javax.swing.JFormattedTextField amplitudeField;
   private javax.swing.JLabel amplitudeLabel;
   private javax.swing.JButton apply;
+  private javax.swing.ButtonGroup buttonGroup1;
+  private javax.swing.JRadioButton cascadeButton;
   private javax.swing.JRadioButton closedLoop;
   private javax.swing.JPanel closedLoopSettings;
   private javax.swing.JButton connect;
   private javax.swing.JPanel controlSettings;
   private javax.swing.JComboBox controllerTypeCombo;
+  private javax.swing.JComboBox controllerTypeCombo1;
   private javax.swing.JLabel controllerTypeLabel;
+  private javax.swing.JLabel controllerTypeLabel1;
   private javax.swing.JCheckBox errorCheckbox;
   private javax.swing.JPanel frequency;
   private javax.swing.JFormattedTextField frequencyField;
@@ -2314,9 +2719,6 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel ipPortWrapper;
   private javax.swing.JButton jButtonPreview;
   private javax.swing.JButton jButtonStop;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel5;
   private javax.swing.JLabel jLabelHertz;
   private javax.swing.JLabel jLabelSeconds;
   private javax.swing.JLabel jLabelVoltage;
@@ -2330,16 +2732,23 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JToggleButton jToggleButtonConfiguration;
   private javax.swing.JToggleButton jToggleButtonGraph;
   private javax.swing.JTextField kdField;
+  private javax.swing.JTextField kdField1;
   private javax.swing.JLabel kdLabel;
+  private javax.swing.JLabel kdLabel1;
   private javax.swing.JTextField kiField;
+  private javax.swing.JTextField kiField1;
   private javax.swing.JLabel kiLabel;
+  private javax.swing.JLabel kiLabel1;
   private javax.swing.JTextField kpField;
+  private javax.swing.JTextField kpField1;
   private javax.swing.JLabel kpLabel;
+  private javax.swing.JLabel kpLabel1;
   private javax.swing.JCheckBox level1Checkbox;
   private javax.swing.JCheckBox level2Checkbox;
   private javax.swing.JPanel loopChooser;
   private javax.swing.ButtonGroup loopTypeChooser;
   private javax.swing.JLabel mpField;
+  private javax.swing.JLabel mpLabel;
   private javax.swing.JRadioButton openedLoop;
   private javax.swing.JPanel openedLoopSettings;
   private javax.swing.JRadioButton output0;
@@ -2357,6 +2766,7 @@ public class MainFrame extends javax.swing.JFrame {
   private java.awt.Canvas outputPreview;
   private javax.swing.JPanel outputSettings;
   private javax.swing.JPanel outputTable;
+  private javax.swing.JPanel parameters2loop;
   private javax.swing.JPanel period;
   private javax.swing.JFormattedTextField periodField;
   private javax.swing.JLabel periodLabel;
@@ -2370,17 +2780,23 @@ public class MainFrame extends javax.swing.JFrame {
   private javax.swing.JPanel setPoint;
   private javax.swing.JFormattedTextField setPointField;
   private javax.swing.JLabel setPointLabel;
+  private javax.swing.JLabel settingTimeLabel;
   private javax.swing.JLabel settlingTimeField;
   private javax.swing.JPanel sidebar;
+  private javax.swing.JRadioButton simpleButton;
   private javax.swing.JToggleButton sinus;
   private javax.swing.JToggleButton square;
   private javax.swing.JLabel statusConnectedLabel;
   private javax.swing.JLabel statusLockLabel;
   private javax.swing.JToggleButton step;
   private javax.swing.JTextField taudField;
+  private javax.swing.JTextField taudField1;
   private javax.swing.JLabel taudLabel;
+  private javax.swing.JLabel taudLabel1;
   private javax.swing.JTextField tauiField;
+  private javax.swing.JTextField tauiField1;
   private javax.swing.JLabel tauiLabel;
+  private javax.swing.JLabel tauiLabel1;
   private javax.swing.JCheckBox uCheckbox;
   private javax.swing.JCheckBox u_barCheckbox;
   private javax.swing.JPanel waveParams;
@@ -2725,6 +3141,26 @@ public class MainFrame extends javax.swing.JFrame {
     settlingTimeField.setText(Double.toString(settlingTime));
   }
 
+  public void onCascadeChange(ChangeParameterEvent changeParameterEvent) {
+    this.cascadeChange = changeParameterEvent;
+  }
+
+  public void onKp1Change(ChangeParameterEvent changeParameterEvent) {
+    this.kp1Change = changeParameterEvent;
+  }
+
+  public void onKi1Change(ChangeParameterEvent changeParameterEvent) {
+    this.ki1Change = changeParameterEvent;
+  }
+
+  public void onKd1Change(ChangeParameterEvent changeParameterEvent) {
+    this.kd1Change = changeParameterEvent;
+  }
+
+  public void onControllerTypeChange1(ChangeParameterEvent changeParameterEvent) {
+    this.controllerTypeChange1 = changeParameterEvent;
+  }
+
   //Classes and enums
   private class ComboItem {
 
@@ -2767,6 +3203,10 @@ public class MainFrame extends javax.swing.JFrame {
   public static final String INTEGRAL_PART_CURVE = "Componente integral";
   public static final String DERIVATIVE_PART_CURVE = "Componente derivativa";
 
+  public static final String PROPORCIONAL_PART_CURVE_1 = "Componente proporcional 2";
+  public static final String INTEGRAL_PART_CURVE_1 = "Componente integral 2";
+  public static final String DERIVATIVE_PART_CURVE_1 = "Componente derivativa 2";
+  
   public static class DoubleFilter extends DocumentFilter {
     
     @Override

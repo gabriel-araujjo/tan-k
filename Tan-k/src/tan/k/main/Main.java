@@ -178,6 +178,49 @@ public class Main {
         tank.setVoltageChannel((int) value);
       }
     });
+    
+    view.onCascadeChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        System.out.println("setting cascade;");
+        System.out.println("value = "+value.toString());
+        controller.setCascade((boolean) value);
+      }
+    });
+    
+    view.onKp1Change(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setKp1((double) value);
+      }
+    });
+    
+    view.onKi1Change(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setKi1((double) value);
+      }
+    });
+    
+    view.onKd1Change(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        controller.setKd1((double) value);
+      }
+    });
+    
+    view.onControllerTypeChange1(new ChangeParameterEvent() {
+      @Override
+      public void onChangeParameter(Object value) {
+        System.out.println("controllerType1 =" + ((ControllerType) value).name());
+        controller.setControllerType1((ControllerType) value);
+      }
+    });
+    
 
 //    controller.onWriteVoltage(new ChangeParameterEvent() {
 //      @Override
