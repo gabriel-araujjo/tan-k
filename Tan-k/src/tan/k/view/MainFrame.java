@@ -120,7 +120,7 @@ public class MainFrame extends javax.swing.JFrame {
     graphPanel3.addSerie("Sinal para configuracao");
     
     this.graphTitle.setVisible(true);
-    this.graphToggler.setVisible(true);
+    //this.graphToggler.setVisible(true);
     this.graphBox.setVisible(true);
     
     cascade = false;
@@ -276,6 +276,10 @@ public class MainFrame extends javax.swing.JFrame {
         ipPortLabel = new javax.swing.JLabel();
         ipPortField = new javax.swing.JFormattedTextField();
         connect = new javax.swing.JButton();
+        display1Title = new javax.swing.JLabel();
+        display1Level = new javax.swing.JLabel();
+        display2Level = new javax.swing.JLabel();
+        display2Title = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -1833,6 +1837,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         scrollPane1.add(sidebar);
 
+        display1Title.setText("Level 1:");
+
+        display1Level.setText("...");
+
+        display2Level.setText("...");
+
+        display2Title.setText("Level 2:");
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -1851,6 +1863,14 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(statusConnectedLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(display2Title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(display2Level)
+                        .addGap(69, 69, 69)
+                        .addComponent(display1Title)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(display1Level)
+                        .addGap(72, 72, 72)
                         .addComponent(statusLockLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
@@ -1873,7 +1893,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
-                    .addComponent(statusLockLabel))
+                    .addComponent(statusLockLabel)
+                    .addComponent(display1Title)
+                    .addComponent(display1Level)
+                    .addComponent(display2Level)
+                    .addComponent(display2Title))
                 .addContainerGap())
         );
 
@@ -2638,6 +2662,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox controllerTypeCombo1;
     private javax.swing.JLabel controllerTypeLabel;
     private javax.swing.JLabel controllerTypeLabel1;
+    private javax.swing.JLabel display1Level;
+    private javax.swing.JLabel display1Title;
+    private javax.swing.JLabel display2Level;
+    private javax.swing.JLabel display2Title;
     private javax.swing.JCheckBox errorCheckbox;
     private javax.swing.JPanel frequency;
     private javax.swing.JFormattedTextField frequencyField;
@@ -2903,7 +2931,13 @@ public class MainFrame extends javax.swing.JFrame {
     if(!enabledCurves.contains(sinal)) return;
     switch (sinal) {
       case TANK1_LEVEL_CURVE:
+          display1Level.setText(Math.round(d) + "cm");
+          graphPanel1.addValue(sinal, t, d);
+          break;
       case TANK2_LEVEL_CURVE:
+          display2Level.setText(Math.round(d) + "cm");
+          graphPanel1.addValue(sinal, t, d);
+          break;
       case SETPOINT_CURVE:
       case ERROR_CURVE:
         graphPanel1.addValue(sinal, t, d);

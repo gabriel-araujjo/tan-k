@@ -58,6 +58,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="statusConnectedLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="display2Title" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="display2Level" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <Component id="display1Title" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="display1Level" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Component id="statusLockLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -89,6 +97,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="statusConnectedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="statusLockLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="display1Title" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="display1Level" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="display2Level" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="display2Title" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -2370,5 +2382,25 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="display1Title">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Level 1:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="display1Level">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="display2Level">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="display2Title">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Level 2:"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
