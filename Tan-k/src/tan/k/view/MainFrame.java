@@ -1876,10 +1876,28 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Matriz de Ganho"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class
+            };
 
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMatrizGanho.setAutoscrolls(false);
+        jTableMatrizGanho.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableMatrizGanho.setFocusable(false);
+        jTableMatrizGanho.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableMatrizGanho.setRowMargin(2);
+        jTableMatrizGanho.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableMatrizGanho.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMatrizGanho.setShowVerticalLines(false);
+
+        jLabelCochete1.setFont(new java.awt.Font("DejaVu Sans Light", 0, 48)); // NOI18N
         jLabelCochete1.setText("[");
 
+        jLabelCochete2.setFont(new java.awt.Font("DejaVu Sans Light", 0, 48)); // NOI18N
         jLabelCochete2.setText("]");
 
         javax.swing.GroupLayout observerBoxLayout = new javax.swing.GroupLayout(observerBox);
@@ -1896,38 +1914,34 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(polo1Field, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(polo2Field))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelCochete1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTableMatrizGanho, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelCochete2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabelCochete1)
+                .addGap(3, 3, 3)
+                .addComponent(jTableMatrizGanho, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabelCochete2)
+                .addGap(23, 23, 23))
         );
         observerBoxLayout.setVerticalGroup(
             observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(observerBoxLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(observerBoxLayout.createSequentialGroup()
-                        .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(observerBoxLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(polo1Label)
-                                    .addComponent(polo1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(polo2Label)
-                                    .addComponent(polo2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(observerBoxLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jTableMatrizGanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(polo1Label)
+                            .addComponent(polo1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(polo2Label)
+                            .addComponent(polo2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 2, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, observerBoxLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelCochete2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelCochete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabelCochete2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCochete1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, observerBoxLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTableMatrizGanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
