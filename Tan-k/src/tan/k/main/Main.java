@@ -4,13 +4,17 @@
  */
 package tan.k.main;
 
+import Jama.Matrix;
 import br.ufrn.dca.controle.QuanserClientException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
 import org.jfree.data.time.Millisecond;
+import tan.k.controller.Observer;
 import tan.k.controller.TanKController;
 import tan.k.controller.TanKController.ControllerType;
 import tan.k.controller.TanKController.Loop;
@@ -34,6 +38,21 @@ public class Main {
   private static Thread plotThread;
 
   public static void main(String[] args) {
+    List<Double> poles = new ArrayList<>();
+    poles.add(-0.1);
+    poles.add(-0.2);
+    
+    double[][] a = {{-0.0065,0},{0.0065,-0.0065}};
+    double[][] c = {{0,1}};
+    
+    try{
+    //Observer observer = new Observer(new Matrix(a), new Matrix(c), poles);
+    Observer observer = new Observer(new Matrix(a), new Matrix(c), new Matrix(new double[][] {{2.7834230769230777}, {0.28700000000000003}}));
+    System.exit(0);
+    }catch(Exception e){
+      e.printStackTrace();
+      throw e;
+    }
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (Exception e) {
