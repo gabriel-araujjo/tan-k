@@ -1,6 +1,7 @@
 package tan.k.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
@@ -42,6 +43,10 @@ public class GraphPanel extends javax.swing.JPanel {
 
       chartPanel.getChart().getXYPlot().setDomainCrosshairVisible(true);
       chartPanel.getChart().getXYPlot().setRangeCrosshairVisible(true);
+      
+      chartPanel.getChart().getXYPlot().setBackgroundPaint(Color.white);
+      chartPanel.getChart().getXYPlot().setRangeGridlinePaint(Color.gray);
+      chartPanel.getChart().getXYPlot().setDomainGridlinePaint(Color.gray);
 
       add(chartPanel);
     }
@@ -51,8 +56,8 @@ public class GraphPanel extends javax.swing.JPanel {
       final XYPlot plot = result.getXYPlot();
       ValueAxis axis = plot.getDomainAxis();
       axis.setAutoRange(true);
-      axis.setFixedAutoRange(60000.0);
-      axis.setVisible(false);
+      axis.setFixedAutoRange(150000.0);
+      axis.setVisible(true);
       axis = plot.getRangeAxis();
       axis.setRange(y_min, y_max); 
       return result;
