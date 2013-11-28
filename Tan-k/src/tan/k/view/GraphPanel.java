@@ -112,6 +112,10 @@ public class GraphPanel extends javax.swing.JPanel {
         if (!seriesExists(serie)) addSerie(serie);
         try{
           _getSerie(serie).add(t, y);//addOrUpdate(x, y);
+          
+            if (serie == MainFrame.OBSERVER_CURVE_1 || serie == MainFrame.OBSERVER_CURVE_2) {
+                System.out.println("Adiconou valor observado");
+            }
         }catch(Exception e){}
     }
 
