@@ -166,8 +166,13 @@ public class TanKController implements Runnable {
     double[] toSignal = new double[2];
     double lastOvershoot, relativeCurTime;
     while (true) {
-      if (getLastTime() + 100 <= System.currentTimeMillis() && _getStartRun()) {
-        samplePeriod = Math.floor(((double) System.currentTimeMillis() - getLastTime()) / 100.0) / 10.0;
+      
+      long ct = System.currentTimeMillis(),
+              lt = getLastTime(),
+              period = ct-lt;
+      
+      if (period>=100L && _getStartRun()) {
+        samplePeriod = Math.floor(((double) period) / 100.0) / 10.0;
         curTime += samplePeriod;
         setLastTime(System.currentTimeMillis());
         
@@ -532,6 +537,11 @@ public class TanKController implements Runnable {
    */
   public void setKp(double p) {
     this.closeLoopSettings.P = p;
+    try {
+        this.closeLoopSettings.Tak = Math.sqrt(this.closeLoopSettings.I/this.closeLoopSettings.P);
+    }catch(Exception e){
+        
+    }
   }
 
   /**
@@ -548,6 +558,11 @@ public class TanKController implements Runnable {
    */
   public void setKi(double ki) {
     this.closeLoopSettings.I = ki;
+    try {
+        this.closeLoopSettings.Tak = Math.sqrt(this.closeLoopSettings.I/this.closeLoopSettings.P);
+    }catch(Exception e){
+        
+    }
   }
 
   /**
@@ -629,10 +644,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcI(double e) {
-    if(this.calculatedVoltage<0 || this.calculatedVoltage>3)
-      return this.i;
-    else
-      return this.i = lastI + (closeLoopSettings.I * e)* samplePeriod;
+    return this.i = lastI + (closeLoopSettings.I * e + closeLoopSettings.Tak*(this.currentVoltage - this.calculatedVoltage))* samplePeriod;
   }
 
   private double calcD(double e) {
@@ -804,7 +816,7 @@ public class TanKController implements Runnable {
   }
 
   private double calcI1(double e1) {
-    return this.i1 = lastI1 + closeLoopSettings1.I * samplePeriod * error1;
+    return this.i1 = lastI1 + (closeLoopSettings1.I * e1 + closeLoopSettings1.Tak * (this.currentVoltage - this.calculatedVoltage))* samplePeriod ;
   }
 
   private double calcP1(double e1) {
@@ -841,10 +853,20 @@ public class TanKController implements Runnable {
 
   public void setKi1(double i) {
     this.closeLoopSettings1.I = i;
+    try {
+        this.closeLoopSettings1.Tak = Math.sqrt(this.closeLoopSettings1.I/this.closeLoopSettings1.P);
+    }catch(Exception e){
+        
+    }
   }
 
   public void setKp1(double p) {
     this.closeLoopSettings1.P = p;
+    try {
+        this.closeLoopSettings1.Tak = Math.sqrt(this.closeLoopSettings1.I/this.closeLoopSettings1.P);
+    }catch(Exception e){
+        
+    }
   }
 
   public void setCascade(boolean cascade) {
@@ -912,6 +934,7 @@ public class TanKController implements Runnable {
     public double D;
     public TankTag pv;
     public double setPoint;
+    public double Tak;
 
     public CloseLoopSettings(double setPoint, String pv, String controllerType, double... weights) {
       this(setPoint, TankTag.valueOf(pv), ControllerType.valueOf(controllerType), weights);
