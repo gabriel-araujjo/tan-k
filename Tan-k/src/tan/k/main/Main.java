@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import org.ejml.data.Complex64F;
 import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
 import org.jfree.data.time.Millisecond;
@@ -36,35 +37,37 @@ public class Main {
   private static TanKController controller;
   private static Thread controllerThread;
   private static Thread plotThread;
+  private static Observer observer;
 
   public static void main(String[] args) {
-    List<Double> poles = new ArrayList<>();
-    poles.add(-0.1);
-    poles.add(-0.2);
+    List<Complex64F> poles = new ArrayList<>();
+    poles.add(new Complex64F(-0.1, 0));
+    poles.add(new Complex64F(0.3, 0));
     
     double[][] a = {{-0.0065,0},{0.0065,-0.0065}};
     double[][] c = {{0,1}};
     
-    try{
-    //Observer observer = new Observer(new Matrix(a), new Matrix(c), poles);
-    Observer observer = new Observer(new Matrix(a), new Matrix(c), new Matrix(new double[][] {{2.7834230769230777}, {0.28700000000000003}}));
-    System.exit(0);
-    }catch(Exception e){
-      e.printStackTrace();
-      throw e;
-    }
+    double[][] h = {{0.0296}, {0}};
+    double[][] g = {{0.9994, 0}, {0.0006, 0.9994}};
+    
+    
+    //Observer observer = new Observer(new Matrix(g), new Matrix(c), poles);
+    //Observer observer = new Observer(new Matrix(g), new Matrix(c), new Matrix(new double[][] {{1281.5339333333334 /*2.7834230769230777*/}, {1.7988 /*0.28700000000000003*/}}));
+    observer = new Observer(new Matrix(g), new Matrix(c));
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (Exception e) {
       e.printStackTrace();
     }
     view = new MainFrame();
+    view.setObserver(observer);
     tank = new Tank(view.getCurrentIp(), view.getCurrentPort(), 0, 0, 1);
     controller = new TanKController(
             tank,
             view.getCurrentLoop(),
             view.getCloseLoopSettings(),
             view.getOpenLoopSettings());
+    controller.setObserver(observer);
     controllerThread = new Thread(controller);
 
     view.onSetPointChange(new ChangeParameterEvent() {
@@ -339,6 +342,8 @@ public class Main {
             if(view.isP()) view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, m, controller.getP());
             if(view.isI()) view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, m, controller.getI());
             if(view.isD()) view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, m, controller.getD());
+            view.addPointToGraph(MainFrame.OBSERVER_CURVE_1, m, observer.get$L0());
+            view.addPointToGraph(MainFrame.OBSERVER_CURVE_2, m, observer.get$L1());
             
             if(controller.isMpCalculated()){
               view.setMP(controller.getMp());

@@ -92,6 +92,7 @@ public class TanKController implements Runnable {
   private CloseLoopSettings closeLoopSettings1;
   private double lastI1;
   private double firstLoopOutput;
+  private Observer observer;
 
   /**
    *
@@ -333,10 +334,15 @@ public class TanKController implements Runnable {
             else putPointsFlag = 0;
           }
         }
+        observer.estimate(currentLevel1, currentLevel2);
       }
     }
   }
-
+  
+  public void setObserver(Observer observer){
+    this.observer = observer;
+  }
+  
   private double calcSin(double t, double p, double a) {
     return a / 2 * Math.sin(t / p * 2 * Math.PI) + a / 2;
   }
@@ -540,8 +546,8 @@ public class TanKController implements Runnable {
    *
    * @param i
    */
-  public void setKi(double i) {
-    this.closeLoopSettings.I = i;
+  public void setKi(double ki) {
+    this.closeLoopSettings.I = ki;
   }
 
   /**
@@ -623,7 +629,10 @@ public class TanKController implements Runnable {
   }
 
   private double calcI(double e) {
-    return this.i = lastI + closeLoopSettings.I * samplePeriod * e;
+    if(this.calculatedVoltage<0 || this.calculatedVoltage>3)
+      return this.i;
+    else
+      return this.i = lastI + (closeLoopSettings.I * e)* samplePeriod;
   }
 
   private double calcD(double e) {
