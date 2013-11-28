@@ -112,61 +112,92 @@ public class Observer {
      *
      * @param L
      */
-    public final void setL(Matrix L) {
-//    this.L = L;
-//    
-//    if(this.G_LC == null){
-//      this.G_LC = new Matrix(2, 2);
-//    }
-//
-//    //this.G_LC = new Matrix(new double[][] {{0.9934570, -L.get(0, 1)}, {0.0065215, 0.9934570-L.get(1, 1)}});
-//    this.G_LC.set(0, 0, 0.9934570);
-//    this.G_LC.set(0, 1, -L.get(0, 0));
-//    this.G_LC.set(1, 0, 0.0065215);
-//    this.G_LC.set(1,1, 0.9934570-L.get(1, 0));
-//    
-////    calcVInverse();
-////    calcW();
-//    double[] qc1 = new double[G.getColumnDimension()];
-//    Matrix VITimesW = VInverse.times(W);
-//        
-//    for(int i=0; i<G.getColumnDimension(); i++){
-//      qc1[i] = L.get(i,0);
-//      for(int j = i; j>0; j--){
-//        qc1[i] -= qc1[i-j]*VITimesW.get(j, 0);
-//      }
-//      qc1[i]/=VITimesW.get(0, 0);
-//    }
-//    
-////    qc[0] = L.get(0, 0)/VITimesW.get(0, 0);
-////    qc[1] = (L.get(1, 0) - qc[0]*VITimesW.get(1, 0)) / VITimesW.get(0, 0);
-////    qc[2] = (L.get(2, 0) - qc[0]*VITimesW.get(2, 0) - qc[1]*VITimesW.get(1, 0)) / VITimesW.get(0, 0);
-////    qc[3] = (L.get(3, 0) - qc[0]*VITimesW.get(3, 0) - qc[1]*VITimesW.get(2, 0) - qc[2]*VITimesW.get(1, 0)) / VITimesW.get(0, 0);
-//    
-//    DenseMatrix64F coef = new DenseMatrix64F(G.getRowDimension(), G.getColumnDimension());
-//    
-//    coef.set(0,0,1);
-//    for(int i=0;i<G.getColumnDimension();i++){
-//      Matrix powerA = matrixPow(G, i);
-//      for(int j=0;j<powerA.getColumnDimension(); j++){
-//        coef.set(j,i,powerA.get(j, 0));
-//      }
-//    }
-//    DenseMatrix64F x = new DenseMatrix64F(G.getColumnDimension(),1);
-//    DenseMatrix64F b = new DenseMatrix64F(G.getRowDimension(),1);
-//    
-//    Matrix powerA = matrixPow(G, G.getColumnDimension());
-//    for(int i=0; i<G.getRowDimension();i++){
-//      b.set(i, 0, qc1[i]-powerA.get(i, 0));
-//    }
-//    CommonOps.solve(coef, b, x);
-//    polynomial = new ArrayList<>();
-//    
-//    for(int i=0; i<x.numRows; i++){
-//      polynomial.add(x.get(i));
-//    }
-//    polynomial.add(1.0);
-//    findRoots(polynomial.toArray(new Double[polynomial.size()]));
+    public final void setL(Matrix L_param) {
+      
+      ganho1 = L_param.get(0, 0);
+      ganho2 = L_param.get(1, 0);
+      
+      double L1 = ganho1;
+      double L2 = ganho2;
+      double M[] = new double[2];
+        M[0] = 154.33825;
+        M[1] = 0;
+        double L[] = new double[2];
+        L[0] = L1;
+        L[1] = L2;
+        double G[][] = new double[2][2];
+        G[0][0] = 0.9934570;
+        G[0][1] = 0;
+        G[1][0] = 0.0065215;
+        G[1][1] = 0.9934570;
+        double G2[][] = new double[2][2];
+        for (int row = 0; row < G.length; row++) // multiplicação das matrizes
+        {
+
+            for (int column = 0; column < G[row].length; column++) {
+
+                double aux = 0;
+
+                for (int i = 0; i < G[row].length; i++) {
+
+                    try {
+
+                        aux = aux + G[row][i] * G[i][column];
+
+                    } catch (Exception e) {
+
+                        e.printStackTrace();
+
+                    }
+
+                }
+
+                G2[row][column] = aux;
+
+            }
+        }
+        double G2xM[] = new double[2];
+        for (int column = 0; column < 2; column++) {
+
+            double aux = 0;
+
+            for (int i = 0; i < 2; i++) {
+                aux = aux + G2[column][i] * M[i];
+            }
+
+            G2xM[column] = aux;
+
+        }
+
+        double L_G2xM[] = new double[2];
+        L_G2xM[0] = L[0] - G2xM[0];
+        L_G2xM[1] = L[1] - G2xM[1];
+        double GM[] = new double[2];
+        for (int column = 0; column < 2; column++) {
+
+            double aux = 0;
+
+            for (int i = 0; i < 2; i++) {
+                aux = aux + G[column][i] * M[i];
+            }
+
+            GM[column] = aux;
+
+        }
+        double alfa1 = L_G2xM[1] / GM[1];
+        double alfa2 = (L_G2xM[0] - GM[0] * alfa1) / M[0];
+        Complex P2;
+        Complex P1;
+        if (((alfa1 * alfa1) - (4 * alfa2)) < 0) {
+            P2 = new Complex(-alfa1 / 2, Math.sqrt((4 * alfa2) - alfa1 * alfa1) / 2);
+            P1 = P2.add(alfa1).multiply(-1);
+        } else {
+            P2 = new Complex((-alfa1 / 2) + Math.sqrt((alfa1 * alfa1) - (4 * alfa2)) / 2, 0);
+            P1 = P2.add(alfa1).multiply(-1);
+        }
+        
+        poles.get(0).set(P1.getReal(), P1.getImaginary());
+        poles.get(1).set(P2.getReal(), P2.getImaginary());
     }
 
     /**

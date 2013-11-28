@@ -343,8 +343,8 @@ public class Main {
             if(view.isP()) view.addPointToGraph(MainFrame.PROPORCIONAL_PART_CURVE, m, controller.getP());
             if(view.isI()) view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, m, controller.getI());
             if(view.isD()) view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, m, controller.getD());
-            view.addPointToGraph(MainFrame.OBSERVER_CURVE_1, m, observer.get$L0());
-            view.addPointToGraph(MainFrame.OBSERVER_CURVE_2, m, observer.get$L1());
+           // view.addPointToGraph(MainFrame.OBSERVER_CURVE_1, m, observer.get$L0());
+            if(view.isO())view.addPointToGraph(MainFrame.OBSERVER_CURVE_2, m, observer.get$L1());
             
             if(controller.isMpCalculated()){
               view.setMP(controller.getMp());

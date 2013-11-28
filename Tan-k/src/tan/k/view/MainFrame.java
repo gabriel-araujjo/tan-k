@@ -199,6 +199,7 @@ public class MainFrame extends javax.swing.JFrame {
         ICheckbox = new javax.swing.JCheckBox();
         inputColumn11 = new javax.swing.JPanel();
         DCheckbox = new javax.swing.JCheckBox();
+        OCheckbox = new javax.swing.JCheckBox();
         writeBox = new javax.swing.JPanel();
         outputTable = new javax.swing.JPanel();
         outputColumn0 = new javax.swing.JPanel();
@@ -746,18 +747,35 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        OCheckbox.setText("O");
+        DCheckbox.setEnabled(false);
+        OCheckbox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                OCheckboxItemStateChanged(evt);
+            }
+        });
+        OCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OCheckboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout inputColumn11Layout = new javax.swing.GroupLayout(inputColumn11);
         inputColumn11.setLayout(inputColumn11Layout);
         inputColumn11Layout.setHorizontalGroup(
             inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputColumn11Layout.createSequentialGroup()
-                .addComponent(DCheckbox)
+                .addGroup(inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DCheckbox)
+                    .addComponent(OCheckbox))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inputColumn11Layout.setVerticalGroup(
             inputColumn11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputColumn11Layout.createSequentialGroup()
                 .addComponent(DCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OCheckbox)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -2080,7 +2098,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(graphPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
@@ -2150,6 +2168,8 @@ public class MainFrame extends javax.swing.JFrame {
         ICheckbox.setEnabled(true);
         DCheckbox.setEnabled(true);
         
+        OCheckbox.setEnabled(true);
+        
         errorCheckbox.setSelected(true);
         SPCheckbox.setSelected(true);
         errorCheckbox.setEnabled(true);
@@ -2180,6 +2200,8 @@ public class MainFrame extends javax.swing.JFrame {
         DCheckbox.setSelected(false);
         errorCheckbox.setSelected(false);
         SPCheckbox.setSelected(false);
+        
+        
         
         PCheckbox.setEnabled(false);
         ICheckbox.setEnabled(false);
@@ -2947,6 +2969,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_applyObserverClicked
 
+    private void OCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OCheckboxItemStateChanged
+            if(!OCheckbox.isSelected())
+      graphPanel1.removeSerie(OBSERVER_CURVE_2);
+    }//GEN-LAST:event_OCheckboxItemStateChanged
+
+    private void OCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OCheckboxActionPerformed
+
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -2972,6 +3003,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox DCheckbox;
     private javax.swing.JCheckBox ICheckbox;
+    private javax.swing.JCheckBox OCheckbox;
     private javax.swing.JCheckBox PCheckbox;
     private javax.swing.JLabel PeakTimeField;
     private javax.swing.JLabel PeakTimeLavel;
@@ -3452,6 +3484,10 @@ public class MainFrame extends javax.swing.JFrame {
    */
   public boolean isD() {
     return DCheckbox.isSelected();
+  }
+  
+    public boolean isO() {
+    return OCheckbox.isSelected();
   }
 
   /**
