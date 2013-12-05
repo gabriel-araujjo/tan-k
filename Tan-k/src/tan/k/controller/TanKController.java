@@ -93,6 +93,8 @@ public class TanKController implements Runnable {
   private double lastI1;
   private double firstLoopOutput;
   private Observer observer;
+  private boolean risingTimeCalculated;
+  private double risingTime;
 
   /**
    *
@@ -192,7 +194,7 @@ public class TanKController implements Runnable {
         
         switch (loop) {
           case CLOSED:
-            if(!isMpCalculated() || !isSteady5percentCalculated()){
+            if(!isMpCalculated() || !isSteady5percentCalculated() || !isRisingTimeCalculated()){
               relativeCurTime = Math.floor(((double) getLastTime() - initTime) / 100.0) / 10.0;
               lastOvershoot = curOvershoot;
               curOvershoot = calcOvershoot();
@@ -216,6 +218,12 @@ public class TanKController implements Runnable {
                   }
                 }
                 rising = curOvershoot < lastOvershoot;
+              }
+              if(!isRisingTimeCalculated()){
+                if(curOvershoot>=-0.05){//Overshoot sempre começa em -1, 0 - no setpoint.
+                  risingTime = relativeCurTime;
+                  risingTimeCalculated = true;
+                }
               }
             }
             switch (getControllerType()) {
@@ -537,11 +545,6 @@ public class TanKController implements Runnable {
    */
   public void setKp(double p) {
     this.closeLoopSettings.P = p;
-    try {
-        this.closeLoopSettings.Tak = Math.sqrt(this.closeLoopSettings.I/this.closeLoopSettings.P);
-    }catch(Exception e){
-        
-    }
   }
 
   /**
@@ -558,11 +561,6 @@ public class TanKController implements Runnable {
    */
   public void setKi(double ki) {
     this.closeLoopSettings.I = ki;
-    try {
-        this.closeLoopSettings.Tak = Math.sqrt(this.closeLoopSettings.I/this.closeLoopSettings.P);
-    }catch(Exception e){
-        
-    }
   }
 
   /**
@@ -617,6 +615,7 @@ public class TanKController implements Runnable {
     this.stepHeight = getSetPoint() - (getPv().equals(TankTag.TANK_1)?tank.getLevel1():tank.getLevel2());
     this.steady5percentCalculated = false;
     this.mpCalculated = false;
+    this.risingTimeCalculated = false;
     this.mp = -1;
     this.curOvershoot = -1;
     this.rising = true;
@@ -853,24 +852,28 @@ public class TanKController implements Runnable {
 
   public void setKi1(double i) {
     this.closeLoopSettings1.I = i;
-    try {
-        this.closeLoopSettings1.Tak = Math.sqrt(this.closeLoopSettings1.I/this.closeLoopSettings1.P);
-    }catch(Exception e){
-        
-    }
   }
 
   public void setKp1(double p) {
     this.closeLoopSettings1.P = p;
-    try {
-        this.closeLoopSettings1.Tak = Math.sqrt(this.closeLoopSettings1.I/this.closeLoopSettings1.P);
-    }catch(Exception e){
-        
-    }
   }
 
   public void setCascade(boolean cascade) {
     this.cascade = cascade;
+  }
+
+  public void setTak(double d) {
+    this.closeLoopSettings.Tak = d;
+    this.closeLoopSettings1.Tak = d;
+    System.out.println("Mudou Tak para " + d);
+  }
+
+  public boolean isRisingTimeCalculated() {
+    return risingTimeCalculated;
+  }
+  
+  public double getRisingTime(){
+    return risingTime;
   }
 
   public enum Wave {

@@ -134,6 +134,15 @@ public class Main {
         controller.setPeriod((double) value);
       }
     });
+    
+    view.onTakChange(new ChangeParameterEvent() {
+
+      @Override
+      public void onChangeParameter(Object value) {
+        System.out.println("Tak = " + ((double) value));
+        controller.setTak((double) value);
+      }
+    });
 
     view.onAmplitudeChange(new ChangeParameterEvent() {
       @Override
@@ -333,8 +342,9 @@ public class Main {
           if(System.currentTimeMillis() > nextTime){
             nextTime = System.currentTimeMillis() + 100;
             m = new Millisecond();
-            if(view.isNivel1()) view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, m, tank.getLevel1());
-            if(view.isNivel2()) view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, m, tank.getLevel2());
+            double l1 = tank.getLevel1(), l2 = tank.getLevel2();
+            if(view.isNivel1()) view.addPointToGraph(MainFrame.TANK1_LEVEL_CURVE, m, l1);
+            if(view.isNivel2()) view.addPointToGraph(MainFrame.TANK2_LEVEL_CURVE, m, l2);
             if(view.isErro()) view.addPointToGraph(MainFrame.ERROR_CURVE, m, controller.getE());
             if(view.isSetpoint()) view.addPointToGraph(MainFrame.SETPOINT_CURVE, m, controller.getSetPoint());
             
@@ -344,7 +354,13 @@ public class Main {
             if(view.isI()) view.addPointToGraph(MainFrame.INTEGRAL_PART_CURVE, m, controller.getI());
             if(view.isD()) view.addPointToGraph(MainFrame.DERIVATIVE_PART_CURVE, m, controller.getD());
            // view.addPointToGraph(MainFrame.OBSERVER_CURVE_1, m, observer.get$L0());
-            if(view.isO())view.addPointToGraph(MainFrame.OBSERVER_CURVE_2, m, observer.get$L1());
+            if(view.isO()){
+              double $l2 = observer.get$L1(), $l1 = observer.get$L0();
+              view.addPointToGraph(MainFrame.OBSERVER_CURVE_1, m, $l1);
+              view.addPointToGraph(MainFrame.ERROR_OBSERVER_CURVE_1, m, l1-$l1);
+              view.addPointToGraph(MainFrame.ERROR_OBSERVER_CURVE_2, m, l2-$l2);
+              view.addPointToGraph(MainFrame.OBSERVER_CURVE_2, m, $l2);
+            }
             
             if(controller.isMpCalculated()){
               view.setMP(controller.getMp());
@@ -352,6 +368,9 @@ public class Main {
             } 
             if(controller.isSteady5percentCalculated()){
               view.setSettlingTime(controller.getSettlingTime());
+            }
+            if(controller.isRisingTimeCalculated()){
+              view.setRisingTime(controller.getRisingTime());
             }
           }
         }
