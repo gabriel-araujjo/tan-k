@@ -1768,7 +1768,7 @@ public class MainFrame extends javax.swing.JFrame {
         mpField.setVisible(false);
 
         riseTimeLabel.setVisible(false);
-        riseTimeLabel.setText("Tempo de subida (95%)");
+        riseTimeLabel.setText("Tempo de subida (5% - 95%)");
         mpLabel.setVisible(false);
 
         riseTimeField.setVisible(false);
@@ -1786,7 +1786,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loopChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
             .addGroup(writeBoxLayout.createSequentialGroup()
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(writeBoxLayout.createSequentialGroup()
@@ -1813,7 +1813,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(riseTimeLabel)
                                     .addComponent(mpLabel))
-                                .addGap(64, 64, 64)
+                                .addGap(32, 32, 32)
                                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(mpField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(riseTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -1859,6 +1859,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(riseTimeField))
                 .addContainerGap())
         );
+
+        riseTimeLabel.getAccessibleContext().setAccessibleName("Tempo de subida (5%-95%)");
 
         ipPortTitle.setBackground(new java.awt.Color(158, 158, 158));
         ipPortTitle.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3758,7 +3760,7 @@ public class MainFrame extends javax.swing.JFrame {
   }
 
   public void setPeakTime(double peakTime) {
-    PeakTimeField.setText(Double.toString(peakTime));
+    PeakTimeField.setText(Double.toString(peakTime)+"s");
   }
 
   public void setMP(double mp) {
@@ -3767,7 +3769,7 @@ public class MainFrame extends javax.swing.JFrame {
   }
 
   public void setSettlingTime(double settlingTime) {
-    settlingTimeField.setText(Double.toString(settlingTime));
+    settlingTimeField.setText(Double.toString(settlingTime)+"s");
   }
 
   public void onCascadeChange(ChangeParameterEvent changeParameterEvent) {
@@ -3809,7 +3811,7 @@ public class MainFrame extends javax.swing.JFrame {
   }
 
   public void setRisingTime(double risingTime) {
-    this.riseTimeField.setText(Double.toString(risingTime));
+    this.riseTimeField.setText(Double.toString(risingTime)+"s");
   }
 
   //Classes and enums
