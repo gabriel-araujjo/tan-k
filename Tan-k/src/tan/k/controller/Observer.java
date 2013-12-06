@@ -65,21 +65,11 @@ public class Observer {
         this.estimated_levels = new Matrix(new double[][]{{0}, {0}});
     }
 
-    public void estimate(double l1, double l2) {
+    public void estimate(double l1, double l2, double usaturado) {
         double nivelTanqueSuperior = l1;
         double nivelTanqueInfeior = l2;
         double L[] = {ganho1, ganho2};
         double nivel_real[] = {nivelTanqueSuperior, nivelTanqueInfeior};
-
-        double erro_nivel[] = new double[2];
-        erro_nivel[0] = nivel_estimado[0] - nivel_real[0];
-        erro_nivel[1] = nivel_estimado[1] - nivel_real[1];
-
-        double LC[][] = new double[2][2];
-        LC[0][0] = 0;
-        LC[0][1] = L[0];
-        LC[1][0] = 0;
-        LC[1][1] = L[1];
 
         double G[][] = new double[2][2];
         G[0][0] = 0.9934570;
@@ -87,22 +77,15 @@ public class Observer {
         G[1][0] = 0.0065215;
         G[1][1] = 0.9934570;
 
-        double G_LC[][] = new double[2][2];
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                G_LC[i][j] = G[i][j] - LC[i][j];
-            }
-        }
-
-        for (int column = 0; column < 2; column++) {
-            double aux = 0;
-
-            for (int i = 0; i < 2; i++) {
-                aux = aux + G_LC[column][i] * erro_nivel[i];
-            }
-
-            nivel_estimado[column] = aux;
-        }
+        double H[] = new double[2];
+        H[0] = 0.02954299;
+        H[1] = 0.00009679;
+        
+          double estimado1 = G[0][0]*nivel_estimado[0] + G[0][1] * nivel_estimado[1] + L[0] * (nivelTanqueInfeior - nivel_estimado[1]) + H[0]*usaturado;
+        double estimado2 = G[1][0]*nivel_estimado[0] + G[1][1] * nivel_estimado[1] + L[1] * (nivelTanqueInfeior - nivel_estimado[1]) + H[1]*usaturado;
+        
+        nivel_estimado[0] = estimado1;
+        nivel_estimado[1] = estimado2;
 
         double nivelTanqueSuperiorEstiamdo = nivel_estimado[0];
         double nivelTanqueInferiorEstiamdo = nivel_estimado[1];

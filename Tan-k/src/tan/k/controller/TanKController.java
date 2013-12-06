@@ -347,7 +347,7 @@ public class TanKController implements Runnable {
             else putPointsFlag = 0;
           }
         }
-        observer.estimate(currentLevel1, currentLevel2);
+        observer.estimate(currentLevel1, currentLevel2,calculatedVoltage);
       }
     }
   }
