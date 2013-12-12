@@ -289,6 +289,19 @@ public class MainFrame extends javax.swing.JFrame {
         takCheck = new javax.swing.JCheckBox();
         kdLabel2 = new javax.swing.JLabel();
         takField = new javax.swing.JTextField();
+        followerBox = new javax.swing.JPanel();
+        polo2Label1 = new javax.swing.JLabel();
+        polo2Field1 = new javax.swing.JTextField();
+        polo1Field1 = new javax.swing.JTextField();
+        polo1Label1 = new javax.swing.JLabel();
+        jLabelCochete3 = new javax.swing.JLabel();
+        jLabelCochete4 = new javax.swing.JLabel();
+        polo3Field1 = new javax.swing.JTextField();
+        polo3Label1 = new javax.swing.JLabel();
+        jTableMatrizk2 = new javax.swing.JTable();
+        k2Label = new javax.swing.JLabel();
+        k1Label = new javax.swing.JLabel();
+        jTableMatrizk1 = new javax.swing.JTable();
         apply = new javax.swing.JButton();
         jButtonPreview = new javax.swing.JButton();
         loopChooser = new javax.swing.JPanel();
@@ -321,22 +334,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelCochete1 = new javax.swing.JLabel();
         jLabelCochete2 = new javax.swing.JLabel();
         applyObserver = new javax.swing.JButton();
-        followerBox = new javax.swing.JPanel();
-        polo2Label1 = new javax.swing.JLabel();
-        polo2Field1 = new javax.swing.JTextField();
-        polo1Field1 = new javax.swing.JTextField();
-        polo1Label1 = new javax.swing.JLabel();
-        jLabelCochete3 = new javax.swing.JLabel();
-        jLabelCochete4 = new javax.swing.JLabel();
-        applyObserver1 = new javax.swing.JButton();
-        polo3Field1 = new javax.swing.JTextField();
-        polo3Label1 = new javax.swing.JLabel();
-        jTableMatrizk2 = new javax.swing.JTable();
-        k2Label = new javax.swing.JLabel();
-        k1Label = new javax.swing.JLabel();
-        jTableMatrizk1 = new javax.swing.JTable();
-        followerTitle = new javax.swing.JPanel();
-        followerToggler = new javax.swing.JLabel();
         display1Title = new javax.swing.JLabel();
         display1Level = new javax.swing.JLabel();
         display2Level = new javax.swing.JLabel();
@@ -1617,11 +1614,11 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         buttonGroup1.add(simpleButton);
-        simpleButton.setText("Controle simples");
+        simpleButton.setText("C. Simples");
         simpleButton.setSelected(true);
 
         buttonGroup1.add(cascadeButton);
-        cascadeButton.setText("Controle cascata");
+        cascadeButton.setText("C. Cascata");
         cascadeButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cascadeButtonItemStateChanged(evt);
@@ -1640,12 +1637,199 @@ public class MainFrame extends javax.swing.JFrame {
 
         ((AbstractDocument)kdField1.getDocument()).setDocumentFilter(new DoubleFilter());
 
+        polo2Label1.setText("Polo 2:");
+        taudLabel1.setVisible(false);
+
+        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo2Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed2(evt);
+            }
+        });
+        taudField1.setVisible(false);
+
+        ((AbstractDocument)tauiField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo1Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed2(evt);
+            }
+        });
+        tauiField1.setVisible(false);
+
+        polo1Label1.setText("Polo 1:");
+        tauiLabel1.setVisible(false);
+
+        jLabelCochete3.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
+        jLabelCochete3.setText("[");
+
+        jLabelCochete4.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
+        jLabelCochete4.setText("]");
+
+        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo3Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed2(evt);
+            }
+        });
+        taudField1.setVisible(false);
+
+        polo3Label1.setText("Polo 3:");
+        taudLabel1.setVisible(false);
+
+        jTableMatrizk2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null}
+            },
+            new String [] {
+                "Matriz de Ganho"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMatrizk2.setAutoscrolls(false);
+        jTableMatrizk2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableMatrizk2.setFocusable(false);
+        jTableMatrizk2.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableMatrizk2.setRowMargin(2);
+        jTableMatrizk2.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableMatrizk2.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMatrizk2.setShowVerticalLines(false);
+
+        k2Label.setText("k2 =");
+        tauiLabel1.setVisible(false);
+
+        k1Label.setText("k1 =");
+        tauiLabel1.setVisible(false);
+
+        jTableMatrizk1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null}
+            },
+            new String [] {
+                "Matriz de Ganho"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMatrizk1.setAutoscrolls(false);
+        jTableMatrizk1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableMatrizk1.setFocusable(false);
+        jTableMatrizk1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableMatrizk1.setRowMargin(2);
+        jTableMatrizk1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableMatrizk1.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMatrizk1.setShowVerticalLines(false);
+
+        javax.swing.GroupLayout followerBoxLayout = new javax.swing.GroupLayout(followerBox);
+        followerBox.setLayout(followerBoxLayout);
+        followerBoxLayout.setHorizontalGroup(
+            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(polo1Label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(polo2Label1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(polo1Field1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(polo2Field1)))
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addComponent(polo3Label1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(polo3Field1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                        .addComponent(k1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                        .addComponent(k2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabelCochete3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabelCochete4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        followerBoxLayout.setVerticalGroup(
+            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(followerBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(polo1Label1)
+                    .addComponent(polo1Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(polo2Label1)
+                    .addComponent(polo2Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(polo3Label1)
+                    .addComponent(polo3Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+            .addGroup(followerBoxLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(k1Label)
+                    .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCochete3)
+                            .addGroup(followerBoxLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(k2Label))
+                            .addComponent(jLabelCochete4))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout controlSettingsLayout = new javax.swing.GroupLayout(controlSettings);
         controlSettings.setLayout(controlSettingsLayout);
         controlSettingsLayout.setHorizontalGroup(
             controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlSettingsLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(controlSettingsLayout.createSequentialGroup()
@@ -1658,7 +1842,8 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(kdLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(takField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(takField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(followerBox, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlSettingsLayout.setVerticalGroup(
@@ -1676,23 +1861,22 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(kdLabel2)
                         .addComponent(takField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(takCheck))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(followerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout closedLoopSettingsLayout = new javax.swing.GroupLayout(closedLoopSettings);
         closedLoopSettings.setLayout(closedLoopSettingsLayout);
         closedLoopSettingsLayout.setHorizontalGroup(
             closedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(closedLoopSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(controlSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, closedLoopSettingsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(controlSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         closedLoopSettingsLayout.setVerticalGroup(
             closedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(closedLoopSettingsLayout.createSequentialGroup()
-                .addComponent(controlSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(controlSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         apply.setText("Aplicar");
@@ -1799,44 +1983,44 @@ public class MainFrame extends javax.swing.JFrame {
             writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
-            .addComponent(closedLoopSettings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(writeBoxLayout.createSequentialGroup()
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loopChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
             .addGroup(writeBoxLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(outputTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(writeBoxLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(writeBoxLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addComponent(jButtonPreview)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonStop)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(apply))
+                    .addGroup(writeBoxLayout.createSequentialGroup()
                         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(writeBoxLayout.createSequentialGroup()
-                                .addComponent(jButtonPreview)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonStop)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(apply))
-                            .addGroup(writeBoxLayout.createSequentialGroup()
-                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(riseTimeLabel)
-                                    .addComponent(mpLabel))
-                                .addGap(32, 32, 32)
-                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(mpField, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                    .addComponent(riseTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(writeBoxLayout.createSequentialGroup()
-                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(PeakTimeLavel)
-                                    .addComponent(settingTimeLabel))
-                                .addGap(32, 32, 32)
-                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(settlingTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                    .addComponent(PeakTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(outputTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(riseTimeLabel)
+                            .addComponent(mpLabel))
+                        .addGap(32, 32, 32)
+                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(mpField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(riseTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(writeBoxLayout.createSequentialGroup()
+                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PeakTimeLavel)
+                            .addComponent(settingTimeLabel))
+                        .addGap(32, 32, 32)
+                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(settlingTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PeakTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         writeBoxLayout.setVerticalGroup(
             writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1852,7 +2036,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(openedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(closedLoopSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(6, 6, 6)
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(apply)
                     .addComponent(jButtonPreview)
@@ -1873,7 +2057,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(riseTimeLabel)
                     .addComponent(riseTimeField))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         riseTimeLabel.getAccessibleContext().setAccessibleName("Tempo de subida (5%-95%)");
@@ -1893,7 +2077,7 @@ public class MainFrame extends javax.swing.JFrame {
         ipPortTitleLayout.setHorizontalGroup(
             ipPortTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ipPortTitleLayout.createSequentialGroup()
-                .addComponent(ipPortToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ipPortToggler, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addContainerGap())
         );
         ipPortTitleLayout.setVerticalGroup(
@@ -2110,235 +2294,6 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(applyObserver))))
         );
 
-        polo2Label1.setText("Polo 2:");
-        taudLabel1.setVisible(false);
-
-        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
-        polo2Field1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                polo2Field1KeyPressed(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                polo2Field1KeyPressed1(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                polo2Field1KeyPressed2(evt);
-            }
-        });
-        taudField1.setVisible(false);
-
-        ((AbstractDocument)tauiField1.getDocument()).setDocumentFilter(new DoubleFilter());
-        polo1Field1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                polo1Field1KeyPressed(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                polo1Field1KeyPressed1(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                polo1Field1KeyPressed2(evt);
-            }
-        });
-        tauiField1.setVisible(false);
-
-        polo1Label1.setText("Polo 1:");
-        tauiLabel1.setVisible(false);
-
-        jLabelCochete3.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
-        jLabelCochete3.setText("[");
-
-        jLabelCochete4.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
-        jLabelCochete4.setText("]");
-
-        applyObserver1.setText("Aplicar");
-        applyObserver1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                applyObserver1Clicked(evt);
-            }
-        });
-
-        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
-        polo3Field1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                polo3Field1KeyPressed(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                polo3Field1KeyPressed1(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                polo3Field1KeyPressed2(evt);
-            }
-        });
-        taudField1.setVisible(false);
-
-        polo3Label1.setText("Polo 3:");
-        taudLabel1.setVisible(false);
-
-        jTableMatrizk2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null}
-            },
-            new String [] {
-                "Matriz de Ganho"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTableMatrizk2.setAutoscrolls(false);
-        jTableMatrizk2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTableMatrizk2.setFocusable(false);
-        jTableMatrizk2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTableMatrizk2.setRowMargin(2);
-        jTableMatrizk2.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTableMatrizk2.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jTableMatrizk2.setShowVerticalLines(false);
-
-        k2Label.setText("k2 =");
-        tauiLabel1.setVisible(false);
-
-        k1Label.setText("k1 =");
-        tauiLabel1.setVisible(false);
-
-        jTableMatrizk1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null}
-            },
-            new String [] {
-                "Matriz de Ganho"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTableMatrizk1.setAutoscrolls(false);
-        jTableMatrizk1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTableMatrizk1.setFocusable(false);
-        jTableMatrizk1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTableMatrizk1.setRowMargin(2);
-        jTableMatrizk1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTableMatrizk1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jTableMatrizk1.setShowVerticalLines(false);
-
-        javax.swing.GroupLayout followerBoxLayout = new javax.swing.GroupLayout(followerBox);
-        followerBox.setLayout(followerBoxLayout);
-        followerBoxLayout.setHorizontalGroup(
-            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(followerBoxLayout.createSequentialGroup()
-                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(polo1Label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(polo2Label1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(polo1Field1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(polo2Field1)))
-                    .addGroup(followerBoxLayout.createSequentialGroup()
-                        .addComponent(polo3Label1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(polo3Field1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                        .addComponent(k1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                        .addComponent(applyObserver1)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                        .addComponent(k2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabelCochete3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabelCochete4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        followerBoxLayout.setVerticalGroup(
-            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(followerBoxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(polo1Label1)
-                        .addComponent(polo1Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(k1Label))
-                    .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(followerBoxLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(followerBoxLayout.createSequentialGroup()
-                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(polo2Label1)
-                                    .addComponent(polo2Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(polo3Label1)
-                                            .addComponent(polo3Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18))
-                                    .addComponent(applyObserver1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
-                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelCochete4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelCochete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(followerBoxLayout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(k2Label)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())))
-                    .addGroup(followerBoxLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))))
-        );
-
-        k2Label.getAccessibleContext().setAccessibleName("k2 =");
-
-        followerTitle.setBackground(new java.awt.Color(158, 158, 158));
-
-        followerToggler.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        followerToggler.setText("Seguidor de Referência");
-        followerToggler.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                followerTogglerMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout followerTitleLayout = new javax.swing.GroupLayout(followerTitle);
-        followerTitle.setLayout(followerTitleLayout);
-        followerTitleLayout.setHorizontalGroup(
-            followerTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(followerTitleLayout.createSequentialGroup()
-                .addComponent(followerToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        followerTitleLayout.setVerticalGroup(
-            followerTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerTitleLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(followerToggler))
-        );
-
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
         sidebar.setLayout(sidebarLayout);
         sidebarLayout.setHorizontalGroup(
@@ -2353,8 +2308,6 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(ipPortTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(writeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(followerTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(followerBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2371,11 +2324,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(writeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(writeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 680, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(followerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(followerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(observerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(observerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2440,7 +2389,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(graphPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
@@ -2455,1075 +2404,1061 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ipPortFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipPortFieldActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_ipPortFieldActionPerformed
+    private void applyObserverClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyObserverClicked
+        System.out.println("Apertei na merdda do botao aplicar dos polos");
+        System.out.println("polo1 cheio =" + !polo1Field.getText().equals(""));
+        System.out.println("polo2 cheio = "+ !polo2Field.getText().equals(""));
+        if(!polo1Field.getText().equals("")&&!polo2Field.getText().equals("")){
+            List<Complex64F> poles = observer.getPoles();
 
-    private void ipPortTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortTitleMouseClicked
-      ipPortBox.setVisible(!ipPortBox.isVisible());
-    }//GEN-LAST:event_ipPortTitleMouseClicked
+            Complex64F selectedPole1 = null, selectedPole2 = null, aux;
+            boolean refresh = false;
 
-    private void writeTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_writeTogglerMouseClicked
-      writeBox.setVisible(!writeBox.isVisible());
-    }//GEN-LAST:event_writeTogglerMouseClicked
+            Pattern complexPattern = Pattern.compile("^\\s*([-+]?(?:\\d+|\\d*\\.\\d+))?(?:\\s*([-+](?:\\d+|\\d*\\.\\d+))[ij])?\\s*$");
+            Matcher matcher;
 
-    private void updatePVSelector(java.awt.event.ItemEvent evt){//GEN-FIRST:event_updatePVSelector
-      JCheckBox clickedCBox = (JCheckBox) evt.getSource();
-      String text = clickedCBox.getText();
-      TankTag t = text.equals("A0") ? TankTag.TANK_1 : text.equals("A1") ? TankTag.TANK_2 : null;
-      if (clickedCBox.isSelected()) {
-        pvItems.addElement(new ComboItem(t, text));
-        pvItemsString.add(text);
-      } else {
-        pvItems.removeElementAt(pvItemsString.indexOf(text));
-        pvItemsString.remove(text);
-      }
-      processVariableField.setEnabled(pvItems.getSize() > 0);
-    }//GEN-LAST:event_updatePVSelector
+            matcher = complexPattern.matcher(polo1Field.getText());
+            while (matcher.find()) {
+                System.out.println("real encontrado = "+matcher.group(1));
+                System.out.println("imaginario encontrado ="+matcher.group(2));
+                double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
+                double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
+                System.out.println("real 1 = "+real);
+                System.out.println("imag 1 = "+imag);
+                selectedPole1 = new Complex64F(real, imag);
+                if(selectedPole1.getReal()!=(aux = poles.get(0)).getReal()
+                    || selectedPole1.getImaginary()!=aux.getImaginary()){
+                    refresh = true;
+                }
+            }
 
-    private void readTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readTogglerMouseClicked
-      readBox.setVisible(!readBox.isVisible());
-    }//GEN-LAST:event_readTogglerMouseClicked
+            matcher = complexPattern.matcher(polo2Field.getText());
+            while (matcher.find()) {
+                System.out.println("real encontrado 2= "+matcher.group(1));
+                System.out.println("imaginario encontrado 2="+matcher.group(2));
+                double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
+                double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
 
-    private void closedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_closedLoopItemStateChanged
-      JRadioButton self = (JRadioButton) evt.getSource();
-      if (self.isSelected()) {
-        openedLoopSettings.setVisible(false);
-        closedLoopSettings.setVisible(true);
-        writeBox.setPreferredSize(new Dimension(357, 140));
-        jButtonPreview.setVisible(false);
-        
-        
-        kiField.setVisible(false);
-        kiLabel.setVisible(false);
+                System.out.println("real 2 = "+real);
+                System.out.println("imag 2 = "+imag);
+                selectedPole2 = new Complex64F(real, imag);
+                if(selectedPole2.getReal()!=(aux = poles.get(1)).getReal()
+                    || selectedPole2.getImaginary()!=aux.getImaginary()){
+                    refresh = true;
+                }
+            }
 
-        tauiField.setVisible(false);
-        tauiLabel.setVisible(false);
+            System.out.println("Polo1 = "+selectedPole1);
+            System.out.println("Polo2 = "+selectedPole2);
 
-        kdField.setVisible(false);
-        kdLabel.setVisible(false);
+            if(refresh){
+                List<Complex64F> refreshedPoles = new ArrayList<>();
+                refreshedPoles.add(selectedPole1);
+                refreshedPoles.add(selectedPole2);
+                observer.setPoles(refreshedPoles);
 
-        taudField.setVisible(false);
-        taudLabel.setVisible(false);
-        
-        PCheckbox.setEnabled(true);
-        ICheckbox.setEnabled(true);
-        DCheckbox.setEnabled(true);
-        
-        OCheckbox.setEnabled(true);
-        
-        errorCheckbox.setSelected(true);
-        SPCheckbox.setSelected(true);
-        errorCheckbox.setEnabled(true);
-        SPCheckbox.setEnabled(true);
-                
-        settingTimeLabel.setVisible(true);
-        settlingTimeField.setVisible(true);
-        
-        riseTimeField.setVisible(true);
-        riseTimeLabel.setVisible(true);
-        
-        PeakTimeField.setVisible(true);
-        PeakTimeLavel.setVisible(true);
-        
-        mpField.setVisible(true);
-        mpLabel.setVisible(true);
-        pack();
-      }
-    }//GEN-LAST:event_closedLoopItemStateChanged
+                Matrix L = observer.getL();
 
-    private void openedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_openedLoopItemStateChanged
-      JRadioButton self = (JRadioButton) evt.getSource();
-      if (self.isSelected()) {
-        openedLoopSettings.setVisible(true);
-        closedLoopSettings.setVisible(false);
-        writeBox.setPreferredSize(new Dimension(357, 215));
-        jButtonPreview.setVisible(true);
-        
-        PCheckbox.setSelected(false);
-        ICheckbox.setSelected(false);
-        DCheckbox.setSelected(false);
-        errorCheckbox.setSelected(false);
-        SPCheckbox.setSelected(false);
-        
-        
-        
-        PCheckbox.setEnabled(false);
-        ICheckbox.setEnabled(false);
-        DCheckbox.setEnabled(false);
-        errorCheckbox.setEnabled(false);
-        SPCheckbox.setEnabled(false);
-        
-        settingTimeLabel.setVisible(false);
-        settlingTimeField.setVisible(false);
-        
-        riseTimeField.setVisible(false);
-        riseTimeLabel.setVisible(false);
-        
-        PeakTimeField.setVisible(false);
-        PeakTimeLavel.setVisible(false);
-        
-        mpField.setVisible(false);
-        mpLabel.setVisible(false);
-        
-        pack();
-      }
-    }//GEN-LAST:event_openedLoopItemStateChanged
+                System.out.println("Ganho 0 =" + Double.toString(L.get(0, 0)));
+                System.out.println("Ganho 1 =" + Double.toString(L.get(1, 0)));
 
-  private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
-    
-    mpField.setText("...");
-    PeakTimeField.setText("...");
-    settlingTimeField.setText("...");
-    riseTimeField.setText("...");
-   
-    graphPanel1.clearAll();
-    graphPanel2.clearAll();
+                jTableMatrizGanho.getModel().setValueAt(L.get(0, 0), 0, 0);
+                jTableMatrizGanho.getModel().setValueAt(L.get(1, 0), 1, 0);
 
-    if (!"".equals(setPointField.getText())) {
-      double selectedSetPoint = Double.parseDouble(setPointField.getText());
-      if (selectedSetPoint != currentSetPoint) {
-        call(setPointChange, currentSetPoint = selectedSetPoint);
-      }
-    }
+            }
 
-    if (!"".equals(kpField.getText())) {
-      double selectedKp = Double.parseDouble(kpField.getText());
-      if (selectedKp != currentKp) {
-        call(kpChange, currentKp = selectedKp);
-      }
-    }
-
-    if (!"".equals(kiField.getText())) {
-      double selectedKi = Double.parseDouble(kiField.getText());
-      if (selectedKi != currentKi) {
-        call(kiChange, currentKi = selectedKi);
-      }
-    }
-
-    if (!"".equals(kdField.getText())) {
-      double selectedKd = Double.parseDouble(kdField.getText());
-      if (selectedKd != currentKd) {
-        call(kdChange, currentKd = selectedKd);
-      }
-    }
-    
-    if (!"".equals(kpField1.getText())) {
-      double selectedKp1 = Double.parseDouble(kpField1.getText());
-      if (selectedKp1 != currentKp1) {
-        call(kp1Change, currentKp1 = selectedKp1);
-      }
-    }
-
-    if (!"".equals(kiField1.getText())) {
-      double selectedKi1 = Double.parseDouble(kiField1.getText());
-      if (selectedKi1 != currentKi1) {
-        call(ki1Change, currentKi1 = selectedKi1);
-      }
-    }
-
-    if (!"".equals(kdField1.getText())) {
-      double selectedKd1 = Double.parseDouble(kdField1.getText());
-      if (selectedKd1 != currentKd1) {
-        call(kd1Change, currentKd1 = selectedKd1);
-      }
-    }
-    
-    if(cascade != cascadeButton.isSelected()){
-      call(cascadeChange, cascade = cascadeButton.isSelected());
-    }
-    
-    if(!"".equals(takField.getText())){
-      double selectedTak = Double.parseDouble(takField.getText());
-      if(selectedTak != currentTak){
-        call(TakChange, currentTak = selectedTak);
-      }
-    }
-    
-    call(TakChange, currentTak = 0.0);
-    
-    if ((ComboItem) controllerTypeCombo.getSelectedItem() != null) {
-      ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue();
-      if (!selectedControllerType.equals(currentControllerType)) {
-        switch(selectedControllerType){
-          case P:
-            PCheckbox.setSelected(true);
-            ICheckbox.setSelected(false);
-            DCheckbox.setSelected(false);
-            break;
-          case PI:
-            PCheckbox.setSelected(true);
-            ICheckbox.setSelected(true);
-            DCheckbox.setSelected(false);
-            break;
-          case PD:
-            PCheckbox.setSelected(true);
-            ICheckbox.setSelected(false);
-            DCheckbox.setSelected(true);
-            break;
-          case PID:
-            PCheckbox.setSelected(true);
-            ICheckbox.setSelected(true);
-            DCheckbox.setSelected(true);
-            break;
-          case PI_D:
-            PCheckbox.setSelected(true);
-            ICheckbox.setSelected(true);
-            DCheckbox.setSelected(true);
         }
-        
-        call(controllerTypeChange, currentControllerType = selectedControllerType);
-      }
-    }
-    
-    if ((ComboItem) controllerTypeCombo1.getSelectedItem() != null) {
-      ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo1.getSelectedItem()).getValue();
-      if (!selectedControllerType.equals(currentControllerType1)) {
-        call(controllerTypeChange1, currentControllerType1 = selectedControllerType);
-      }
-    }
-    
-    if ((ComboItem) processVariableField.getSelectedItem() != null) {
-      TankTag selectedPV = (TankTag) ((ComboItem) processVariableField.getSelectedItem()).getValue();
-      if (selectedPV != currentPV) {
-        call(processVariableChange, currentPV = selectedPV);
-      }
-    }
 
-    if (!"".equals(amplitudeField.getText())) {
-      double selectedAmplitude = Double.parseDouble(amplitudeField.getText());
-      if (selectedAmplitude != currentAmplitide) {
-        call(amplitudeChange, currentAmplitide = selectedAmplitude);
-      }
-    }
-    if (!"".equals(periodField.getText())) {
-      double selectedPeriod = Double.parseDouble(periodField.getText());
-      if (selectedPeriod != currentPeriod) {
-        call(periodChange, currentPeriod = selectedPeriod);
-      }
-    }
+        if(jTableMatrizGanho.getModel().getValueAt(0, 0)!=null
+            && !"".equals(jTableMatrizGanho.getModel().getValueAt(0, 0).toString())
+            && jTableMatrizGanho.getModel().getValueAt(1, 0)!=null
+            && !"".equals(jTableMatrizGanho.getModel().getValueAt(1, 0).toString())){
+            double selectedGanho1 = 0, selectedGanho2 = 0;
+            boolean refresh = false;
 
-    JToggleButton[] waves = {sinus, sawtooth, square, step, random};
-    int i = 0;
-    for (JToggleButton wave : waves) {
-      if (wave.isSelected() && !wave.equals(currentWaveButton)) {
-        call(waveChange, currentWave);
-        currentWaveButton = wave;
-      }
-    }
+            try{
+                selectedGanho1 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(0, 0).toString());
+                selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
+                System.out.println("ganho 2 diferente?" + (selectedGanho2 != observer.getL().get(1, 0)));
+                System.out.println("ganho 2 diferente?" + (observer.getL().get(1, 0)));
+                System.out.println("ganho 2 diferente?" + (selectedGanho2));
 
-    if (closedLoop.isSelected() ^ currentLoop.equals(Loop.CLOSED)) {
-      call(loopChange, currentLoop = closedLoop.isSelected() ? Loop.CLOSED : Loop.OPENED);
-    }
+                if(selectedGanho1 != observer.getL().get(0, 0)) refresh = true;
+                selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
+                if(selectedGanho2 != observer.getL().get(1, 0)) refresh = true;
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            if(refresh){
+                System.out.println("ganho 00000 = "+selectedGanho1);
+                System.out.println("ganho 11111 = "+selectedGanho2);
 
-    call(applyClicked);
+                Matrix L = new Matrix(2, 1);
 
-  }//GEN-LAST:event_applyMouseClicked
+                L.set(0, 0, selectedGanho1);
+                L.set(1, 0, selectedGanho2);
 
-    private void randomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_randomItemStateChanged
-      if (((JToggleButton) evt.getSource()).isSelected()) {
-        currentWave = Wave.RANDOM;
-        frequency.setVisible(true);
-        period.setVisible(true);
-      }
-    }//GEN-LAST:event_randomItemStateChanged
+                observer.setL(L);
 
-    private void connectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connectMouseClicked
-      String[] ipPortArray = ipPortField.getText().split(":");
-      if (ipPortArray.length > 1) {
-        String ip = ipPortArray[0];
-        int port = Integer.parseInt(ipPortArray[1]);
+                List<Complex64F> poles = observer.getPoles();
 
-        if (!currentIp.equals(ip)) {
-          call(ipChange, currentIp = ip);
+                Complex64F aux = poles.get(0);
+                polo1Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
+
+                aux = poles.get(1);
+                polo2Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
+            }
         }
-        if (port != currentPort) {
-          call(portChange, currentPort = port);
-        }
-      }
-      apply.setEnabled(false);
-      statusConnectedLabel.setText("Não Conectado");
-      statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
-      call(connectClicked);
-    }//GEN-LAST:event_connectMouseClicked
-
-    private void stepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stepItemStateChanged
-      if (((JToggleButton) evt.getSource()).isSelected()) {
-        currentWave = Wave.STEP;
-        frequency.setVisible(false);
-        period.setVisible(false);
-      }
-    }//GEN-LAST:event_stepItemStateChanged
-
-    private void squareItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_squareItemStateChanged
-      if (((JToggleButton) evt.getSource()).isSelected()) {
-        currentWave = Wave.SQUARE;
-        frequency.setVisible(true);
-        period.setVisible(true);
-      }
-    }//GEN-LAST:event_squareItemStateChanged
-
-    private void sawtoothItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sawtoothItemStateChanged
-      if (((JToggleButton) evt.getSource()).isSelected()) {
-        currentWave = Wave.SAWTOOTH;
-        frequency.setVisible(true);
-        period.setVisible(true);
-      }
-    }//GEN-LAST:event_sawtoothItemStateChanged
-
-    private void sinusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sinusItemStateChanged
-      if (((JToggleButton) evt.getSource()).isSelected()) {
-        currentWave = Wave.SINUSOID;
-        frequency.setVisible(true);
-        period.setVisible(true);
-      }
-    }//GEN-LAST:event_sinusItemStateChanged
-
-    private void jButtonPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewActionPerformed
-      double x = 0;
-      double p;
-      double a = Double.parseDouble(amplitudeField.getText());
-      double y;
-      graphPanel3.clean("Sinal para configuracao");
-      switch (currentWave) {
-        case SINUSOID:
-          p = Double.parseDouble(periodField.getText());
-          while (x <= 1.05 * p) {
-            y = a / 2 * Math.sin((x / p * 2 * Math.PI)) + a / 2;
-            graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-            x = x + p / 40;
-          }
-          break;
-        case SAWTOOTH:
-          p = Double.parseDouble(periodField.getText());
-          while (x <= 2 * p) {
-            double r = x % p;
-            y = (a / p) * r;
-            graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-            x = x + p / 1000;
-          }
-          break;
-        case SQUARE:
-          p = Double.parseDouble(periodField.getText());
-          while (x <= 2 * p) {
-            double r = x % p;
-            y = r >= p / 2 ? 0 : a;
-            graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-            x = x + p / 1000;
-          }
-          break;
-        case STEP:
-          p = 5;
-          while (x <= 2 * p) {
-            y = a;
-            graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-            x = x + p / 1000;
-          }
-          break;
-        case RANDOM:
-          break;
-      }
-    }//GEN-LAST:event_jButtonPreviewActionPerformed
-
-    private void closedLoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closedLoopActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_closedLoopActionPerformed
-
-    private void jButtonStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStopMouseClicked
-      call(stopClicked);
-      // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonStopMouseClicked
-
-    private void controllerTypeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeComboItemStateChanged
-      switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
-        case PI:
-          kiField.setVisible(true);
-          kiLabel.setVisible(true);
-          
-          tauiField.setVisible(true);
-          tauiLabel.setVisible(true);
-          
-          kdField.setVisible(false);
-          kdLabel.setVisible(false);
-          
-          taudField.setVisible(false);
-          taudLabel.setVisible(false);
-          
-          if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
-          break;
-        case PID:
-        case PI_D:
-          kiField.setVisible(true);
-          kiLabel.setVisible(true);
-          
-          tauiField.setVisible(true);
-          tauiLabel.setVisible(true);
-          
-          kdField.setVisible(true);
-          kdLabel.setVisible(true);
-          
-          taudField.setVisible(true);
-          taudLabel.setVisible(true);
-          
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
-          
-          break;
-        case PD:
-          kiField.setVisible(false);
-          kiLabel.setVisible(false);
-          
-          tauiField.setVisible(false);
-          tauiLabel.setVisible(false);
-          
-          kdField.setVisible(true);
-          kdLabel.setVisible(true);
-          
-          taudField.setVisible(true);
-          taudLabel.setVisible(true);
-          
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-          if(enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.remove(INTEGRAL_PART_CURVE);
-          
-          break;
-        default:
-          kiField.setVisible(false);
-          kiLabel.setVisible(false);
-          
-          tauiField.setVisible(false);
-          tauiLabel.setVisible(false);
-          
-          kdField.setVisible(false);
-          kdLabel.setVisible(false);
-          
-          taudField.setVisible(false);
-          taudLabel.setVisible(false);
-          break;
-      }
-    }//GEN-LAST:event_controllerTypeComboItemStateChanged
-
-  private void periodFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_periodFieldKeyPressed
-    try{
-    if(!"".equals(periodField.getText()) && periodField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double f = 1/Double.parseDouble(periodField.getText());
-      frequencyField.setText(String.format("%6.1e", f));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_periodFieldKeyPressed
-
-  private void frequencyFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_frequencyFieldKeyPressed
-    try{
-    if(!"".equals(frequencyField.getText()) && frequencyField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double f = 1/Double.parseDouble(frequencyField.getText());
-      periodField.setText(String.format("%6.1e", f));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_frequencyFieldKeyPressed
-
-  private void kiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiFieldKeyPressed
-    try{
-    if(!"".equals(kiField.getText()) && kiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double taui = 0;
-      if(!kpField.getText().equals("")){
-        taui = Double.parseDouble(kpField.getText())/Double.parseDouble(kiField.getText());
-      }
-      tauiField.setText(String.format("%6.1e", taui));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kiFieldKeyPressed
-
-  private void tauiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiFieldKeyPressed
-    try{
-    if(!"".equals(tauiField.getText()) && tauiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double ki = 0;
-      if(!kpField.getText().equals("")){
-        ki = Double.parseDouble(kpField.getText())/Double.parseDouble(tauiField.getText());
-      }
-      kiField.setText(String.format("%6.1e", ki));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_tauiFieldKeyPressed
-
-  private void kdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdFieldKeyPressed
-    try{
-      if(!"".equals(kdField.getText()) && kdField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-        double taud = Double.MAX_VALUE;
-        if(!kpField.getText().equals("") && Double.parseDouble(kpField.getText()) != 0){
-          taud = Double.parseDouble(kdField.getText())/Double.parseDouble(kpField.getText());
-        }else if(Double.parseDouble(kdField.getText())<0){
-          taud = Double.MIN_VALUE;
-        }
-        taudField.setText(String.format("%6.1e", taud));
-      }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kdFieldKeyPressed
-
-  private void taudFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudFieldKeyPressed
-    try{
-    if(!"".equals(taudField.getText()) && taudField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double kd = 0;
-      if(!kpField.getText().equals("")){
-        kd = Double.parseDouble(kpField.getText())*Double.parseDouble(taudField.getText());
-      }
-      kdField.setText(String.format("%6.1e", kd));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_taudFieldKeyPressed
-
-    boolean buttonGraph = false;
-    private void graphTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphTogglerMouseClicked
-        graphBox.setVisible(!graphBox.isVisible());
-    }//GEN-LAST:event_graphTogglerMouseClicked
-
-  private void uCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_uCheckboxItemStateChanged
-    if(!uCheckbox.isSelected())
-      graphPanel2.removeSerie(CALCULATED_SIGNAL_CURVE);
-  }//GEN-LAST:event_uCheckboxItemStateChanged
-
-  private void u_barCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_u_barCheckboxItemStateChanged
-    if(!u_barCheckbox.isSelected())
-      graphPanel2.removeSerie(SENDED_SIGNAL_CURVE);
-  }//GEN-LAST:event_u_barCheckboxItemStateChanged
-
-  private void errorCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_errorCheckboxItemStateChanged
-    if(!errorCheckbox.isSelected())
-      graphPanel1.removeSerie(ERROR_CURVE);
-  }//GEN-LAST:event_errorCheckboxItemStateChanged
-
-  private void SPCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SPCheckboxItemStateChanged
-    if(!SPCheckbox.isSelected())
-      graphPanel1.removeSerie(SETPOINT_CURVE);
-  }//GEN-LAST:event_SPCheckboxItemStateChanged
-
-  private void level1CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level1CheckboxItemStateChanged
-    if(!level1Checkbox.isSelected())
-        graphPanel1.removeSerie(TANK1_LEVEL_CURVE);
-  }//GEN-LAST:event_level1CheckboxItemStateChanged
-
-  private void level2CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level2CheckboxItemStateChanged
-    if(!level2Checkbox.isSelected())
-      graphPanel1.removeSerie(TANK2_LEVEL_CURVE);
-  }//GEN-LAST:event_level2CheckboxItemStateChanged
-
-  private void PCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PCheckboxItemStateChanged
-    if(!PCheckbox.isSelected())
-      graphPanel2.removeSerie(PROPORCIONAL_PART_CURVE);
-  }//GEN-LAST:event_PCheckboxItemStateChanged
-
-  private void ICheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ICheckboxItemStateChanged
-    if(!ICheckbox.isSelected())
-      graphPanel2.removeSerie(INTEGRAL_PART_CURVE);
-  }//GEN-LAST:event_ICheckboxItemStateChanged
-
-  private void DCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DCheckboxItemStateChanged
-    if(!DCheckbox.isSelected())
-      graphPanel2.removeSerie(DERIVATIVE_PART_CURVE);
-  }//GEN-LAST:event_DCheckboxItemStateChanged
-
-  private void cascadeButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cascadeButtonItemStateChanged
-    if(cascadeButton.isSelected()){
-      processVariableLabel.setVisible(false);
-      processVariableField.setVisible(false);
-      
-      jLabel2.setVisible(true);
-      parameters2loop.setVisible(true);
-      try{
-      processVariableField.setSelectedIndex(1);
-      }catch(IllegalArgumentException e){
-        System.out.println("Nenhuma entrada selecionada.");
-      }
-    }else{
-      processVariableLabel.setVisible(true);
-      processVariableField.setVisible(true);
-      
-      jLabel2.setVisible(false);
-      parameters2loop.setVisible(false);
-      
-    }
-  }//GEN-LAST:event_cascadeButtonItemStateChanged
-
-  private void controllerTypeCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeCombo1ItemStateChanged
-    switch((ControllerType)((ComboItem)controllerTypeCombo1.getSelectedItem()).getValue()){
-        case PI:
-          kiField1.setVisible(true);
-          kiLabel1.setVisible(true);
-          
-          tauiField1.setVisible(true);
-          tauiLabel1.setVisible(true);
-          
-          kdField1.setVisible(false);
-          kdLabel1.setVisible(false);
-          
-          taudField1.setVisible(false);
-          taudLabel1.setVisible(false);
-          
-          if(enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE_1);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.add(INTEGRAL_PART_CURVE_1);
-          break;
-        case PID:
-        case PI_D:
-          kiField1.setVisible(true);
-          kiLabel1.setVisible(true);
-          
-          tauiField1.setVisible(true);
-          tauiLabel1.setVisible(true);
-          
-          kdField1.setVisible(true);
-          kdLabel1.setVisible(true);
-          
-          taudField1.setVisible(true);
-          taudLabel1.setVisible(true);
-          
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-          if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.add(INTEGRAL_PART_CURVE_1);
-          
-          break;
-        case PD:
-          kiField1.setVisible(false);
-          kiLabel1.setVisible(false);
-          
-          tauiField1.setVisible(false);
-          tauiLabel1.setVisible(false);
-          
-          kdField1.setVisible(true);
-          kdLabel1.setVisible(true);
-          
-          taudField1.setVisible(true);
-          taudLabel1.setVisible(true);
-          
-          if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
-          if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-          if(enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.remove(INTEGRAL_PART_CURVE_1);
-          
-          break;
-        default:
-          kiField1.setVisible(false);
-          kiLabel1.setVisible(false);
-          
-          tauiField1.setVisible(false);
-          tauiLabel1.setVisible(false);
-          
-          kdField1.setVisible(false);
-          kdLabel1.setVisible(false);
-          
-          taudField1.setVisible(false);
-          taudLabel1.setVisible(false);
-          break;
-      }
-  }//GEN-LAST:event_controllerTypeCombo1ItemStateChanged
-
-  private void tauiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed
-    try{
-    if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double ki = 0;
-      if(!kpField1.getText().equals("")){
-        ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
-      }
-      kiField1.setText(String.format("%6.1e", ki));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_tauiField1KeyPressed
-
-  private void tauiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed1
-    try{
-    if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double ki = 0;
-      if(!kpField1.getText().equals("")){
-        ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
-      }
-      kiField1.setText(String.format("%6.1e", ki));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_tauiField1KeyPressed1
-
-  private void tauiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed2
-    try{
-    if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double ki = 0;
-      if(!kpField1.getText().equals("")){
-        ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
-      }
-      kiField1.setText(String.format("%6.1e", ki));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_tauiField1KeyPressed2
-
-  private void kiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed
-    try{
-    if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double taui = 0;
-      if(!kpField1.getText().equals("")){
-        taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
-      }
-      tauiField1.setText(String.format("%6.1e", taui));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kiField1KeyPressed
-
-  private void kiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed1
-    try{
-    if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double taui = 0;
-      if(!kpField1.getText().equals("")){
-        taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
-      }
-      tauiField1.setText(String.format("%6.1e", taui));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kiField1KeyPressed1
-
-  private void kiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed2
-    try{
-    if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double taui = 0;
-      if(!kpField1.getText().equals("")){
-        taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
-      }
-      tauiField1.setText(String.format("%6.1e", taui));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kiField1KeyPressed2
-
-  private void taudField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed
-    try{
-    if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double kd = 0;
-      if(!kpField1.getText().equals("")){
-        kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
-      }
-      kdField1.setText(String.format("%6.1e", kd));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_taudField1KeyPressed
-
-  private void taudField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed1
-    try{
-    if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double kd = 0;
-      if(!kpField1.getText().equals("")){
-        kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
-      }
-      kdField1.setText(String.format("%6.1e", kd));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_taudField1KeyPressed1
-
-  private void taudField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed2
-    try{
-    if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-      double kd = 0;
-      if(!kpField1.getText().equals("")){
-        kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
-      }
-      kdField1.setText(String.format("%6.1e", kd));
-    }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_taudField1KeyPressed2
-
-  private void kdField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed
-    try{
-      if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-        double taud = Double.MAX_VALUE;
-        if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-          taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-        }else if(Double.parseDouble(kdField1.getText())<0){
-          taud = Double.MIN_VALUE;
-        }
-        taudField1.setText(String.format("%6.1e", taud));
-      }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kdField1KeyPressed
-
-  private void kdField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed1
-    try{
-      if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-        double taud = Double.MAX_VALUE;
-        if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-          taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-        }else if(Double.parseDouble(kdField1.getText())<0){
-          taud = Double.MIN_VALUE;
-        }
-        taudField1.setText(String.format("%6.1e", taud));
-      }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kdField1KeyPressed1
-
-  private void kdField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed2
-    try{
-      if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-        double taud = Double.MAX_VALUE;
-        if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-          taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-        }else if(Double.parseDouble(kdField1.getText())<0){
-          taud = Double.MIN_VALUE;
-        }
-        taudField1.setText(String.format("%6.1e", taud));
-      }
-    }catch(Exception e){
-      
-    }
-  }//GEN-LAST:event_kdField1KeyPressed2
-
-    private void observerTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_observerTogglerMouseClicked
-        observerBox.setVisible(!observerBox.isVisible());
-    }//GEN-LAST:event_observerTogglerMouseClicked
-
-    private void polo2FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo2FieldKeyPressed
-
-    private void polo2FieldKeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo2FieldKeyPressed1
-
-    private void polo2FieldKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed2
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo2FieldKeyPressed2
-
-    private void polo1FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1FieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo1FieldKeyPressed
-
-    private void polo1FieldKeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1FieldKeyPressed1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo1FieldKeyPressed1
+    }//GEN-LAST:event_applyObserverClicked
 
     private void polo1FieldKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1FieldKeyPressed2
         // TODO add your handling code here:
     }//GEN-LAST:event_polo1FieldKeyPressed2
 
-  private void applyObserverClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyObserverClicked
-    System.out.println("Apertei na merdda do botao aplicar dos polos");
-    System.out.println("polo1 cheio =" + !polo1Field.getText().equals(""));
-    System.out.println("polo2 cheio = "+ !polo2Field.getText().equals(""));
-    if(!polo1Field.getText().equals("")&&!polo2Field.getText().equals("")){
-      List<Complex64F> poles = observer.getPoles();
-      
-      Complex64F selectedPole1 = null, selectedPole2 = null, aux;
-      boolean refresh = false;
-      
-      Pattern complexPattern = Pattern.compile("^\\s*([-+]?(?:\\d+|\\d*\\.\\d+))?(?:\\s*([-+](?:\\d+|\\d*\\.\\d+))[ij])?\\s*$");
-      Matcher matcher;
-      
-      matcher = complexPattern.matcher(polo1Field.getText());
-      while (matcher.find()) {
-        System.out.println("real encontrado = "+matcher.group(1));
-        System.out.println("imaginario encontrado ="+matcher.group(2));
-        double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
-        double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
-        System.out.println("real 1 = "+real);
-        System.out.println("imag 1 = "+imag);
-        selectedPole1 = new Complex64F(real, imag);
-        if(selectedPole1.getReal()!=(aux = poles.get(0)).getReal() 
-              || selectedPole1.getImaginary()!=aux.getImaginary()){
-          refresh = true;
-        }
-      }
-      
-      matcher = complexPattern.matcher(polo2Field.getText());
-      while (matcher.find()) {
-        System.out.println("real encontrado 2= "+matcher.group(1));
-        System.out.println("imaginario encontrado 2="+matcher.group(2));
-        double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
-        double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
-                
-        System.out.println("real 2 = "+real);
-        System.out.println("imag 2 = "+imag);
-        selectedPole2 = new Complex64F(real, imag);
-        if(selectedPole2.getReal()!=(aux = poles.get(1)).getReal() 
-              || selectedPole2.getImaginary()!=aux.getImaginary()){
-          refresh = true;
-        }
-      }
-      
-      System.out.println("Polo1 = "+selectedPole1);
-      System.out.println("Polo2 = "+selectedPole2);
-      
-      if(refresh){
-        List<Complex64F> refreshedPoles = new ArrayList<>();
-        refreshedPoles.add(selectedPole1);
-        refreshedPoles.add(selectedPole2);
-        observer.setPoles(refreshedPoles);
-        
-        Matrix L = observer.getL();
-        
-        System.out.println("Ganho 0 =" + Double.toString(L.get(0, 0)));
-        System.out.println("Ganho 1 =" + Double.toString(L.get(1, 0)));
-        
-        jTableMatrizGanho.getModel().setValueAt(L.get(0, 0), 0, 0);
-        jTableMatrizGanho.getModel().setValueAt(L.get(1, 0), 1, 0);
-        
-      }
-      
-      
-      
-    }
-    
-    if(jTableMatrizGanho.getModel().getValueAt(0, 0)!=null
-            && !"".equals(jTableMatrizGanho.getModel().getValueAt(0, 0).toString()) 
-            && jTableMatrizGanho.getModel().getValueAt(1, 0)!=null
-            && !"".equals(jTableMatrizGanho.getModel().getValueAt(1, 0).toString())){
-      double selectedGanho1 = 0, selectedGanho2 = 0;
-      boolean refresh = false;
-      
-      try{
-        selectedGanho1 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(0, 0).toString());
-        selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
-        System.out.println("ganho 2 diferente?" + (selectedGanho2 != observer.getL().get(1, 0)));
-        System.out.println("ganho 2 diferente?" + (observer.getL().get(1, 0)));
-        System.out.println("ganho 2 diferente?" + (selectedGanho2));
-        
-        if(selectedGanho1 != observer.getL().get(0, 0)) refresh = true;
-        selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
-        if(selectedGanho2 != observer.getL().get(1, 0)) refresh = true;
-      } catch(Exception e){
-        e.printStackTrace();
-      }
-      if(refresh){
-        System.out.println("ganho 00000 = "+selectedGanho1);
-        System.out.println("ganho 11111 = "+selectedGanho2);
+    private void polo1FieldKeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1FieldKeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1FieldKeyPressed1
 
-        Matrix L = new Matrix(2, 1);
+    private void polo1FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1FieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1FieldKeyPressed
 
-        L.set(0, 0, selectedGanho1);
-        L.set(1, 0, selectedGanho2);
+    private void polo2FieldKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2FieldKeyPressed2
 
-        observer.setL(L);
+    private void polo2FieldKeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2FieldKeyPressed1
 
-        List<Complex64F> poles = observer.getPoles();
+    private void polo2FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2FieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2FieldKeyPressed
 
-        Complex64F aux = poles.get(0);
-        polo1Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
+    private void observerTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_observerTogglerMouseClicked
+        observerBox.setVisible(!observerBox.isVisible());
+    }//GEN-LAST:event_observerTogglerMouseClicked
 
-        aux = poles.get(1);
-        polo2Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
-      }
-    }
-  }//GEN-LAST:event_applyObserverClicked
+    private void connectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_connectMouseClicked
+        String[] ipPortArray = ipPortField.getText().split(":");
+        if (ipPortArray.length > 1) {
+            String ip = ipPortArray[0];
+            int port = Integer.parseInt(ipPortArray[1]);
 
-    private void OCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OCheckboxItemStateChanged
-            if(!OCheckbox.isSelected()){
-              graphPanel1.removeSerie(OBSERVER_CURVE_2);
-              graphPanel1.removeSerie(OBSERVER_CURVE_1);
-              graphPanel1.removeSerie(ERROR_OBSERVER_CURVE_1);
-              graphPanel1.removeSerie(ERROR_OBSERVER_CURVE_2);
+            if (!currentIp.equals(ip)) {
+                call(ipChange, currentIp = ip);
             }
-    }//GEN-LAST:event_OCheckboxItemStateChanged
+            if (port != currentPort) {
+                call(portChange, currentPort = port);
+            }
+        }
+        apply.setEnabled(false);
+        statusConnectedLabel.setText("Não Conectado");
+        statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
+        call(connectClicked);
+    }//GEN-LAST:event_connectMouseClicked
 
-    private void OCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OCheckboxActionPerformed
+    private void ipPortFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipPortFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_OCheckboxActionPerformed
+    }//GEN-LAST:event_ipPortFieldActionPerformed
 
-  private void takCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takCheckActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_takCheckActionPerformed
+    private void ipPortTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipPortTitleMouseClicked
+        ipPortBox.setVisible(!ipPortBox.isVisible());
+    }//GEN-LAST:event_ipPortTitleMouseClicked
 
-  private void applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_applyActionPerformed
-
-    private void polo2Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed
+    private void jButtonStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStopMouseClicked
+        call(stopClicked);
         // TODO add your handling code here:
-    }//GEN-LAST:event_polo2Field1KeyPressed
+    }//GEN-LAST:event_jButtonStopMouseClicked
 
-    private void polo2Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed1
+    private void closedLoopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closedLoopActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_polo2Field1KeyPressed1
+    }//GEN-LAST:event_closedLoopActionPerformed
 
-    private void polo2Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed2
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo2Field1KeyPressed2
+    private void closedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_closedLoopItemStateChanged
+        JRadioButton self = (JRadioButton) evt.getSource();
+        if (self.isSelected()) {
+            openedLoopSettings.setVisible(false);
+            closedLoopSettings.setVisible(true);
+            writeBox.setPreferredSize(new Dimension(357, 140));
+            jButtonPreview.setVisible(false);
 
-    private void polo1Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo1Field1KeyPressed
+            kiField.setVisible(false);
+            kiLabel.setVisible(false);
 
-    private void polo1Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo1Field1KeyPressed1
+            tauiField.setVisible(false);
+            tauiLabel.setVisible(false);
 
-    private void polo1Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed2
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo1Field1KeyPressed2
+            kdField.setVisible(false);
+            kdLabel.setVisible(false);
 
-    private void applyObserver1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyObserver1Clicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_applyObserver1Clicked
+            taudField.setVisible(false);
+            taudLabel.setVisible(false);
 
-    private void followerTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_followerTogglerMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_followerTogglerMouseClicked
+            PCheckbox.setEnabled(true);
+            ICheckbox.setEnabled(true);
+            DCheckbox.setEnabled(true);
 
-    private void polo3Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_polo3Field1KeyPressed
+            OCheckbox.setEnabled(true);
 
-    private void polo3Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed1
+            errorCheckbox.setSelected(true);
+            SPCheckbox.setSelected(true);
+            errorCheckbox.setEnabled(true);
+            SPCheckbox.setEnabled(true);
+
+            settingTimeLabel.setVisible(true);
+            settlingTimeField.setVisible(true);
+
+            riseTimeField.setVisible(true);
+            riseTimeLabel.setVisible(true);
+
+            PeakTimeField.setVisible(true);
+            PeakTimeLavel.setVisible(true);
+
+            mpField.setVisible(true);
+            mpLabel.setVisible(true);
+            pack();
+        }
+    }//GEN-LAST:event_closedLoopItemStateChanged
+
+    private void openedLoopItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_openedLoopItemStateChanged
+        JRadioButton self = (JRadioButton) evt.getSource();
+        if (self.isSelected()) {
+            openedLoopSettings.setVisible(true);
+            closedLoopSettings.setVisible(false);
+            writeBox.setPreferredSize(new Dimension(357, 215));
+            jButtonPreview.setVisible(true);
+
+            PCheckbox.setSelected(false);
+            ICheckbox.setSelected(false);
+            DCheckbox.setSelected(false);
+            errorCheckbox.setSelected(false);
+            SPCheckbox.setSelected(false);
+
+            PCheckbox.setEnabled(false);
+            ICheckbox.setEnabled(false);
+            DCheckbox.setEnabled(false);
+            errorCheckbox.setEnabled(false);
+            SPCheckbox.setEnabled(false);
+
+            settingTimeLabel.setVisible(false);
+            settlingTimeField.setVisible(false);
+
+            riseTimeField.setVisible(false);
+            riseTimeLabel.setVisible(false);
+
+            PeakTimeField.setVisible(false);
+            PeakTimeLavel.setVisible(false);
+
+            mpField.setVisible(false);
+            mpLabel.setVisible(false);
+
+            pack();
+        }
+    }//GEN-LAST:event_openedLoopItemStateChanged
+
+    private void jButtonPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviewActionPerformed
+        double x = 0;
+        double p;
+        double a = Double.parseDouble(amplitudeField.getText());
+        double y;
+        graphPanel3.clean("Sinal para configuracao");
+        switch (currentWave) {
+            case SINUSOID:
+            p = Double.parseDouble(periodField.getText());
+            while (x <= 1.05 * p) {
+                y = a / 2 * Math.sin((x / p * 2 * Math.PI)) + a / 2;
+                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                x = x + p / 40;
+            }
+            break;
+            case SAWTOOTH:
+            p = Double.parseDouble(periodField.getText());
+            while (x <= 2 * p) {
+                double r = x % p;
+                y = (a / p) * r;
+                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                x = x + p / 1000;
+            }
+            break;
+            case SQUARE:
+            p = Double.parseDouble(periodField.getText());
+            while (x <= 2 * p) {
+                double r = x % p;
+                y = r >= p / 2 ? 0 : a;
+                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                x = x + p / 1000;
+            }
+            break;
+            case STEP:
+            p = 5;
+            while (x <= 2 * p) {
+                y = a;
+                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                x = x + p / 1000;
+            }
+            break;
+            case RANDOM:
+            break;
+        }
+    }//GEN-LAST:event_jButtonPreviewActionPerformed
+
+    private void applyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_polo3Field1KeyPressed1
+    }//GEN-LAST:event_applyActionPerformed
+
+    private void applyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyMouseClicked
+
+        mpField.setText("...");
+        PeakTimeField.setText("...");
+        settlingTimeField.setText("...");
+        riseTimeField.setText("...");
+
+        graphPanel1.clearAll();
+        graphPanel2.clearAll();
+
+        if (!"".equals(setPointField.getText())) {
+            double selectedSetPoint = Double.parseDouble(setPointField.getText());
+            if (selectedSetPoint != currentSetPoint) {
+                call(setPointChange, currentSetPoint = selectedSetPoint);
+            }
+        }
+
+        if (!"".equals(kpField.getText())) {
+            double selectedKp = Double.parseDouble(kpField.getText());
+            if (selectedKp != currentKp) {
+                call(kpChange, currentKp = selectedKp);
+            }
+        }
+
+        if (!"".equals(kiField.getText())) {
+            double selectedKi = Double.parseDouble(kiField.getText());
+            if (selectedKi != currentKi) {
+                call(kiChange, currentKi = selectedKi);
+            }
+        }
+
+        if (!"".equals(kdField.getText())) {
+            double selectedKd = Double.parseDouble(kdField.getText());
+            if (selectedKd != currentKd) {
+                call(kdChange, currentKd = selectedKd);
+            }
+        }
+
+        if (!"".equals(kpField1.getText())) {
+            double selectedKp1 = Double.parseDouble(kpField1.getText());
+            if (selectedKp1 != currentKp1) {
+                call(kp1Change, currentKp1 = selectedKp1);
+            }
+        }
+
+        if (!"".equals(kiField1.getText())) {
+            double selectedKi1 = Double.parseDouble(kiField1.getText());
+            if (selectedKi1 != currentKi1) {
+                call(ki1Change, currentKi1 = selectedKi1);
+            }
+        }
+
+        if (!"".equals(kdField1.getText())) {
+            double selectedKd1 = Double.parseDouble(kdField1.getText());
+            if (selectedKd1 != currentKd1) {
+                call(kd1Change, currentKd1 = selectedKd1);
+            }
+        }
+
+        if(cascade != cascadeButton.isSelected()){
+            call(cascadeChange, cascade = cascadeButton.isSelected());
+        }
+
+        if(!"".equals(takField.getText())){
+            double selectedTak = Double.parseDouble(takField.getText());
+            if(selectedTak != currentTak){
+                call(TakChange, currentTak = selectedTak);
+            }
+        }
+
+        call(TakChange, currentTak = 0.0);
+
+        if ((ComboItem) controllerTypeCombo.getSelectedItem() != null) {
+            ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue();
+            if (!selectedControllerType.equals(currentControllerType)) {
+                switch(selectedControllerType){
+                    case P:
+                    PCheckbox.setSelected(true);
+                    ICheckbox.setSelected(false);
+                    DCheckbox.setSelected(false);
+                    break;
+                    case PI:
+                    PCheckbox.setSelected(true);
+                    ICheckbox.setSelected(true);
+                    DCheckbox.setSelected(false);
+                    break;
+                    case PD:
+                    PCheckbox.setSelected(true);
+                    ICheckbox.setSelected(false);
+                    DCheckbox.setSelected(true);
+                    break;
+                    case PID:
+                    PCheckbox.setSelected(true);
+                    ICheckbox.setSelected(true);
+                    DCheckbox.setSelected(true);
+                    break;
+                    case PI_D:
+                    PCheckbox.setSelected(true);
+                    ICheckbox.setSelected(true);
+                    DCheckbox.setSelected(true);
+                }
+
+                call(controllerTypeChange, currentControllerType = selectedControllerType);
+            }
+        }
+
+        if ((ComboItem) controllerTypeCombo1.getSelectedItem() != null) {
+            ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo1.getSelectedItem()).getValue();
+            if (!selectedControllerType.equals(currentControllerType1)) {
+                call(controllerTypeChange1, currentControllerType1 = selectedControllerType);
+            }
+        }
+
+        if ((ComboItem) processVariableField.getSelectedItem() != null) {
+            TankTag selectedPV = (TankTag) ((ComboItem) processVariableField.getSelectedItem()).getValue();
+            if (selectedPV != currentPV) {
+                call(processVariableChange, currentPV = selectedPV);
+            }
+        }
+
+        if (!"".equals(amplitudeField.getText())) {
+            double selectedAmplitude = Double.parseDouble(amplitudeField.getText());
+            if (selectedAmplitude != currentAmplitide) {
+                call(amplitudeChange, currentAmplitide = selectedAmplitude);
+            }
+        }
+        if (!"".equals(periodField.getText())) {
+            double selectedPeriod = Double.parseDouble(periodField.getText());
+            if (selectedPeriod != currentPeriod) {
+                call(periodChange, currentPeriod = selectedPeriod);
+            }
+        }
+
+        JToggleButton[] waves = {sinus, sawtooth, square, step, random};
+        int i = 0;
+        for (JToggleButton wave : waves) {
+            if (wave.isSelected() && !wave.equals(currentWaveButton)) {
+                call(waveChange, currentWave);
+                currentWaveButton = wave;
+            }
+        }
+
+        if (closedLoop.isSelected() ^ currentLoop.equals(Loop.CLOSED)) {
+            call(loopChange, currentLoop = closedLoop.isSelected() ? Loop.CLOSED : Loop.OPENED);
+        }
+
+        call(applyClicked);
+    }//GEN-LAST:event_applyMouseClicked
 
     private void polo3Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed2
         // TODO add your handling code here:
     }//GEN-LAST:event_polo3Field1KeyPressed2
 
+    private void polo3Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo3Field1KeyPressed1
+
+    private void polo3Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo3Field1KeyPressed
+
+    private void polo1Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed2
+
+    private void polo1Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed1
+
+    private void polo1Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed
+
+    private void polo2Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed2
+
+    private void polo2Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed1
+
+    private void polo2Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed
+
+    private void takCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_takCheckActionPerformed
+
+    private void cascadeButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cascadeButtonItemStateChanged
+        if(cascadeButton.isSelected()){
+            processVariableLabel.setVisible(false);
+            processVariableField.setVisible(false);
+
+            jLabel2.setVisible(true);
+            parameters2loop.setVisible(true);
+            try{
+                processVariableField.setSelectedIndex(1);
+            }catch(IllegalArgumentException e){
+                System.out.println("Nenhuma entrada selecionada.");
+            }
+        }else{
+            processVariableLabel.setVisible(true);
+            processVariableField.setVisible(true);
+
+            jLabel2.setVisible(false);
+            parameters2loop.setVisible(false);
+
+        }
+    }//GEN-LAST:event_cascadeButtonItemStateChanged
+
+    private void kiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed2
+        try{
+            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taui = 0;
+                if(!kpField1.getText().equals("")){
+                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                }
+                tauiField1.setText(String.format("%6.1e", taui));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kiField1KeyPressed2
+
+    private void kiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed1
+        try{
+            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taui = 0;
+                if(!kpField1.getText().equals("")){
+                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                }
+                tauiField1.setText(String.format("%6.1e", taui));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kiField1KeyPressed1
+
+    private void kiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed
+        try{
+            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taui = 0;
+                if(!kpField1.getText().equals("")){
+                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                }
+                tauiField1.setText(String.format("%6.1e", taui));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kiField1KeyPressed
+
+    private void kdField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed2
+        try{
+            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taud = Double.MAX_VALUE;
+                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
+                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
+                }else if(Double.parseDouble(kdField1.getText())<0){
+                    taud = Double.MIN_VALUE;
+                }
+                taudField1.setText(String.format("%6.1e", taud));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kdField1KeyPressed2
+
+    private void kdField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed1
+        try{
+            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taud = Double.MAX_VALUE;
+                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
+                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
+                }else if(Double.parseDouble(kdField1.getText())<0){
+                    taud = Double.MIN_VALUE;
+                }
+                taudField1.setText(String.format("%6.1e", taud));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kdField1KeyPressed1
+
+    private void kdField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed
+        try{
+            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taud = Double.MAX_VALUE;
+                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
+                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
+                }else if(Double.parseDouble(kdField1.getText())<0){
+                    taud = Double.MIN_VALUE;
+                }
+                taudField1.setText(String.format("%6.1e", taud));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kdField1KeyPressed
+
+    private void tauiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed2
+        try{
+            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double ki = 0;
+                if(!kpField1.getText().equals("")){
+                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                }
+                kiField1.setText(String.format("%6.1e", ki));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_tauiField1KeyPressed2
+
+    private void tauiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed1
+        try{
+            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double ki = 0;
+                if(!kpField1.getText().equals("")){
+                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                }
+                kiField1.setText(String.format("%6.1e", ki));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_tauiField1KeyPressed1
+
+    private void tauiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed
+        try{
+            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double ki = 0;
+                if(!kpField1.getText().equals("")){
+                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                }
+                kiField1.setText(String.format("%6.1e", ki));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_tauiField1KeyPressed
+
+    private void controllerTypeCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeCombo1ItemStateChanged
+        switch((ControllerType)((ComboItem)controllerTypeCombo1.getSelectedItem()).getValue()){
+            case PI:
+            kiField1.setVisible(true);
+            kiLabel1.setVisible(true);
+
+            tauiField1.setVisible(true);
+            tauiLabel1.setVisible(true);
+
+            kdField1.setVisible(false);
+            kdLabel1.setVisible(false);
+
+            taudField1.setVisible(false);
+            taudLabel1.setVisible(false);
+
+            if(enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE_1);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+            if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.add(INTEGRAL_PART_CURVE_1);
+            break;
+            case PID:
+            case PI_D:
+            kiField1.setVisible(true);
+            kiLabel1.setVisible(true);
+
+            tauiField1.setVisible(true);
+            tauiLabel1.setVisible(true);
+
+            kdField1.setVisible(true);
+            kdLabel1.setVisible(true);
+
+            taudField1.setVisible(true);
+            taudLabel1.setVisible(true);
+
+            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+            if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.add(INTEGRAL_PART_CURVE_1);
+
+            break;
+            case PD:
+            kiField1.setVisible(false);
+            kiLabel1.setVisible(false);
+
+            tauiField1.setVisible(false);
+            tauiLabel1.setVisible(false);
+
+            kdField1.setVisible(true);
+            kdLabel1.setVisible(true);
+
+            taudField1.setVisible(true);
+            taudLabel1.setVisible(true);
+
+            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
+            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+            if(enabledCurves.contains(INTEGRAL_PART_CURVE_1))
+            enabledCurves.remove(INTEGRAL_PART_CURVE_1);
+
+            break;
+            default:
+            kiField1.setVisible(false);
+            kiLabel1.setVisible(false);
+
+            tauiField1.setVisible(false);
+            tauiLabel1.setVisible(false);
+
+            kdField1.setVisible(false);
+            kdLabel1.setVisible(false);
+
+            taudField1.setVisible(false);
+            taudLabel1.setVisible(false);
+            break;
+        }
+    }//GEN-LAST:event_controllerTypeCombo1ItemStateChanged
+
+    private void taudField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed2
+        try{
+            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double kd = 0;
+                if(!kpField1.getText().equals("")){
+                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                }
+                kdField1.setText(String.format("%6.1e", kd));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_taudField1KeyPressed2
+
+    private void taudField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed1
+        try{
+            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double kd = 0;
+                if(!kpField1.getText().equals("")){
+                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                }
+                kdField1.setText(String.format("%6.1e", kd));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_taudField1KeyPressed1
+
+    private void taudField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed
+        try{
+            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double kd = 0;
+                if(!kpField1.getText().equals("")){
+                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                }
+                kdField1.setText(String.format("%6.1e", kd));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_taudField1KeyPressed
+
+    private void kdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdFieldKeyPressed
+        try{
+            if(!"".equals(kdField.getText()) && kdField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taud = Double.MAX_VALUE;
+                if(!kpField.getText().equals("") && Double.parseDouble(kpField.getText()) != 0){
+                    taud = Double.parseDouble(kdField.getText())/Double.parseDouble(kpField.getText());
+                }else if(Double.parseDouble(kdField.getText())<0){
+                    taud = Double.MIN_VALUE;
+                }
+                taudField.setText(String.format("%6.1e", taud));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kdFieldKeyPressed
+
+    private void taudFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudFieldKeyPressed
+        try{
+            if(!"".equals(taudField.getText()) && taudField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double kd = 0;
+                if(!kpField.getText().equals("")){
+                    kd = Double.parseDouble(kpField.getText())*Double.parseDouble(taudField.getText());
+                }
+                kdField.setText(String.format("%6.1e", kd));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_taudFieldKeyPressed
+
+    private void kiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiFieldKeyPressed
+        try{
+            if(!"".equals(kiField.getText()) && kiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double taui = 0;
+                if(!kpField.getText().equals("")){
+                    taui = Double.parseDouble(kpField.getText())/Double.parseDouble(kiField.getText());
+                }
+                tauiField.setText(String.format("%6.1e", taui));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_kiFieldKeyPressed
+
+    private void tauiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiFieldKeyPressed
+        try{
+            if(!"".equals(tauiField.getText()) && tauiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double ki = 0;
+                if(!kpField.getText().equals("")){
+                    ki = Double.parseDouble(kpField.getText())/Double.parseDouble(tauiField.getText());
+                }
+                kiField.setText(String.format("%6.1e", ki));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_tauiFieldKeyPressed
+
+    private void controllerTypeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeComboItemStateChanged
+        switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
+            case PI:
+            kiField.setVisible(true);
+            kiLabel.setVisible(true);
+
+            tauiField.setVisible(true);
+            tauiLabel.setVisible(true);
+
+            kdField.setVisible(false);
+            kdLabel.setVisible(false);
+
+            taudField.setVisible(false);
+            taudLabel.setVisible(false);
+
+            if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.remove(DERIVATIVE_PART_CURVE);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+            if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
+            break;
+            case PID:
+            case PI_D:
+            kiField.setVisible(true);
+            kiLabel.setVisible(true);
+
+            tauiField.setVisible(true);
+            tauiLabel.setVisible(true);
+
+            kdField.setVisible(true);
+            kdLabel.setVisible(true);
+
+            taudField.setVisible(true);
+            taudLabel.setVisible(true);
+
+            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+            if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.add(INTEGRAL_PART_CURVE);
+
+            break;
+            case PD:
+            kiField.setVisible(false);
+            kiLabel.setVisible(false);
+
+            tauiField.setVisible(false);
+            tauiLabel.setVisible(false);
+
+            kdField.setVisible(true);
+            kdLabel.setVisible(true);
+
+            taudField.setVisible(true);
+            taudLabel.setVisible(true);
+
+            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
+            enabledCurves.add(DERIVATIVE_PART_CURVE);
+            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
+            enabledCurves.add(PROPORCIONAL_PART_CURVE);
+            if(enabledCurves.contains(INTEGRAL_PART_CURVE))
+            enabledCurves.remove(INTEGRAL_PART_CURVE);
+
+            break;
+            default:
+            kiField.setVisible(false);
+            kiLabel.setVisible(false);
+
+            tauiField.setVisible(false);
+            tauiLabel.setVisible(false);
+
+            kdField.setVisible(false);
+            kdLabel.setVisible(false);
+
+            taudField.setVisible(false);
+            taudLabel.setVisible(false);
+            break;
+        }
+    }//GEN-LAST:event_controllerTypeComboItemStateChanged
+
+    private void frequencyFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_frequencyFieldKeyPressed
+        try{
+            if(!"".equals(frequencyField.getText()) && frequencyField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double f = 1/Double.parseDouble(frequencyField.getText());
+                periodField.setText(String.format("%6.1e", f));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_frequencyFieldKeyPressed
+
+    private void periodFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_periodFieldKeyPressed
+        try{
+            if(!"".equals(periodField.getText()) && periodField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+                double f = 1/Double.parseDouble(periodField.getText());
+                frequencyField.setText(String.format("%6.1e", f));
+            }
+        }catch(Exception e){
+
+        }
+    }//GEN-LAST:event_periodFieldKeyPressed
+
+    private void randomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_randomItemStateChanged
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            currentWave = Wave.RANDOM;
+            frequency.setVisible(true);
+            period.setVisible(true);
+        }
+    }//GEN-LAST:event_randomItemStateChanged
+
+    private void stepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stepItemStateChanged
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            currentWave = Wave.STEP;
+            frequency.setVisible(false);
+            period.setVisible(false);
+        }
+    }//GEN-LAST:event_stepItemStateChanged
+
+    private void squareItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_squareItemStateChanged
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            currentWave = Wave.SQUARE;
+            frequency.setVisible(true);
+            period.setVisible(true);
+        }
+    }//GEN-LAST:event_squareItemStateChanged
+
+    private void sawtoothItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sawtoothItemStateChanged
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            currentWave = Wave.SAWTOOTH;
+            frequency.setVisible(true);
+            period.setVisible(true);
+        }
+    }//GEN-LAST:event_sawtoothItemStateChanged
+
+    private void sinusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sinusItemStateChanged
+        if (((JToggleButton) evt.getSource()).isSelected()) {
+            currentWave = Wave.SINUSOID;
+            frequency.setVisible(true);
+            period.setVisible(true);
+        }
+    }//GEN-LAST:event_sinusItemStateChanged
+
+    private void OCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OCheckboxActionPerformed
+
+    private void OCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OCheckboxItemStateChanged
+        if(!OCheckbox.isSelected()){
+            graphPanel1.removeSerie(OBSERVER_CURVE_2);
+            graphPanel1.removeSerie(OBSERVER_CURVE_1);
+            graphPanel1.removeSerie(ERROR_OBSERVER_CURVE_1);
+            graphPanel1.removeSerie(ERROR_OBSERVER_CURVE_2);
+        }
+    }//GEN-LAST:event_OCheckboxItemStateChanged
+
+    private void DCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DCheckboxItemStateChanged
+        if(!DCheckbox.isSelected())
+        graphPanel2.removeSerie(DERIVATIVE_PART_CURVE);
+    }//GEN-LAST:event_DCheckboxItemStateChanged
+
+    private void ICheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ICheckboxItemStateChanged
+        if(!ICheckbox.isSelected())
+        graphPanel2.removeSerie(INTEGRAL_PART_CURVE);
+    }//GEN-LAST:event_ICheckboxItemStateChanged
+
+    private void PCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PCheckboxItemStateChanged
+        if(!PCheckbox.isSelected())
+        graphPanel2.removeSerie(PROPORCIONAL_PART_CURVE);
+    }//GEN-LAST:event_PCheckboxItemStateChanged
+
+    private void level2CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level2CheckboxItemStateChanged
+        if(!level2Checkbox.isSelected())
+        graphPanel1.removeSerie(TANK2_LEVEL_CURVE);
+    }//GEN-LAST:event_level2CheckboxItemStateChanged
+
+    private void level1CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level1CheckboxItemStateChanged
+        if(!level1Checkbox.isSelected())
+        graphPanel1.removeSerie(TANK1_LEVEL_CURVE);
+    }//GEN-LAST:event_level1CheckboxItemStateChanged
+
+    private void SPCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SPCheckboxItemStateChanged
+        if(!SPCheckbox.isSelected())
+        graphPanel1.removeSerie(SETPOINT_CURVE);
+    }//GEN-LAST:event_SPCheckboxItemStateChanged
+
+    private void errorCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_errorCheckboxItemStateChanged
+        if(!errorCheckbox.isSelected())
+        graphPanel1.removeSerie(ERROR_CURVE);
+    }//GEN-LAST:event_errorCheckboxItemStateChanged
+
+    private void u_barCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_u_barCheckboxItemStateChanged
+        if(!u_barCheckbox.isSelected())
+        graphPanel2.removeSerie(SENDED_SIGNAL_CURVE);
+    }//GEN-LAST:event_u_barCheckboxItemStateChanged
+
+    private void uCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_uCheckboxItemStateChanged
+        if(!uCheckbox.isSelected())
+        graphPanel2.removeSerie(CALCULATED_SIGNAL_CURVE);
+    }//GEN-LAST:event_uCheckboxItemStateChanged
+
+    private void graphTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphTogglerMouseClicked
+        graphBox.setVisible(!graphBox.isVisible());
+    }//GEN-LAST:event_graphTogglerMouseClicked
+
+    private void writeTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_writeTogglerMouseClicked
+        writeBox.setVisible(!writeBox.isVisible());
+    }//GEN-LAST:event_writeTogglerMouseClicked
+
+    private void updatePVSelector(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_updatePVSelector
+        JCheckBox clickedCBox = (JCheckBox) evt.getSource();
+        String text = clickedCBox.getText();
+        TankTag t = text.equals("A0") ? TankTag.TANK_1 : text.equals("A1") ? TankTag.TANK_2 : null;
+        if (clickedCBox.isSelected()) {
+            pvItems.addElement(new ComboItem(t, text));
+            pvItemsString.add(text);
+        } else {
+            pvItems.removeElementAt(pvItemsString.indexOf(text));
+            pvItemsString.remove(text);
+        }
+        processVariableField.setEnabled(pvItems.getSize() > 0);
+    }//GEN-LAST:event_updatePVSelector
+
+    private void readTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readTogglerMouseClicked
+        readBox.setVisible(!readBox.isVisible());
+    }//GEN-LAST:event_readTogglerMouseClicked
+
+    boolean buttonGraph = false;
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -3559,7 +3494,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel amplitudeLabel;
     private javax.swing.JButton apply;
     private javax.swing.JButton applyObserver;
-    private javax.swing.JButton applyObserver1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton cascadeButton;
     private javax.swing.JRadioButton closedLoop;
@@ -3576,8 +3510,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel display2Title;
     private javax.swing.JCheckBox errorCheckbox;
     private javax.swing.JPanel followerBox;
-    private javax.swing.JPanel followerTitle;
-    private javax.swing.JLabel followerToggler;
     private javax.swing.JPanel frequency;
     private javax.swing.JFormattedTextField frequencyField;
     private javax.swing.JLabel frequencyLabel;
