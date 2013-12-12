@@ -235,5 +235,19 @@ public class FollowReference {
     }
     return out;
   }
+
+  /**
+   * @return the u
+   */
+  public double getU() {
+    return u;
+  }
+
+  /**
+   * @param v the v to set
+   */
+  public void resetV() {
+    this.v = 0.0;
+  }
   
 }

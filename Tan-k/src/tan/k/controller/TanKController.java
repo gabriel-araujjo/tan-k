@@ -95,6 +95,8 @@ public class TanKController implements Runnable {
   private Observer observer;
   private boolean risingTimeCalculated;
   private double risingTime;
+  private boolean servoControl;
+  private FollowReference servo;
 
   /**
    *
@@ -226,61 +228,65 @@ public class TanKController implements Runnable {
                 }
               }
             }
-            switch (getControllerType()) {
-              case P:
-                firstLoopOutput = p;
-                break;
-              case PI:
-                firstLoopOutput = p + i;
-                break;
-              case PID:
-                firstLoopOutput = p + i + d;
-                break;
-              case PI_D:
-                firstLoopOutput = p + i + _d;
-                break;
-              case PD:
-                firstLoopOutput = p + d;
-                break;
-              default:
-                firstLoopOutput = getE();
-                break;
-            }
-            if(cascade){
-              setE1(calcError1());
-              i1 = calcI1(getE1());
-              p1 = calcP1(getE1());
-              d1 = calcD1(getE1());
-              _d1 = calc_D1();
-              setLastError1(getE1());
-              setLastI1(i1);
-              
-              switch(getControllerType1()){
+            if(!isServoControl()){
+              switch (getControllerType()) {
                 case P:
-                calculatedVoltage = p1;
-                break;
-              case PI:
-                calculatedVoltage = p1 + i1;
-                break;
-              case PID:
-                calculatedVoltage = p1 + i1 + d1;
-                break;
-              case PI_D:
-                calculatedVoltage = p1 + i1 + _d1;
-                break;
-              case PD:
-                calculatedVoltage = p1 + d1;
-                break;
-              default:
-                calculatedVoltage = getE1();
-                break;
-                  
+                  firstLoopOutput = p;
+                  break;
+                case PI:
+                  firstLoopOutput = p + i;
+                  break;
+                case PID:
+                  firstLoopOutput = p + i + d;
+                  break;
+                case PI_D:
+                  firstLoopOutput = p + i + _d;
+                  break;
+                case PD:
+                  firstLoopOutput = p + d;
+                  break;
+                default:
+                  firstLoopOutput = getE();
+                  break;
               }
-              
+              if(cascade){
+                setE1(calcError1());
+                i1 = calcI1(getE1());
+                p1 = calcP1(getE1());
+                d1 = calcD1(getE1());
+                _d1 = calc_D1();
+                setLastError1(getE1());
+                setLastI1(i1);
+
+                switch(getControllerType1()){
+                  case P:
+                  calculatedVoltage = p1;
+                  break;
+                case PI:
+                  calculatedVoltage = p1 + i1;
+                  break;
+                case PID:
+                  calculatedVoltage = p1 + i1 + d1;
+                  break;
+                case PI_D:
+                  calculatedVoltage = p1 + i1 + _d1;
+                  break;
+                case PD:
+                  calculatedVoltage = p1 + d1;
+                  break;
+                default:
+                  calculatedVoltage = getE1();
+                  break;
+
+                }
+
+              }else{
+                calculatedVoltage = firstLoopOutput;
+              }
             }else{
-              calculatedVoltage = firstLoopOutput;
+              servo.calcU(currentLevel1, currentLevel2, getSetPoint());
+              calculatedVoltage = servo.getU();
             }
-            
             break;
           case OPENED:
             switch (getWaveType()) {
@@ -874,6 +880,34 @@ public class TanKController implements Runnable {
   
   public double getRisingTime(){
     return risingTime;
+  }
+
+  /**
+   * @return the servoControl
+   */
+  public boolean isServoControl() {
+    return servoControl;
+  }
+
+  /**
+   * @param servoControl the servoControl to set
+   */
+  public void setServoControl(boolean servoControl) {
+    this.servoControl = servoControl;
+  }
+
+  /**
+   * @return the servo
+   */
+  public FollowReference getServo() {
+    return servo;
+  }
+
+  /**
+   * @param servo the servo to set
+   */
+  public void setServo(FollowReference servo) {
+    this.servo = servo;
   }
 
   public enum Wave {

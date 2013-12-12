@@ -54,8 +54,15 @@ public class Main {
     double[][] g = {{0.9994, 0}, {0.0006, 0.9994}};
     
     servo = new FollowReference();
-    servo.setPoles(new Complex64F(0.5, 0.2), new Complex64F(0.5, -0.2), new Complex64F(0.1, 0));
-    
+//    servo.setPoles(new Complex64F(0.707, 0), new Complex64F(0.707, 0), new Complex64F(0.707, 0)); //Oscila
+//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório Lento
+//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9950, -0.008), new Complex64F(0.9950, 0.008));//Polos complexos legais
+    servo.setPoles(new Complex64F(0.9030, 0), new Complex64F(0.9950, -0.008), new Complex64F(0.9950, 0.008));//lento com sobressinal baixo
+//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9950, -0.014), new Complex64F(0.9950, 0.014));//Polos complexos que oscilam
+//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(-0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório com segundo negativo - instável
+//    servo.setPoles(new Complex64F(0.9948, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório um pouco mais rápido
+//    servo.setPoles(new Complex64F(0.8548, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório Lento
+    //servo.setPoles(new Complex64F(0.5, 0.2), new Complex64F(0.5, -0.2), new Complex64F(0.1, 0));
     //servo.setGains(0.02963611697630464, new double[] {0.03422856547102526,0.5548986379122951} );
     //System.exit(0);
     
@@ -77,6 +84,13 @@ public class Main {
             view.getCloseLoopSettings(),
             view.getOpenLoopSettings());
     controller.setObserver(observer);
+    controller.setServo(servo);
+    
+    //Retirar esta linha - ela set o contralador no modo servo
+    controller.setServoControl(true); //
+    
+    
+    
     controllerThread = new Thread(controller);
 
     view.onSetPointChange(new ChangeParameterEvent() {
@@ -197,6 +211,7 @@ public class Main {
       @Override
       public void onChangeParameter(Object value) {
         controller.pauseController();
+        servo.resetV();
       }
     });
 
