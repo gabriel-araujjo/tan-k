@@ -38,94 +38,96 @@ import tan.k.controller.TanKController.Wave;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-  //Current values
-  //   openLoop
-  private double currentAmplitide;
-  private double currentPeriod;
-  private Wave currentWave;
-  private JToggleButton currentWaveButton; /*Aux*/
+    //Current values
+    //   openLoop
+    private double currentAmplitide;
+    private double currentPeriod;
+    private Wave currentWave;
+    private JToggleButton currentWaveButton; /*Aux*/
 
-  //   closeLoop
-  private double currentSetPoint;
-  private TankTag currentPV;
-  private ControllerType currentControllerType;
-  private ControllerType currentControllerType1;
-  private double currentKp, currentKi, currentKd;
-  private Loop currentLoop;
-  private boolean cascade;
-  //   tank settings
-  private String currentIp;
-  private int currentPort;
-  private int currentWriteChannel;
-  //Events
-  private ChangeParameterEvent setPointChange;
-  private ChangeParameterEvent processVariableChange;
-  private ChangeParameterEvent amplitudeChange;
-  private ChangeParameterEvent periodChange;
-  private ChangeParameterEvent waveChange;
-  private ChangeParameterEvent loopChange;
-  private ChangeParameterEvent ipChange;
-  private ChangeParameterEvent portChange;
-  private ChangeParameterEvent writeChange;
-  private ChangeParameterEvent applyClicked;
-  private ChangeParameterEvent connectClicked;
-  private DefaultComboBoxModel<ComboItem> pvItems;
-  private List<String> pvItemsString;
-  private List<String> enabledCurves;
-  private ChangeParameterEvent stopClicked;
-  private ChangeParameterEvent controllerTypeChange;
-  private ChangeParameterEvent kpChange;
-  private ChangeParameterEvent kiChange;
-  private ChangeParameterEvent kdChange;
-  private double currentKp1;
-  private ChangeParameterEvent kp1Change;
-  private double currentKi1;
-  private ChangeParameterEvent ki1Change;
-  private double currentKd1;
-  private ChangeParameterEvent kd1Change;
-  private ChangeParameterEvent cascadeChange;
-  private ChangeParameterEvent controllerTypeChange1;
-  private Matrix A;
-  private Matrix C;
-  private Observer observer;
-  private double currentTak;
-  private ChangeParameterEvent TakChange;
+    //   closeLoop
+    private double currentSetPoint;
+    private TankTag currentPV;
+    private ControllerType currentControllerType;
+    private ControllerType currentControllerType1;
+    private double currentKp, currentKi, currentKd;
+    private Loop currentLoop;
+    private boolean cascade;
+    //   tank settings
+    private String currentIp;
+    private int currentPort;
+    private int currentWriteChannel;
+    //Events
+    private ChangeParameterEvent setPointChange;
+    private ChangeParameterEvent processVariableChange;
+    private ChangeParameterEvent amplitudeChange;
+    private ChangeParameterEvent periodChange;
+    private ChangeParameterEvent waveChange;
+    private ChangeParameterEvent loopChange;
+    private ChangeParameterEvent ipChange;
+    private ChangeParameterEvent portChange;
+    private ChangeParameterEvent writeChange;
+    private ChangeParameterEvent applyClicked;
+    private ChangeParameterEvent connectClicked;
+    private DefaultComboBoxModel<ComboItem> pvItems;
+    private List<String> pvItemsString;
+    private List<String> enabledCurves;
+    private ChangeParameterEvent stopClicked;
+    private ChangeParameterEvent controllerTypeChange;
+    private ChangeParameterEvent kpChange;
+    private ChangeParameterEvent kiChange;
+    private ChangeParameterEvent kdChange;
+    private double currentKp1;
+    private ChangeParameterEvent kp1Change;
+    private double currentKi1;
+    private ChangeParameterEvent ki1Change;
+    private double currentKd1;
+    private ChangeParameterEvent kd1Change;
+    private ChangeParameterEvent cascadeChange;
+    private ChangeParameterEvent controllerTypeChange1;
+    private Matrix A;
+    private Matrix C;
+    private Observer observer;
+    private double currentTak;
+    private ChangeParameterEvent TakChange;
 
-  /**
-   * Creates new form MainFrame
-   */
-  public MainFrame() {
+    /**
+     * Creates new form MainFrame
+     */
+    public MainFrame() {
 
-    this.currentAmplitide = 0;
-    this.currentPeriod = 1;
-    this.currentWave = Wave.STEP;
-    this.currentSetPoint = 0;
-    this.currentPV = TankTag.TANK_1;
-    this.currentLoop = Loop.OPENED;
-    //this.currentIp = "127.0.0.1";
-    this.currentIp = "10.13.99.69";
-    
-    double[][] a = {{-0.0065,0},{0.0065,-0.0065}};
-    double[][] c = {{0,1}};
-    
-    this.A = new Matrix(a);
-    this.C = new Matrix(c);
-    
-    this.currentPort = 20081;
-    this.currentWriteChannel = 0;
-    this.enabledCurves = new ArrayList<>();
-    enabledCurves.addAll(Arrays.asList(new String[]{
-      TANK1_LEVEL_CURVE, 
-      TANK2_LEVEL_CURVE, 
-      ERROR_CURVE,
-      SETPOINT_CURVE,
-      SENDED_SIGNAL_CURVE,
-      CALCULATED_SIGNAL_CURVE,
-      OBSERVER_CURVE_2,
-      OBSERVER_CURVE_1,
-      ERROR_OBSERVER_CURVE_1,
-      ERROR_OBSERVER_CURVE_2
-    }));
+        this.currentAmplitide = 0;
+        this.currentPeriod = 1;
+        this.currentWave = Wave.STEP;
+        this.currentSetPoint = 0;
+        this.currentPV = TankTag.TANK_1;
+        this.currentLoop = Loop.OPENED;
+        //this.currentIp = "127.0.0.1";
+        this.currentIp = "10.13.99.69";
+
+
+
+        double[][] a = {{-0.0065, 0}, {0.0065, -0.0065}};
+        double[][] c = {{0, 1}};
+
+        this.A = new Matrix(a);
+        this.C = new Matrix(c);
+
+        this.currentPort = 20081;
+        this.currentWriteChannel = 0;
+        this.enabledCurves = new ArrayList<>();
+        enabledCurves.addAll(Arrays.asList(new String[]{
+            TANK1_LEVEL_CURVE,
+            TANK2_LEVEL_CURVE,
+            ERROR_CURVE,
+            SETPOINT_CURVE,
+            SENDED_SIGNAL_CURVE,
+            CALCULATED_SIGNAL_CURVE,
+            OBSERVER_CURVE_2,
+            OBSERVER_CURVE_1,
+            ERROR_OBSERVER_CURVE_1,
+            ERROR_OBSERVER_CURVE_2
+        }));
 //    
 //  public static String TANK1_LEVEL_CURVE = "Nível do tanque 1";
 //  public static String TANK2_LEVEL_CURVE = "Nível do tanque 2";
@@ -138,25 +140,27 @@ public class MainFrame extends javax.swing.JFrame {
 //  public static String PROPORCIONAL_PART_CURVE = "Componente proporcional";
 //  public static String INTEGRAL_PART_CURVE = "Componente integral";
 //  public static String DERIVATIVE_PART_CURVE = "Componente derivativa";
-    initComponents();
+        initComponents();
 
-    graphPanel3.disableLegend();
-    graphPanel3.addSerie("Sinal para configuracao");
-    
-    this.graphTitle.setVisible(true);
-    //this.graphToggler.setVisible(true);
-    this.graphBox.setVisible(true);
-    
-    cascade = false;
-    parameters2loop.setVisible(false);
-  }
+        followerBox.setVisible(false);
 
-  /**
-   * This method is called from within the constructor to initialize the form.
-   * WARNING: Do NOT modify this code. The content of this method is always
-   * regenerated by the Form Editor.
-   */
-  @SuppressWarnings("unchecked")
+        graphPanel3.disableLegend();
+        graphPanel3.addSerie("Sinal para configuracao");
+
+        this.graphTitle.setVisible(true);
+        //this.graphToggler.setVisible(true);
+        this.graphBox.setVisible(true);
+
+        cascade = false;
+        parameters2loop.setVisible(false);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -302,6 +306,7 @@ public class MainFrame extends javax.swing.JFrame {
         k2Label = new javax.swing.JLabel();
         k1Label = new javax.swing.JLabel();
         jTableMatrizk1 = new javax.swing.JTable();
+        servoButton = new javax.swing.JRadioButton();
         apply = new javax.swing.JButton();
         jButtonPreview = new javax.swing.JButton();
         loopChooser = new javax.swing.JPanel();
@@ -1570,12 +1575,11 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(kpField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(kiField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(kdField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))
+                        .addContainerGap())
                     .addGroup(waveParams1Layout.createSequentialGroup()
-                        .addGroup(waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(parameters2loop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator4))
-                        .addContainerGap())))
+                        .addComponent(parameters2loop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jSeparator4)))
             .addGroup(waveParams1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel2))
@@ -1616,6 +1620,11 @@ public class MainFrame extends javax.swing.JFrame {
         buttonGroup1.add(simpleButton);
         simpleButton.setText("C. Simples");
         simpleButton.setSelected(true);
+        simpleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                simpleButtonItemStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(cascadeButton);
         cascadeButton.setText("C. Cascata");
@@ -1696,15 +1705,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTableMatrizk2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null}
+                {null, null}
             },
             new String [] {
-                "Matriz de Ganho"
+                "k21", "k22"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Double.class
+                java.lang.Double.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1715,7 +1723,7 @@ public class MainFrame extends javax.swing.JFrame {
         jTableMatrizk2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTableMatrizk2.setFocusable(false);
         jTableMatrizk2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTableMatrizk2.setRowMargin(2);
+        jTableMatrizk2.setRowMargin(0);
         jTableMatrizk2.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jTableMatrizk2.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTableMatrizk2.setShowVerticalLines(false);
@@ -1726,9 +1734,9 @@ public class MainFrame extends javax.swing.JFrame {
         k1Label.setText("k1 =");
         tauiLabel1.setVisible(false);
 
+        jTableMatrizk1.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
         jTableMatrizk1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
                 {null}
             },
             new String [] {
@@ -1812,8 +1820,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(followerBoxLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
+                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(followerBoxLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1825,18 +1832,28 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        buttonGroup1.add(servoButton);
+        servoButton.setText("C. Servo");
+        servoButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                servoButtonItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlSettingsLayout = new javax.swing.GroupLayout(controlSettings);
         controlSettings.setLayout(controlSettingsLayout);
         controlSettingsLayout.setHorizontalGroup(
             controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlSettingsLayout.createSequentialGroup()
                 .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(controlSettingsLayout.createSequentialGroup()
                             .addComponent(simpleButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cascadeButton))
-                        .addComponent(waveParams1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cascadeButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(servoButton))
+                        .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(controlSettingsLayout.createSequentialGroup()
                         .addComponent(takCheck)
                         .addGap(40, 40, 40)
@@ -1852,7 +1869,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpleButton)
-                    .addComponent(cascadeButton))
+                    .addComponent(cascadeButton)
+                    .addComponent(servoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(waveParams1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -2077,7 +2095,7 @@ public class MainFrame extends javax.swing.JFrame {
         ipPortTitleLayout.setHorizontalGroup(
             ipPortTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ipPortTitleLayout.createSequentialGroup()
-                .addComponent(ipPortToggler, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addComponent(ipPortToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         ipPortTitleLayout.setVerticalGroup(
@@ -2389,7 +2407,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(graphPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
@@ -2407,8 +2425,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void applyObserverClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyObserverClicked
         System.out.println("Apertei na merdda do botao aplicar dos polos");
         System.out.println("polo1 cheio =" + !polo1Field.getText().equals(""));
-        System.out.println("polo2 cheio = "+ !polo2Field.getText().equals(""));
-        if(!polo1Field.getText().equals("")&&!polo2Field.getText().equals("")){
+        System.out.println("polo2 cheio = " + !polo2Field.getText().equals(""));
+        if (!polo1Field.getText().equals("") && !polo2Field.getText().equals("")) {
             List<Complex64F> poles = observer.getPoles();
 
             Complex64F selectedPole1 = null, selectedPole2 = null, aux;
@@ -2419,39 +2437,39 @@ public class MainFrame extends javax.swing.JFrame {
 
             matcher = complexPattern.matcher(polo1Field.getText());
             while (matcher.find()) {
-                System.out.println("real encontrado = "+matcher.group(1));
-                System.out.println("imaginario encontrado ="+matcher.group(2));
-                double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
-                double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
-                System.out.println("real 1 = "+real);
-                System.out.println("imag 1 = "+imag);
+                System.out.println("real encontrado = " + matcher.group(1));
+                System.out.println("imaginario encontrado =" + matcher.group(2));
+                double real = matcher.group(1) != null ? Double.parseDouble(matcher.group(1)) : 0.0;
+                double imag = matcher.group(2) != null ? Double.parseDouble(matcher.group(2)) : 0.0;
+                System.out.println("real 1 = " + real);
+                System.out.println("imag 1 = " + imag);
                 selectedPole1 = new Complex64F(real, imag);
-                if(selectedPole1.getReal()!=(aux = poles.get(0)).getReal()
-                    || selectedPole1.getImaginary()!=aux.getImaginary()){
+                if (selectedPole1.getReal() != (aux = poles.get(0)).getReal()
+                        || selectedPole1.getImaginary() != aux.getImaginary()) {
                     refresh = true;
                 }
             }
 
             matcher = complexPattern.matcher(polo2Field.getText());
             while (matcher.find()) {
-                System.out.println("real encontrado 2= "+matcher.group(1));
-                System.out.println("imaginario encontrado 2="+matcher.group(2));
-                double real = matcher.group(1)!=null?Double.parseDouble(matcher.group(1)):0.0;
-                double imag = matcher.group(2)!=null?Double.parseDouble(matcher.group(2)):0.0;
+                System.out.println("real encontrado 2= " + matcher.group(1));
+                System.out.println("imaginario encontrado 2=" + matcher.group(2));
+                double real = matcher.group(1) != null ? Double.parseDouble(matcher.group(1)) : 0.0;
+                double imag = matcher.group(2) != null ? Double.parseDouble(matcher.group(2)) : 0.0;
 
-                System.out.println("real 2 = "+real);
-                System.out.println("imag 2 = "+imag);
+                System.out.println("real 2 = " + real);
+                System.out.println("imag 2 = " + imag);
                 selectedPole2 = new Complex64F(real, imag);
-                if(selectedPole2.getReal()!=(aux = poles.get(1)).getReal()
-                    || selectedPole2.getImaginary()!=aux.getImaginary()){
+                if (selectedPole2.getReal() != (aux = poles.get(1)).getReal()
+                        || selectedPole2.getImaginary() != aux.getImaginary()) {
                     refresh = true;
                 }
             }
 
-            System.out.println("Polo1 = "+selectedPole1);
-            System.out.println("Polo2 = "+selectedPole2);
+            System.out.println("Polo1 = " + selectedPole1);
+            System.out.println("Polo2 = " + selectedPole2);
 
-            if(refresh){
+            if (refresh) {
                 List<Complex64F> refreshedPoles = new ArrayList<>();
                 refreshedPoles.add(selectedPole1);
                 refreshedPoles.add(selectedPole2);
@@ -2469,29 +2487,33 @@ public class MainFrame extends javax.swing.JFrame {
 
         }
 
-        if(jTableMatrizGanho.getModel().getValueAt(0, 0)!=null
-            && !"".equals(jTableMatrizGanho.getModel().getValueAt(0, 0).toString())
-            && jTableMatrizGanho.getModel().getValueAt(1, 0)!=null
-            && !"".equals(jTableMatrizGanho.getModel().getValueAt(1, 0).toString())){
+        if (jTableMatrizGanho.getModel().getValueAt(0, 0) != null
+                && !"".equals(jTableMatrizGanho.getModel().getValueAt(0, 0).toString())
+                && jTableMatrizGanho.getModel().getValueAt(1, 0) != null
+                && !"".equals(jTableMatrizGanho.getModel().getValueAt(1, 0).toString())) {
             double selectedGanho1 = 0, selectedGanho2 = 0;
             boolean refresh = false;
 
-            try{
+            try {
                 selectedGanho1 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(0, 0).toString());
                 selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
                 System.out.println("ganho 2 diferente?" + (selectedGanho2 != observer.getL().get(1, 0)));
                 System.out.println("ganho 2 diferente?" + (observer.getL().get(1, 0)));
                 System.out.println("ganho 2 diferente?" + (selectedGanho2));
 
-                if(selectedGanho1 != observer.getL().get(0, 0)) refresh = true;
+                if (selectedGanho1 != observer.getL().get(0, 0)) {
+                    refresh = true;
+                }
                 selectedGanho2 = Double.parseDouble(jTableMatrizGanho.getModel().getValueAt(1, 0).toString());
-                if(selectedGanho2 != observer.getL().get(1, 0)) refresh = true;
-            } catch(Exception e){
+                if (selectedGanho2 != observer.getL().get(1, 0)) {
+                    refresh = true;
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            if(refresh){
-                System.out.println("ganho 00000 = "+selectedGanho1);
-                System.out.println("ganho 11111 = "+selectedGanho2);
+            if (refresh) {
+                System.out.println("ganho 00000 = " + selectedGanho1);
+                System.out.println("ganho 11111 = " + selectedGanho2);
 
                 Matrix L = new Matrix(2, 1);
 
@@ -2503,10 +2525,10 @@ public class MainFrame extends javax.swing.JFrame {
                 List<Complex64F> poles = observer.getPoles();
 
                 Complex64F aux = poles.get(0);
-                polo1Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
+                polo1Field.setText(aux.getReal() + "+" + aux.getImaginary() + "i");
 
                 aux = poles.get(1);
-                polo2Field.setText(aux.getReal()+"+"+aux.getImaginary()+"i");
+                polo2Field.setText(aux.getReal() + "+" + aux.getImaginary() + "i");
             }
         }
     }//GEN-LAST:event_applyObserverClicked
@@ -2665,41 +2687,41 @@ public class MainFrame extends javax.swing.JFrame {
         graphPanel3.clean("Sinal para configuracao");
         switch (currentWave) {
             case SINUSOID:
-            p = Double.parseDouble(periodField.getText());
-            while (x <= 1.05 * p) {
-                y = a / 2 * Math.sin((x / p * 2 * Math.PI)) + a / 2;
-                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-                x = x + p / 40;
-            }
-            break;
+                p = Double.parseDouble(periodField.getText());
+                while (x <= 1.05 * p) {
+                    y = a / 2 * Math.sin((x / p * 2 * Math.PI)) + a / 2;
+                    graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x - Math.floor(x)) * 1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                    x = x + p / 40;
+                }
+                break;
             case SAWTOOTH:
-            p = Double.parseDouble(periodField.getText());
-            while (x <= 2 * p) {
-                double r = x % p;
-                y = (a / p) * r;
-                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-                x = x + p / 1000;
-            }
-            break;
+                p = Double.parseDouble(periodField.getText());
+                while (x <= 2 * p) {
+                    double r = x % p;
+                    y = (a / p) * r;
+                    graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x - Math.floor(x)) * 1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                    x = x + p / 1000;
+                }
+                break;
             case SQUARE:
-            p = Double.parseDouble(periodField.getText());
-            while (x <= 2 * p) {
-                double r = x % p;
-                y = r >= p / 2 ? 0 : a;
-                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-                x = x + p / 1000;
-            }
-            break;
+                p = Double.parseDouble(periodField.getText());
+                while (x <= 2 * p) {
+                    double r = x % p;
+                    y = r >= p / 2 ? 0 : a;
+                    graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x - Math.floor(x)) * 1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                    x = x + p / 1000;
+                }
+                break;
             case STEP:
-            p = 5;
-            while (x <= 2 * p) {
-                y = a;
-                graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x-Math.floor(x))*1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
-                x = x + p / 1000;
-            }
-            break;
+                p = 5;
+                while (x <= 2 * p) {
+                    y = a;
+                    graphPanel3.addValue("Sinal para configuracao", new Millisecond((int) Math.round((x - Math.floor(x)) * 1000), (int) Math.floor(x), 0, 0, 1, 1, 1900), y);
+                    x = x + p / 1000;
+                }
+                break;
             case RANDOM:
-            break;
+                break;
         }
     }//GEN-LAST:event_jButtonPreviewActionPerformed
 
@@ -2766,13 +2788,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
 
-        if(cascade != cascadeButton.isSelected()){
+        if (cascade != cascadeButton.isSelected()) {
             call(cascadeChange, cascade = cascadeButton.isSelected());
         }
 
-        if(!"".equals(takField.getText())){
+        if (!"".equals(takField.getText())) {
             double selectedTak = Double.parseDouble(takField.getText());
-            if(selectedTak != currentTak){
+            if (selectedTak != currentTak) {
                 call(TakChange, currentTak = selectedTak);
             }
         }
@@ -2782,31 +2804,31 @@ public class MainFrame extends javax.swing.JFrame {
         if ((ComboItem) controllerTypeCombo.getSelectedItem() != null) {
             ControllerType selectedControllerType = (ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue();
             if (!selectedControllerType.equals(currentControllerType)) {
-                switch(selectedControllerType){
+                switch (selectedControllerType) {
                     case P:
-                    PCheckbox.setSelected(true);
-                    ICheckbox.setSelected(false);
-                    DCheckbox.setSelected(false);
-                    break;
+                        PCheckbox.setSelected(true);
+                        ICheckbox.setSelected(false);
+                        DCheckbox.setSelected(false);
+                        break;
                     case PI:
-                    PCheckbox.setSelected(true);
-                    ICheckbox.setSelected(true);
-                    DCheckbox.setSelected(false);
-                    break;
+                        PCheckbox.setSelected(true);
+                        ICheckbox.setSelected(true);
+                        DCheckbox.setSelected(false);
+                        break;
                     case PD:
-                    PCheckbox.setSelected(true);
-                    ICheckbox.setSelected(false);
-                    DCheckbox.setSelected(true);
-                    break;
+                        PCheckbox.setSelected(true);
+                        ICheckbox.setSelected(false);
+                        DCheckbox.setSelected(true);
+                        break;
                     case PID:
-                    PCheckbox.setSelected(true);
-                    ICheckbox.setSelected(true);
-                    DCheckbox.setSelected(true);
-                    break;
+                        PCheckbox.setSelected(true);
+                        ICheckbox.setSelected(true);
+                        DCheckbox.setSelected(true);
+                        break;
                     case PI_D:
-                    PCheckbox.setSelected(true);
-                    ICheckbox.setSelected(true);
-                    DCheckbox.setSelected(true);
+                        PCheckbox.setSelected(true);
+                        ICheckbox.setSelected(true);
+                        DCheckbox.setSelected(true);
                 }
 
                 call(controllerTypeChange, currentControllerType = selectedControllerType);
@@ -2897,440 +2919,445 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_takCheckActionPerformed
 
     private void cascadeButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cascadeButtonItemStateChanged
-        if(cascadeButton.isSelected()){
+        if (cascadeButton.isSelected()) {
+            kpField.setVisible(true);
+            kpLabel.setVisible(true);
+            controllerTypeCombo.setVisible(true);
+            jSeparator3.setVisible(true);
+            controllerTypeLabel.setVisible(true);
+
+            takCheck.setVisible(true);
+            kdLabel2.setVisible(true);
+            takField.setVisible(true);
+
             processVariableLabel.setVisible(false);
             processVariableField.setVisible(false);
 
+            followerBox.setVisible(false);
+
             jLabel2.setVisible(true);
             parameters2loop.setVisible(true);
-            try{
+            try {
                 processVariableField.setSelectedIndex(1);
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("Nenhuma entrada selecionada.");
             }
-        }else{
-            processVariableLabel.setVisible(true);
-            processVariableField.setVisible(true);
-
-            jLabel2.setVisible(false);
-            parameters2loop.setVisible(false);
-
         }
     }//GEN-LAST:event_cascadeButtonItemStateChanged
 
     private void kiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed2
-        try{
-            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taui = 0;
-                if(!kpField1.getText().equals("")){
-                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    taui = Double.parseDouble(kpField1.getText()) / Double.parseDouble(kiField1.getText());
                 }
                 tauiField1.setText(String.format("%6.1e", taui));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kiField1KeyPressed2
 
     private void kiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed1
-        try{
-            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taui = 0;
-                if(!kpField1.getText().equals("")){
-                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    taui = Double.parseDouble(kpField1.getText()) / Double.parseDouble(kiField1.getText());
                 }
                 tauiField1.setText(String.format("%6.1e", taui));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kiField1KeyPressed1
 
     private void kiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiField1KeyPressed
-        try{
-            if(!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kiField1.getText()) && kiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taui = 0;
-                if(!kpField1.getText().equals("")){
-                    taui = Double.parseDouble(kpField1.getText())/Double.parseDouble(kiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    taui = Double.parseDouble(kpField1.getText()) / Double.parseDouble(kiField1.getText());
                 }
                 tauiField1.setText(String.format("%6.1e", taui));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kiField1KeyPressed
 
     private void kdField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed2
-        try{
-            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taud = Double.MAX_VALUE;
-                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-                }else if(Double.parseDouble(kdField1.getText())<0){
+                if (!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0) {
+                    taud = Double.parseDouble(kdField1.getText()) / Double.parseDouble(kpField1.getText());
+                } else if (Double.parseDouble(kdField1.getText()) < 0) {
                     taud = Double.MIN_VALUE;
                 }
                 taudField1.setText(String.format("%6.1e", taud));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kdField1KeyPressed2
 
     private void kdField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed1
-        try{
-            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taud = Double.MAX_VALUE;
-                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-                }else if(Double.parseDouble(kdField1.getText())<0){
+                if (!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0) {
+                    taud = Double.parseDouble(kdField1.getText()) / Double.parseDouble(kpField1.getText());
+                } else if (Double.parseDouble(kdField1.getText()) < 0) {
                     taud = Double.MIN_VALUE;
                 }
                 taudField1.setText(String.format("%6.1e", taud));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kdField1KeyPressed1
 
     private void kdField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdField1KeyPressed
-        try{
-            if(!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kdField1.getText()) && kdField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taud = Double.MAX_VALUE;
-                if(!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0){
-                    taud = Double.parseDouble(kdField1.getText())/Double.parseDouble(kpField1.getText());
-                }else if(Double.parseDouble(kdField1.getText())<0){
+                if (!kpField1.getText().equals("") && Double.parseDouble(kpField1.getText()) != 0) {
+                    taud = Double.parseDouble(kdField1.getText()) / Double.parseDouble(kpField1.getText());
+                } else if (Double.parseDouble(kdField1.getText()) < 0) {
                     taud = Double.MIN_VALUE;
                 }
                 taudField1.setText(String.format("%6.1e", taud));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kdField1KeyPressed
 
     private void tauiField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed2
-        try{
-            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double ki = 0;
-                if(!kpField1.getText().equals("")){
-                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    ki = Double.parseDouble(kpField1.getText()) / Double.parseDouble(tauiField1.getText());
                 }
                 kiField1.setText(String.format("%6.1e", ki));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_tauiField1KeyPressed2
 
     private void tauiField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed1
-        try{
-            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double ki = 0;
-                if(!kpField1.getText().equals("")){
-                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    ki = Double.parseDouble(kpField1.getText()) / Double.parseDouble(tauiField1.getText());
                 }
                 kiField1.setText(String.format("%6.1e", ki));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_tauiField1KeyPressed1
 
     private void tauiField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiField1KeyPressed
-        try{
-            if(!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(tauiField1.getText()) && tauiField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double ki = 0;
-                if(!kpField1.getText().equals("")){
-                    ki = Double.parseDouble(kpField1.getText())/Double.parseDouble(tauiField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    ki = Double.parseDouble(kpField1.getText()) / Double.parseDouble(tauiField1.getText());
                 }
                 kiField1.setText(String.format("%6.1e", ki));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_tauiField1KeyPressed
 
     private void controllerTypeCombo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeCombo1ItemStateChanged
-        switch((ControllerType)((ComboItem)controllerTypeCombo1.getSelectedItem()).getValue()){
+        switch ((ControllerType) ((ComboItem) controllerTypeCombo1.getSelectedItem()).getValue()) {
             case PI:
-            kiField1.setVisible(true);
-            kiLabel1.setVisible(true);
+                kiField1.setVisible(true);
+                kiLabel1.setVisible(true);
 
-            tauiField1.setVisible(true);
-            tauiLabel1.setVisible(true);
+                tauiField1.setVisible(true);
+                tauiLabel1.setVisible(true);
 
-            kdField1.setVisible(false);
-            kdLabel1.setVisible(false);
+                kdField1.setVisible(false);
+                kdLabel1.setVisible(false);
 
-            taudField1.setVisible(false);
-            taudLabel1.setVisible(false);
+                taudField1.setVisible(false);
+                taudLabel1.setVisible(false);
 
-            if(enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE_1);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-            if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.add(INTEGRAL_PART_CURVE_1);
-            break;
+                if (enabledCurves.contains(DERIVATIVE_PART_CURVE_1)) {
+                    enabledCurves.remove(DERIVATIVE_PART_CURVE_1);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+                }
+                if (!enabledCurves.contains(INTEGRAL_PART_CURVE_1)) {
+                    enabledCurves.add(INTEGRAL_PART_CURVE_1);
+                }
+                break;
             case PID:
             case PI_D:
-            kiField1.setVisible(true);
-            kiLabel1.setVisible(true);
+                kiField1.setVisible(true);
+                kiLabel1.setVisible(true);
 
-            tauiField1.setVisible(true);
-            tauiLabel1.setVisible(true);
+                tauiField1.setVisible(true);
+                tauiLabel1.setVisible(true);
 
-            kdField1.setVisible(true);
-            kdLabel1.setVisible(true);
+                kdField1.setVisible(true);
+                kdLabel1.setVisible(true);
 
-            taudField1.setVisible(true);
-            taudLabel1.setVisible(true);
+                taudField1.setVisible(true);
+                taudLabel1.setVisible(true);
 
-            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-            if(!enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.add(INTEGRAL_PART_CURVE_1);
+                if (!enabledCurves.contains(DERIVATIVE_PART_CURVE_1)) {
+                    enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+                }
+                if (!enabledCurves.contains(INTEGRAL_PART_CURVE_1)) {
+                    enabledCurves.add(INTEGRAL_PART_CURVE_1);
+                }
 
-            break;
+                break;
             case PD:
-            kiField1.setVisible(false);
-            kiLabel1.setVisible(false);
+                kiField1.setVisible(false);
+                kiLabel1.setVisible(false);
 
-            tauiField1.setVisible(false);
-            tauiLabel1.setVisible(false);
+                tauiField1.setVisible(false);
+                tauiLabel1.setVisible(false);
 
-            kdField1.setVisible(true);
-            kdLabel1.setVisible(true);
+                kdField1.setVisible(true);
+                kdLabel1.setVisible(true);
 
-            taudField1.setVisible(true);
-            taudLabel1.setVisible(true);
+                taudField1.setVisible(true);
+                taudLabel1.setVisible(true);
 
-            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE_1))
-            enabledCurves.add(DERIVATIVE_PART_CURVE_1);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
-            if(enabledCurves.contains(INTEGRAL_PART_CURVE_1))
-            enabledCurves.remove(INTEGRAL_PART_CURVE_1);
+                if (!enabledCurves.contains(DERIVATIVE_PART_CURVE_1)) {
+                    enabledCurves.add(DERIVATIVE_PART_CURVE_1);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE_1)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE_1);
+                }
+                if (enabledCurves.contains(INTEGRAL_PART_CURVE_1)) {
+                    enabledCurves.remove(INTEGRAL_PART_CURVE_1);
+                }
 
-            break;
+                break;
             default:
-            kiField1.setVisible(false);
-            kiLabel1.setVisible(false);
+                kiField1.setVisible(false);
+                kiLabel1.setVisible(false);
 
-            tauiField1.setVisible(false);
-            tauiLabel1.setVisible(false);
+                tauiField1.setVisible(false);
+                tauiLabel1.setVisible(false);
 
-            kdField1.setVisible(false);
-            kdLabel1.setVisible(false);
+                kdField1.setVisible(false);
+                kdLabel1.setVisible(false);
 
-            taudField1.setVisible(false);
-            taudLabel1.setVisible(false);
-            break;
+                taudField1.setVisible(false);
+                taudLabel1.setVisible(false);
+                break;
         }
     }//GEN-LAST:event_controllerTypeCombo1ItemStateChanged
 
     private void taudField1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed2
-        try{
-            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double kd = 0;
-                if(!kpField1.getText().equals("")){
-                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    kd = Double.parseDouble(kpField1.getText()) * Double.parseDouble(taudField1.getText());
                 }
                 kdField1.setText(String.format("%6.1e", kd));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_taudField1KeyPressed2
 
     private void taudField1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed1
-        try{
-            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double kd = 0;
-                if(!kpField1.getText().equals("")){
-                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    kd = Double.parseDouble(kpField1.getText()) * Double.parseDouble(taudField1.getText());
                 }
                 kdField1.setText(String.format("%6.1e", kd));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_taudField1KeyPressed1
 
     private void taudField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudField1KeyPressed
-        try{
-            if(!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(taudField1.getText()) && taudField1.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double kd = 0;
-                if(!kpField1.getText().equals("")){
-                    kd = Double.parseDouble(kpField1.getText())*Double.parseDouble(taudField1.getText());
+                if (!kpField1.getText().equals("")) {
+                    kd = Double.parseDouble(kpField1.getText()) * Double.parseDouble(taudField1.getText());
                 }
                 kdField1.setText(String.format("%6.1e", kd));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_taudField1KeyPressed
 
     private void kdFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdFieldKeyPressed
-        try{
-            if(!"".equals(kdField.getText()) && kdField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kdField.getText()) && kdField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taud = Double.MAX_VALUE;
-                if(!kpField.getText().equals("") && Double.parseDouble(kpField.getText()) != 0){
-                    taud = Double.parseDouble(kdField.getText())/Double.parseDouble(kpField.getText());
-                }else if(Double.parseDouble(kdField.getText())<0){
+                if (!kpField.getText().equals("") && Double.parseDouble(kpField.getText()) != 0) {
+                    taud = Double.parseDouble(kdField.getText()) / Double.parseDouble(kpField.getText());
+                } else if (Double.parseDouble(kdField.getText()) < 0) {
                     taud = Double.MIN_VALUE;
                 }
                 taudField.setText(String.format("%6.1e", taud));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kdFieldKeyPressed
 
     private void taudFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taudFieldKeyPressed
-        try{
-            if(!"".equals(taudField.getText()) && taudField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(taudField.getText()) && taudField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double kd = 0;
-                if(!kpField.getText().equals("")){
-                    kd = Double.parseDouble(kpField.getText())*Double.parseDouble(taudField.getText());
+                if (!kpField.getText().equals("")) {
+                    kd = Double.parseDouble(kpField.getText()) * Double.parseDouble(taudField.getText());
                 }
                 kdField.setText(String.format("%6.1e", kd));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_taudFieldKeyPressed
 
     private void kiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kiFieldKeyPressed
-        try{
-            if(!"".equals(kiField.getText()) && kiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(kiField.getText()) && kiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double taui = 0;
-                if(!kpField.getText().equals("")){
-                    taui = Double.parseDouble(kpField.getText())/Double.parseDouble(kiField.getText());
+                if (!kpField.getText().equals("")) {
+                    taui = Double.parseDouble(kpField.getText()) / Double.parseDouble(kiField.getText());
                 }
                 tauiField.setText(String.format("%6.1e", taui));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_kiFieldKeyPressed
 
     private void tauiFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tauiFieldKeyPressed
-        try{
-            if(!"".equals(tauiField.getText()) && tauiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
+        try {
+            if (!"".equals(tauiField.getText()) && tauiField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
                 double ki = 0;
-                if(!kpField.getText().equals("")){
-                    ki = Double.parseDouble(kpField.getText())/Double.parseDouble(tauiField.getText());
+                if (!kpField.getText().equals("")) {
+                    ki = Double.parseDouble(kpField.getText()) / Double.parseDouble(tauiField.getText());
                 }
                 kiField.setText(String.format("%6.1e", ki));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_tauiFieldKeyPressed
 
     private void controllerTypeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_controllerTypeComboItemStateChanged
-        switch((ControllerType)((ComboItem)controllerTypeCombo.getSelectedItem()).getValue()){
+        switch ((ControllerType) ((ComboItem) controllerTypeCombo.getSelectedItem()).getValue()) {
             case PI:
-            kiField.setVisible(true);
-            kiLabel.setVisible(true);
+                kiField.setVisible(true);
+                kiLabel.setVisible(true);
 
-            tauiField.setVisible(true);
-            tauiLabel.setVisible(true);
+                tauiField.setVisible(true);
+                tauiLabel.setVisible(true);
 
-            kdField.setVisible(false);
-            kdLabel.setVisible(false);
+                kdField.setVisible(false);
+                kdLabel.setVisible(false);
 
-            taudField.setVisible(false);
-            taudLabel.setVisible(false);
+                taudField.setVisible(false);
+                taudLabel.setVisible(false);
 
-            if(enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.remove(DERIVATIVE_PART_CURVE);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-            if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
-            break;
+                if (enabledCurves.contains(DERIVATIVE_PART_CURVE)) {
+                    enabledCurves.remove(DERIVATIVE_PART_CURVE);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE);
+                }
+                if (!enabledCurves.contains(INTEGRAL_PART_CURVE)) {
+                    enabledCurves.add(INTEGRAL_PART_CURVE);
+                }
+                break;
             case PID:
             case PI_D:
-            kiField.setVisible(true);
-            kiLabel.setVisible(true);
+                kiField.setVisible(true);
+                kiLabel.setVisible(true);
 
-            tauiField.setVisible(true);
-            tauiLabel.setVisible(true);
+                tauiField.setVisible(true);
+                tauiLabel.setVisible(true);
 
-            kdField.setVisible(true);
-            kdLabel.setVisible(true);
+                kdField.setVisible(true);
+                kdLabel.setVisible(true);
 
-            taudField.setVisible(true);
-            taudLabel.setVisible(true);
+                taudField.setVisible(true);
+                taudLabel.setVisible(true);
 
-            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-            if(!enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.add(INTEGRAL_PART_CURVE);
+                if (!enabledCurves.contains(DERIVATIVE_PART_CURVE)) {
+                    enabledCurves.add(DERIVATIVE_PART_CURVE);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE);
+                }
+                if (!enabledCurves.contains(INTEGRAL_PART_CURVE)) {
+                    enabledCurves.add(INTEGRAL_PART_CURVE);
+                }
 
-            break;
+                break;
             case PD:
-            kiField.setVisible(false);
-            kiLabel.setVisible(false);
+                kiField.setVisible(false);
+                kiLabel.setVisible(false);
 
-            tauiField.setVisible(false);
-            tauiLabel.setVisible(false);
+                tauiField.setVisible(false);
+                tauiLabel.setVisible(false);
 
-            kdField.setVisible(true);
-            kdLabel.setVisible(true);
+                kdField.setVisible(true);
+                kdLabel.setVisible(true);
 
-            taudField.setVisible(true);
-            taudLabel.setVisible(true);
+                taudField.setVisible(true);
+                taudLabel.setVisible(true);
 
-            if(!enabledCurves.contains(DERIVATIVE_PART_CURVE))
-            enabledCurves.add(DERIVATIVE_PART_CURVE);
-            if(!enabledCurves.contains(PROPORCIONAL_PART_CURVE))
-            enabledCurves.add(PROPORCIONAL_PART_CURVE);
-            if(enabledCurves.contains(INTEGRAL_PART_CURVE))
-            enabledCurves.remove(INTEGRAL_PART_CURVE);
+                if (!enabledCurves.contains(DERIVATIVE_PART_CURVE)) {
+                    enabledCurves.add(DERIVATIVE_PART_CURVE);
+                }
+                if (!enabledCurves.contains(PROPORCIONAL_PART_CURVE)) {
+                    enabledCurves.add(PROPORCIONAL_PART_CURVE);
+                }
+                if (enabledCurves.contains(INTEGRAL_PART_CURVE)) {
+                    enabledCurves.remove(INTEGRAL_PART_CURVE);
+                }
 
-            break;
+                break;
             default:
-            kiField.setVisible(false);
-            kiLabel.setVisible(false);
+                kiField.setVisible(false);
+                kiLabel.setVisible(false);
 
-            tauiField.setVisible(false);
-            tauiLabel.setVisible(false);
+                tauiField.setVisible(false);
+                tauiLabel.setVisible(false);
 
-            kdField.setVisible(false);
-            kdLabel.setVisible(false);
+                kdField.setVisible(false);
+                kdLabel.setVisible(false);
 
-            taudField.setVisible(false);
-            taudLabel.setVisible(false);
-            break;
+                taudField.setVisible(false);
+                taudLabel.setVisible(false);
+                break;
         }
     }//GEN-LAST:event_controllerTypeComboItemStateChanged
 
     private void frequencyFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_frequencyFieldKeyPressed
-        try{
-            if(!"".equals(frequencyField.getText()) && frequencyField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-                double f = 1/Double.parseDouble(frequencyField.getText());
+        try {
+            if (!"".equals(frequencyField.getText()) && frequencyField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
+                double f = 1 / Double.parseDouble(frequencyField.getText());
                 periodField.setText(String.format("%6.1e", f));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_frequencyFieldKeyPressed
 
     private void periodFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_periodFieldKeyPressed
-        try{
-            if(!"".equals(periodField.getText()) && periodField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")){
-                double f = 1/Double.parseDouble(periodField.getText());
+        try {
+            if (!"".equals(periodField.getText()) && periodField.getText().matches("^([\\+\\-]?([0-9]*(\\.[0-9])?)+([eE][\\+\\-]?[\\d]+)?)+$")) {
+                double f = 1 / Double.parseDouble(periodField.getText());
                 frequencyField.setText(String.format("%6.1e", f));
             }
-        }catch(Exception e){
-
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_periodFieldKeyPressed
 
@@ -3379,7 +3406,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_OCheckboxActionPerformed
 
     private void OCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_OCheckboxItemStateChanged
-        if(!OCheckbox.isSelected()){
+        if (!OCheckbox.isSelected()) {
             graphPanel1.removeSerie(OBSERVER_CURVE_2);
             graphPanel1.removeSerie(OBSERVER_CURVE_1);
             graphPanel1.removeSerie(ERROR_OBSERVER_CURVE_1);
@@ -3388,48 +3415,57 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_OCheckboxItemStateChanged
 
     private void DCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_DCheckboxItemStateChanged
-        if(!DCheckbox.isSelected())
-        graphPanel2.removeSerie(DERIVATIVE_PART_CURVE);
+        if (!DCheckbox.isSelected()) {
+            graphPanel2.removeSerie(DERIVATIVE_PART_CURVE);
+        }
     }//GEN-LAST:event_DCheckboxItemStateChanged
 
     private void ICheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ICheckboxItemStateChanged
-        if(!ICheckbox.isSelected())
-        graphPanel2.removeSerie(INTEGRAL_PART_CURVE);
+        if (!ICheckbox.isSelected()) {
+            graphPanel2.removeSerie(INTEGRAL_PART_CURVE);
+        }
     }//GEN-LAST:event_ICheckboxItemStateChanged
 
     private void PCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PCheckboxItemStateChanged
-        if(!PCheckbox.isSelected())
-        graphPanel2.removeSerie(PROPORCIONAL_PART_CURVE);
+        if (!PCheckbox.isSelected()) {
+            graphPanel2.removeSerie(PROPORCIONAL_PART_CURVE);
+        }
     }//GEN-LAST:event_PCheckboxItemStateChanged
 
     private void level2CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level2CheckboxItemStateChanged
-        if(!level2Checkbox.isSelected())
-        graphPanel1.removeSerie(TANK2_LEVEL_CURVE);
+        if (!level2Checkbox.isSelected()) {
+            graphPanel1.removeSerie(TANK2_LEVEL_CURVE);
+        }
     }//GEN-LAST:event_level2CheckboxItemStateChanged
 
     private void level1CheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_level1CheckboxItemStateChanged
-        if(!level1Checkbox.isSelected())
-        graphPanel1.removeSerie(TANK1_LEVEL_CURVE);
+        if (!level1Checkbox.isSelected()) {
+            graphPanel1.removeSerie(TANK1_LEVEL_CURVE);
+        }
     }//GEN-LAST:event_level1CheckboxItemStateChanged
 
     private void SPCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_SPCheckboxItemStateChanged
-        if(!SPCheckbox.isSelected())
-        graphPanel1.removeSerie(SETPOINT_CURVE);
+        if (!SPCheckbox.isSelected()) {
+            graphPanel1.removeSerie(SETPOINT_CURVE);
+        }
     }//GEN-LAST:event_SPCheckboxItemStateChanged
 
     private void errorCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_errorCheckboxItemStateChanged
-        if(!errorCheckbox.isSelected())
-        graphPanel1.removeSerie(ERROR_CURVE);
+        if (!errorCheckbox.isSelected()) {
+            graphPanel1.removeSerie(ERROR_CURVE);
+        }
     }//GEN-LAST:event_errorCheckboxItemStateChanged
 
     private void u_barCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_u_barCheckboxItemStateChanged
-        if(!u_barCheckbox.isSelected())
-        graphPanel2.removeSerie(SENDED_SIGNAL_CURVE);
+        if (!u_barCheckbox.isSelected()) {
+            graphPanel2.removeSerie(SENDED_SIGNAL_CURVE);
+        }
     }//GEN-LAST:event_u_barCheckboxItemStateChanged
 
     private void uCheckboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_uCheckboxItemStateChanged
-        if(!uCheckbox.isSelected())
-        graphPanel2.removeSerie(CALCULATED_SIGNAL_CURVE);
+        if (!uCheckbox.isSelected()) {
+            graphPanel2.removeSerie(CALCULATED_SIGNAL_CURVE);
+        }
     }//GEN-LAST:event_uCheckboxItemStateChanged
 
     private void graphTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphTogglerMouseClicked
@@ -3458,29 +3494,81 @@ public class MainFrame extends javax.swing.JFrame {
         readBox.setVisible(!readBox.isVisible());
     }//GEN-LAST:event_readTogglerMouseClicked
 
-    boolean buttonGraph = false;
-  private void writeChannelChange(java.awt.event.ItemEvent evt) {
-    JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
-    int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
-    if (selectedValue != currentWriteChannel) {
-      call(writeChange, currentWriteChannel = selectedValue);
-    }
-  }
+    private void servoButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_servoButtonItemStateChanged
+        if (servoButton.isSelected()) {
 
-  /**
-   *
-   * @return All reading channels selected by User
-   */
-  private List<JCheckBox> getSelectedInputs() {
-    JCheckBox[] inputs = {input0, input1, input2, input3, input4, input5, input6, input7};
-    List<JCheckBox> selectedInputs = new ArrayList<>();
-    for (JCheckBox input : inputs) {
-      if (input.isSelected()) {
-        selectedInputs.add(input);
-      }
+
+            processVariableLabel.setVisible(false);
+            processVariableField.setVisible(false);
+
+            followerBox.setVisible(true);
+
+            jLabel2.setVisible(false);
+            parameters2loop.setVisible(false);
+
+            jSeparator3.setVisible(false);
+            controllerTypeLabel.setVisible(false);
+            controllerTypeCombo.setVisible(false);
+            kpField.setVisible(false);
+            kpLabel.setVisible(false);
+
+            takCheck.setVisible(false);
+            kdLabel2.setVisible(false);
+            takField.setVisible(false);
+
+        }
+    }//GEN-LAST:event_servoButtonItemStateChanged
+
+    private void simpleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_simpleButtonItemStateChanged
+
+        if (simpleButton.isSelected()) {
+
+
+            takCheck.setVisible(true);
+            kdLabel2.setVisible(true);
+            takField.setVisible(true);
+
+            jSeparator3.setVisible(true);
+            controllerTypeLabel.setVisible(true);
+            controllerTypeCombo.setVisible(true);
+            kpField.setVisible(true);
+            kpLabel.setVisible(true);
+
+            processVariableLabel.setVisible(true);
+            processVariableField.setVisible(true);
+
+            jLabel2.setVisible(false);
+            parameters2loop.setVisible(false);
+
+            followerBox.setVisible(false);
+
+        }
+
+    }//GEN-LAST:event_simpleButtonItemStateChanged
+    boolean buttonGraph = false;
+
+    private void writeChannelChange(java.awt.event.ItemEvent evt) {
+        JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
+        int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
+        if (selectedValue != currentWriteChannel) {
+            call(writeChange, currentWriteChannel = selectedValue);
+        }
     }
-    return selectedInputs;
-  }
+
+    /**
+     *
+     * @return All reading channels selected by User
+     */
+    private List<JCheckBox> getSelectedInputs() {
+        JCheckBox[] inputs = {input0, input1, input2, input3, input4, input5, input6, input7};
+        List<JCheckBox> selectedInputs = new ArrayList<>();
+        for (JCheckBox input : inputs) {
+            if (input.isSelected()) {
+                selectedInputs.add(input);
+            }
+        }
+        return selectedInputs;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox DCheckbox;
     private javax.swing.JCheckBox ICheckbox;
@@ -3631,6 +3719,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel riseTimeLabel;
     private javax.swing.JToggleButton sawtooth;
     private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JRadioButton servoButton;
     private javax.swing.JPanel setPoint;
     private javax.swing.JFormattedTextField setPointField;
     private javax.swing.JLabel setPointLabel;
@@ -3665,480 +3754,475 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel writeToggler;
     // End of variables declaration//GEN-END:variables
 
-  /**
-   * @param setPointChange the setPointChange to set
-   */
-  public void onSetPointChange(ChangeParameterEvent setPointChange) {
-    this.setPointChange = setPointChange;
-  }
-
-  /**
-   * @param processVariableChange the processVariableChange to set
-   */
-  public void onProcessVariableChange(ChangeParameterEvent processVariableChange) {
-    this.processVariableChange = processVariableChange;
-  }
-
-  /**
-   * @param amplitudeChange the amplitudeChange to set
-   */
-  public void onAmplitudeChange(ChangeParameterEvent amplitudeChange) {
-    this.amplitudeChange = amplitudeChange;
-  }
-
-  /**
-   * @param periodChange the periodChange to set
-   */
-  public void onPeriodChange(ChangeParameterEvent periodChange) {
-    this.periodChange = periodChange;
-  }
-
-  /**
-   * @param waveChange the waveChange to set
-   */
-  public void onWaveChange(ChangeParameterEvent waveChange) {
-    this.waveChange = waveChange;
-  }
-
-  /**
-   * @param loopChange the loopChange to set
-   */
-  public void onLoopChange(ChangeParameterEvent loopChange) {
-    this.loopChange = loopChange;
-  }
-
-  /**
-   * @param ipChange the ipChange to set
-   */
-  public void onIpChange(ChangeParameterEvent ipChange) {
-    this.ipChange = ipChange;
-  }
-
-  /**
-   * @param portChange the portChange to set
-   */
-  public void onPortChange(ChangeParameterEvent portChange) {
-    this.portChange = portChange;
-  }
-
-  /**
-   * @return the currentAmplitide
-   */
-  public double getCurrentAmplitide() {
-    return currentAmplitide;
-  }
-
-  /**
-   * @return the currentPeriod
-   */
-  public double getCurrentPeriod() {
-    return currentPeriod;
-  }
-
-  /**
-   * @return the currentWave
-   */
-  public Wave getCurrentWave() {
-    return currentWave;
-  }
-
-  /**
-   * @return the currentSetPoint
-   */
-  public double getCurrentSetPoint() {
-    return currentSetPoint;
-  }
-
-  /**
-   * @return the currentPV
-   */
-  public TankTag getCurrentPV() {
-    return currentPV;
-  }
-
-  /**
-   * @return the currentLoop
-   */
-  public Loop getCurrentLoop() {
-    return currentLoop;
-  }
-
-  /**
-   * @return the currentIp
-   */
-  public String getCurrentIp() {
-    return currentIp;
-  }
-
-  /**
-   * @return the currentPort
-   */
-  public int getCurrentPort() {
-    return currentPort;
-  }
-
-  /**
-   * @return the openLoopSettings configurated by user
-   */
-  public OpenLoopSettings getOpenLoopSettings() {
-    return new OpenLoopSettings(getCurrentWave(), getCurrentAmplitide(), getCurrentPeriod());
-  }
-
-  public CloseLoopSettings getCloseLoopSettings() {
-    return new CloseLoopSettings(getCurrentSetPoint(), getCurrentPV(), getCurrentControllerType(), getCurrentKp(), getCurrentKi(), getCurrentKd());
-  }
-
-  /**
-   * @param writeChange the writeChange to set
-   */
-  public void onWriteChange(ChangeParameterEvent writeChange) {
-    this.writeChange = writeChange;
-  }
-
-  public void onApplyClicked(ChangeParameterEvent applyClicked) {
-    this.applyClicked = applyClicked;
-  }
-
-  public void addPointToGraph(String sinal, Millisecond t, double d) {
-    //System.out.println(t + " " + d + ";");
-    if(!enabledCurves.contains(sinal)) return;
-    switch (sinal) {
-      case TANK1_LEVEL_CURVE:
-          display1Level.setText(Math.round(d) + "cm");
-          graphPanel1.addValue(sinal, t, d);
-          break;
-      case TANK2_LEVEL_CURVE:
-          display2Level.setText(Math.round(d) + "cm");
-          graphPanel1.addValue(sinal, t, d);
-          break;
-      case OBSERVER_CURVE_1:
-      case OBSERVER_CURVE_2:
-      case ERROR_OBSERVER_CURVE_1:
-      case ERROR_OBSERVER_CURVE_2:
-        System.out.println("Add Value to "+sinal);
-        graphPanel1.addValue(sinal, t, d);
-        break;
-      case SETPOINT_CURVE:
-      case ERROR_CURVE:
-        graphPanel1.addValue(sinal, t, d);
-        break;
-      default:
-        graphPanel2.addValue(sinal, t, d);
-        break;
-    }
-  }
-
-  public void onConnectedClicked(ChangeParameterEvent changeParameterEvent) {
-    this.connectClicked = changeParameterEvent;
-  }
-
-  public void setConnectionStatus(ConnectionStatus connectionStatus) {
-    System.out.println(connectionStatus.name());
-    if (ConnectionStatus.CONNECTED.equals(connectionStatus)) {
-      apply.setEnabled(true);
-      statusConnectedLabel.setText("Conectado");
-      statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_green.png")));
-    } else {
-      apply.setEnabled(false);
-      statusConnectedLabel.setText("Não Conectado");
-      statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
-    }
-  }
-
-  public void onStopClicked(ChangeParameterEvent changeParameterEvent) {
-    this.stopClicked = changeParameterEvent;
-  }
-
-  /**
-   * @return the currentKp
-   */
-  public double getCurrentKp() {
-    return currentKp;
-  }
-
-  /**
-   * @param currentKp the currentKp to set
-   */
-  public void setCurrentKp(double currentKp) {
-    this.currentKp = currentKp;
-  }
-
-  /**
-   * @return the currentKi
-   */
-  public double getCurrentKi() {
-    return currentKi;
-  }
-
-  /**
-   * @param currentKi the currentKi to set
-   */
-  public void setCurrentKi(double currentKi) {
-    this.currentKi = currentKi;
-  }
-
-  /**
-   * @return the currentKd
-   */
-  public double getCurrentKd() {
-    return currentKd;
-  }
-
-  /**
-   * @param currentKd the currentKd to set
-   */
-  public void setCurrentKd(double currentKd) {
-    this.currentKd = currentKd;
-  }
-
-  /**
-   * @return the currentControllerType
-   */
-  public ControllerType getCurrentControllerType() {
-    return currentControllerType;
-  }
-
-  /**
-   * @param currentControllerType the currentControllerType to set
-   */
-  public void setCurrentControllerType(ControllerType currentControllerType) {
-    this.currentControllerType = currentControllerType;
-  }
-
-  public void onControllerTypeChange(ChangeParameterEvent changeParameterEvent) {
-    this.controllerTypeChange = changeParameterEvent;
-  }
-
-  public void onKpChange(ChangeParameterEvent changeParameterEvent) {
-    this.kpChange = changeParameterEvent;
-  }
-
-  public void onKiChange(ChangeParameterEvent changeParameterEvent) {
-    this.kiChange = changeParameterEvent;
-  }
-
-  public void onKdChange(ChangeParameterEvent changeParameterEvent) {
-    this.kdChange = changeParameterEvent;
-  }
-
-  private void call(ChangeParameterEvent callback, Object param) {
-    if (null != callback) {
-      callback.onChangeParameter(param);
-    }
-  }
-
-  private void call(ChangeParameterEvent callback) {
-    call(callback, null);
-  }
-
-  public void setLockStatus(boolean b) {
-    statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_"+(b?"red":"stroke")+".png")));
-  }
-
-  /**
-   * @return the u
-   */
-  public boolean isU() {
-    return uCheckbox.isSelected();
-  }
-
-  /**
-   * @return the u_bar
-   */
-  public boolean isU_bar() {
-    return u_barCheckbox.isSelected();
-  }
-
-  /**
-   * @return the erro
-   */
-  public boolean isErro() {
-    return errorCheckbox.isSelected();
-  }
-
-  /**
-   * @return the setpoint
-   */
-  public boolean isSetpoint() {
-    return SPCheckbox.isSelected();
-  }
-
-  /**
-   * @return the nivel1
-   */
-  public boolean isNivel1() {
-    return level1Checkbox.isSelected();
-  }
-
-  /**
-   * @return the nivel2
-   */
-  public boolean isNivel2() {
-    return level2Checkbox.isSelected();
-  }
-
-  /**
-   * @return the p
-   */
-  public boolean isP() {
-    return PCheckbox.isSelected();
-  }
-
-  /**
-   * @return the d
-   */
-  public boolean isD() {
-    return DCheckbox.isSelected();
-  }
-  
-    public boolean isO() {
-    return OCheckbox.isSelected();
-  }
-
-  /**
-   * @return the i
-   */
-  public boolean isI() {
-    return ICheckbox.isSelected();
-  }
-
-  public void setPeakTime(double peakTime) {
-    PeakTimeField.setText(Double.toString(peakTime)+"s");
-  }
-
-  public void setMP(double mp) {
-    DecimalFormat f = new DecimalFormat("#.##%");
-    mpField.setText(f.format(mp));
-  }
-
-  public void setSettlingTime(double settlingTime) {
-    settlingTimeField.setText(Double.toString(settlingTime)+"s");
-  }
-
-  public void onCascadeChange(ChangeParameterEvent changeParameterEvent) {
-    this.cascadeChange = changeParameterEvent;
-  }
-
-  public void onKp1Change(ChangeParameterEvent changeParameterEvent) {
-    this.kp1Change = changeParameterEvent;
-  }
-
-  public void onKi1Change(ChangeParameterEvent changeParameterEvent) {
-    this.ki1Change = changeParameterEvent;
-  }
-
-  public void onKd1Change(ChangeParameterEvent changeParameterEvent) {
-    this.kd1Change = changeParameterEvent;
-  }
-
-  public void onControllerTypeChange1(ChangeParameterEvent changeParameterEvent) {
-    this.controllerTypeChange1 = changeParameterEvent;
-  }
-
-  /**
-   * @return the observer
-   */
-  public Observer getObserver() {
-    return observer;
-  }
-
-  /**
-   * @param observer the observer to set
-   */
-  public void setObserver(Observer observer) {
-    this.observer = observer;
-  }
-
-  public void onTakChange(ChangeParameterEvent changeParameterEvent) {
-    TakChange = changeParameterEvent;
-  }
-
-  public void setRisingTime(double risingTime) {
-    this.riseTimeField.setText(Double.toString(risingTime)+"s");
-  }
-
-  //Classes and enums
-  private class ComboItem {
-
-    private Object value;
-    private String label;
-
-    public ComboItem(Object value, String label) {
-      this.value = value;
-      this.label = label;
-    }
-
-    public Object getValue() {
-      return this.value;
-    }
-
-    public String getLabel() {
-      return this.label;
-    }
-
-    @Override
-    public String toString() {
-      return label;
-    }
-  }
-
-  public enum ConnectionStatus {
-
-    CONNECTED, DISCONNECTED, CONNECTING
-  }
-  
-  public static final String TANK1_LEVEL_CURVE = "Nível do tanque 1";
-  public static final String TANK2_LEVEL_CURVE = "Nível do tanque 2";
-  public static final String ERROR_CURVE = "Erro";
-  public static final String SETPOINT_CURVE = "Set Point";
-  
-  public static final String SENDED_SIGNAL_CURVE = "Sinal Enviado";
-  public static final String CALCULATED_SIGNAL_CURVE = "Sinal calculado";
-  
-  public static final String PROPORCIONAL_PART_CURVE = "Componente proporcional";
-  public static final String INTEGRAL_PART_CURVE = "Componente integral";
-  public static final String DERIVATIVE_PART_CURVE = "Componente derivativa";
-
-  public static final String PROPORCIONAL_PART_CURVE_1 = "Componente proporcional 2";
-  public static final String INTEGRAL_PART_CURVE_1 = "Componente integral 2";
-  public static final String DERIVATIVE_PART_CURVE_1 = "Componente derivativa 2";
-  
-  public static final String OBSERVER_CURVE_1 = "Saida observada 1";
-  public static final String OBSERVER_CURVE_2 = "Saida observada 2";
-  
-  public static final String ERROR_OBSERVER_CURVE_1 = "Erro observador 1";
-  public static final String ERROR_OBSERVER_CURVE_2 = "Erro observador 2";
-  
-  public static class DoubleFilter extends DocumentFilter {
-    
-    @Override
-    public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-      StringBuilder sb = new StringBuilder();
-      sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-      sb.insert(offset, text);
-      if (!containsOnlyNumbers(sb.toString())) {
-        return;
-      }
-      fb.insertString(offset, text, attr);
-    }
-    
-    
-    @Override
-    public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attr) throws BadLocationException {
-      StringBuilder sb = new StringBuilder();
-      sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
-      sb.replace(offset, offset + length, text);
-      if (!containsOnlyNumbers(sb.toString())) {
-        return;
-      }
-      fb.replace(offset, length, text, attr);
+    /**
+     * @param setPointChange the setPointChange to set
+     */
+    public void onSetPointChange(ChangeParameterEvent setPointChange) {
+        this.setPointChange = setPointChange;
     }
 
     /**
-     * This method checks if a String contains only numbers
+     * @param processVariableChange the processVariableChange to set
      */
-    public boolean containsOnlyNumbers(String text) {
-      return text.matches("^[\\+\\-]?[0-9]*(\\.[0-9]*)?([eE][\\+\\-]?[\\d]*)?$");
+    public void onProcessVariableChange(ChangeParameterEvent processVariableChange) {
+        this.processVariableChange = processVariableChange;
     }
-  }
+
+    /**
+     * @param amplitudeChange the amplitudeChange to set
+     */
+    public void onAmplitudeChange(ChangeParameterEvent amplitudeChange) {
+        this.amplitudeChange = amplitudeChange;
+    }
+
+    /**
+     * @param periodChange the periodChange to set
+     */
+    public void onPeriodChange(ChangeParameterEvent periodChange) {
+        this.periodChange = periodChange;
+    }
+
+    /**
+     * @param waveChange the waveChange to set
+     */
+    public void onWaveChange(ChangeParameterEvent waveChange) {
+        this.waveChange = waveChange;
+    }
+
+    /**
+     * @param loopChange the loopChange to set
+     */
+    public void onLoopChange(ChangeParameterEvent loopChange) {
+        this.loopChange = loopChange;
+    }
+
+    /**
+     * @param ipChange the ipChange to set
+     */
+    public void onIpChange(ChangeParameterEvent ipChange) {
+        this.ipChange = ipChange;
+    }
+
+    /**
+     * @param portChange the portChange to set
+     */
+    public void onPortChange(ChangeParameterEvent portChange) {
+        this.portChange = portChange;
+    }
+
+    /**
+     * @return the currentAmplitide
+     */
+    public double getCurrentAmplitide() {
+        return currentAmplitide;
+    }
+
+    /**
+     * @return the currentPeriod
+     */
+    public double getCurrentPeriod() {
+        return currentPeriod;
+    }
+
+    /**
+     * @return the currentWave
+     */
+    public Wave getCurrentWave() {
+        return currentWave;
+    }
+
+    /**
+     * @return the currentSetPoint
+     */
+    public double getCurrentSetPoint() {
+        return currentSetPoint;
+    }
+
+    /**
+     * @return the currentPV
+     */
+    public TankTag getCurrentPV() {
+        return currentPV;
+    }
+
+    /**
+     * @return the currentLoop
+     */
+    public Loop getCurrentLoop() {
+        return currentLoop;
+    }
+
+    /**
+     * @return the currentIp
+     */
+    public String getCurrentIp() {
+        return currentIp;
+    }
+
+    /**
+     * @return the currentPort
+     */
+    public int getCurrentPort() {
+        return currentPort;
+    }
+
+    /**
+     * @return the openLoopSettings configurated by user
+     */
+    public OpenLoopSettings getOpenLoopSettings() {
+        return new OpenLoopSettings(getCurrentWave(), getCurrentAmplitide(), getCurrentPeriod());
+    }
+
+    public CloseLoopSettings getCloseLoopSettings() {
+        return new CloseLoopSettings(getCurrentSetPoint(), getCurrentPV(), getCurrentControllerType(), getCurrentKp(), getCurrentKi(), getCurrentKd());
+    }
+
+    /**
+     * @param writeChange the writeChange to set
+     */
+    public void onWriteChange(ChangeParameterEvent writeChange) {
+        this.writeChange = writeChange;
+    }
+
+    public void onApplyClicked(ChangeParameterEvent applyClicked) {
+        this.applyClicked = applyClicked;
+    }
+
+    public void addPointToGraph(String sinal, Millisecond t, double d) {
+        //System.out.println(t + " " + d + ";");
+        if (!enabledCurves.contains(sinal)) {
+            return;
+        }
+        switch (sinal) {
+            case TANK1_LEVEL_CURVE:
+                display1Level.setText(Math.round(d) + "cm");
+                graphPanel1.addValue(sinal, t, d);
+                break;
+            case TANK2_LEVEL_CURVE:
+                display2Level.setText(Math.round(d) + "cm");
+                graphPanel1.addValue(sinal, t, d);
+                break;
+            case OBSERVER_CURVE_1:
+            case OBSERVER_CURVE_2:
+            case ERROR_OBSERVER_CURVE_1:
+            case ERROR_OBSERVER_CURVE_2:
+                System.out.println("Add Value to " + sinal);
+                graphPanel1.addValue(sinal, t, d);
+                break;
+            case SETPOINT_CURVE:
+            case ERROR_CURVE:
+                graphPanel1.addValue(sinal, t, d);
+                break;
+            default:
+                graphPanel2.addValue(sinal, t, d);
+                break;
+        }
+    }
+
+    public void onConnectedClicked(ChangeParameterEvent changeParameterEvent) {
+        this.connectClicked = changeParameterEvent;
+    }
+
+    public void setConnectionStatus(ConnectionStatus connectionStatus) {
+        System.out.println(connectionStatus.name());
+        if (ConnectionStatus.CONNECTED.equals(connectionStatus)) {
+            apply.setEnabled(true);
+            statusConnectedLabel.setText("Conectado");
+            statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_green.png")));
+        } else {
+            apply.setEnabled(false);
+            statusConnectedLabel.setText("Não Conectado");
+            statusConnectedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_red.png")));
+        }
+    }
+
+    public void onStopClicked(ChangeParameterEvent changeParameterEvent) {
+        this.stopClicked = changeParameterEvent;
+    }
+
+    /**
+     * @return the currentKp
+     */
+    public double getCurrentKp() {
+        return currentKp;
+    }
+
+    /**
+     * @param currentKp the currentKp to set
+     */
+    public void setCurrentKp(double currentKp) {
+        this.currentKp = currentKp;
+    }
+
+    /**
+     * @return the currentKi
+     */
+    public double getCurrentKi() {
+        return currentKi;
+    }
+
+    /**
+     * @param currentKi the currentKi to set
+     */
+    public void setCurrentKi(double currentKi) {
+        this.currentKi = currentKi;
+    }
+
+    /**
+     * @return the currentKd
+     */
+    public double getCurrentKd() {
+        return currentKd;
+    }
+
+    /**
+     * @param currentKd the currentKd to set
+     */
+    public void setCurrentKd(double currentKd) {
+        this.currentKd = currentKd;
+    }
+
+    /**
+     * @return the currentControllerType
+     */
+    public ControllerType getCurrentControllerType() {
+        return currentControllerType;
+    }
+
+    /**
+     * @param currentControllerType the currentControllerType to set
+     */
+    public void setCurrentControllerType(ControllerType currentControllerType) {
+        this.currentControllerType = currentControllerType;
+    }
+
+    public void onControllerTypeChange(ChangeParameterEvent changeParameterEvent) {
+        this.controllerTypeChange = changeParameterEvent;
+    }
+
+    public void onKpChange(ChangeParameterEvent changeParameterEvent) {
+        this.kpChange = changeParameterEvent;
+    }
+
+    public void onKiChange(ChangeParameterEvent changeParameterEvent) {
+        this.kiChange = changeParameterEvent;
+    }
+
+    public void onKdChange(ChangeParameterEvent changeParameterEvent) {
+        this.kdChange = changeParameterEvent;
+    }
+
+    private void call(ChangeParameterEvent callback, Object param) {
+        if (null != callback) {
+            callback.onChangeParameter(param);
+        }
+    }
+
+    private void call(ChangeParameterEvent callback) {
+        call(callback, null);
+    }
+
+    public void setLockStatus(boolean b) {
+        statusLockLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tan/k/resource/ball_" + (b ? "red" : "stroke") + ".png")));
+    }
+
+    /**
+     * @return the u
+     */
+    public boolean isU() {
+        return uCheckbox.isSelected();
+    }
+
+    /**
+     * @return the u_bar
+     */
+    public boolean isU_bar() {
+        return u_barCheckbox.isSelected();
+    }
+
+    /**
+     * @return the erro
+     */
+    public boolean isErro() {
+        return errorCheckbox.isSelected();
+    }
+
+    /**
+     * @return the setpoint
+     */
+    public boolean isSetpoint() {
+        return SPCheckbox.isSelected();
+    }
+
+    /**
+     * @return the nivel1
+     */
+    public boolean isNivel1() {
+        return level1Checkbox.isSelected();
+    }
+
+    /**
+     * @return the nivel2
+     */
+    public boolean isNivel2() {
+        return level2Checkbox.isSelected();
+    }
+
+    /**
+     * @return the p
+     */
+    public boolean isP() {
+        return PCheckbox.isSelected();
+    }
+
+    /**
+     * @return the d
+     */
+    public boolean isD() {
+        return DCheckbox.isSelected();
+    }
+
+    public boolean isO() {
+        return OCheckbox.isSelected();
+    }
+
+    /**
+     * @return the i
+     */
+    public boolean isI() {
+        return ICheckbox.isSelected();
+    }
+
+    public void setPeakTime(double peakTime) {
+        PeakTimeField.setText(Double.toString(peakTime) + "s");
+    }
+
+    public void setMP(double mp) {
+        DecimalFormat f = new DecimalFormat("#.##%");
+        mpField.setText(f.format(mp));
+    }
+
+    public void setSettlingTime(double settlingTime) {
+        settlingTimeField.setText(Double.toString(settlingTime) + "s");
+    }
+
+    public void onCascadeChange(ChangeParameterEvent changeParameterEvent) {
+        this.cascadeChange = changeParameterEvent;
+    }
+
+    public void onKp1Change(ChangeParameterEvent changeParameterEvent) {
+        this.kp1Change = changeParameterEvent;
+    }
+
+    public void onKi1Change(ChangeParameterEvent changeParameterEvent) {
+        this.ki1Change = changeParameterEvent;
+    }
+
+    public void onKd1Change(ChangeParameterEvent changeParameterEvent) {
+        this.kd1Change = changeParameterEvent;
+    }
+
+    public void onControllerTypeChange1(ChangeParameterEvent changeParameterEvent) {
+        this.controllerTypeChange1 = changeParameterEvent;
+    }
+
+    /**
+     * @return the observer
+     */
+    public Observer getObserver() {
+        return observer;
+    }
+
+    /**
+     * @param observer the observer to set
+     */
+    public void setObserver(Observer observer) {
+        this.observer = observer;
+    }
+
+    public void onTakChange(ChangeParameterEvent changeParameterEvent) {
+        TakChange = changeParameterEvent;
+    }
+
+    public void setRisingTime(double risingTime) {
+        this.riseTimeField.setText(Double.toString(risingTime) + "s");
+    }
+
+    //Classes and enums
+    private class ComboItem {
+
+        private Object value;
+        private String label;
+
+        public ComboItem(Object value, String label) {
+            this.value = value;
+            this.label = label;
+        }
+
+        public Object getValue() {
+            return this.value;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
+
+        @Override
+        public String toString() {
+            return label;
+        }
+    }
+
+    public enum ConnectionStatus {
+
+        CONNECTED, DISCONNECTED, CONNECTING
+    }
+    public static final String TANK1_LEVEL_CURVE = "Nível do tanque 1";
+    public static final String TANK2_LEVEL_CURVE = "Nível do tanque 2";
+    public static final String ERROR_CURVE = "Erro";
+    public static final String SETPOINT_CURVE = "Set Point";
+    public static final String SENDED_SIGNAL_CURVE = "Sinal Enviado";
+    public static final String CALCULATED_SIGNAL_CURVE = "Sinal calculado";
+    public static final String PROPORCIONAL_PART_CURVE = "Componente proporcional";
+    public static final String INTEGRAL_PART_CURVE = "Componente integral";
+    public static final String DERIVATIVE_PART_CURVE = "Componente derivativa";
+    public static final String PROPORCIONAL_PART_CURVE_1 = "Componente proporcional 2";
+    public static final String INTEGRAL_PART_CURVE_1 = "Componente integral 2";
+    public static final String DERIVATIVE_PART_CURVE_1 = "Componente derivativa 2";
+    public static final String OBSERVER_CURVE_1 = "Saida observada 1";
+    public static final String OBSERVER_CURVE_2 = "Saida observada 2";
+    public static final String ERROR_OBSERVER_CURVE_1 = "Erro observador 1";
+    public static final String ERROR_OBSERVER_CURVE_2 = "Erro observador 2";
+
+    public static class DoubleFilter extends DocumentFilter {
+
+        @Override
+        public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+            StringBuilder sb = new StringBuilder();
+            sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+            sb.insert(offset, text);
+            if (!containsOnlyNumbers(sb.toString())) {
+                return;
+            }
+            fb.insertString(offset, text, attr);
+        }
+
+        @Override
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attr) throws BadLocationException {
+            StringBuilder sb = new StringBuilder();
+            sb.append(fb.getDocument().getText(0, fb.getDocument().getLength()));
+            sb.replace(offset, offset + length, text);
+            if (!containsOnlyNumbers(sb.toString())) {
+                return;
+            }
+            fb.replace(offset, length, text, attr);
+        }
+
+        /**
+         * This method checks if a String contains only numbers
+         */
+        public boolean containsOnlyNumbers(String text) {
+            return text.matches("^[\\+\\-]?[0-9]*(\\.[0-9]*)?([eE][\\+\\-]?[\\d]*)?$");
+        }
+    }
 }
