@@ -321,6 +321,22 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelCochete1 = new javax.swing.JLabel();
         jLabelCochete2 = new javax.swing.JLabel();
         applyObserver = new javax.swing.JButton();
+        followerBox = new javax.swing.JPanel();
+        polo2Label1 = new javax.swing.JLabel();
+        polo2Field1 = new javax.swing.JTextField();
+        polo1Field1 = new javax.swing.JTextField();
+        polo1Label1 = new javax.swing.JLabel();
+        jLabelCochete3 = new javax.swing.JLabel();
+        jLabelCochete4 = new javax.swing.JLabel();
+        applyObserver1 = new javax.swing.JButton();
+        polo3Field1 = new javax.swing.JTextField();
+        polo3Label1 = new javax.swing.JLabel();
+        jTableMatrizk2 = new javax.swing.JTable();
+        k2Label = new javax.swing.JLabel();
+        k1Label = new javax.swing.JLabel();
+        jTableMatrizk1 = new javax.swing.JTable();
+        followerTitle = new javax.swing.JPanel();
+        followerToggler = new javax.swing.JLabel();
         display1Title = new javax.swing.JLabel();
         display1Level = new javax.swing.JLabel();
         display2Level = new javax.swing.JLabel();
@@ -809,7 +825,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(inputColumn7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(inputColumn11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         inputTable1Layout.setVerticalGroup(
             inputTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1027,7 +1043,7 @@ public class MainFrame extends javax.swing.JFrame {
         waveTypeLayout.setHorizontalGroup(
             waveTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(waveTypeLayout.createSequentialGroup()
-                .addGap(0, 67, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(sinus)
                 .addGap(0, 0, 0)
                 .addComponent(sawtooth)
@@ -1037,7 +1053,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(step)
                 .addGap(0, 0, 0)
                 .addComponent(random)
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         waveTypeLayout.setVerticalGroup(
             waveTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1217,10 +1233,12 @@ public class MainFrame extends javax.swing.JFrame {
         openedLoopSettings.setLayout(openedLoopSettingsLayout);
         openedLoopSettingsLayout.setHorizontalGroup(
             openedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(waveType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(openedLoopSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(outputSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(openedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(openedLoopSettingsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(outputSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 331, Short.MAX_VALUE))
+                    .addComponent(waveType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         openedLoopSettingsLayout.setVerticalGroup(
@@ -1563,8 +1581,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addContainerGap())))
             .addGroup(waveParams1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
-                .addComponent(jLabel2)
-                .addGap(0, 0, 0))
+                .addComponent(jLabel2))
         );
         waveParams1Layout.setVerticalGroup(
             waveParams1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1642,7 +1659,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(kdLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(takField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlSettingsLayout.setVerticalGroup(
             controlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1668,7 +1685,8 @@ public class MainFrame extends javax.swing.JFrame {
             closedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(closedLoopSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(controlSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(controlSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         closedLoopSettingsLayout.setVerticalGroup(
             closedLoopSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1793,30 +1811,28 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(writeBoxLayout.createSequentialGroup()
-                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(writeBoxLayout.createSequentialGroup()
-                                        .addComponent(jButtonPreview)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonStop)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(apply))
-                                    .addGroup(writeBoxLayout.createSequentialGroup()
-                                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PeakTimeLavel)
-                                            .addComponent(settingTimeLabel))
-                                        .addGap(32, 32, 32)
-                                        .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(settlingTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                            .addComponent(PeakTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jButtonPreview)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonStop)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(apply))
                             .addGroup(writeBoxLayout.createSequentialGroup()
                                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(riseTimeLabel)
                                     .addComponent(mpLabel))
                                 .addGap(32, 32, 32)
+                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(mpField, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                                    .addComponent(riseTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(writeBoxLayout.createSequentialGroup()
                                 .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mpField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(riseTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(PeakTimeLavel)
+                                    .addComponent(settingTimeLabel))
+                                .addGap(32, 32, 32)
+                                .addGroup(writeBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(settlingTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                    .addComponent(PeakTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, writeBoxLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(outputTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2068,7 +2084,7 @@ public class MainFrame extends javax.swing.JFrame {
         observerBoxLayout.setVerticalGroup(
             observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(observerBoxLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(observerBoxLayout.createSequentialGroup()
                         .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2078,7 +2094,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(polo2Label)
                             .addComponent(polo2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(observerBoxLayout.createSequentialGroup()
                         .addGroup(observerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(observerBoxLayout.createSequentialGroup()
@@ -2092,6 +2108,235 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(jTableMatrizGanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(applyObserver))))
+        );
+
+        polo2Label1.setText("Polo 2:");
+        taudLabel1.setVisible(false);
+
+        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo2Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo2Field1KeyPressed2(evt);
+            }
+        });
+        taudField1.setVisible(false);
+
+        ((AbstractDocument)tauiField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo1Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo1Field1KeyPressed2(evt);
+            }
+        });
+        tauiField1.setVisible(false);
+
+        polo1Label1.setText("Polo 1:");
+        tauiLabel1.setVisible(false);
+
+        jLabelCochete3.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
+        jLabelCochete3.setText("[");
+
+        jLabelCochete4.setFont(new java.awt.Font("DejaVu Sans Light", 0, 36)); // NOI18N
+        jLabelCochete4.setText("]");
+
+        applyObserver1.setText("Aplicar");
+        applyObserver1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                applyObserver1Clicked(evt);
+            }
+        });
+
+        ((AbstractDocument)taudField1.getDocument()).setDocumentFilter(new DoubleFilter());
+        polo3Field1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed1(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                polo3Field1KeyPressed2(evt);
+            }
+        });
+        taudField1.setVisible(false);
+
+        polo3Label1.setText("Polo 3:");
+        taudLabel1.setVisible(false);
+
+        jTableMatrizk2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null}
+            },
+            new String [] {
+                "Matriz de Ganho"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMatrizk2.setAutoscrolls(false);
+        jTableMatrizk2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableMatrizk2.setFocusable(false);
+        jTableMatrizk2.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableMatrizk2.setRowMargin(2);
+        jTableMatrizk2.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableMatrizk2.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMatrizk2.setShowVerticalLines(false);
+
+        k2Label.setText("k2 =");
+        tauiLabel1.setVisible(false);
+
+        k1Label.setText("k1 =");
+        tauiLabel1.setVisible(false);
+
+        jTableMatrizk1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null}
+            },
+            new String [] {
+                "Matriz de Ganho"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableMatrizk1.setAutoscrolls(false);
+        jTableMatrizk1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableMatrizk1.setFocusable(false);
+        jTableMatrizk1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableMatrizk1.setRowMargin(2);
+        jTableMatrizk1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jTableMatrizk1.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jTableMatrizk1.setShowVerticalLines(false);
+
+        javax.swing.GroupLayout followerBoxLayout = new javax.swing.GroupLayout(followerBox);
+        followerBox.setLayout(followerBoxLayout);
+        followerBoxLayout.setHorizontalGroup(
+            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(polo1Label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(polo2Label1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(polo1Field1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(polo2Field1)))
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addComponent(polo3Label1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(polo3Field1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                        .addComponent(k1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                        .addComponent(applyObserver1)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                        .addComponent(k2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabelCochete3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabelCochete4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        followerBoxLayout.setVerticalGroup(
+            followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(followerBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(polo1Label1)
+                        .addComponent(polo1Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(k1Label))
+                    .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(followerBoxLayout.createSequentialGroup()
+                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(polo2Label1)
+                                    .addComponent(polo2Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                                        .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(polo3Label1)
+                                            .addComponent(polo3Field1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18))
+                                    .addComponent(applyObserver1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerBoxLayout.createSequentialGroup()
+                                .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelCochete4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelCochete3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(followerBoxLayout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(k2Label)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())))
+                    .addGroup(followerBoxLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
+        );
+
+        k2Label.getAccessibleContext().setAccessibleName("k2 =");
+
+        followerTitle.setBackground(new java.awt.Color(158, 158, 158));
+
+        followerToggler.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        followerToggler.setText("Seguidor de Referência");
+        followerToggler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                followerTogglerMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout followerTitleLayout = new javax.swing.GroupLayout(followerTitle);
+        followerTitle.setLayout(followerTitleLayout);
+        followerTitleLayout.setHorizontalGroup(
+            followerTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(followerTitleLayout.createSequentialGroup()
+                .addComponent(followerToggler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        followerTitleLayout.setVerticalGroup(
+            followerTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, followerTitleLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(followerToggler))
         );
 
         javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
@@ -2108,6 +2353,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(ipPortTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(writeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(writeBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(followerTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(followerBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidebarLayout.setVerticalGroup(
             sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2122,13 +2369,17 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(readBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(writeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(writeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 680, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(followerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(writeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 700, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addComponent(followerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(observerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(observerBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(graphTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(graphBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2189,7 +2440,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(graphPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(graphPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusConnectedLabel)
@@ -3229,6 +3480,50 @@ public class MainFrame extends javax.swing.JFrame {
     // TODO add your handling code here:
   }//GEN-LAST:event_applyActionPerformed
 
+    private void polo2Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed
+
+    private void polo2Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed1
+
+    private void polo2Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo2Field1KeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo2Field1KeyPressed2
+
+    private void polo1Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed
+
+    private void polo1Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed1
+
+    private void polo1Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo1Field1KeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo1Field1KeyPressed2
+
+    private void applyObserver1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyObserver1Clicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyObserver1Clicked
+
+    private void followerTogglerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_followerTogglerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_followerTogglerMouseClicked
+
+    private void polo3Field1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo3Field1KeyPressed
+
+    private void polo3Field1KeyPressed1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo3Field1KeyPressed1
+
+    private void polo3Field1KeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_polo3Field1KeyPressed2
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polo3Field1KeyPressed2
+
   private void writeChannelChange(java.awt.event.ItemEvent evt) {
     JRadioButton selected = (JRadioButton) writeChannelChooser.getSelection();
     int selectedValue = Integer.parseInt(selected.getText().replace("A", ""));
@@ -3264,6 +3559,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel amplitudeLabel;
     private javax.swing.JButton apply;
     private javax.swing.JButton applyObserver;
+    private javax.swing.JButton applyObserver1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton cascadeButton;
     private javax.swing.JRadioButton closedLoop;
@@ -3279,6 +3575,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel display2Level;
     private javax.swing.JLabel display2Title;
     private javax.swing.JCheckBox errorCheckbox;
+    private javax.swing.JPanel followerBox;
+    private javax.swing.JPanel followerTitle;
+    private javax.swing.JLabel followerToggler;
     private javax.swing.JPanel frequency;
     private javax.swing.JFormattedTextField frequencyField;
     private javax.swing.JLabel frequencyLabel;
@@ -3319,6 +3618,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCochete1;
     private javax.swing.JLabel jLabelCochete2;
+    private javax.swing.JLabel jLabelCochete3;
+    private javax.swing.JLabel jLabelCochete4;
     private javax.swing.JLabel jLabelHertz;
     private javax.swing.JLabel jLabelSeconds;
     private javax.swing.JLabel jLabelVoltage;
@@ -3331,6 +3632,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTableMatrizGanho;
+    private javax.swing.JTable jTableMatrizk1;
+    private javax.swing.JTable jTableMatrizk2;
+    private javax.swing.JLabel k1Label;
+    private javax.swing.JLabel k2Label;
     private javax.swing.JTextField kdField;
     private javax.swing.JTextField kdField1;
     private javax.swing.JLabel kdLabel;
@@ -3375,9 +3680,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField periodField;
     private javax.swing.JLabel periodLabel;
     private javax.swing.JTextField polo1Field;
+    private javax.swing.JTextField polo1Field1;
     private javax.swing.JLabel polo1Label;
+    private javax.swing.JLabel polo1Label1;
     private javax.swing.JTextField polo2Field;
+    private javax.swing.JTextField polo2Field1;
     private javax.swing.JLabel polo2Label;
+    private javax.swing.JLabel polo2Label1;
+    private javax.swing.JTextField polo3Field1;
+    private javax.swing.JLabel polo3Label1;
     private javax.swing.JComboBox processVariableField;
     private javax.swing.JLabel processVariableLabel;
     private javax.swing.JToggleButton random;
