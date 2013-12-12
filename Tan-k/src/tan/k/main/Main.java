@@ -16,6 +16,7 @@ import org.ejml.data.Complex64F;
 import org.java.ayatana.ApplicationMenu;
 import org.java.ayatana.AyatanaDesktop;
 import org.jfree.data.time.Millisecond;
+import tan.k.controller.FollowReference;
 import tan.k.controller.Observer;
 import tan.k.controller.TanKController;
 import tan.k.controller.TanKController.ControllerType;
@@ -39,6 +40,7 @@ public class Main {
   private static Thread controllerThread;
   private static Thread plotThread;
   private static Observer observer;
+  private static FollowReference servo;
 
   public static void main(String[] args) {
     List<Complex64F> poles = new ArrayList<>();
@@ -50,6 +52,12 @@ public class Main {
     
     double[][] h = {{0.0296}, {0}};
     double[][] g = {{0.9994, 0}, {0.0006, 0.9994}};
+    
+    servo = new FollowReference();
+    servo.setPoles(new Complex64F(0.5, 0.2), new Complex64F(0.5, -0.2), new Complex64F(0.1, 0));
+    
+    //servo.setGains(0.02963611697630464, new double[] {0.03422856547102526,0.5548986379122951} );
+    //System.exit(0);
     
     
     //Observer observer = new Observer(new Matrix(g), new Matrix(c), poles);
