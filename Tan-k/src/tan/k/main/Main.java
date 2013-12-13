@@ -55,10 +55,12 @@ public class Main {
     
     servo = new FollowReference();
 //    servo.setPoles(new Complex64F(0.707, 0), new Complex64F(0.707, 0), new Complex64F(0.707, 0)); //Oscila
-//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório Lento
+    //servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório Lento
 //    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9950, -0.008), new Complex64F(0.9950, 0.008));//Polos complexos legais
-    servo.setPoles(new Complex64F(0.9030, 0), new Complex64F(0.9950, -0.008), new Complex64F(0.9950, 0.008));//lento com sobressinal baixo
-//    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9950, -0.014), new Complex64F(0.9950, 0.014));//Polos complexos que oscilam
+    //servo.setPoles(new Complex64F(0.9030, 0), new Complex64F(0.9950, -0.008), new Complex64F(0.9950, 0.008));//lento com sobressinal baixo
+   //servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(0.9950, -0.014), new Complex64F(0.9950, 0.014));//Polos complexos que oscilam
+   servo.setGains(0.007880064661993046, new double[] {3.112493808246102, 1.6619883071130035});
+   //servo.setPoles(new Complex64F(0.8967730798772264, 0), new Complex64F(), null);
 //    servo.setPoles(new Complex64F(0.9048, 0), new Complex64F(-0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório com segundo negativo - instável
 //    servo.setPoles(new Complex64F(0.9948, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório um pouco mais rápido
 //    servo.setPoles(new Complex64F(0.8548, 0), new Complex64F(0.9920, 0), new Complex64F(0.9980, 0));//Polos do relatório Lento
@@ -77,6 +79,7 @@ public class Main {
     }
     view = new MainFrame();
     view.setObserver(observer);
+    view.setServo(servo);
     tank = new Tank(view.getCurrentIp(), view.getCurrentPort(), 0, 0, 1);
     controller = new TanKController(
             tank,
@@ -86,8 +89,9 @@ public class Main {
     controller.setObserver(observer);
     controller.setServo(servo);
     
+    view.setController(controller);
     //Retirar esta linha - ela set o contralador no modo servo
-    controller.setServoControl(true); //
+    //controller.setServoControl(true); //
     
     
     

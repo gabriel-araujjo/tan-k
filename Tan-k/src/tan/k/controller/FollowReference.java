@@ -18,8 +18,8 @@ import tan.k.util.ComplexUtil;
 public class FollowReference {
   double r; //Nível do tanque em centímetros
   
-  double k1; //ganhos
-  double[] k2 = new double[2];
+  private double k1; //ganhos
+  private double[] k2 = new double[2];
   double p1, p2, p3; //polos
   
   //Valores reais
@@ -87,7 +87,7 @@ public class FollowReference {
     
     v = v + e;
     
-    u = -(k2[0]*x[0] + k2[1]*x[1]) + k1*v;
+    u = -(k2[0]*x[0] + k2[1]*x[1]) + getK1()*v;
   }
   
   public void setPoles(Complex64F p1, Complex64F p2, Complex64F p3){
@@ -137,61 +137,34 @@ public class FollowReference {
     k2[0] = K[0];
     k2[1] = K[1];
     
-    System.out.println("k1 = "+k1);
-    System.out.println("k2 = ["+k2[0]+", "+k2[1]+"]");
+    System.out.println("k1 = "+getK1());
+    System.out.println("k2 = ["+getK2()[0]+", "+getK2()[1]+"]");
   }
   
   public void setGains(double k1, double[] k2){
-    double[][][] G = new double[4][3][3];
-    G[0] = new double[][] {{1,0,0},{0,1,0},{0,0,1}};  // GA^0 identidade
-    G[1] = GA;                                        // GA^1 GA
-    G[2] = multMatix(GA, GA);                         // GA^2 GA*GA
-    G[3] = multMatix(G[2], GA);                       // GA^3 GA^2 * GA
+    double[][] Ga = GA;
+    double[][] Ga2 = multMatix(GA, GA);                         // GA^2 GA*GA
+    double[][] Ga3 = multMatix(Ga2, GA);                       // GA^3 GA^2 * GA
     
-    double[] WI3 = wcInv[2];                          // terceira linha de Wc inversa 
+    double a = wcInv[2][0];
+    double b = wcInv[2][1];
     
-    double[][] A = new double[][]{{0,0,0},{0,0,0},{0,0,0}};// A no sistema linear Ax = Y
-    double[] Y = multMatix(new double[][] {{k2[0], k2[1], k1}}, alpha)[0];                // Y no sistema linear Ax = Y
+    double[] K = {k2[0], k2[1], k1};
     
-    Y[2] = Y[2]-1;
+    double a1,a2,a3;
     
-    for(int i=0;i<3;i++){  // itera os y1, y2 e y3]
-      for(int j=0;j<3;j++){ // itera Ga3 
-        Y[i] -= WI3[j]*G[3][j][i];
-      }
-    }
-    System.out.println("Y = ["+Y[0]+", "+Y[1]+", "+Y[2]+"]");
-    System.out.println("A =");
-    for(int i=0;i<3;i++){ //itera linhas de A
-      System.out.print("[");
-      for(int j=0; j<3;j++){ // itera colunas de A
-        for(int k=0; k<3; k++){ // itera os G
-          A[i][j] += G[i][k][j]*WI3[k];
-        }
-        System.out.print(A[i][j]+", ");
-      }
-      System.out.print(";");
-    }
-    System.out.println("]");
+    a1=(K[0]-a*Ga3[0][0]-b*Ga3[1][0]-(a*Ga[0][0]+b*Ga[1][0])*
+            ((K[2]-a*Ga3[0][2]-b*Ga3[1][2])/(a*Ga[0][2]+b*Ga[1][2]))+
+            a*((-K[1]+b*Ga3[1][1])/(b)+Ga[1][1]*(K[2]-a*Ga3[0][2]-b*Ga3[1][2])/
+            (a*Ga[0][2]+b*Ga[1][2])))/(-(a*Ga2[0][0]+b*Ga2[1][0])+(a*Ga[0][0]+
+            b*Ga[1][0])*((a*Ga2[0][2]+b*Ga2[1][2])/(a*Ga[0][2]+b*Ga[1][2]))-
+            a*(-Ga2[1][1]+(Ga[1][1]*(a*Ga2[0][2]+b*Ga2[1][2]))/(a*Ga[0][2]+b*Ga[1][2])));
+    a2=(K[2]-a*Ga3[0][2]-b*Ga3[1][2]+(a*Ga2[0][2]+b*Ga2[1][2])*a1)/(a*Ga[0][2]+b*Ga[1][2]);
+    a3=-(K[1]-b*Ga3[1][1]+b*Ga2[1][1]*a1-b*Ga[1][1]*a2)/b;
     
-    
-    // A partir daqui tá correto
-    double[][] YColumn = new double[3][1];
-    YColumn[0][0] = Y[0];
-    YColumn[1][0] = Y[1];
-    YColumn[2][0] = Y[2];
-    
-    DenseMatrix64F AMatrix = new DenseMatrix64F(A);
-    DenseMatrix64F YMatrix = new DenseMatrix64F(YColumn);
-    DenseMatrix64F x = new DenseMatrix64F(3,1);
-    
-    CommonOps.solve(AMatrix,YMatrix,x);
-    
-    System.out.println(
-            "alpha = "+x.get(2, 0)+
-            "\nbeta = "+x.get(1,0)+
-            "\ngamma = "+x.get(0,0)
-    );
+    System.out.println(a1);
+    System.out.println(a2);
+    System.out.println(a3);
     
     DenseMatrix64F c = new DenseMatrix64F(3,3);
     
@@ -203,9 +176,9 @@ public class FollowReference {
     c.set(1, 1, 0);
     c.set(1, 2, 1);
     
-    c.set(2, 0, -x.get(0,0));
-    c.set(2, 1, -x.get(1,0));
-    c.set(2, 2, -x.get(2,0));
+    c.set(2, 0, a3);
+    c.set(2, 1, a2);
+    c.set(2, 2, a1);
     
     
     EigenDecomposition<DenseMatrix64F> evd = DecompositionFactory.eig(3, false);
@@ -248,6 +221,20 @@ public class FollowReference {
    */
   public void resetV() {
     this.v = 0.0;
+  }
+
+  /**
+   * @return the k1
+   */
+  public double getK1() {
+    return k1;
+  }
+
+  /**
+   * @return the k2
+   */
+  public double[] getK2() {
+    return k2;
   }
   
 }
