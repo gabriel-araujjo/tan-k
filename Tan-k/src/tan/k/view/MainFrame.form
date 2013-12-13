@@ -2361,15 +2361,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="k1Label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTableMatrizk1" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="k1Label" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTableMatrizk1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                              <Component id="jTableMatrizk2" min="-2" pref="24" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabelCochete3" min="-2" max="-2" attributes="0"/>
@@ -2379,6 +2375,10 @@
                                                   </Group>
                                                   <Component id="jLabelCochete4" min="-2" max="-2" attributes="0"/>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              <Component id="jTableMatrizk2" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -2504,7 +2504,7 @@
                             <Component class="javax.swing.JTable" name="jTableMatrizk1">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="1" rowCount="2">
+                                  <Table columnCount="1" rowCount="1">
                                     <Column editable="true" title="Matriz de Ganho" type="java.lang.Double"/>
                                   </Table>
                                 </Property>

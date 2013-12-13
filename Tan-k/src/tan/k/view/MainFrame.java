@@ -1780,7 +1780,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     jTableMatrizk1.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null},
         {null}
       },
       new String [] {
@@ -1860,11 +1859,8 @@ public class MainFrame extends javax.swing.JFrame {
         .addGap(22, 22, 22)
         .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(k1Label)
-          .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jTableMatrizk1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(followerBoxLayout.createSequentialGroup()
-            .addGap(18, 18, 18)
-            .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(followerBoxLayout.createSequentialGroup()
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(followerBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1872,7 +1868,10 @@ public class MainFrame extends javax.swing.JFrame {
               .addGroup(followerBoxLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(k2Label))
-              .addComponent(jLabelCochete4))))
+              .addComponent(jLabelCochete4)))
+          .addGroup(followerBoxLayout.createSequentialGroup()
+            .addGap(12, 12, 12)
+            .addComponent(jTableMatrizk2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
